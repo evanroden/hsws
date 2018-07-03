@@ -1,4 +1,5 @@
-# We want to design new batteries suited to particular applications. 
+
+.# We want to design new batteries suited to particular applications. 
 # To do so, we need to understand what properties are related to capacity and 
 # voltage, and what properties are necessary for a particular type of battery.
 # From there, we can make "design rules" that help dictate what possible 
@@ -20,43 +21,51 @@
 # potential energy than a ball resting on the floor.
 ###############################################################################
 
-# Import battery-data.csv and elemental-data.csv into data frames.
-# Remember to include headers.
-
 ### Part 1: Filtering Numerical Data  ###
 
-# Write a function that takes a data frame as the input and returns a data 
+setwd("~/Evan HSWS/project/battery-correlations")
+read.csv("battery-data.csv")
+batteryFrame = read.csv("battery-data.csv")
+View(batteryFrame)
+
+elemFrame=read.csv("../elemental-data.csv")
+View(elemFrame)
+# Write a functilon that takes a data frame as the input and returns a data 
+batteryData=subset(batteryFrame,select=c(Average.Output.Voltage, Capacity))
+View(batteryData)
 # frame containing only the numerical values as the output.
 # This will allow you to apply your correlation function to an entire data frame.
 
 ### Part 2: Finding Correlations  ###
 
-# Choose two properties - one found in the elemental data set, and one found
-# in the battery data. Try applying the correlation function to the properties.
-
-
-# What happened? Explain why this didn't work and identify what issues exist
-# with trying to correlate your battery data set to the elemental data set.
-
 # Take a subset of your battery data set that only has data for compounds
 # including a specific element of your choosing. 
+compoundData=subset(batteryFrame,select=c(A,B))
+View(compoundData)
 # Repeat your previous step: using your subset of the data, apply the 
 # correlation function to the battery property and elemental data.
 # You may need to use the as.vector() function when searching the data frames.
 
+cor(batteryData)
 
 # Make a plot of the data to confirm the result of the correlation.
 
+head(batteryFrame)
+batteryFrame %>%
+  filter(Average.Output.Voltage>0)%>%
+  ggplot(aes(x=Average.Output.Voltage,y=Capacity),col=A,size=B)+
+  geom_point(alpha=.6)
 
 # Was your correlation weak or strong? How was this supported by the plot?
-# What do the results mean? That is to say, what are you correlating, and 
-# what does the output tell you about that the elements and the compounds?
-# There are several layers to what you are doing, so take a moment to 
-# think about it and make sure you can explain it. 
+#
+# Weak, as many of the points are far from the line
+#
 
 # Find the dimensions of the elemental data frame. How many properties does
 # it contain? How many of those can be compared with the elemental data?
 
+dim(batteryFrame)
+# 24, 2
 
 # Clearly, there is too much data to go through and repeat the earlier process
 # manually. (Incidentally, the elemental data set is still relatively small.) 
@@ -65,6 +74,28 @@
 
 # Write a function to find correlations between battery data and elemental
 # properties, given the element A of a compound.
+
+cor(batteryFrame$A, batteryData&Average.Output.Voltage)
+
+batteryFunction = function(asym){
+  asym=as.character(asym)
+  print(asym)
+  subFrame=batteryFrame[batteryFrame$A==asym,]
+  subElement=elemFrame[elemFrame$Symbol %in% subframe_vector,]
+  
+  subFrame = select_if(subFrame, is.numeric)
+  subElement = select_if(subElement, is.numeric)
+  
+  View(subFrame)
+  View(subElement)
+  
+  corData=cor(subFrame,subElement)
+  return(as.data.frame(corData))
+}
+
+batteryFunction = function(asym){
+  
+}
 
 # The function should take an element symbol as the input.
 # It should then find the elements used in conjunction with the given

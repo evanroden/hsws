@@ -39,14 +39,14 @@ drivingTest = function(age) {
   if ( is.numeric(age) & ( length(age)==1 ) ) {
     
     if (age >= 17) {
-      status ="You can drive!";
+      status ="You can drive without a permit!";
       
     } else if (age >= 16) {
-      status = "You are almost old enough to drive!";
+      status = "You are old enough to drive, as long as you have a Permit!";
       
     } else {
       status = "You are not old enough to drive.";
-      
+        
     }  
     return(paste("You are", age, "years old.", status));
     
@@ -55,7 +55,7 @@ drivingTest = function(age) {
   }    
 }
 
-age = 18;
+age = p;
 drivingTest(age);
 
 # ------------------------------
@@ -65,22 +65,26 @@ drivingTest(age);
 # converts the value(s) to kilometers.
 #
 # Use the following information: 
-#   kilometers = (8/5) * miles
+
 # 
 # Test the function with the following vector, and print the results.
-miles = c(50, 100, 200, 275)
+mph = c(50, 100, 200, 275)
+kmh <- (8/5) * mph
+print(kmh)
 
 # What is the type (class) of the output, given the input vector miles?
-
+# Numeric
 # What is the type (class) of the output if you supply a single numeric value?
+# Numeric
 # What about a single character value?
+# Numeric
 
 # ------------------------------
 # 3. Average and Standard Deviation
-#
+# 
 # Write a simple function that prints out the mean and standard deviation
 # of an input set of numbers. Test the result on the body and brain columns of
-# the dataset mammals (mammals$body in units of kg, mammals$brain in units of g).
+# the dataset mammals (mammals$body in units of kg, mammals$brain in units of g).198.79, 283.1342
 #
 # Hints: 
 #   - The native R function mean() can be used for the mean.
@@ -99,7 +103,7 @@ library(MASS) # loads the dataset called "mammals"
 # The apply() family of functions can be used to call some other function multiple times, with several 
 # different arguments. In this exercise we will explore the use of the sapply() function. We will use 
 # it to call several R functions on a predefined dataset, and then look at the output.
-
+# 
 # You can use the apply() family on a native R function, on a function you wrote yourself.
 
 # a. First, create the sample dataset of US car data by running the following:

@@ -37,7 +37,7 @@ x = c(313, 284, 311, 280, 322, 324, 302)
 
 # Use the constructions above to find the following for the vector x using logic and conditionals. 
 # There is often more than one way to do these! Make your solutions as general as possible.
-#
+#x[c(-1,-3)]
 #   a. All but elements 2, 6, and 7 of x
 #   b. The last 2 elements of x
 #   c. All elements of x that are less than 290
@@ -52,7 +52,7 @@ x = c(313, 284, 311, 280, 322, 324, 302)
 # II. Vectors and type
 
 # a. Create a variable w, a vector containing three character strings, such as:
-w = c("red", "orange", "green")  
+
 
 # b. Create a variable y, a vector containing any three numeric values.
 

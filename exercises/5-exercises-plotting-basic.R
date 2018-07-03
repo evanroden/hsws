@@ -117,10 +117,22 @@ cr=Cars93
 # a. Make a histogram and density plot of Engine Size (displacement), plotted on the same
 #   'page'. Label the axes on the histogram. Compare the histogram and density plots.
 
+head(Cars93)
+Cars93 %>%
+  filter(MPG.city<36)%>%
+  filter(Cylinders!="rotary")%>%
+  ggplot(aes(x=Price,y=MPG.city))+
+  geom_point(alpha=.6)
 
 # b. Make a boxplot of the Cars93 dataset drivetrain types with engine RPM. Label the axes and the plot.
 #   Use color to distinguish the categorical variable values.
-# 
+boxplot(formula=MPG.city~Man.trans.avail,
+        data=cr, 
+        xlab="Manual Transmission Available?", 
+        ylab="MPG, city",
+        col=c("red", "darkblue"))
+title("Miles per Gallon with Transmission Type")
+
 #   Remind yourself:
 #   What do the ends of the boxes and the dotted lines mean? Are there any outliers? Can you find
 #   the cars represented by them?
@@ -144,15 +156,23 @@ cr=Cars93
 # e. Create a piechart of Vehicle Airbags from the Cars93 dataset. Display each category's percentage 
 #   of the total dataset. Include a plot title.
 
+pie(table(cr$Cylinders))
+
+# plain jane: pie chart of Cylinders (categorical) from Cars93 data
+slices <-table(cr$AirBags)
+lbls <- levels(cr$AirBags)
+pie(slices, 
+    labels = lbls, 
+    col=rainbow(length(lbls)),
+    main="Airbags")
 
 # -------------------------------------------------------------
 
 # 5. In the library MASS is a dataset called UScereal, which contains information about popular 
 # breakfast cereals. Access the data set as follows:
 #   
-# data(UScereal, package="MASS") # load the UScereal data frame
-# names(UScereal)                # to see the names of the columns
-# 
+ data(UScereal, package="MASS") # load the UScereal data frame
+ names(UScereal)                # to see the names of the columns 
 # Now, pick one of the following relationships to investigate, and comment on what you see. 
 # You can use tables, barplots, scatterplots, descriptive statistics, etc. to do your investigation.
 # 
@@ -167,3 +187,11 @@ data(UScereal, package="MASS")
 names(UScereal)
 u = UScereal
 
+
+
+head(UScereal)
+UScereal %>%
+  ggplot(aes(x=fat,y=vitamins))+
+  geom_point(alpha=.6)
+
+dim(UScereal)

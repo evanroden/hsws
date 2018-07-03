@@ -20,11 +20,11 @@
 # a. Make the following variable assignments in R. (Tip: just uncomment the lines, select them,
 # and click 'Run')
 #
-# r = exp(2)         	# exponential function
-# q = abs(3 - 7)     	# Absolute value of (3-7)
-# y = "TRUE"    			
-# x = FALSE
-# z = NA
+r = exp(2)         	# exponential function
+q = abs(3 - 7)     	# Absolute value of (3-7)
+y = "TRUE"    			
+x = FALSE
+z = NA
 #
 # b. Using R, find and print the class of each variable. What do you notice about variable y?
 
@@ -43,7 +43,8 @@
 # Perform the following in R:
 # a. Define variable u as logical True, v as logical False. Hint: these reserved words must
 # be all capitals (case is important in R).
-
+u = TRUE
+v=FALSE
 # b. In R, determine whether u and v are both true.
 
 # c. In R, determine whether at least one of u OR v is true.
@@ -57,9 +58,13 @@
 # 3. Strings and concatenation 
 
 # a. Assign your first and last names to R two separate R variables.
-
+firstName = "Evan"
+lastName = "Roden"
 # b. Use the function paste() to assign the result to a new variable.
 # If you need to look up how to use paste, enter "?paste" at the
+paste(firstName)
+?paste
+
 # command line to bring up the help page.
 
 # c. Print the new variable. Print its type (use the function class(), or look
@@ -78,13 +83,12 @@ celsius = c(20:25)	# sets a vector variable to contain the integers 20 through 2
 
 # a. Complete the assignment for the fahrenheit variable. For the formula, refer to: 
 # http://www.metric-conversions.org/temperature/celsius-to-fahrenheit.htm
-# fahrenheit =
-
+fahrenheit = celsius*1.8000+32.00
 # b. Uncomment this line to create a data frame containing the temperature conversion:
-# conversion = data.frame(Celsius=celsius, Fahrenheit=fahrenheit)
+conversion = data.frame(Celsius=celsius, Fahrenheit=fahrenheit)
 
 # c. Print the temperature conversion.
-
+print(conversion)
 # You should see:
 #   Celsius Fahrenheit
 # 1      20       68.0
