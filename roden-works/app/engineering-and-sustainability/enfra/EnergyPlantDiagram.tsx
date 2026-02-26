@@ -487,116 +487,116 @@ export default function EnergyPlantDiagram() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Diagram */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="lg:col-span-2 glass rounded-xl p-4 md:p-6"
-          >
-            <div className="relative w-full" style={{ paddingBottom: '56%' }}>
-              <svg
-                viewBox="0 0 400 275"
-                className="absolute inset-0 w-full h-full"
-                fill="none"
-                preserveAspectRatio="xMidYMid meet"
-              >
-                {/* Piping first (behind equipment) */}
-                <PipingNetwork isInView={isInView} />
+        {/* Diagram — full width */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="glass rounded-xl p-4 md:p-6 lg:p-8"
+        >
+          <div className="relative w-full" style={{ paddingBottom: '68%' }}>
+            <svg
+              viewBox="0 0 400 275"
+              className="absolute inset-0 w-full h-full"
+              fill="none"
+              preserveAspectRatio="xMidYMid meet"
+            >
+              {/* Piping first (behind equipment) */}
+              <PipingNetwork isInView={isInView} />
 
-                {/* Equipment drawings */}
-                <BoilerDrawing active={activeComponent === 'boiler'} />
-                <ChillerDrawing active={activeComponent === 'chiller'} />
-                <CoolingTowerDrawing active={activeComponent === 'cooling-tower'} />
-                <GeneratorDrawing active={activeComponent === 'generator'} />
-                <PumpDrawing active={activeComponent === 'pumps'} />
-                <BasDrawing active={activeComponent === 'bas'} />
-                <BuildingLoad />
+              {/* Equipment drawings */}
+              <BoilerDrawing active={activeComponent === 'boiler'} />
+              <ChillerDrawing active={activeComponent === 'chiller'} />
+              <CoolingTowerDrawing active={activeComponent === 'cooling-tower'} />
+              <GeneratorDrawing active={activeComponent === 'generator'} />
+              <PumpDrawing active={activeComponent === 'pumps'} />
+              <BasDrawing active={activeComponent === 'bas'} />
+              <BuildingLoad />
 
-                {/* Clickable overlay zones */}
-                {zones.map((z) => (
-                  <rect
-                    key={z.id}
-                    x={z.x} y={z.y} width={z.w} height={z.h}
-                    fill="transparent"
-                    className="cursor-pointer"
-                    onClick={() => setActiveComponent(activeComponent === z.id ? null : z.id)}
-                  />
-                ))}
-
-                {/* Active highlight border */}
-                {activeComponent && (() => {
-                  const z = zones.find((z) => z.id === activeComponent)
-                  if (!z) return null
-                  const comp = components.find((c) => c.id === activeComponent)
-                  return (
-                    <rect
-                      x={z.x} y={z.y} width={z.w} height={z.h}
-                      rx="3"
-                      fill="transparent"
-                      stroke={comp?.color || C.titanium}
-                      strokeOpacity="0.25"
-                      strokeWidth="1"
-                      strokeDasharray="4 2"
-                      className="pointer-events-none"
-                    />
-                  )
-                })()}
-
-                {/* Title */}
-                <text x="200" y="12" textAnchor="middle" className="fill-white/30 text-[4px] font-mono tracking-widest">
-                  CENTRAL ENERGY PLANT — P&amp;ID SCHEMATIC
-                </text>
-              </svg>
-            </div>
-          </motion.div>
-
-          {/* Info panel */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="glass rounded-xl p-6"
-          >
-            {active ? (
-              <motion.div
-                key={active.id}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                <div
-                  className="w-3 h-3 rounded-full mb-4"
-                  style={{ backgroundColor: active.color }}
+              {/* Clickable overlay zones */}
+              {zones.map((z) => (
+                <rect
+                  key={z.id}
+                  x={z.x} y={z.y} width={z.w} height={z.h}
+                  fill="transparent"
+                  className="cursor-pointer"
+                  onClick={() => setActiveComponent(activeComponent === z.id ? null : z.id)}
                 />
-                <h3 className="font-serif text-xl text-white mb-3">{active.label}</h3>
-                <p className="text-titanium text-sm leading-relaxed mb-4">{active.description}</p>
-                {active.specs && (
-                  <ul className="space-y-1.5 border-t border-white/5 pt-4">
-                    {active.specs.map((spec, i) => (
-                      <li key={i} className="text-titanium/60 text-xs font-mono flex items-start gap-2">
-                        <span className="text-copper mt-0.5">&#x25B8;</span>
-                        {spec}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </motion.div>
-            ) : (
-              <div className="h-full flex flex-col items-center justify-center text-center py-8">
-                <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-titanium/40" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zM12 2.25V4.5m5.834.166l-1.591 1.591M20.25 10.5H18M7.757 14.743l-1.59 1.591M6 10.5H3.75m4.007-4.243l-1.59-1.591" />
-                  </svg>
+              ))}
+
+              {/* Active highlight border */}
+              {activeComponent && (() => {
+                const z = zones.find((z) => z.id === activeComponent)
+                if (!z) return null
+                const comp = components.find((c) => c.id === activeComponent)
+                return (
+                  <rect
+                    x={z.x} y={z.y} width={z.w} height={z.h}
+                    rx="3"
+                    fill="transparent"
+                    stroke={comp?.color || C.titanium}
+                    strokeOpacity="0.25"
+                    strokeWidth="1"
+                    strokeDasharray="4 2"
+                    className="pointer-events-none"
+                  />
+                )
+              })()}
+
+              {/* Title */}
+              <text x="200" y="12" textAnchor="middle" className="fill-white/30 text-[4px] font-mono tracking-widest">
+                CENTRAL ENERGY PLANT — P&amp;ID SCHEMATIC
+              </text>
+            </svg>
+          </div>
+
+          {/* Inline hint when nothing selected */}
+          {!active && (
+            <p className="text-center text-titanium/40 text-sm mt-4 font-mono tracking-wide">
+              Click on any system in the schematic above
+            </p>
+          )}
+        </motion.div>
+
+        {/* Info panel — appears below diagram when a component is selected */}
+        {active && (
+          <motion.div
+            key={active.id}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+            className="glass rounded-xl p-6 md:p-8 mt-6"
+          >
+            <div className="flex flex-col md:flex-row gap-6 md:gap-10">
+              <div className="flex-1">
+                <div className="flex items-center gap-3 mb-3">
+                  <div
+                    className="w-3 h-3 rounded-full"
+                    style={{ backgroundColor: active.color }}
+                  />
+                  <h3 className="font-serif text-xl text-white">{active.label}</h3>
                 </div>
-                <p className="text-titanium/60 text-sm">
-                  Click on any system in the schematic to learn about its role in hospital infrastructure.
-                </p>
+                <p className="text-titanium text-sm leading-relaxed">{active.description}</p>
               </div>
-            )}
+              {active.specs && (
+                <ul className="space-y-2 md:border-l md:border-white/5 md:pl-10 shrink-0 md:w-64">
+                  {active.specs.map((spec, i) => (
+                    <li key={i} className="text-titanium/60 text-xs font-mono flex items-start gap-2">
+                      <span className="text-copper mt-0.5">&#x25B8;</span>
+                      {spec}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+            <button
+              onClick={() => setActiveComponent(null)}
+              className="mt-4 text-titanium/30 hover:text-titanium/60 text-xs font-mono transition-colors"
+            >
+              Close
+            </button>
           </motion.div>
-        </div>
+        )}
       </div>
     </section>
   )
