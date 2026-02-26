@@ -7,14 +7,14 @@ const facilities = [
   {
     name: 'UMMC — Batavia',
     description: '131 beds, 785+ employees. Largest private employer in Genesee County. Sole maternity provider for two counties.',
-    x: 52,
-    y: 62,
+    x: 48,
+    y: 42,
   },
   {
     name: "St. Mary's — Rochester",
     description: 'Opened 1857. 13,000+ annual dialysis treatments. Behavioral health, homeless healthcare, and senior housing.',
-    x: 73,
-    y: 52,
+    x: 70,
+    y: 38,
   },
 ]
 
@@ -44,8 +44,8 @@ export default function FacilityMap() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="glass rounded-xl p-6 md:p-8"
         >
-          <div className="relative w-full" style={{ paddingBottom: '55%' }}>
-            <svg viewBox="0 0 100 55" className="absolute inset-0 w-full h-full">
+          <div className="relative w-full" style={{ paddingBottom: '65%' }}>
+            <svg viewBox="0 0 100 65" className="absolute inset-0 w-full h-full">
               {/* Lake Ontario — fills the top portion */}
               <motion.path
                 d="M 20 0 L 100 0 L 100 28 Q 95 32 88 30 Q 80 27 72 29 Q 65 31 58 28 Q 50 25 42 27 Q 35 29 28 26 Q 22 24 20 28 L 20 0 Z"
@@ -70,7 +70,7 @@ export default function FacilityMap() {
 
               {/* Lake Erie — left edge */}
               <motion.path
-                d="M 0 30 Q 2 35 5 40 Q 8 48 10 55"
+                d="M 0 30 Q 2 35 5 40 Q 8 48 10 65"
                 fill="none"
                 stroke="rgba(138,155,168,0.3)"
                 strokeWidth="0.4"
@@ -79,7 +79,7 @@ export default function FacilityMap() {
                 transition={{ duration: 1.5, delay: 0.3 }}
               />
               <motion.path
-                d="M 0 30 Q 2 35 5 40 Q 8 48 10 55 L 0 55 L 0 30 Z"
+                d="M 0 30 Q 2 35 5 40 Q 8 48 10 65 L 0 65 L 0 30 Z"
                 fill="rgba(138,155,168,0.08)"
                 stroke="none"
                 initial={{ opacity: 0 }}
@@ -103,7 +103,7 @@ export default function FacilityMap() {
 
               {/* Land area — WNY region */}
               <motion.path
-                d="M 10 45 Q 12 42 14 38 Q 15 36 17 33 Q 18 30 20 28 Q 22 24 28 26 Q 35 29 42 27 Q 50 25 58 28 Q 65 31 72 29 Q 80 27 88 30 Q 95 32 100 28 L 100 55 L 10 55 Z"
+                d="M 10 45 Q 12 42 14 38 Q 15 36 17 33 Q 18 30 20 28 Q 22 24 28 26 Q 35 29 42 27 Q 50 25 58 28 Q 65 31 72 29 Q 80 27 88 30 Q 95 32 100 28 L 100 65 L 10 65 Z"
                 fill="rgba(27,58,45,0.08)"
                 stroke="rgba(45,90,69,0.15)"
                 strokeWidth="0.3"
@@ -113,13 +113,13 @@ export default function FacilityMap() {
               />
 
               {/* County dividers — subtle grid lines */}
-              <motion.line x1="32" y1="27" x2="32" y2="55" stroke="rgba(45,90,69,0.1)" strokeWidth="0.2"
+              <motion.line x1="32" y1="27" x2="32" y2="65" stroke="rgba(45,90,69,0.1)" strokeWidth="0.2"
                 initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}} transition={{ duration: 0.5, delay: 1 }} />
-              <motion.line x1="45" y1="26" x2="45" y2="55" stroke="rgba(45,90,69,0.1)" strokeWidth="0.2"
+              <motion.line x1="45" y1="26" x2="45" y2="65" stroke="rgba(45,90,69,0.1)" strokeWidth="0.2"
                 initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}} transition={{ duration: 0.5, delay: 1.1 }} />
-              <motion.line x1="60" y1="28" x2="60" y2="55" stroke="rgba(45,90,69,0.1)" strokeWidth="0.2"
+              <motion.line x1="60" y1="28" x2="60" y2="65" stroke="rgba(45,90,69,0.1)" strokeWidth="0.2"
                 initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}} transition={{ duration: 0.5, delay: 1.2 }} />
-              <motion.line x1="78" y1="29" x2="78" y2="55" stroke="rgba(45,90,69,0.1)" strokeWidth="0.2"
+              <motion.line x1="78" y1="29" x2="78" y2="65" stroke="rgba(45,90,69,0.1)" strokeWidth="0.2"
                 initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}} transition={{ duration: 0.5, delay: 1.3 }} />
 
               {/* Reference cities — smaller, dimmer */}
@@ -131,7 +131,7 @@ export default function FacilityMap() {
 
               {/* I-90 / Thruway — connecting line */}
               <motion.path
-                d="M 25 39 Q 38 44 52 42 Q 65 40 73 38 Q 82 36 90 38"
+                d="M 25 39 Q 38 42 48 41 Q 60 39 70 37 Q 82 36 90 38"
                 fill="none"
                 stroke="rgba(184,115,51,0.15)"
                 strokeWidth="0.3"
@@ -140,7 +140,7 @@ export default function FacilityMap() {
                 animate={isInView ? { pathLength: 1 } : {}}
                 transition={{ duration: 1.5, delay: 1 }}
               />
-              <text x="50" y="48" textAnchor="middle" className="fill-copper/20 text-[1.8px] font-mono">I-90</text>
+              <text x="50" y="53" textAnchor="middle" className="fill-copper/20 text-[1.8px] font-mono">I-90</text>
 
               {/* Connection line between facilities */}
               <motion.line
