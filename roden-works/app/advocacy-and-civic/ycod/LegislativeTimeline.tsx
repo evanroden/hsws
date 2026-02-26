@@ -11,6 +11,7 @@ const events = [
   { year: '2021', title: 'Bill Revision', description: 'Evan personally drafted the revised NY Assembly Bill A07954 — presumed consent at the DMV.' },
   { year: '2021', title: 'Real Heroes Nomination', description: 'Nominated for the American Red Cross Real Heroes Education Award.' },
   { year: '2022–24', title: 'Continued Advocacy', description: 'Sustained lobbying, social media campaigns, and coalition management while attending Tulane.' },
+  { year: '2023', title: 'Living Donor Support Act Passed', description: 'Advocated for the NYS Living Donor Support Act — removing financial barriers for living organ donors through reimbursement for lost wages, travel, and child care. The bill passed into law.' },
   { year: '2024', title: 'Transition', description: 'After 7+ years of leadership, Evan transitioned focus while the framework and coalition persist.' },
 ]
 

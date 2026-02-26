@@ -60,9 +60,17 @@ export default function YcodStory() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.5 }}
+            >
+              Beyond the opt-out bill, Evan advocated for the <span className="text-white">Living Donor Support Act</span> in New York State — legislation designed to remove financial barriers for living organ donors by providing reimbursement for lost wages, travel, and child care expenses. The bill passed, making New York one of the first states to formally support living donors and addressing a key inequity in the donation system.
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.6 }}
               className="text-white text-lg font-serif"
             >
-              The work is not finished. But the framework is built, the bill is written, and the coalition endures.
+              The work is not finished. But the framework is built, legislation has been passed, and the coalition endures.
             </motion.p>
           </div>
         </div>
