@@ -10,8 +10,8 @@ const facilities = [
     sub: 'UMMC',
     description:
       '131 beds, 785+ employees. Largest private employer in Genesee County. Sole maternity provider for two counties.',
-    x: 225,
-    y: 155,
+    x: 230,
+    y: 150,
   },
   {
     name: "St. Mary's — Rochester",
@@ -19,8 +19,8 @@ const facilities = [
     sub: "ST. MARY'S",
     description:
       'Opened 1857. 13,000+ annual dialysis treatments. Behavioral health, homeless healthcare, and senior housing.',
-    x: 385,
-    y: 132,
+    x: 395,
+    y: 128,
   },
 ]
 
@@ -53,13 +53,14 @@ export default function FacilityMap() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="glass rounded-xl p-4 md:p-6 lg:p-8"
         >
-          <div className="relative w-full" style={{ paddingBottom: '43%' }}>
+          <div className="relative w-full" style={{ paddingBottom: '30%' }}>
             <svg
-              viewBox="0 0 700 300"
+              viewBox="0 10 700 210"
               className="absolute inset-0 w-full h-full"
               fill="none"
             >
               {/* ─── LAKE ONTARIO ─── */}
+              {/* Fill */}
               <motion.path
                 d={`
                   M 0 0 L 700 0 L 700 52
@@ -72,7 +73,7 @@ export default function FacilityMap() {
                   C 80 86 55 80 30 74
                   L 0 68 Z
                 `}
-                fill="rgba(138,155,168,0.04)"
+                fill="rgba(138,155,168,0.12)"
                 stroke="none"
                 initial={{ opacity: 0 }}
                 animate={isInView ? { opacity: 1 } : {}}
@@ -91,68 +92,20 @@ export default function FacilityMap() {
                   C 620 57 660 54 700 52
                 `}
                 fill="none"
-                stroke="rgba(138,155,168,0.3)"
-                strokeWidth="1"
+                stroke="rgba(138,155,168,0.5)"
+                strokeWidth="1.5"
                 initial={{ pathLength: 0 }}
                 animate={isInView ? { pathLength: 1 } : {}}
                 transition={{ duration: 2 }}
               />
               <text
-                x="400"
-                y="40"
+                x="500"
+                y="38"
                 textAnchor="middle"
-                className="fill-titanium/12 text-[11px] font-mono tracking-[0.4em]"
+                className="fill-titanium/25 text-[12px] font-mono tracking-[0.4em]"
               >
                 LAKE ONTARIO
               </text>
-
-              {/* ─── LAKE ERIE (hint) ─── */}
-              <motion.path
-                d={`
-                  M 58 170
-                  C 52 190 42 215 30 240
-                  C 20 258 10 275 0 290
-                  L 0 170 Z
-                `}
-                fill="rgba(138,155,168,0.03)"
-                stroke="none"
-                initial={{ opacity: 0 }}
-                animate={isInView ? { opacity: 1 } : {}}
-                transition={{ duration: 1 }}
-              />
-              <motion.path
-                d={`
-                  M 58 170
-                  C 52 190 42 215 30 240
-                  C 20 258 10 275 0 290
-                `}
-                fill="none"
-                stroke="rgba(138,155,168,0.2)"
-                strokeWidth="0.8"
-                initial={{ pathLength: 0 }}
-                animate={isInView ? { pathLength: 1 } : {}}
-                transition={{ duration: 1.2, delay: 0.3 }}
-              />
-              <text
-                x="18"
-                y="230"
-                className="fill-titanium/10 text-[8px] font-mono tracking-[0.15em]"
-                transform="rotate(-62, 18, 230)"
-              >
-                LAKE ERIE
-              </text>
-
-              {/* ─── NIAGARA RIVER ─── */}
-              <motion.path
-                d="M 42 90 C 40 110 42 135 48 150 C 52 160 56 168 58 170"
-                fill="none"
-                stroke="rgba(138,155,168,0.15)"
-                strokeWidth="1.2"
-                strokeLinecap="round"
-                initial={{ pathLength: 0 }}
-                animate={isInView ? { pathLength: 1 } : {}}
-                transition={{ duration: 1, delay: 0.5 }}
-              />
 
               {/* ─── LAND FILL ─── */}
               <motion.path
@@ -167,55 +120,25 @@ export default function FacilityMap() {
                   C 620 57 660 54 700 52
                   L 700 300 L 0 300 Z
                 `}
-                fill="rgba(27,58,45,0.02)"
+                fill="rgba(27,58,45,0.04)"
                 stroke="none"
                 initial={{ opacity: 0 }}
                 animate={isInView ? { opacity: 1 } : {}}
                 transition={{ duration: 1.5, delay: 0.5 }}
               />
 
-              {/* ─── FINGER LAKES (subtle wisps) ─── */}
-              {[
-                { x: 450, y1: 148, y2: 220 },
-                { x: 468, y1: 155, y2: 235 },
-                { x: 486, y1: 142, y2: 232 },
-                { x: 504, y1: 138, y2: 225 },
-              ].map((lake, i) => (
-                <motion.line
-                  key={i}
-                  x1={lake.x}
-                  y1={lake.y1}
-                  x2={lake.x + (i % 2 ? 2 : -2)}
-                  y2={lake.y2}
-                  stroke="rgba(138,155,168,0.06)"
-                  strokeWidth="1.2"
-                  strokeLinecap="round"
-                  initial={{ pathLength: 0 }}
-                  animate={isInView ? { pathLength: 1 } : {}}
-                  transition={{ duration: 0.8, delay: 1.2 + i * 0.1 }}
-                />
-              ))}
-              <text
-                x="477"
-                y="248"
-                textAnchor="middle"
-                className="fill-titanium/8 text-[7px] font-mono tracking-wide"
-              >
-                FINGER LAKES
-              </text>
-
               {/* ─── I-90 / NYS THRUWAY ─── */}
               <motion.path
                 d={`
-                  M 80 168
-                  C 120 160 170 152 225 148
-                  C 280 144 330 136 385 132
-                  C 440 130 500 135 560 140
-                  C 590 142 610 143 630 143
+                  M 80 162
+                  C 130 156 180 150 230 146
+                  C 280 142 340 134 395 128
+                  C 450 125 510 130 570 136
+                  C 600 138 620 140 640 140
                 `}
                 fill="none"
-                stroke="rgba(184,115,51,0.18)"
-                strokeWidth="1.5"
+                stroke="rgba(184,115,51,0.35)"
+                strokeWidth="2"
                 strokeDasharray="8 4"
                 strokeLinecap="round"
                 initial={{ pathLength: 0 }}
@@ -224,57 +147,58 @@ export default function FacilityMap() {
               />
               {/* I-90 shield */}
               <rect
-                x="138"
-                y="158"
-                width="28"
-                height="14"
+                x="140"
+                y="152"
+                width="32"
+                height="16"
                 rx="3"
-                fill="rgba(184,115,51,0.06)"
-                stroke="rgba(184,115,51,0.18)"
-                strokeWidth="0.5"
+                fill="rgba(184,115,51,0.08)"
+                stroke="rgba(184,115,51,0.3)"
+                strokeWidth="0.6"
               />
               <text
-                x="152"
-                y="168"
+                x="156"
+                y="163"
                 textAnchor="middle"
-                className="fill-copper/30 text-[7px] font-mono"
+                className="fill-copper/45 text-[8px] font-mono font-medium"
               >
                 I-90
               </text>
 
-              {/* ─── SERVICE CORRIDOR (hero connection) ─── */}
+              {/* ─── SERVICE CORRIDOR ─── */}
               <motion.line
                 x1={facilities[0].x}
                 y1={facilities[0].y}
                 x2={facilities[1].x}
                 y2={facilities[1].y}
                 stroke="#2D5A45"
-                strokeWidth="2"
-                strokeDasharray="6 4"
+                strokeWidth="2.5"
+                strokeDasharray="8 5"
                 initial={{ pathLength: 0 }}
                 animate={isInView ? { pathLength: 1 } : {}}
                 transition={{ duration: 1.2, delay: 1.5 }}
               />
+              {/* Distance badge */}
               <motion.g
                 initial={{ opacity: 0 }}
                 animate={isInView ? { opacity: 1 } : {}}
                 transition={{ duration: 0.5, delay: 2 }}
               >
                 <rect
-                  x={(facilities[0].x + facilities[1].x) / 2 - 22}
-                  y={(facilities[0].y + facilities[1].y) / 2 - 18}
-                  width="44"
-                  height="16"
-                  rx="8"
-                  fill="rgba(45,90,69,0.12)"
-                  stroke="rgba(45,90,69,0.25)"
-                  strokeWidth="0.5"
+                  x={(facilities[0].x + facilities[1].x) / 2 - 26}
+                  y={(facilities[0].y + facilities[1].y) / 2 - 20}
+                  width="52"
+                  height="18"
+                  rx="9"
+                  fill="rgba(45,90,69,0.15)"
+                  stroke="rgba(45,90,69,0.35)"
+                  strokeWidth="0.6"
                 />
                 <text
                   x={(facilities[0].x + facilities[1].x) / 2}
-                  y={(facilities[0].y + facilities[1].y) / 2 - 7}
+                  y={(facilities[0].y + facilities[1].y) / 2 - 8}
                   textAnchor="middle"
-                  className="fill-forest-light/50 text-[8px] font-mono"
+                  className="fill-forest-light/60 text-[9px] font-mono"
                 >
                   ~30 mi
                 </text>
@@ -284,31 +208,31 @@ export default function FacilityMap() {
               {/* Buffalo */}
               <circle
                 cx="80"
-                cy="168"
-                r="3"
-                fill="rgba(138,155,168,0.3)"
+                cy="162"
+                r="4"
+                fill="rgba(138,155,168,0.35)"
               />
               <text
                 x="80"
-                y="186"
+                y="180"
                 textAnchor="middle"
-                className="fill-titanium/45 text-[10px] font-mono"
+                className="fill-titanium/60 text-[11px] font-mono"
               >
                 Buffalo
               </text>
 
               {/* Syracuse */}
               <circle
-                cx="630"
-                cy="143"
-                r="2.5"
-                fill="rgba(138,155,168,0.2)"
+                cx="640"
+                cy="140"
+                r="3.5"
+                fill="rgba(138,155,168,0.25)"
               />
               <text
-                x="630"
-                y="135"
+                x="640"
+                y="132"
                 textAnchor="middle"
-                className="fill-titanium/30 text-[9px] font-mono"
+                className="fill-titanium/50 text-[10px] font-mono"
               >
                 Syracuse
               </text>
@@ -325,13 +249,13 @@ export default function FacilityMap() {
                   <motion.circle
                     cx={f.x}
                     cy={f.y}
-                    r="14"
+                    r="16"
                     fill="none"
                     stroke="#2D5A45"
-                    strokeWidth="0.6"
+                    strokeWidth="0.8"
                     animate={{
-                      r: [14, 26, 14],
-                      opacity: [0.35, 0, 0.35],
+                      r: [16, 30, 16],
+                      opacity: [0.4, 0, 0.4],
                     }}
                     transition={{
                       repeat: Infinity,
@@ -343,14 +267,14 @@ export default function FacilityMap() {
                   <circle
                     cx={f.x}
                     cy={f.y}
-                    r="10"
-                    fill="rgba(45,90,69,0.1)"
+                    r="12"
+                    fill="rgba(45,90,69,0.12)"
                     stroke="#2D5A45"
-                    strokeWidth="0.8"
+                    strokeWidth="1"
                   />
                   {/* Solid marker */}
-                  <circle cx={f.x} cy={f.y} r="6" fill="#2D5A45" />
-                  <circle cx={f.x} cy={f.y} r="2.5" fill="#FAFAFA" />
+                  <circle cx={f.x} cy={f.y} r="7" fill="#2D5A45" />
+                  <circle cx={f.x} cy={f.y} r="3" fill="#FAFAFA" />
                 </motion.g>
               ))}
 
@@ -364,17 +288,17 @@ export default function FacilityMap() {
                 >
                   <text
                     x={f.x}
-                    y={f.y - 26}
+                    y={f.y - 28}
                     textAnchor="middle"
-                    className="fill-white text-[13px] font-serif"
+                    className="fill-white text-[15px] font-serif"
                   >
                     {f.label}
                   </text>
                   <text
                     x={f.x}
-                    y={f.y - 14}
+                    y={f.y - 16}
                     textAnchor="middle"
-                    className="fill-titanium/55 text-[7px] font-mono tracking-[0.15em]"
+                    className="fill-titanium/65 text-[8px] font-mono tracking-[0.15em]"
                   >
                     {f.sub}
                   </text>
