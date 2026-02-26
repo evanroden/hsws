@@ -55,9 +55,9 @@ export default function FacilityMap() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="glass rounded-xl p-4 md:p-6 lg:p-8"
         >
-          <div className="relative w-full" style={{ paddingBottom: '62%' }}>
+          <div className="relative w-full" style={{ paddingBottom: '51%' }}>
             <svg
-              viewBox="0 0 500 310"
+              viewBox="0 55 500 255"
               className="absolute inset-0 w-full h-full"
               fill="none"
             >
@@ -79,7 +79,7 @@ export default function FacilityMap() {
                   C 88 132 78 135 72 138
                   L 20 0 Z
                 `}
-                fill="rgba(138,155,168,0.07)"
+                fill="rgba(138,155,168,0.035)"
                 stroke="none"
                 initial={{ opacity: 0 }}
                 animate={isInView ? { opacity: 1 } : {}}
@@ -102,7 +102,7 @@ export default function FacilityMap() {
                   C 460 88 480 86 500 84
                 `}
                 fill="none"
-                stroke="rgba(138,155,168,0.35)"
+                stroke="rgba(138,155,168,0.3)"
                 strokeWidth="0.8"
                 initial={{ pathLength: 0 }}
                 animate={isInView ? { pathLength: 1 } : {}}
@@ -110,9 +110,9 @@ export default function FacilityMap() {
               />
               <text
                 x="200"
-                y="60"
+                y="72"
                 textAnchor="middle"
-                className="fill-titanium/20 text-[10px] font-mono tracking-[0.3em]"
+                className="fill-titanium/15 text-[10px] font-mono tracking-[0.3em]"
               >
                 LAKE ONTARIO
               </text>
@@ -127,7 +127,7 @@ export default function FacilityMap() {
                   C 28 292 18 300 0 310
                   L 0 196 Z
                 `}
-                fill="rgba(138,155,168,0.07)"
+                fill="rgba(138,155,168,0.03)"
                 stroke="none"
                 initial={{ opacity: 0 }}
                 animate={isInView ? { opacity: 1 } : {}}
@@ -142,7 +142,7 @@ export default function FacilityMap() {
                   C 28 292 18 300 0 310
                 `}
                 fill="none"
-                stroke="rgba(138,155,168,0.35)"
+                stroke="rgba(138,155,168,0.25)"
                 strokeWidth="0.8"
                 initial={{ pathLength: 0 }}
                 animate={isInView ? { pathLength: 1 } : {}}
@@ -166,8 +166,8 @@ export default function FacilityMap() {
                   C 86 194 89 196 91 198
                 `}
                 fill="none"
-                stroke="rgba(138,155,168,0.3)"
-                strokeWidth="3"
+                stroke="rgba(138,155,168,0.2)"
+                strokeWidth="1.5"
                 strokeLinecap="round"
                 initial={{ pathLength: 0 }}
                 animate={isInView ? { pathLength: 1 } : {}}
@@ -222,7 +222,7 @@ export default function FacilityMap() {
                   L 0 196
                   C 0 196 91 198 91 198 Z
                 `}
-                fill="rgba(27,58,45,0.06)"
+                fill="rgba(27,58,45,0.025)"
                 stroke="none"
                 initial={{ opacity: 0 }}
                 animate={isInView ? { opacity: 1 } : {}}
@@ -242,8 +242,8 @@ export default function FacilityMap() {
                   y1={lake.y1}
                   x2={lake.x + (i % 2 ? 2 : -2)}
                   y2={lake.y2}
-                  stroke="rgba(138,155,168,0.12)"
-                  strokeWidth="2.5"
+                  stroke="rgba(138,155,168,0.08)"
+                  strokeWidth="1.5"
                   strokeLinecap="round"
                   initial={{ pathLength: 0 }}
                   animate={isInView ? { pathLength: 1 } : {}}
@@ -270,7 +270,7 @@ export default function FacilityMap() {
                 <motion.line
                   key={i}
                   {...line}
-                  stroke="rgba(45,90,69,0.06)"
+                  stroke="rgba(45,90,69,0.04)"
                   strokeWidth="0.4"
                   initial={{ opacity: 0 }}
                   animate={isInView ? { opacity: 1 } : {}}
@@ -289,7 +289,6 @@ export default function FacilityMap() {
                   Q 290 188 320 192
                   Q 350 190 380 175
                   Q 395 168 405 168
-                  L 440 170
                 `}
                 fill="none"
                 stroke="rgba(184,115,51,0.2)"
