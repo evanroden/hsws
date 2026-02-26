@@ -560,14 +560,51 @@ function OurClimateIcon() {
       <line x1="25" y1="40" x2="75" y2="40" stroke={C.forest} strokeOpacity="0.08" strokeWidth="0.3" />
       <ellipse cx="50" cy="30" rx="22" ry="6" stroke={C.forest} strokeOpacity="0.06" strokeWidth="0.3" fill="none" />
       <ellipse cx="50" cy="50" rx="22" ry="6" stroke={C.forest} strokeOpacity="0.06" strokeWidth="0.3" fill="none" />
-      {/* Temperature curve rising */}
-      <polyline points="110,60 130,56 150,52 170,48 190,40 210,32 230,22"
-        stroke={C.copper} strokeOpacity="0.25" strokeWidth="0.7" fill="none" />
-      <text x="115" y="68" fill={C.titanium} fillOpacity="0.1" fontSize="3" fontFamily="monospace">POLICY ADVOCACY</text>
+      {/* Continent hints on globe */}
+      <path d="M38 32 Q42 28 48 30 Q50 34 46 36" stroke={C.forest} strokeOpacity="0.08" strokeWidth="0.3" fill={C.forest} fillOpacity="0.03" />
+      <path d="M54 42 Q58 38 62 40 Q60 46 56 48" stroke={C.forest} strokeOpacity="0.06" strokeWidth="0.3" fill={C.forest} fillOpacity="0.02" />
+      {/* CO2 molecule */}
+      <circle cx="95" cy="22" r="4" stroke={C.copper} strokeOpacity="0.15" strokeWidth="0.4" fill="none" />
+      <circle cx="85" cy="22" r="3" stroke={C.copper} strokeOpacity="0.1" strokeWidth="0.3" fill="none" />
+      <circle cx="105" cy="22" r="3" stroke={C.copper} strokeOpacity="0.1" strokeWidth="0.3" fill="none" />
+      <text x="95" y="24" fill={C.copper} fillOpacity="0.12" fontSize="3" fontFamily="monospace" textAnchor="middle">C</text>
+      <text x="85" y="24" fill={C.copper} fillOpacity="0.1" fontSize="2.5" fontFamily="monospace" textAnchor="middle">O</text>
+      <text x="105" y="24" fill={C.copper} fillOpacity="0.1" fontSize="2.5" fontFamily="monospace" textAnchor="middle">O</text>
+      {/* Temperature anomaly chart */}
+      <rect x="115" y="12" width="90" height="52" rx="1"
+        stroke={C.titanium} strokeOpacity="0.1" strokeWidth="0.3" fill={C.titanium} fillOpacity="0.015" />
+      {/* Baseline */}
+      <line x1="118" y1="44" x2="202" y2="44" stroke={C.titanium} strokeOpacity="0.06" strokeWidth="0.3" strokeDasharray="2 2" />
+      {/* Temperature bars — hockey stick */}
+      {[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14].map((i) => {
+        const h = 2 + (i < 8 ? i * 0.8 : (i - 4) * 2.5)
+        return (
+          <rect key={i} x={120 + i * 5.5} y={44 - h} width="4" height={h} rx="0.5"
+            fill={h > 10 ? C.copper : C.forest} fillOpacity={0.06 + (i / 15) * 0.12} />
+        )
+      })}
+      <text x="118" y="10" fill={C.titanium} fillOpacity="0.1" fontSize="2.5" fontFamily="monospace">TEMP ANOMALY °C</text>
+      {/* Policy document */}
+      <rect x="220" y="14" width="36" height="44" rx="1"
+        stroke={C.forest} strokeOpacity="0.15" strokeWidth="0.4" fill={C.forest} fillOpacity="0.03" />
+      {/* Document lines */}
+      {[22, 28, 34, 40, 46].map((y) => (
+        <line key={y} x1="225" y1={y} x2={248 - (y % 6)} y2={y}
+          stroke={C.titanium} strokeOpacity="0.08" strokeWidth="0.3" />
+      ))}
+      {/* Seal / stamp */}
+      <circle cx="242" cy="48" r="5" stroke={C.forest} strokeOpacity="0.12" strokeWidth="0.3" fill={C.forest} fillOpacity="0.04" />
       {/* Leaf / sustainability */}
-      <path d="M270 28 C255 20 250 35 260 42 C265 35 275 30 270 28Z"
+      <path d="M280 22 C265 14 258 30 270 38 C275 30 288 24 280 22Z"
         stroke={C.forest} strokeOpacity="0.25" strokeWidth="0.6" fill={C.forest} fillOpacity="0.06" />
-      <text x="250" y="56" fill={C.forest} fillOpacity="0.12" fontSize="3.5" fontFamily="monospace">FELLOWSHIP</text>
+      <line x1="270" y1="38" x2="274" y2="28" stroke={C.forest} strokeOpacity="0.12" strokeWidth="0.3" />
+      {/* Wind turbine */}
+      <line x1="290" y1="22" x2="290" y2="58" stroke={C.titanium} strokeOpacity="0.12" strokeWidth="0.4" />
+      <path d="M290 22 L286 10 L290 14Z" fill={C.forest} fillOpacity="0.08" />
+      <path d="M290 22 L298 28 L292 24Z" fill={C.forest} fillOpacity="0.06" />
+      <path d="M290 22 L284 30 L288 24Z" fill={C.forest} fillOpacity="0.07" />
+      <circle cx="290" cy="22" r="1.5" fill={C.forest} fillOpacity="0.1" />
+      <text x="115" y="72" fill={C.titanium} fillOpacity="0.1" fontSize="3" fontFamily="monospace">CLIMATE POLICY FELLOWSHIP</text>
     </svg>
   )
 }
@@ -577,26 +614,65 @@ function TabiIcon() {
     <svg viewBox="0 0 320 80" className="w-full" fill="none" xmlns="http://www.w3.org/2000/svg">
       <GridBg w={320} h={80} gap={20} opacity={0.025} />
       {/* Signal tower */}
-      <rect x="50" y="20" width="6" height="50" rx="1"
+      <rect x="50" y="15" width="6" height="55" rx="1"
         stroke={C.titanium} strokeOpacity="0.25" strokeWidth="0.6" fill={C.titanium} fillOpacity="0.05" />
-      {/* Signal arcs */}
-      {[15, 22, 29].map((r, i) => (
-        <path key={i} d={`M53 20 A${r} ${r} 0 0 1 ${53 + r * 0.7} ${20 + r * 0.7}`}
-          stroke={C.copper} strokeOpacity={0.2 - i * 0.05} strokeWidth="0.5" fill="none" />
-      ))}
-      {/* Rural houses */}
-      {[120, 160, 200].map((x, i) => (
+      {/* Tower cross-braces */}
+      <line x1="50" y1="35" x2="56" y2="45" stroke={C.titanium} strokeOpacity="0.1" strokeWidth="0.3" />
+      <line x1="56" y1="35" x2="50" y2="45" stroke={C.titanium} strokeOpacity="0.1" strokeWidth="0.3" />
+      <line x1="50" y1="50" x2="56" y2="60" stroke={C.titanium} strokeOpacity="0.08" strokeWidth="0.3" />
+      <line x1="56" y1="50" x2="50" y2="60" stroke={C.titanium} strokeOpacity="0.08" strokeWidth="0.3" />
+      {/* Signal arcs — both sides */}
+      {[12, 19, 26].map((r, i) => (
         <g key={i}>
-          <path d={`M${x} 50 L${x + 10} 40 L${x + 20} 50`}
-            stroke={C.titanium} strokeOpacity="0.12" strokeWidth="0.4" fill="none" />
-          <rect x={x + 2} y="50" width="16" height="12" rx="0.5"
-            stroke={C.titanium} strokeOpacity="0.1" strokeWidth="0.3" fill={C.titanium} fillOpacity="0.02" />
-          {/* Connection line from tower */}
-          <line x1="56" y1={30 + i * 5} x2={x + 10} y2={45}
-            stroke={C.copper} strokeOpacity="0.06" strokeWidth="0.3" strokeDasharray="3 3" />
+          <path d={`M53 18 A${r} ${r} 0 0 1 ${53 + r * 0.7} ${18 + r * 0.7}`}
+            stroke={C.copper} strokeOpacity={0.2 - i * 0.05} strokeWidth="0.5" fill="none" />
+          <path d={`M53 18 A${r} ${r} 0 0 0 ${53 - r * 0.7} ${18 + r * 0.7}`}
+            stroke={C.copper} strokeOpacity={0.15 - i * 0.04} strokeWidth="0.4" fill="none" />
         </g>
       ))}
-      <text x="20" y="76" fill={C.titanium} fillOpacity="0.1" fontSize="3.5" fontFamily="monospace">BROADBAND ACCESS</text>
+      {/* Fiber optic line underground */}
+      <line x1="56" y1="70" x2="300" y2="70"
+        stroke={C.copper} strokeOpacity="0.08" strokeWidth="0.8" />
+      <line x1="56" y1="70" x2="300" y2="70"
+        stroke={C.copper} strokeOpacity="0.12" strokeWidth="0.8" strokeDasharray="6 4" />
+      {/* Rural houses with details */}
+      {[110, 155, 200, 245].map((x, i) => (
+        <g key={i}>
+          <path d={`M${x} 48 L${x + 10} 38 L${x + 20} 48`}
+            stroke={C.titanium} strokeOpacity={0.12 + i * 0.02} strokeWidth="0.4" fill="none" />
+          <rect x={x + 2} y="48" width="16" height="12" rx="0.5"
+            stroke={C.titanium} strokeOpacity={0.1 + i * 0.01} strokeWidth="0.3" fill={C.titanium} fillOpacity="0.02" />
+          {/* Window */}
+          <rect x={x + 5} y="51" width="4" height="4" rx="0.3"
+            fill={C.titanium} fillOpacity="0.04" />
+          <rect x={x + 11} y="51" width="4" height="4" rx="0.3"
+            fill={C.titanium} fillOpacity="0.04" />
+          {/* WiFi symbol above house */}
+          <path d={`M${x + 8} 34 A4 4 0 0 1 ${x + 16} 34`}
+            stroke={C.copper} strokeOpacity={0.08 + i * 0.03} strokeWidth="0.3" fill="none" />
+          <path d={`M${x + 10} 36 A2 2 0 0 1 ${x + 14} 36`}
+            stroke={C.copper} strokeOpacity={0.06 + i * 0.03} strokeWidth="0.3" fill="none" />
+          {/* Riser from fiber to house */}
+          <line x1={x + 10} y1="60" x2={x + 10} y2="70"
+            stroke={C.copper} strokeOpacity="0.06" strokeWidth="0.3" />
+        </g>
+      ))}
+      {/* Speed readout */}
+      <rect x="280" y="15" width="32" height="16" rx="1"
+        stroke={C.copper} strokeOpacity="0.15" strokeWidth="0.4" fill={C.copper} fillOpacity="0.03" />
+      <text x="296" y="26" fill={C.copper} fillOpacity="0.2" fontSize="4" fontFamily="monospace" textAnchor="middle">1Gbps</text>
+      {/* Coverage stat */}
+      <text x="280" y="42" fill={C.titanium} fillOpacity="0.1" fontSize="3" fontFamily="monospace">CAYUGA CO.</text>
+      {/* Trees (rural landscape) */}
+      {[90, 140, 185, 230, 270].map((x, i) => (
+        <g key={i}>
+          <line x1={x} y1={52 + (i % 2) * 3} x2={x} y2={62 + (i % 2) * 3}
+            stroke={C.forest} strokeOpacity="0.06" strokeWidth="0.3" />
+          <circle cx={x} cy={50 + (i % 2) * 3} r={2 + (i % 2)}
+            fill={C.forest} fillOpacity="0.04" />
+        </g>
+      ))}
+      <text x="20" y="76" fill={C.titanium} fillOpacity="0.1" fontSize="3.5" fontFamily="monospace">RURAL BROADBAND ACCESS</text>
     </svg>
   )
 }
@@ -606,7 +682,7 @@ function NolaEastIcon() {
     <svg viewBox="0 0 320 80" className="w-full" fill="none" xmlns="http://www.w3.org/2000/svg">
       <GridBg w={320} h={80} gap={20} color={C.forest} opacity={0.025} />
       {/* Solar panel array */}
-      <g transform="translate(20,15)">
+      <g transform="translate(20,10)">
         {Array.from({ length: 3 }).map((_, row) =>
           Array.from({ length: 4 }).map((_, col) => (
             <rect key={`${row}-${col}`} x={col * 14} y={row * 10}
@@ -614,19 +690,68 @@ function NolaEastIcon() {
               stroke={C.forest} strokeOpacity="0.2" strokeWidth="0.4" fill={C.forest} fillOpacity="0.04" />
           ))
         )}
+        {/* Panel grid lines */}
+        {Array.from({ length: 3 }).map((_, row) =>
+          Array.from({ length: 4 }).map((_, col) => (
+            <g key={`grid-${row}-${col}`}>
+              <line x1={col * 14 + 6} y1={row * 10} x2={col * 14 + 6} y2={row * 10 + 8}
+                stroke={C.forest} strokeOpacity="0.06" strokeWidth="0.2" />
+              <line x1={col * 14} y1={row * 10 + 4} x2={col * 14 + 12} y2={row * 10 + 4}
+                stroke={C.forest} strokeOpacity="0.06" strokeWidth="0.2" />
+            </g>
+          ))
+        )}
+        {/* Sun rays */}
+        <circle cx="3" cy="-4" r="3" fill={C.copper} fillOpacity="0.06" />
+        {[0, 45, 90, 135, 180, 225, 270, 315].map((deg) => {
+          const r = deg * Math.PI / 180
+          return (
+            <line key={deg} x1={3 + Math.cos(r) * 4} y1={-4 + Math.sin(r) * 4}
+              x2={3 + Math.cos(r) * 7} y2={-4 + Math.sin(r) * 7}
+              stroke={C.copper} strokeOpacity="0.05" strokeWidth="0.3" />
+          )
+        })}
       </g>
-      {/* Transit line */}
-      <line x1="100" y1="40" x2="250" y2="40"
-        stroke={C.copper} strokeOpacity="0.15" strokeWidth="1" />
-      {[120, 160, 200, 240].map((x) => (
-        <circle key={x} cx={x} cy="40" r="2.5"
-          stroke={C.copper} strokeOpacity="0.2" strokeWidth="0.4" fill={C.copper} fillOpacity="0.06" />
+      {/* Transit line with stations */}
+      <line x1="95" y1="40" x2="250" y2="40"
+        stroke={C.copper} strokeOpacity="0.15" strokeWidth="1.2" />
+      {[110, 145, 180, 215].map((x, i) => (
+        <g key={x}>
+          <circle cx={x} cy="40" r="3"
+            stroke={C.copper} strokeOpacity="0.2" strokeWidth="0.4" fill={C.copper} fillOpacity="0.06" />
+          <circle cx={x} cy="40" r="1" fill={C.copper} fillOpacity="0.15" />
+          {/* Station label */}
+          <line x1={x} y1="43" x2={x} y2="48" stroke={C.titanium} strokeOpacity="0.06" strokeWidth="0.2" />
+        </g>
       ))}
-      {/* Green housing */}
-      <path d="M270 50 L280 38 L290 50" stroke={C.forest} strokeOpacity="0.2" strokeWidth="0.5" fill="none" />
-      <rect x="273" y="50" width="14" height="14" rx="0.5"
-        stroke={C.forest} strokeOpacity="0.15" strokeWidth="0.4" fill={C.forest} fillOpacity="0.03" />
-      <text x="20" y="72" fill={C.titanium} fillOpacity="0.1" fontSize="3.5" fontFamily="monospace">C40 REINVENTING CITIES</text>
+      {/* Streetcar symbol */}
+      <rect x="225" y="36" width="14" height="8" rx="2"
+        stroke={C.copper} strokeOpacity="0.15" strokeWidth="0.4" fill={C.copper} fillOpacity="0.04" />
+      <line x1="228" y1="36" x2="228" y2="33" stroke={C.copper} strokeOpacity="0.1" strokeWidth="0.3" />
+      {/* Green housing cluster */}
+      {[260, 278, 296].map((x, i) => (
+        <g key={i}>
+          <path d={`M${x} 42 L${x + 7} 32 L${x + 14} 42`}
+            stroke={C.forest} strokeOpacity={0.15 + i * 0.03} strokeWidth="0.4" fill="none" />
+          <rect x={x + 1} y="42" width="12" height="14" rx="0.5"
+            stroke={C.forest} strokeOpacity={0.12 + i * 0.02} strokeWidth="0.3" fill={C.forest} fillOpacity="0.03" />
+          {/* Green roof indicator */}
+          <line x1={x + 2} y1={33 + i} x2={x + 12} y2={33 + i}
+            stroke={C.forest} strokeOpacity="0.1" strokeWidth="0.8" />
+          {/* Window */}
+          <rect x={x + 4} y="46" width="3" height="4" rx="0.3" fill={C.titanium} fillOpacity="0.03" />
+        </g>
+      ))}
+      {/* Flood resilience — levee cross-section */}
+      <path d="M95 62 C120 58 150 56 180 56 C210 56 240 58 270 62"
+        stroke={C.forest} strokeOpacity="0.08" strokeWidth="0.4" fill="none" />
+      <path d="M95 62 C120 66 150 68 180 68 C210 68 240 66 270 62"
+        fill={C.forest} fillOpacity="0.02" />
+      {/* C40 badge */}
+      <rect x="20" y="48" width="28" height="14" rx="1"
+        stroke={C.copper} strokeOpacity="0.15" strokeWidth="0.4" fill={C.copper} fillOpacity="0.03" />
+      <text x="34" y="58" fill={C.copper} fillOpacity="0.2" fontSize="4" fontFamily="monospace" textAnchor="middle">C40</text>
+      <text x="20" y="72" fill={C.titanium} fillOpacity="0.1" fontSize="3.5" fontFamily="monospace">REINVENTING CITIES — AWARD</text>
     </svg>
   )
 }
@@ -711,28 +836,101 @@ function TulaneFreeman() {
     <svg viewBox="0 0 320 180" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
       <GridBg color={C.titanium} opacity={0.025} />
       {/* Campus building facade */}
-      <rect x="60" y="40" width="200" height="100" rx="2"
+      <rect x="80" y="35" width="180" height="105" rx="2"
         stroke={C.titanium} strokeOpacity="0.12" strokeWidth="0.5" fill={C.titanium} fillOpacity="0.02" />
+      {/* Pediment */}
+      <path d="M80 35 L170 15 L260 35" stroke={C.titanium} strokeOpacity="0.08" strokeWidth="0.4" fill="none" />
       {/* Columns */}
-      {[80, 110, 140, 170, 200, 230].map((x) => (
-        <line key={x} x1={x} y1="45" x2={x} y2="138"
-          stroke={C.titanium} strokeOpacity="0.06" strokeWidth="0.6" />
+      {[95, 120, 145, 195, 220, 245].map((x) => (
+        <g key={x}>
+          <line x1={x} y1="38" x2={x} y2="138"
+            stroke={C.titanium} strokeOpacity="0.06" strokeWidth="0.8" />
+          {/* Column base */}
+          <rect x={x - 3} y="135" width="6" height="3" rx="0.5"
+            fill={C.titanium} fillOpacity="0.04" />
+          {/* Column capital */}
+          <rect x={x - 2} y="38" width="4" height="2" rx="0.5"
+            fill={C.titanium} fillOpacity="0.03" />
+        </g>
       ))}
-      {/* Camera on tripod */}
-      <rect x="30" y="90" width="18" height="12" rx="1"
-        stroke={C.copper} strokeOpacity="0.3" strokeWidth="0.6" fill={C.copper} fillOpacity="0.05" />
-      <circle cx="26" cy="96" r="6" stroke={C.titanium} strokeOpacity="0.15" strokeWidth="0.4" fill="none" />
-      <line x1="39" y1="102" x2="32" y2="140" stroke={C.titanium} strokeOpacity="0.12" strokeWidth="0.4" />
-      <line x1="39" y1="102" x2="46" y2="140" stroke={C.titanium} strokeOpacity="0.12" strokeWidth="0.4" />
+      {/* Windows */}
+      {[100, 130, 160, 200, 230].map((x) =>
+        [50, 70, 90, 110].map((y) => (
+          <rect key={`${x}-${y}`} x={x} y={y} width="8" height="12" rx="0.5"
+            stroke={C.titanium} strokeOpacity="0.04" strokeWidth="0.3"
+            fill={C.titanium} fillOpacity="0.015" />
+        ))
+      )}
+      {/* Entrance */}
+      <rect x="158" y="110" width="24" height="28" rx="1"
+        stroke={C.titanium} strokeOpacity="0.06" strokeWidth="0.4" fill={C.titanium} fillOpacity="0.02" />
+      <path d="M158 110 Q170 104 182 110" stroke={C.titanium} strokeOpacity="0.05" strokeWidth="0.3" fill="none" />
+
+      {/* Camera on tripod — more detailed */}
+      <rect x="20" y="82" width="22" height="14" rx="2"
+        stroke={C.copper} strokeOpacity="0.3" strokeWidth="0.7" fill={C.copper} fillOpacity="0.05" />
+      {/* Lens */}
+      <circle cx="16" cy="89" r="7" stroke={C.titanium} strokeOpacity="0.2" strokeWidth="0.5" fill="none" />
+      <circle cx="16" cy="89" r="4" stroke={C.titanium} strokeOpacity="0.12" strokeWidth="0.3" fill="none" />
+      <circle cx="16" cy="89" r="2" fill={C.copper} fillOpacity="0.08" />
+      {/* Viewfinder */}
+      <rect x="26" y="80" width="10" height="6" rx="0.5"
+        stroke={C.copper} strokeOpacity="0.15" strokeWidth="0.3" fill={C.copper} fillOpacity="0.03" />
+      {/* Record light */}
+      <circle cx="28" cy="82" r="1" fill="#E74C3C" fillOpacity="0.25" />
+      {/* Tripod legs */}
+      <line x1="31" y1="96" x2="22" y2="150" stroke={C.titanium} strokeOpacity="0.15" strokeWidth="0.5" />
+      <line x1="31" y1="96" x2="40" y2="150" stroke={C.titanium} strokeOpacity="0.15" strokeWidth="0.5" />
+      <line x1="31" y1="96" x2="31" y2="148" stroke={C.titanium} strokeOpacity="0.1" strokeWidth="0.4" />
+      {/* Tripod head */}
+      <rect x="28" y="94" width="6" height="4" rx="1"
+        stroke={C.titanium} strokeOpacity="0.12" strokeWidth="0.3" fill={C.titanium} fillOpacity="0.04" />
+
       {/* Video frame overlay */}
-      <rect x="90" y="60" width="140" height="70" rx="1"
-        stroke={C.copper} strokeOpacity="0.15" strokeWidth="0.4" fill="none" />
+      <rect x="90" y="50" width="160" height="90" rx="1"
+        stroke={C.copper} strokeOpacity="0.15" strokeWidth="0.5" fill="none" />
       {/* Rule of thirds */}
-      <line x1="137" y1="60" x2="137" y2="130" stroke={C.copper} strokeOpacity="0.05" strokeWidth="0.3" />
-      <line x1="183" y1="60" x2="183" y2="130" stroke={C.copper} strokeOpacity="0.05" strokeWidth="0.3" />
-      <line x1="90" y1="83" x2="230" y2="83" stroke={C.copper} strokeOpacity="0.05" strokeWidth="0.3" />
-      <line x1="90" y1="107" x2="230" y2="107" stroke={C.copper} strokeOpacity="0.05" strokeWidth="0.3" />
-      <text x="8" y="10" fill={C.titanium} fillOpacity="0.12" fontSize="4" fontFamily="monospace">FREEMAN SCHOOL — DIGITAL</text>
+      <line x1="143" y1="50" x2="143" y2="140" stroke={C.copper} strokeOpacity="0.05" strokeWidth="0.3" />
+      <line x1="197" y1="50" x2="197" y2="140" stroke={C.copper} strokeOpacity="0.05" strokeWidth="0.3" />
+      <line x1="90" y1="80" x2="250" y2="80" stroke={C.copper} strokeOpacity="0.05" strokeWidth="0.3" />
+      <line x1="90" y1="110" x2="250" y2="110" stroke={C.copper} strokeOpacity="0.05" strokeWidth="0.3" />
+      {/* Safe area markers */}
+      {[[90,50],[248,50],[90,138],[248,138]].map(([x,y], i) => (
+        <g key={i}>
+          <line x1={x} y1={y} x2={x + (i % 2 === 0 ? 6 : -6)} y2={y}
+            stroke={C.copper} strokeOpacity="0.12" strokeWidth="0.3" />
+          <line x1={x} y1={y} x2={x} y2={y + (i < 2 ? 6 : -6)}
+            stroke={C.copper} strokeOpacity="0.12" strokeWidth="0.3" />
+        </g>
+      ))}
+
+      {/* Interview subject silhouette */}
+      <circle cx="170" cy="78" r="8" stroke={C.titanium} strokeOpacity="0.05" strokeWidth="0.4" fill={C.titanium} fillOpacity="0.015" />
+      <path d="M158 100 Q164 92 170 90 Q176 92 182 100"
+        stroke={C.titanium} strokeOpacity="0.04" strokeWidth="0.4" fill={C.titanium} fillOpacity="0.01" />
+
+      {/* Lighting panel */}
+      <rect x="275" y="30" width="28" height="18" rx="1"
+        stroke={C.titanium} strokeOpacity="0.1" strokeWidth="0.4" fill={C.titanium} fillOpacity="0.02" />
+      <line x1="289" y1="48" x2="289" y2="80" stroke={C.titanium} strokeOpacity="0.06" strokeWidth="0.3" />
+      {/* Light rays */}
+      <path d="M280 48 L260 70" stroke={C.copper} strokeOpacity="0.03" strokeWidth="0.3" />
+      <path d="M298 48 L270 70" stroke={C.copper} strokeOpacity="0.03" strokeWidth="0.3" />
+
+      {/* Timecode overlay */}
+      <text x="94" y="56" fill={C.copper} fillOpacity="0.12" fontSize="3" fontFamily="monospace">00:02:34:12</text>
+      <text x="220" y="56" fill="#E74C3C" fillOpacity="0.15" fontSize="3" fontFamily="monospace">REC</text>
+      {/* Audio levels */}
+      <rect x="270" y="100" width="24" height="40" rx="1"
+        stroke={C.titanium} strokeOpacity="0.08" strokeWidth="0.3" fill={C.titanium} fillOpacity="0.015" />
+      {Array.from({ length: 10 }).map((_, i) => (
+        <rect key={i} x="273" y={104 + i * 3.4} width="8" height="2" rx="0.5"
+          fill={i < 3 ? C.forest : i < 7 ? C.copper : '#E74C3C'}
+          fillOpacity={i < 6 ? 0.12 : 0.06} />
+      ))}
+      <text x="285" y="146" fill={C.titanium} fillOpacity="0.08" fontSize="2.5" fontFamily="monospace" textAnchor="middle">dB</text>
+
+      <text x="8" y="10" fill={C.titanium} fillOpacity="0.12" fontSize="4" fontFamily="monospace">FREEMAN SCHOOL — DIGITAL MKT</text>
     </svg>
   )
 }
@@ -776,26 +974,95 @@ function VogueItaly() {
   return (
     <svg viewBox="0 0 180 240" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
       <GridBg w={180} h={240} gap={18} color={C.titanium} opacity={0.02} />
-      {/* Runway lines */}
+      {/* Runway platform — perspective lines converging */}
+      <path d="M40 240 L70 0" stroke={C.titanium} strokeOpacity="0.04" strokeWidth="0.3" />
+      <path d="M140 240 L110 0" stroke={C.titanium} strokeOpacity="0.04" strokeWidth="0.3" />
       <line x1="90" y1="0" x2="90" y2="240" stroke={C.titanium} strokeOpacity="0.05" strokeWidth="0.4" />
-      <line x1="50" y1="0" x2="50" y2="240" stroke={C.titanium} strokeOpacity="0.03" strokeWidth="0.3" />
-      <line x1="130" y1="0" x2="130" y2="240" stroke={C.titanium} strokeOpacity="0.03" strokeWidth="0.3" />
-      {/* Figure silhouette — fashion sketch style */}
-      <circle cx="90" cy="35" r="10" stroke={C.copper} strokeOpacity="0.2" strokeWidth="0.6" fill="none" />
-      <line x1="90" y1="45" x2="90" y2="120" stroke={C.copper} strokeOpacity="0.15" strokeWidth="0.5" />
-      <line x1="90" y1="60" x2="70" y2="85" stroke={C.copper} strokeOpacity="0.12" strokeWidth="0.4" />
-      <line x1="90" y1="60" x2="110" y2="85" stroke={C.copper} strokeOpacity="0.12" strokeWidth="0.4" />
-      <line x1="90" y1="120" x2="75" y2="180" stroke={C.copper} strokeOpacity="0.12" strokeWidth="0.4" />
-      <line x1="90" y1="120" x2="105" y2="180" stroke={C.copper} strokeOpacity="0.12" strokeWidth="0.4" />
-      {/* Garment outline suggestion */}
-      <path d="M75 55 Q70 80 72 100 Q75 115 90 120 Q105 115 108 100 Q110 80 105 55"
-        stroke={C.titanium} strokeOpacity="0.08" strokeWidth="0.4" fill={C.titanium} fillOpacity="0.02" />
-      {/* Spotlight arcs */}
-      <path d="M20 0 Q50 30 90 35" stroke={C.copper} strokeOpacity="0.04" strokeWidth="0.3" fill="none" />
-      <path d="M160 0 Q130 30 90 35" stroke={C.copper} strokeOpacity="0.04" strokeWidth="0.3" fill="none" />
+      {/* Runway edge lights */}
+      {[30, 60, 90, 120, 150, 180, 210].map((y) => (
+        <g key={y}>
+          <circle cx={55 + (y / 240) * 15} cy={y} r="1" fill={C.copper} fillOpacity="0.06" />
+          <circle cx={125 - (y / 240) * 15} cy={y} r="1" fill={C.copper} fillOpacity="0.06" />
+        </g>
+      ))}
+      {/* Spotlight rigs at top */}
+      <rect x="15" y="4" width="12" height="8" rx="1"
+        stroke={C.titanium} strokeOpacity="0.08" strokeWidth="0.3" fill={C.titanium} fillOpacity="0.02" />
+      <rect x="153" y="4" width="12" height="8" rx="1"
+        stroke={C.titanium} strokeOpacity="0.08" strokeWidth="0.3" fill={C.titanium} fillOpacity="0.02" />
+      {/* Spotlight beams converging on model */}
+      <path d="M21 12 Q50 25 90 35" stroke={C.copper} strokeOpacity="0.06" strokeWidth="0.3" fill="none" />
+      <path d="M159 12 Q130 25 90 35" stroke={C.copper} strokeOpacity="0.06" strokeWidth="0.3" fill="none" />
+      <path d="M21 12 L55 180" stroke={C.copper} strokeOpacity="0.02" strokeWidth="0.2" fill="none" />
+      <path d="M159 12 L125 180" stroke={C.copper} strokeOpacity="0.02" strokeWidth="0.2" fill="none" />
+      {/* Figure — fashion croquis style (elongated proportions) */}
+      {/* Head */}
+      <ellipse cx="90" cy="33" rx="7" ry="9" stroke={C.copper} strokeOpacity="0.2" strokeWidth="0.6" fill="none" />
+      {/* Neck */}
+      <line x1="90" y1="42" x2="90" y2="50" stroke={C.copper} strokeOpacity="0.15" strokeWidth="0.4" />
+      {/* Shoulders */}
+      <line x1="72" y1="52" x2="108" y2="52" stroke={C.copper} strokeOpacity="0.12" strokeWidth="0.4" />
+      {/* Torso */}
+      <line x1="90" y1="50" x2="90" y2="115" stroke={C.copper} strokeOpacity="0.15" strokeWidth="0.5" />
+      {/* Arms — posed */}
+      <path d="M72 52 Q65 70 60 82 Q58 88 62 92" stroke={C.copper} strokeOpacity="0.1" strokeWidth="0.4" fill="none" />
+      <path d="M108 52 Q115 68 118 80 Q120 86 116 90" stroke={C.copper} strokeOpacity="0.1" strokeWidth="0.4" fill="none" />
+      {/* Hands */}
+      <circle cx="62" cy="93" r="2" stroke={C.copper} strokeOpacity="0.06" strokeWidth="0.3" fill="none" />
+      <circle cx="116" cy="91" r="2" stroke={C.copper} strokeOpacity="0.06" strokeWidth="0.3" fill="none" />
+      {/* Legs — elongated stride */}
+      <path d="M90 115 Q82 140 76 170 Q74 178 75 186" stroke={C.copper} strokeOpacity="0.12" strokeWidth="0.4" fill="none" />
+      <path d="M90 115 Q98 145 104 170 Q106 178 105 186" stroke={C.copper} strokeOpacity="0.12" strokeWidth="0.4" fill="none" />
+      {/* Shoes / heels */}
+      <path d="M75 186 L70 190 L78 190" stroke={C.copper} strokeOpacity="0.08" strokeWidth="0.3" fill="none" />
+      <path d="M105 186 L100 190 L108 190" stroke={C.copper} strokeOpacity="0.08" strokeWidth="0.3" fill="none" />
+      {/* Garment — structured jacket/blazer */}
+      <path d="M72 52 Q68 65 66 80 Q65 95 70 105 L80 115 Q85 118 90 120 Q95 118 100 115 L110 105 Q115 95 114 80 Q112 65 108 52"
+        stroke={C.titanium} strokeOpacity="0.1" strokeWidth="0.5" fill={C.titanium} fillOpacity="0.02" />
+      {/* Lapel lines */}
+      <path d="M82 52 L86 70 L90 52" stroke={C.titanium} strokeOpacity="0.06" strokeWidth="0.3" fill="none" />
+      <path d="M98 52 L94 70 L90 52" stroke={C.titanium} strokeOpacity="0.06" strokeWidth="0.3" fill="none" />
+      {/* Button details */}
+      <circle cx="90" cy="75" r="1" stroke={C.titanium} strokeOpacity="0.06" strokeWidth="0.2" fill="none" />
+      <circle cx="90" cy="85" r="1" stroke={C.titanium} strokeOpacity="0.06" strokeWidth="0.2" fill="none" />
+      <circle cx="90" cy="95" r="1" stroke={C.titanium} strokeOpacity="0.06" strokeWidth="0.2" fill="none" />
+      {/* Garment hem / skirt suggestion */}
+      <path d="M80 115 Q75 130 73 145 Q72 155 76 170"
+        stroke={C.titanium} strokeOpacity="0.06" strokeWidth="0.3" fill="none" />
+      <path d="M100 115 Q105 130 107 145 Q108 155 104 170"
+        stroke={C.titanium} strokeOpacity="0.06" strokeWidth="0.3" fill="none" />
+      {/* Audience silhouettes — front row */}
+      {[15, 28, 38].map((x) => (
+        <g key={`l-${x}`}>
+          <circle cx={x} cy={140 + x * 0.3} r="3" stroke={C.titanium} strokeOpacity="0.04" strokeWidth="0.25" fill="none" />
+          <line x1={x} y1={143 + x * 0.3} x2={x} y2={155 + x * 0.3} stroke={C.titanium} strokeOpacity="0.03" strokeWidth="0.2" />
+        </g>
+      ))}
+      {[142, 155, 165].map((x) => (
+        <g key={`r-${x}`}>
+          <circle cx={x} cy={140 + (180 - x) * 0.3} r="3" stroke={C.titanium} strokeOpacity="0.04" strokeWidth="0.25" fill="none" />
+          <line x1={x} y1={143 + (180 - x) * 0.3} x2={x} y2={155 + (180 - x) * 0.3} stroke={C.titanium} strokeOpacity="0.03" strokeWidth="0.2" />
+        </g>
+      ))}
+      {/* Camera flash bursts */}
+      {[22, 160].map((x) => (
+        <g key={`flash-${x}`}>
+          {[0, 45, 90, 135].map((deg) => {
+            const r = deg * Math.PI / 180
+            return (
+              <line key={deg}
+                x1={x + Math.cos(r) * 2} y1={135 + Math.sin(r) * 2}
+                x2={x + Math.cos(r) * 5} y2={135 + Math.sin(r) * 5}
+                stroke={C.titanium} strokeOpacity="0.04" strokeWidth="0.2" />
+            )
+          })}
+        </g>
+      ))}
       {/* Magazine masthead hint */}
-      <text x="90" y="215" fill={C.titanium} fillOpacity="0.1" fontSize="5" fontFamily="monospace" textAnchor="middle">VOGUE ITALIA</text>
-      <text x="90" y="225" fill={C.copper} fillOpacity="0.08" fontSize="3.5" fontFamily="monospace" textAnchor="middle">BizarrAudi 2020</text>
+      <rect x="30" y="204" width="120" height="30" rx="1"
+        stroke={C.titanium} strokeOpacity="0.04" strokeWidth="0.2" fill={C.titanium} fillOpacity="0.01" />
+      <text x="90" y="218" fill={C.titanium} fillOpacity="0.12" fontSize="6" fontFamily="monospace" textAnchor="middle" letterSpacing="3">VOGUE ITALIA</text>
+      <text x="90" y="228" fill={C.copper} fillOpacity="0.1" fontSize="3.5" fontFamily="monospace" textAnchor="middle" letterSpacing="1">SchoolTime × BizarrAudi 2020</text>
     </svg>
   )
 }
@@ -891,33 +1158,93 @@ function AuroraTheatre() {
   return (
     <svg viewBox="0 0 320 180" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
       <GridBg color={C.titanium} opacity={0.025} />
-      {/* Stage / proscenium arch */}
-      <path d="M60 150 L60 40 Q160 10 260 40 L260 150"
-        stroke={C.copper} strokeOpacity="0.2" strokeWidth="0.8" fill="none" />
-      <line x1="60" y1="150" x2="260" y2="150"
-        stroke={C.copper} strokeOpacity="0.15" strokeWidth="0.5" />
-      {/* Stage floor */}
-      <rect x="70" y="115" width="180" height="35" rx="1"
+      {/* Proscenium arch with ornamental keystone */}
+      <path d="M55 155 L55 38 Q160 6 265 38 L265 155"
+        stroke={C.copper} strokeOpacity="0.22" strokeWidth="0.9" fill="none" />
+      <path d="M57 38 Q160 10 263 38" stroke={C.copper} strokeOpacity="0.1" strokeWidth="0.3" fill="none" />
+      {/* Keystone ornament */}
+      <path d="M154 10 L160 6 L166 10 L163 14 L157 14Z"
+        stroke={C.copper} strokeOpacity="0.15" strokeWidth="0.4" fill={C.copper} fillOpacity="0.04" />
+      {/* Proscenium column details */}
+      <rect x="52" y="38" width="8" height="117" stroke={C.copper} strokeOpacity="0.08" strokeWidth="0.3" fill={C.copper} fillOpacity="0.015" />
+      <rect x="260" y="38" width="8" height="117" stroke={C.copper} strokeOpacity="0.08" strokeWidth="0.3" fill={C.copper} fillOpacity="0.015" />
+      {/* Stage apron line */}
+      <line x1="55" y1="155" x2="265" y2="155"
+        stroke={C.copper} strokeOpacity="0.18" strokeWidth="0.6" />
+      {/* Stage floor with plank lines */}
+      <rect x="65" y="112" width="190" height="43" rx="1"
         fill={C.titanium} fillOpacity="0.02" stroke={C.titanium} strokeOpacity="0.06" strokeWidth="0.3" />
-      {/* Stage lights */}
-      {[100, 140, 180, 220].map((x, i) => (
+      {[80, 100, 120, 140, 160, 180, 200, 220, 240].map((x) => (
+        <line key={x} x1={x} y1="112" x2={x} y2="155"
+          stroke={C.titanium} strokeOpacity="0.025" strokeWidth="0.2" />
+      ))}
+      {/* Footlights along stage edge */}
+      {[75, 95, 115, 135, 155, 175, 195, 215, 235].map((x) => (
+        <circle key={x} cx={x} cy="153" r="1.5"
+          fill={C.copper} fillOpacity="0.1" stroke={C.copper} strokeOpacity="0.06" strokeWidth="0.2" />
+      ))}
+      {/* Fly system / batten bars above stage */}
+      {[30, 35].map((y) => (
+        <line key={y} x1="65" y1={y} x2="255" y2={y}
+          stroke={C.titanium} strokeOpacity="0.04" strokeWidth="0.3" />
+      ))}
+      {/* Stage lights on batten — Fresnel fixtures */}
+      {[90, 120, 150, 180, 210, 240].map((x, i) => (
         <g key={i}>
-          <rect x={x - 4} y="42" width="8" height="6" rx="1"
-            stroke={C.copper} strokeOpacity="0.15" strokeWidth="0.4" fill={C.copper} fillOpacity="0.04" />
-          {/* Light beams */}
-          <path d={`M${x} 48 L${x - 15} 115 L${x + 15} 115Z`}
-            fill={C.copper} fillOpacity="0.02" />
+          <rect x={x - 5} y="36" width="10" height="8" rx="1.5"
+            stroke={C.copper} strokeOpacity="0.18" strokeWidth="0.4" fill={C.copper} fillOpacity="0.04" />
+          <line x1={x} y1="36" x2={x} y2="33" stroke={C.titanium} strokeOpacity="0.06" strokeWidth="0.3" />
+          {/* Light beam cones */}
+          <path d={`M${x} 44 L${x - 18} 112 L${x + 18} 112Z`}
+            fill={C.copper} fillOpacity="0.015" />
         </g>
       ))}
-      {/* Curtain drape lines */}
-      <path d="M62 40 C62 50 65 60 62 80 C65 100 62 120 62 150"
-        stroke={C.copper} strokeOpacity="0.08" strokeWidth="0.5" fill="none" />
-      <path d="M258 40 C258 50 255 60 258 80 C255 100 258 120 258 150"
-        stroke={C.copper} strokeOpacity="0.08" strokeWidth="0.5" fill="none" />
-      {/* Camera position marker */}
-      <rect x="145" y="155" width="30" height="16" rx="2"
-        stroke={C.titanium} strokeOpacity="0.15" strokeWidth="0.5" fill={C.titanium} fillOpacity="0.03" />
-      <circle cx="152" cy="163" r="4" stroke={C.titanium} strokeOpacity="0.12" strokeWidth="0.3" fill="none" />
+      {/* Curtain drape lines — multiple folds */}
+      <path d="M57 38 C57 48 60 55 57 70 C60 85 57 100 57 115 C60 130 57 140 57 155"
+        stroke={C.copper} strokeOpacity="0.1" strokeWidth="0.5" fill="none" />
+      <path d="M64 40 C64 52 66 62 64 75 C66 88 64 105 64 120"
+        stroke={C.copper} strokeOpacity="0.05" strokeWidth="0.3" fill="none" />
+      <path d="M263 38 C263 48 260 55 263 70 C260 85 263 100 263 115 C260 130 263 140 263 155"
+        stroke={C.copper} strokeOpacity="0.1" strokeWidth="0.5" fill="none" />
+      <path d="M256 40 C256 52 254 62 256 75 C254 88 256 105 256 120"
+        stroke={C.copper} strokeOpacity="0.05" strokeWidth="0.3" fill="none" />
+      {/* Performer silhouette on stage */}
+      <circle cx="160" cy="118" r="4" stroke={C.titanium} strokeOpacity="0.1" strokeWidth="0.4" fill="none" />
+      <line x1="160" y1="122" x2="160" y2="140" stroke={C.titanium} strokeOpacity="0.08" strokeWidth="0.3" />
+      <line x1="160" y1="127" x2="153" y2="133" stroke={C.titanium} strokeOpacity="0.06" strokeWidth="0.25" />
+      <line x1="160" y1="127" x2="167" y2="133" stroke={C.titanium} strokeOpacity="0.06" strokeWidth="0.25" />
+      <line x1="160" y1="140" x2="155" y2="152" stroke={C.titanium} strokeOpacity="0.06" strokeWidth="0.25" />
+      <line x1="160" y1="140" x2="165" y2="152" stroke={C.titanium} strokeOpacity="0.06" strokeWidth="0.25" />
+      {/* Stage set piece — flat/scenery panel */}
+      <rect x="85" y="90" width="25" height="62" rx="1"
+        stroke={C.titanium} strokeOpacity="0.06" strokeWidth="0.3" fill={C.titanium} fillOpacity="0.015" />
+      <rect x="210" y="95" width="30" height="57" rx="1"
+        stroke={C.titanium} strokeOpacity="0.06" strokeWidth="0.3" fill={C.titanium} fillOpacity="0.015" />
+      {/* Camera on tripod — POV position */}
+      <rect x="140" y="160" width="14" height="9" rx="1.5"
+        stroke={C.titanium} strokeOpacity="0.18" strokeWidth="0.5" fill={C.titanium} fillOpacity="0.04" />
+      <circle cx="145" cy="164" r="3" stroke={C.titanium} strokeOpacity="0.15" strokeWidth="0.4" fill="none" />
+      <circle cx="145" cy="164" r="1" fill={C.titanium} fillOpacity="0.08" />
+      {/* Tripod legs */}
+      <line x1="144" y1="169" x2="138" y2="178" stroke={C.titanium} strokeOpacity="0.1" strokeWidth="0.3" />
+      <line x1="147" y1="169" x2="147" y2="178" stroke={C.titanium} strokeOpacity="0.1" strokeWidth="0.3" />
+      <line x1="150" y1="169" x2="156" y2="178" stroke={C.titanium} strokeOpacity="0.1" strokeWidth="0.3" />
+      {/* Record indicator */}
+      <circle cx="152" cy="161" r="1" fill="#E04040" fillOpacity="0.2" />
+      {/* Audience seating rows (in front of camera) */}
+      {[0, 1, 2].map((row) => (
+        <g key={row}>
+          {[170, 185, 200, 215, 230, 245, 260].map((x) => (
+            <rect key={`${row}-${x}`} x={x} y={162 + row * 5} width="8" height="3" rx="0.5"
+              stroke={C.titanium} strokeOpacity={0.04 - row * 0.008} strokeWidth="0.2"
+              fill={C.titanium} fillOpacity="0.01" />
+          ))}
+        </g>
+      ))}
+      {/* Exit sign */}
+      <rect x="270" y="42" width="18" height="7" rx="1"
+        stroke="#40E070" strokeOpacity="0.08" strokeWidth="0.3" fill="#40E070" fillOpacity="0.02" />
+      <text x="279" y="48" fill="#40E070" fillOpacity="0.1" fontSize="3" fontFamily="monospace" textAnchor="middle">EXIT</text>
       <text x="8" y="10" fill={C.titanium} fillOpacity="0.12" fontSize="4" fontFamily="monospace">AURORA THEATRE — PRODUCTION</text>
     </svg>
   )
@@ -928,38 +1255,111 @@ function BuffaloCentralTerminal() {
     <svg viewBox="0 0 320 180" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
       <GridBg color={C.titanium} opacity={0.025} />
       {/* Central tower */}
-      <rect x="130" y="18" width="60" height="130" rx="2"
-        stroke={C.titanium} strokeOpacity="0.2" strokeWidth="0.8" fill={C.titanium} fillOpacity="0.03" />
-      {/* Tower top ornament */}
-      <rect x="140" y="10" width="40" height="8" rx="1"
-        stroke={C.titanium} strokeOpacity="0.15" strokeWidth="0.5" fill={C.titanium} fillOpacity="0.04" />
-      <line x1="160" y1="2" x2="160" y2="10" stroke={C.titanium} strokeOpacity="0.12" strokeWidth="0.5" />
-      {/* Art deco window pattern */}
+      <rect x="128" y="16" width="64" height="134" rx="2"
+        stroke={C.titanium} strokeOpacity="0.22" strokeWidth="0.8" fill={C.titanium} fillOpacity="0.03" />
+      {/* Tower stepped crown — Art Deco setbacks */}
+      <rect x="135" y="8" width="50" height="8" rx="1"
+        stroke={C.titanium} strokeOpacity="0.18" strokeWidth="0.5" fill={C.titanium} fillOpacity="0.04" />
+      <rect x="142" y="2" width="36" height="6" rx="1"
+        stroke={C.titanium} strokeOpacity="0.14" strokeWidth="0.4" fill={C.titanium} fillOpacity="0.03" />
+      {/* Tower pinnacle and finial */}
+      <line x1="160" y1="-4" x2="160" y2="2" stroke={C.copper} strokeOpacity="0.15" strokeWidth="0.5" />
+      <circle cx="160" cy="-5" r="1.5" fill={C.copper} fillOpacity="0.12" />
+      {/* Art deco vertical pilaster lines on tower */}
+      <line x1="138" y1="16" x2="138" y2="150" stroke={C.titanium} strokeOpacity="0.05" strokeWidth="0.3" />
+      <line x1="182" y1="16" x2="182" y2="150" stroke={C.titanium} strokeOpacity="0.05" strokeWidth="0.3" />
+      {/* Tower windows — arched tops */}
       {Array.from({ length: 6 }).map((_, row) =>
-        [140, 155, 170].map((x) => (
-          <rect key={`${row}-${x}`} x={x} y={24 + row * 18} width="10" height="14" rx="1"
-            stroke={C.titanium} strokeOpacity="0.06" strokeWidth="0.3"
-            fill={C.titanium} fillOpacity="0.02" />
+        [141, 155, 169].map((x) => (
+          <g key={`${row}-${x}`}>
+            <rect x={x} y={22 + row * 18} width="11" height="13" rx="0.5"
+              stroke={C.titanium} strokeOpacity="0.07" strokeWidth="0.3"
+              fill={C.titanium} fillOpacity="0.02" />
+            {/* Arched top */}
+            <path d={`M${x} ${25 + row * 18} Q${x + 5.5} ${20 + row * 18} ${x + 11} ${25 + row * 18}`}
+              stroke={C.titanium} strokeOpacity="0.05" strokeWidth="0.2" fill="none" />
+          </g>
         ))
       )}
-      {/* Side wings */}
-      <rect x="50" y="70" width="80" height="78" rx="1"
-        stroke={C.titanium} strokeOpacity="0.12" strokeWidth="0.5" fill={C.titanium} fillOpacity="0.02" />
-      <rect x="190" y="70" width="80" height="78" rx="1"
-        stroke={C.titanium} strokeOpacity="0.12" strokeWidth="0.5" fill={C.titanium} fillOpacity="0.02" />
-      {/* Art deco chevrons */}
-      <path d="M145 148 L160 138 L175 148" stroke={C.copper} strokeOpacity="0.12" strokeWidth="0.4" fill="none" />
-      <path d="M148 152 L160 144 L172 152" stroke={C.copper} strokeOpacity="0.08" strokeWidth="0.3" fill="none" />
-      {/* Train tracks hint */}
-      <line x1="20" y1="160" x2="300" y2="160"
-        stroke={C.titanium} strokeOpacity="0.08" strokeWidth="0.5" />
-      <line x1="20" y1="165" x2="300" y2="165"
-        stroke={C.titanium} strokeOpacity="0.08" strokeWidth="0.5" />
-      {[40, 60, 80, 100, 120, 140, 160, 180, 200, 220, 240, 260, 280].map((x) => (
-        <line key={x} x1={x} y1="158" x2={x} y2="167"
-          stroke={C.titanium} strokeOpacity="0.05" strokeWidth="0.3" />
+      {/* Horizontal band between windows */}
+      {[38, 56, 74, 92, 110, 128].map((y) => (
+        <line key={y} x1="130" y1={y} x2="190" y2={y}
+          stroke={C.titanium} strokeOpacity="0.03" strokeWidth="0.2" />
       ))}
-      <text x="8" y="10" fill={C.titanium} fillOpacity="0.12" fontSize="4" fontFamily="monospace">BUFFALO CENTRAL TERMINAL</text>
+      {/* Left wing — concourse */}
+      <rect x="40" y="68" width="88" height="82" rx="1"
+        stroke={C.titanium} strokeOpacity="0.14" strokeWidth="0.5" fill={C.titanium} fillOpacity="0.02" />
+      {/* Left wing parapet */}
+      <line x1="40" y1="68" x2="128" y2="68" stroke={C.titanium} strokeOpacity="0.1" strokeWidth="0.4" />
+      {/* Left wing windows */}
+      {[50, 66, 82, 98, 114].map((x) => (
+        <rect key={x} x={x} y="78" width="8" height="20" rx="0.5"
+          stroke={C.titanium} strokeOpacity="0.05" strokeWidth="0.25" fill={C.titanium} fillOpacity="0.015" />
+      ))}
+      {/* Left wing entrance arches */}
+      {[55, 75, 95, 115].map((x) => (
+        <path key={x} d={`M${x} 150 L${x} 110 Q${x + 7} 104 ${x + 14} 110 L${x + 14} 150`}
+          stroke={C.titanium} strokeOpacity="0.04" strokeWidth="0.25" fill="none" />
+      ))}
+      {/* Right wing — concourse */}
+      <rect x="192" y="68" width="88" height="82" rx="1"
+        stroke={C.titanium} strokeOpacity="0.14" strokeWidth="0.5" fill={C.titanium} fillOpacity="0.02" />
+      <line x1="192" y1="68" x2="280" y2="68" stroke={C.titanium} strokeOpacity="0.1" strokeWidth="0.4" />
+      {/* Right wing windows */}
+      {[202, 218, 234, 250, 266].map((x) => (
+        <rect key={x} x={x} y="78" width="8" height="20" rx="0.5"
+          stroke={C.titanium} strokeOpacity="0.05" strokeWidth="0.25" fill={C.titanium} fillOpacity="0.015" />
+      ))}
+      {/* Right wing entrance arches */}
+      {[197, 217, 237, 257].map((x) => (
+        <path key={x} d={`M${x} 150 L${x} 110 Q${x + 7} 104 ${x + 14} 110 L${x + 14} 150`}
+          stroke={C.titanium} strokeOpacity="0.04" strokeWidth="0.25" fill="none" />
+      ))}
+      {/* Main entrance — grand arch */}
+      <path d="M140 150 L140 120 Q160 100 180 120 L180 150"
+        stroke={C.copper} strokeOpacity="0.15" strokeWidth="0.5" fill={C.copper} fillOpacity="0.015" />
+      {/* Art deco sunburst over entrance */}
+      {[-30, -20, -10, 0, 10, 20, 30].map((deg) => {
+        const r = (deg - 90) * Math.PI / 180
+        return (
+          <line key={deg}
+            x1={160 + Math.cos(r) * 8} y1={108 + Math.sin(r) * 8}
+            x2={160 + Math.cos(r) * 18} y2={108 + Math.sin(r) * 18}
+            stroke={C.copper} strokeOpacity="0.08" strokeWidth="0.3" />
+        )
+      })}
+      {/* Art deco chevrons below tower */}
+      <path d="M143 148 L160 136 L177 148" stroke={C.copper} strokeOpacity="0.12" strokeWidth="0.4" fill="none" />
+      <path d="M146 152 L160 142 L174 152" stroke={C.copper} strokeOpacity="0.08" strokeWidth="0.3" fill="none" />
+      {/* Ground line */}
+      <line x1="30" y1="150" x2="290" y2="150"
+        stroke={C.titanium} strokeOpacity="0.1" strokeWidth="0.4" />
+      {/* Train tracks — two tracks with ties and rails */}
+      <line x1="15" y1="160" x2="305" y2="160"
+        stroke={C.titanium} strokeOpacity="0.1" strokeWidth="0.5" />
+      <line x1="15" y1="166" x2="305" y2="166"
+        stroke={C.titanium} strokeOpacity="0.1" strokeWidth="0.5" />
+      <line x1="15" y1="170" x2="305" y2="170"
+        stroke={C.titanium} strokeOpacity="0.06" strokeWidth="0.4" />
+      <line x1="15" y1="176" x2="305" y2="176"
+        stroke={C.titanium} strokeOpacity="0.06" strokeWidth="0.4" />
+      {/* Track ties */}
+      {Array.from({ length: 18 }).map((_, i) => {
+        const x = 25 + i * 16
+        return (
+          <g key={i}>
+            <line x1={x} y1="158" x2={x} y2="168"
+              stroke={C.titanium} strokeOpacity="0.05" strokeWidth="0.3" />
+            <line x1={x + 2} y1="168" x2={x + 2} y2="178"
+              stroke={C.titanium} strokeOpacity="0.035" strokeWidth="0.25" />
+          </g>
+        )
+      })}
+      {/* Camera with tripod at track level */}
+      <rect x="18" y="155" width="10" height="6" rx="1"
+        stroke={C.titanium} strokeOpacity="0.12" strokeWidth="0.4" fill={C.titanium} fillOpacity="0.03" />
+      <circle cx="22" cy="157" r="2" stroke={C.titanium} strokeOpacity="0.1" strokeWidth="0.3" fill="none" />
+      <text x="8" y="10" fill={C.titanium} fillOpacity="0.12" fontSize="4" fontFamily="monospace">BUFFALO CENTRAL TERMINAL — 1929 ART DECO</text>
     </svg>
   )
 }
