@@ -153,7 +153,10 @@ export default function VAProstheticsPage() {
                 className="glass rounded-xl overflow-hidden"
               >
                 <ProstheticViewer
-                  modelPath={null}
+                  models={[
+                    { path: '/models/va-dent-1.glb', label: 'Device 1' },
+                    { path: '/models/va-dent-2.glb', label: 'Device 2' },
+                  ]}
                   className="aspect-square"
                 />
               </motion.div>

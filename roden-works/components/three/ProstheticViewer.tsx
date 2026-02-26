@@ -1,13 +1,15 @@
 'use client'
 
-import { Suspense, useState, useRef, useCallback } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
+import { Suspense, useState, useRef, useCallback, useEffect } from 'react'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import {
   OrbitControls,
   Environment,
   ContactShadows,
   Html,
   useGLTF,
+  Center,
+  Bounds,
 } from '@react-three/drei'
 import * as THREE from 'three'
 
@@ -19,22 +21,33 @@ interface Annotation {
   detail: string
 }
 
+interface ModelOption {
+  path: string
+  label: string
+}
+
 interface ProstheticViewerProps {
-  /** Path to .glb model in /public. When null, renders placeholder geometry. */
-  modelPath?: string | null
+  /** Array of .glb model paths in /public. */
+  models?: ModelOption[]
   annotations?: Annotation[]
-  /** Height of the viewer container. Defaults to aspect-square. */
   className?: string
 }
 
-/* ─── Default annotations for the VA dental device ─ */
+/* ─── Default models ─────────────────────────────── */
+
+const DEFAULT_MODELS: ModelOption[] = [
+  { path: '/models/va-dent-1.glb', label: 'Device 1' },
+  { path: '/models/va-dent-2.glb', label: 'Device 2' },
+]
+
+/* ─── Default annotations ────────────────────────── */
 
 const DEFAULT_ANNOTATIONS: Annotation[] = [
   {
     position: [0.8, 0.6, 0.3],
     label: 'Palatal Framework',
     detail:
-      'Custom-contoured titanium framework designed from CT scan data. Provides structural rigidity while minimizing tissue contact area.',
+      'Custom-contoured framework designed from CT scan data. Provides structural rigidity while minimizing tissue contact area.',
   },
   {
     position: [-0.6, 0.2, 0.7],
@@ -46,7 +59,7 @@ const DEFAULT_ANNOTATIONS: Annotation[] = [
     position: [0.0, -0.3, 0.9],
     label: 'Denture Base',
     detail:
-      'Biocompatible acrylic resin base seats against edentulous ridge. 3D-printed for precise fit to the veteran\'s anatomy.',
+      'Biocompatible resin base seats against edentulous ridge. 3D-printed for precise fit to the veteran\'s anatomy.',
   },
   {
     position: [-0.2, 0.8, -0.3],
@@ -56,149 +69,7 @@ const DEFAULT_ANNOTATIONS: Annotation[] = [
   },
 ]
 
-/* ─── Placeholder Dental Prosthetic Geometry ─────── */
-
-function PlaceholderModel({
-  wireframe,
-  exploded,
-}: {
-  wireframe: boolean
-  exploded: boolean
-}) {
-  const groupRef = useRef<THREE.Group>(null)
-
-  useFrame((_, delta) => {
-    if (groupRef.current) {
-      groupRef.current.rotation.y += delta * 0.15
-    }
-  })
-
-  const explodeOffset = exploded ? 0.5 : 0
-  const materialProps = {
-    transparent: true,
-    opacity: wireframe ? 0.3 : 0.85,
-    wireframe,
-  }
-
-  return (
-    <group ref={groupRef} scale={1.2}>
-      {/* Palatal arch (main body) */}
-      <mesh position={[0, explodeOffset * 0.5, 0]}>
-        <torusGeometry args={[0.7, 0.12, 16, 32, Math.PI]} />
-        <meshStandardMaterial
-          color="#c4a882"
-          roughness={0.3}
-          metalness={0.1}
-          {...materialProps}
-        />
-      </mesh>
-
-      {/* Framework base plate */}
-      <mesh
-        position={[0, -0.05 - explodeOffset * 0.3, 0]}
-        rotation={[Math.PI / 2, 0, 0]}
-      >
-        <cylinderGeometry args={[0.55, 0.65, 0.06, 32, 1, false, 0, Math.PI]} />
-        <meshStandardMaterial
-          color="#8a8a8a"
-          roughness={0.2}
-          metalness={0.8}
-          {...materialProps}
-        />
-      </mesh>
-
-      {/* Prosthetic teeth row — left */}
-      {Array.from({ length: 5 }).map((_, i) => {
-        const angle = (i / 4) * Math.PI * 0.6 + Math.PI * 0.2
-        const r = 0.62
-        return (
-          <mesh
-            key={`tooth-l-${i}`}
-            position={[
-              Math.cos(angle) * r,
-              0.15 + explodeOffset * 0.8,
-              Math.sin(angle) * r * 0.4,
-            ]}
-            scale={[0.08 + i * 0.005, 0.12, 0.06]}
-          >
-            <boxGeometry args={[1, 1, 1]} />
-            <meshStandardMaterial
-              color="#f0ebe3"
-              roughness={0.4}
-              metalness={0.05}
-              {...materialProps}
-            />
-          </mesh>
-        )
-      })}
-
-      {/* Prosthetic teeth row — right */}
-      {Array.from({ length: 5 }).map((_, i) => {
-        const angle = Math.PI - ((i / 4) * Math.PI * 0.6 + Math.PI * 0.2)
-        const r = 0.62
-        return (
-          <mesh
-            key={`tooth-r-${i}`}
-            position={[
-              Math.cos(angle) * r,
-              0.15 + explodeOffset * 0.8,
-              Math.sin(angle) * r * 0.4,
-            ]}
-            scale={[0.08 + i * 0.005, 0.12, 0.06]}
-          >
-            <boxGeometry args={[1, 1, 1]} />
-            <meshStandardMaterial
-              color="#f0ebe3"
-              roughness={0.4}
-              metalness={0.05}
-              {...materialProps}
-            />
-          </mesh>
-        )
-      })}
-
-      {/* Retention clasps (left and right) */}
-      {[-1, 1].map((side) => (
-        <mesh
-          key={`clasp-${side}`}
-          position={[
-            side * 0.75,
-            0.05 - explodeOffset * 0.4,
-            0.1,
-          ]}
-          rotation={[0, 0, side * 0.3]}
-        >
-          <torusGeometry args={[0.1, 0.02, 8, 16, Math.PI]} />
-          <meshStandardMaterial
-            color="#b0b0b0"
-            roughness={0.15}
-            metalness={0.9}
-            {...materialProps}
-          />
-        </mesh>
-      ))}
-
-      {/* Connector bars */}
-      {[-0.4, 0.4].map((x) => (
-        <mesh
-          key={`bar-${x}`}
-          position={[x, -0.02, 0.15]}
-          rotation={[Math.PI / 2, 0, 0]}
-        >
-          <cylinderGeometry args={[0.015, 0.015, 0.3, 8]} />
-          <meshStandardMaterial
-            color="#999"
-            roughness={0.2}
-            metalness={0.7}
-            {...materialProps}
-          />
-        </mesh>
-      ))}
-    </group>
-  )
-}
-
-/* ─── GLB Model Loader ──────────────────────────── */
+/* ─── GLB Model with auto-centering & scaling ────── */
 
 function GLBModel({
   path,
@@ -209,14 +80,28 @@ function GLBModel({
 }) {
   const { scene } = useGLTF(path)
   const groupRef = useRef<THREE.Group>(null)
+  const clonedScene = useRef<THREE.Group | null>(null)
+
+  // Clone the scene so each model instance is independent
+  useEffect(() => {
+    clonedScene.current = scene.clone(true)
+  }, [scene])
 
   // Apply wireframe to all meshes
-  scene.traverse((child) => {
-    if (child instanceof THREE.Mesh && child.material) {
-      const mat = child.material as THREE.MeshStandardMaterial
-      mat.wireframe = wireframe
-    }
-  })
+  useEffect(() => {
+    if (!clonedScene.current) return
+    clonedScene.current.traverse((child) => {
+      if (child instanceof THREE.Mesh && child.material) {
+        if (Array.isArray(child.material)) {
+          child.material.forEach((m) => {
+            if (m instanceof THREE.MeshStandardMaterial) m.wireframe = wireframe
+          })
+        } else if (child.material instanceof THREE.MeshStandardMaterial) {
+          child.material.wireframe = wireframe
+        }
+      }
+    })
+  }, [wireframe, scene])
 
   useFrame((_, delta) => {
     if (groupRef.current) {
@@ -225,9 +110,11 @@ function GLBModel({
   })
 
   return (
-    <group ref={groupRef}>
-      <primitive object={scene} scale={1} />
-    </group>
+    <Center>
+      <group ref={groupRef}>
+        <primitive object={clonedScene.current || scene} />
+      </group>
+    </Center>
   )
 }
 
@@ -292,45 +179,44 @@ function LoadingFallback() {
 /* ─── Main Viewer Component ──────────────────────── */
 
 export default function ProstheticViewer({
-  modelPath = null,
+  models = DEFAULT_MODELS,
   annotations = DEFAULT_ANNOTATIONS,
   className = 'aspect-square',
 }: ProstheticViewerProps) {
+  const [activeModel, setActiveModel] = useState(0)
   const [wireframe, setWireframe] = useState(false)
-  const [exploded, setExploded] = useState(false)
   const [activeAnnotation, setActiveAnnotation] = useState<number | null>(null)
   const [autoRotate, setAutoRotate] = useState(true)
-  const controlsRef = useRef(null)
 
   const handleAnnotationSelect = useCallback((i: number | null) => {
     setActiveAnnotation(i)
     if (i !== null) setAutoRotate(false)
   }, [])
 
-  const hasModel = modelPath !== null
-
   return (
     <div className={`relative rounded-xl overflow-hidden ${className}`}>
       {/* Three.js Canvas */}
       <Canvas
-        camera={{ position: [0, 0.5, 3], fov: 45 }}
+        camera={{ position: [0, 0.5, 4], fov: 40 }}
         dpr={[1, 2]}
         gl={{ antialias: true, alpha: true }}
         style={{ background: 'transparent' }}
       >
         <Suspense fallback={<LoadingFallback />}>
           {/* Lighting */}
-          <ambientLight intensity={0.4} />
+          <ambientLight intensity={0.5} />
           <directionalLight position={[5, 5, 5]} intensity={0.8} />
           <directionalLight position={[-3, 3, -3]} intensity={0.3} />
-          <pointLight position={[0, 2, 0]} intensity={0.3} color="#B87333" />
+          <pointLight position={[0, 2, 0]} intensity={0.2} color="#B87333" />
 
           {/* Model */}
-          {hasModel ? (
-            <GLBModel path={modelPath} wireframe={wireframe} />
-          ) : (
-            <PlaceholderModel wireframe={wireframe} exploded={exploded} />
-          )}
+          <Bounds fit clip observe margin={1.4}>
+            <GLBModel
+              key={models[activeModel].path}
+              path={models[activeModel].path}
+              wireframe={wireframe}
+            />
+          </Bounds>
 
           {/* Annotations */}
           {annotations.map((ann, i) => (
@@ -345,41 +231,49 @@ export default function ProstheticViewer({
 
           {/* Environment & Shadows */}
           <ContactShadows
-            position={[0, -0.8, 0]}
+            position={[0, -1.5, 0]}
             opacity={0.3}
-            scale={4}
+            scale={6}
             blur={2}
           />
           <Environment preset="studio" />
 
           {/* Controls */}
           <OrbitControls
-            ref={controlsRef}
             autoRotate={autoRotate && activeAnnotation === null}
             autoRotateSpeed={1}
             enablePan={false}
             minDistance={1.5}
-            maxDistance={6}
-            maxPolarAngle={Math.PI * 0.75}
+            maxDistance={8}
+            maxPolarAngle={Math.PI * 0.8}
           />
         </Suspense>
       </Canvas>
 
       {/* Control Bar */}
-      <div className="absolute bottom-0 left-0 right-0 p-3 flex items-center justify-between bg-gradient-to-t from-slate-950/80 to-transparent">
+      <div className="absolute bottom-0 left-0 right-0 p-3 flex items-center justify-between bg-gradient-to-t from-slate-950/90 via-slate-950/50 to-transparent">
         <div className="flex items-center gap-2">
+          {/* Model switcher */}
+          {models.length > 1 &&
+            models.map((model, i) => (
+              <ControlButton
+                key={model.path}
+                active={activeModel === i}
+                onClick={() => {
+                  setActiveModel(i)
+                  setActiveAnnotation(null)
+                }}
+                label={model.label}
+              />
+            ))}
+
+          <div className="w-px h-4 bg-white/10 mx-1" />
+
           <ControlButton
             active={wireframe}
             onClick={() => setWireframe(!wireframe)}
             label="Wireframe"
           />
-          {!hasModel && (
-            <ControlButton
-              active={exploded}
-              onClick={() => setExploded(!exploded)}
-              label="Exploded"
-            />
-          )}
           <ControlButton
             active={autoRotate}
             onClick={() => setAutoRotate(!autoRotate)}
@@ -387,16 +281,14 @@ export default function ProstheticViewer({
           />
         </div>
 
-        {!hasModel && (
-          <span className="font-mono text-[10px] text-titanium/40 hidden sm:block">
-            Placeholder &mdash; drop .glb to activate
-          </span>
-        )}
+        <span className="font-mono text-[10px] text-titanium/30 hidden sm:block">
+          Fusion 360 &rarr; GLB
+        </span>
       </div>
 
       {/* Annotation Detail Panel */}
       {activeAnnotation !== null && annotations[activeAnnotation] && (
-        <div className="absolute top-3 right-3 w-64 glass rounded-xl p-4 animate-in fade-in slide-in-from-right-2">
+        <div className="absolute top-3 right-3 w-64 glass rounded-xl p-4">
           <div className="flex items-start justify-between gap-2 mb-2">
             <div className="flex items-center gap-2">
               <span className="w-5 h-5 rounded-full bg-copper text-white text-[10px] font-mono font-bold flex items-center justify-center flex-shrink-0">

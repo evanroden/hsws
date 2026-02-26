@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import PageHero from '@/components/ui/PageHero'
+import CinemaEmbed from '@/components/ui/CinemaEmbed'
 import { useInView, useCountUp } from '@/lib/hooks'
 
 const quotes = [
@@ -167,6 +168,7 @@ function StatCallout({
 
 export default function TedPage() {
   const introRef = useInView(0.2)
+  const videoRef = useInView(0.1)
   const quotesRef = useInView(0.1)
   const takeawaysRef = useInView(0.1)
   const closingRef = useInView(0.2)
@@ -241,6 +243,33 @@ export default function TedPage() {
               </p>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* Watch the Talk */}
+      <section
+        className="py-section-mobile md:py-section bg-gradient-to-b from-slate-950 via-red-950/[0.02] to-slate-950 border-t border-white/5"
+        ref={videoRef.ref}
+      >
+        <div className="content-width">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={videoRef.isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <span className="font-mono text-xs tracking-widest uppercase text-copper mb-4 block">
+              Watch
+            </span>
+            <h2 className="font-serif text-heading text-white mb-8">The Full Talk</h2>
+            <div className="max-w-4xl">
+              <CinemaEmbed
+                source={{ type: 'youtube', id: 'Bq3Swc8q0CY' }}
+                title="TEDxTulane"
+                subtitle="Youth Political Participation"
+                aspect="16:9"
+              />
+            </div>
+          </motion.div>
         </div>
       </section>
 
