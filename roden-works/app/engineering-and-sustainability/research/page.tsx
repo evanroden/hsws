@@ -4,10 +4,12 @@ import { motion } from 'framer-motion'
 import { useInView } from '@/lib/hooks'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import AnimatedCard from '@/components/ui/AnimatedCard'
+import { ProjectIllustration } from '@/components/ui/ProjectIllustrations'
 
 const researchProjects = [
   {
     href: '/engineering-and-sustainability/research/va-prosthetics',
+    slug: 'va-prosthetics',
     title: 'VA Prosthetics',
     description:
       'Custom 3D-printed prosthetic devices for American veterans, designed in Autodesk Fusion 360 and fabricated using FlowIt adaptive manufacturing. A partnership between Tulane University and the U.S. Department of Veterans Affairs restoring autonomy through engineering.',
@@ -15,6 +17,7 @@ const researchProjects = [
   },
   {
     href: '/engineering-and-sustainability/research/haps',
+    slug: 'haps',
     title: 'Household Air Pollution Study',
     description:
       'Research on indoor PM2.5, black carbon, and NO2 exposure and cardiovascular outcomes in New Orleans homes. Published finding linking highest-quartile black carbon exposure to a clinically significant increase in systolic blood pressure.',
@@ -22,6 +25,7 @@ const researchProjects = [
   },
   {
     href: '/engineering-and-sustainability/research/swis',
+    slug: 'swis',
     title: 'Saltwater Intrusion Study',
     description:
       'First-of-kind longitudinal study proposal on saltwater intrusion into the Greater New Orleans water supply, prompted by the 2023 Mississippi River crisis that threatened drinking water for 1.2 million residents.',
@@ -29,6 +33,7 @@ const researchProjects = [
   },
   {
     href: '/engineering-and-sustainability/research/wimley-lab',
+    slug: 'wimley-lab',
     title: 'Wimley Lab — Membrane Proteins',
     description:
       'Peptide assemblies interacting with lipid bilayer membranes at Tulane School of Medicine. Applications in antibiotic-resistant drug design, pH-responsive drug delivery, and biosensor engineering.',
@@ -153,7 +158,11 @@ export default function ResearchPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {researchProjects.map((project, i) => (
-              <AnimatedCard key={project.href} index={i} {...project} />
+              <AnimatedCard key={project.href} index={i} {...project}>
+                <div className="mb-4 -mx-2 opacity-80">
+                  <ProjectIllustration slug={project.slug} variant="card" />
+                </div>
+              </AnimatedCard>
             ))}
           </div>
         </div>

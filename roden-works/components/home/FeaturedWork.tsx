@@ -4,11 +4,13 @@ import { motion, useInView } from 'framer-motion'
 import Link from 'next/link'
 import { useRef } from 'react'
 import TiltCard from '@/components/ui/TiltCard'
+import { ProjectIllustration } from '@/components/ui/ProjectIllustrations'
 
 const featured = [
   {
     title: 'ENFRA × Rochester Regional Health',
     category: 'Energy-as-a-Service',
+    slug: 'enfra',
     description:
       '$143.8 million, 30-year EaaS partnership delivering $354.6M in guaranteed savings and 52.5% reduction in purchased electricity.',
     href: '/engineering-and-sustainability/enfra',
@@ -19,6 +21,7 @@ const featured = [
   {
     title: 'The YCOD — Opt-Out Organ Donation',
     category: 'Legislative Advocacy',
+    slug: 'ycod',
     description:
       'Founded at age 17. Seven years of advocacy to change New York\'s organ donor designation system, addressing the state\'s lowest-in-nation registration rate.',
     href: '/advocacy-and-civic/ycod',
@@ -29,6 +32,7 @@ const featured = [
   {
     title: 'VA Prosthetics — 3D-Printed Devices',
     category: 'Biomedical Engineering',
+    slug: 'va-prosthetics',
     description:
       'Designed and modeled custom prosthetic devices in Fusion 360 for 3D printing, restoring autonomy to American veterans in the Southern Louisiana region.',
     href: '/engineering-and-sustainability/research/va-prosthetics',
@@ -39,6 +43,7 @@ const featured = [
   {
     title: 'Claiborne Avenue Productions',
     category: 'Cinematography',
+    slug: 'cinematography',
     description:
       'Camera operator and editor under Albert J. Moten, Jr., working with BlackMagic 6K and Sony a7s II on productions in New Orleans.',
     href: '/studio/cinematography',
@@ -89,21 +94,11 @@ export default function FeaturedWork() {
               <TiltCard maxTilt={4} glare={0.08}>
                 <Link href={item.href} className="group block" data-cursor="View">
                   <div className="glass rounded-xl overflow-hidden transition-all duration-500 group-hover:bg-white/10 group-hover:border-white/20">
-                    {/* Gradient image area */}
+                    {/* Illustrated image area */}
                     <div className={`aspect-[16/9] bg-gradient-to-br ${item.gradientFrom} to-white/[0.02] relative overflow-hidden`}>
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="font-mono text-xs text-titanium/20 tracking-widest uppercase">
-                          {item.category}
-                        </span>
+                      <div className="absolute inset-0">
+                        <ProjectIllustration slug={item.slug} variant="featured" />
                       </div>
-                      <div
-                        className="absolute inset-0 opacity-[0.04]"
-                        style={{
-                          backgroundImage:
-                            'radial-gradient(circle at 1px 1px, white 1px, transparent 1px)',
-                          backgroundSize: '24px 24px',
-                        }}
-                      />
                       {/* Hover reveal line */}
                       <motion.div
                         className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-copper/60 via-copper/20 to-transparent"

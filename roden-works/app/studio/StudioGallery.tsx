@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
 import Link from 'next/link'
 import { useInView } from '@/lib/hooks'
+import { ProjectIllustration } from '@/components/ui/ProjectIllustrations'
 
 type Category = 'all' | 'cinematography' | 'photography' | 'glass-art' | 'modeling'
 
@@ -19,6 +20,7 @@ const items = [
   {
     title: 'Claiborne Avenue Productions',
     category: 'cinematography' as const,
+    slug: 'claiborne-avenue',
     description: 'Camera operator and editor under Albert J. Moten, Jr. BlackMagic 6K, Sony a7s II.',
     href: '/studio/cinematography',
     aspect: 'aspect-video',
@@ -26,6 +28,7 @@ const items = [
   {
     title: 'Tulane Freeman School',
     category: 'cinematography' as const,
+    slug: 'tulane-freeman',
     description: 'Digital marketing content. Short-form videos, interviews, event coverage.',
     href: '/studio/cinematography',
     aspect: 'aspect-video',
@@ -33,6 +36,7 @@ const items = [
   {
     title: 'Fractured Futures',
     category: 'glass-art' as const,
+    slug: 'fractured-futures',
     description: 'Kiln forming and glass fusing fine art. Exploring fractured forms and translucent light.',
     href: '/studio/glass-art',
     aspect: 'aspect-square',
@@ -40,6 +44,7 @@ const items = [
   {
     title: 'Vogue Italy — BizarrAudi',
     category: 'modeling' as const,
+    slug: 'vogue-italy',
     description: '2020 runway modeling for Vogue Italy\'s SchoolTime collection.',
     href: '/studio/modeling',
     aspect: 'aspect-[3/4]',
@@ -47,6 +52,7 @@ const items = [
   {
     title: 'Documentary Work',
     category: 'cinematography' as const,
+    slug: 'documentary-work',
     description: 'Plato\'s Cave, The Bridge — narrative and documentary filmmaking.',
     href: '/studio/cinematography',
     aspect: 'aspect-video',
@@ -54,6 +60,7 @@ const items = [
   {
     title: 'Medium Format Photography',
     category: 'photography' as const,
+    slug: 'medium-format-photography',
     description: 'Medium-format and full-frame photography portfolio.',
     href: '/studio/photography',
     aspect: 'aspect-[4/5]',
@@ -61,6 +68,7 @@ const items = [
   {
     title: 'Aurora Theatre',
     category: 'cinematography' as const,
+    slug: 'aurora-theatre',
     description: 'Production and promotional content for Aurora Theatre.',
     href: '/studio/cinematography',
     aspect: 'aspect-video',
@@ -68,6 +76,7 @@ const items = [
   {
     title: 'Buffalo Central Terminal',
     category: 'cinematography' as const,
+    slug: 'buffalo-central-terminal',
     description: 'Architectural and cultural documentation.',
     href: '/studio/cinematography',
     aspect: 'aspect-video',
@@ -119,20 +128,11 @@ export default function StudioGallery() {
               >
                 <Link href={item.href} className="group block">
                   <div className="glass rounded-xl overflow-hidden transition-all duration-500 group-hover:bg-white/10 group-hover:border-white/20 group-hover:scale-[1.02]">
-                    {/* Placeholder image */}
+                    {/* Illustrated thumbnail */}
                     <div className={`${item.aspect} bg-gradient-to-br from-white/5 to-white/[0.02] relative overflow-hidden`}>
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="font-mono text-xs text-titanium/20 tracking-widest uppercase">
-                          {item.category}
-                        </span>
+                      <div className="absolute inset-0">
+                        <ProjectIllustration slug={item.slug} variant="studio" />
                       </div>
-                      <div
-                        className="absolute inset-0 opacity-[0.03]"
-                        style={{
-                          backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 1px)',
-                          backgroundSize: '16px 16px',
-                        }}
-                      />
                     </div>
                     <div className="p-5">
                       <span className="font-mono text-xs text-copper capitalize">{item.category.replace('-', ' ')}</span>
