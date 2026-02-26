@@ -15,11 +15,6 @@ const awards = [
     description: 'Comprehensive urban revitalization plan for New Orleans East covering disaster planning, solar energy, transit, and green housing.',
   },
   {
-    title: 'Summa Cum Laude',
-    org: 'Tulane University',
-    description: 'Highest academic honors in Biomedical/Medical Engineering.',
-  },
-  {
     title: 'Boy of the Year',
     org: 'Boys & Girls Club of America',
     description: 'National recognition for outstanding youth achievement and community impact.',

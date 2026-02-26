@@ -37,9 +37,6 @@ export default function Education() {
                     Bachelor of Engineering, Biomedical/Medical Engineering
                   </p>
                   <p className="text-titanium/60 text-sm mt-1">2020 – 2024</p>
-                  <div className="mt-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-copper/10 border border-copper/20">
-                    <span className="text-copper text-sm font-medium">Summa Cum Laude</span>
-                  </div>
                 </div>
               </div>
             </div>

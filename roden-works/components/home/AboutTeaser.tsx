@@ -50,7 +50,7 @@ export default function AboutTeaser() {
                 as a system to be understood and optimized.
               </p>
               <p>
-                A Tulane-trained biomedical engineer (Summa Cum Laude), published researcher,
+                A Tulane-trained biomedical engineer, published researcher,
                 TEDx speaker, and award-winning filmmaker, Evan brings an unusually
                 interdisciplinary perspective to complex problems — whether they involve
                 hospital infrastructure, legislative reform, or visual storytelling.

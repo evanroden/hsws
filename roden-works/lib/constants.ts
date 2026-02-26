@@ -20,7 +20,7 @@ export const NAV_ITEMS = [
 ] as const
 
 export const IMPACT_STATS = [
-  { value: 160, suffix: '% NRR', label: 'Net Revenue Retention at Odoo', prefix: '' },
+  { value: 160, suffix: '%', label: 'Non-Recurring Revenue Goal (Monthly Best)', prefix: '' },
   { value: 143.8, suffix: 'M', label: 'EaaS Partnership Value', prefix: '$' },
   { value: 7, suffix: '+ Years', label: 'Leading The YCOD', prefix: '' },
   { value: 3, suffix: '', label: 'Research Labs at Tulane', prefix: '' },

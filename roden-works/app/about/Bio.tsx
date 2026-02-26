@@ -33,7 +33,7 @@ export default function Bio() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              At Tulane University, Evan earned his Bachelor of Engineering in Biomedical/Medical Engineering, graduating Summa Cum Laude. But the transcript only tells part of the story. Across three research labs, he designed 3D-printed prosthetic devices for veterans at the VA, studied membrane protein structures for next-generation drug delivery in the Wimley Lab at Tulane School of Medicine, and investigated the cardiovascular effects of indoor air pollution in New Orleans — work that contributed to published findings linking black carbon exposure to elevated blood pressure.
+              At Tulane University, Evan earned his Bachelor of Engineering in Biomedical/Medical Engineering. But the transcript only tells part of the story. Across three research labs, he designed 3D-printed prosthetic devices for veterans at the VA, studied membrane protein structures for next-generation drug delivery in the Wimley Lab at Tulane School of Medicine, and investigated the cardiovascular effects of indoor air pollution in New Orleans — work that contributed to published findings linking black carbon exposure to elevated blood pressure.
             </motion.p>
 
             <motion.p
@@ -49,7 +49,7 @@ export default function Bio() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              After graduation, Evan pivoted through three distinct industries in rapid succession — each one deepening his understanding of complex systems. At Odoo, he became one of the company&apos;s top-performing account executives, achieving 160% net revenue retention while implementing ERP systems for manufacturing, food and beverage, and retail clients. At Convergint, he consulted on fire and life safety systems as a systems integration specialist in San Francisco. And now, at ENFRA, he manages central energy plants for Rochester Regional Health as part of a $143.8 million, 30-year Energy-as-a-Service partnership — the infrastructure that produces the steam, chilled water, and electricity that keeps hospitals operational.
+              After graduation, Evan pivoted through three distinct industries in rapid succession — each one deepening his understanding of complex systems. At Odoo, he worked as an account executive implementing ERP systems for manufacturing, food and beverage, and retail clients — hitting 160% of his non-recurring revenue goal in a single month. At Convergint, he consulted on fire and life safety systems as a systems integration specialist in San Francisco. And now, at ENFRA, he manages central energy plants for Rochester Regional Health as part of a $143.8 million, 30-year Energy-as-a-Service partnership — the infrastructure that produces the steam, chilled water, and electricity that keeps hospitals operational.
             </motion.p>
 
             <motion.p

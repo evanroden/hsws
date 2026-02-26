@@ -22,7 +22,7 @@ const timelineData = [
     year: '2024–2025',
     title: 'Odoo',
     role: 'Account Executive',
-    description: 'ERP implementations achieving 160% NRR. MRP, analytic accounting, F&B software.',
+    description: 'ERP implementations for manufacturing, F&B, and retail. MRP, analytic accounting.',
     color: 'bg-copper',
   },
   {
@@ -50,7 +50,7 @@ const timelineData = [
     year: '2020–2024',
     title: 'Tulane University',
     role: 'B.E. Biomedical/Medical Engineering',
-    description: 'Summa Cum Laude. Three research labs. TEDx speaker.',
+    description: 'Three research labs. TEDx speaker.',
     color: 'bg-forest-light',
   },
 ]

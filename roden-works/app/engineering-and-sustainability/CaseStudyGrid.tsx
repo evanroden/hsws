@@ -18,7 +18,7 @@ const caseStudies = [
   {
     href: '/engineering-and-sustainability/odoo',
     title: 'Odoo',
-    description: '160% net revenue retention implementing ERP systems for manufacturing, F&B, and retail clients.',
+    description: 'ERP implementations for manufacturing, F&B, and retail clients. Hit 160% of non-recurring revenue goal.',
     label: 'ERP',
   },
   {

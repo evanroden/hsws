@@ -64,27 +64,20 @@ const modules = [
   },
 ]
 
-const nrrBreakdown = [
+const revenueHighlights = [
   {
-    label: 'Starting ARR',
-    value: '$100',
+    label: 'Monthly Goal',
+    value: '100%',
     width: '62.5%',
     color: 'bg-titanium/40',
-    note: 'Annual recurring revenue at period start',
+    note: 'Non-recurring revenue target',
   },
   {
-    label: 'End-of-Period ARR',
-    value: '$160',
+    label: 'Best Month',
+    value: '160%',
     width: '100%',
     color: 'bg-gradient-to-r from-copper to-copper/60',
-    note: 'After expansion, upsells, and retention',
-  },
-  {
-    label: 'Industry Median',
-    value: '~$110',
-    width: '68.75%',
-    color: 'bg-titanium/20',
-    note: 'Typical SaaS NRR is 103-114%',
+    note: 'Achieved through upsells and new implementations',
   },
 ]
 
@@ -164,7 +157,7 @@ export default function OdooPage() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="mt-10 grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-0 md:divide-x divide-white/10"
           >
-            <StatCounter value={160} suffix="%" label="Net Revenue Retention" />
+            <StatCounter value={160} suffix="%" label="Non-Recurring Revenue Goal" />
             <StatCounter value={13} suffix="M+" label="Global Users" />
             <StatCounter value={5} prefix="€" suffix="B" label="Valuation" />
           </motion.div>
@@ -233,12 +226,9 @@ export default function OdooPage() {
                   retail/customer-portal implementations.
                 </p>
                 <p>
-                  Achieved 160% net revenue retention — exceptional performance
-                  in an industry where the median is 103&ndash;114%. Even elite
-                  SaaS companies like Snowflake (~130%) and Twilio (~120%) rarely
-                  reach this threshold. This figure reflects not just retention,
-                  but significant expansion and upselling within the existing
-                  client base.
+                  Hit 160% of his non-recurring revenue goal in a single month —
+                  driven by successful upsells and new module implementations
+                  across the existing client base.
                 </p>
               </div>
 
@@ -276,7 +266,7 @@ export default function OdooPage() {
         </div>
       </section>
 
-      {/* NRR Explainer */}
+      {/* Revenue Performance */}
       <section
         className="section-padding bg-gradient-to-b from-slate-950 to-copper/5"
         ref={nrrRef}
@@ -292,18 +282,17 @@ export default function OdooPage() {
               Performance
             </span>
             <h2 className="font-serif text-heading text-white mt-3">
-              How $100 becomes $160.
+              160% of goal.
             </h2>
             <p className="mt-4 text-titanium max-w-2xl">
-              Net Revenue Retention measures how much revenue you keep and grow
-              from existing customers. An NRR of 160% means that for every $100
-              of starting recurring revenue, the book grew to $160 — after
-              accounting for churn, contraction, and expansion.
+              In his best month at Odoo, Evan hit 160% of his non-recurring
+              revenue target — driven by successful upsells and new module
+              implementations across his client base.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {nrrBreakdown.map((item, i) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl">
+            {revenueHighlights.map((item, i) => (
               <motion.div
                 key={item.label}
                 initial={{ opacity: 0, y: 20 }}
@@ -315,7 +304,7 @@ export default function OdooPage() {
               >
                 <span
                   className={`font-serif text-3xl ${
-                    i === 1 ? 'text-copper' : i === 2 ? 'text-titanium/60' : 'text-white'
+                    i === 1 ? 'text-copper' : 'text-white'
                   }`}
                 >
                   {item.value}
@@ -337,46 +326,6 @@ export default function OdooPage() {
               </motion.div>
             ))}
           </div>
-
-          {/* Context benchmarks */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={nrrInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="mt-8 glass rounded-xl p-6"
-          >
-            <h3 className="font-serif text-lg text-white mb-4">
-              Industry context
-            </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {[
-                { company: 'Evan @ Odoo', nrr: '160%', highlight: true },
-                { company: 'Snowflake', nrr: '~131%', highlight: false },
-                { company: 'Twilio', nrr: '~120%', highlight: false },
-                { company: 'SaaS Median', nrr: '~110%', highlight: false },
-              ].map((bench) => (
-                <div
-                  key={bench.company}
-                  className={`rounded-lg p-4 text-center ${
-                    bench.highlight
-                      ? 'bg-copper/10 border border-copper/20'
-                      : 'bg-white/5'
-                  }`}
-                >
-                  <span
-                    className={`font-serif text-xl ${
-                      bench.highlight ? 'text-copper' : 'text-titanium'
-                    }`}
-                  >
-                    {bench.nrr}
-                  </span>
-                  <span className="block text-xs text-titanium/60 mt-1 font-mono">
-                    {bench.company}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </motion.div>
         </div>
       </section>
 
