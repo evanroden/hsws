@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useInView } from '@/lib/hooks'
 
@@ -11,23 +12,20 @@ export default function AboutTeaser() {
     <section className="section-padding bg-gradient-to-b from-slate-950 to-forest/10" ref={ref}>
       <div className="content-width">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
-          {/* Portrait placeholder */}
+          {/* Portrait */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="aspect-[3/4] rounded-2xl bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/5 relative overflow-hidden"
+            className="aspect-square rounded-2xl bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/5 relative overflow-hidden"
           >
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-20 h-20 rounded-full bg-white/5 mx-auto mb-4 flex items-center justify-center">
-                  <span className="font-serif text-2xl text-titanium/30">ER</span>
-                </div>
-                <span className="font-mono text-xs text-titanium/30 tracking-widest uppercase">
-                  Portrait Coming Soon
-                </span>
-              </div>
-            </div>
+            <Image
+              src="/portrait.jpg"
+              alt="Evan Joseph Roden"
+              width={600}
+              height={600}
+              className="w-full h-full object-cover"
+            />
           </motion.div>
 
           {/* Bio */}

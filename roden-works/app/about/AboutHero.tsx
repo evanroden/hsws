@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 export default function AboutHero() {
   return (
@@ -22,18 +23,16 @@ export default function AboutHero() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="aspect-[3/4] rounded-2xl bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/5 overflow-hidden"
+            className="aspect-square rounded-2xl bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/5 overflow-hidden"
           >
-            <div className="w-full h-full flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-24 h-24 rounded-full bg-white/5 mx-auto mb-4 flex items-center justify-center">
-                  <span className="font-serif text-3xl text-titanium/30">ER</span>
-                </div>
-                <span className="font-mono text-xs text-titanium/30 tracking-widest uppercase">
-                  Portrait
-                </span>
-              </div>
-            </div>
+            <Image
+              src="/portrait.jpg"
+              alt="Evan Joseph Roden"
+              width={600}
+              height={600}
+              className="w-full h-full object-cover"
+              priority
+            />
           </motion.div>
 
           {/* Info */}
