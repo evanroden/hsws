@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { useInView } from '@/lib/hooks'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
-import PageHero from '@/components/ui/PageHero'
 
 const victories = [
   {

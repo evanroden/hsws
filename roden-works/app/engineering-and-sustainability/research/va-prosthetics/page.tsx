@@ -1,8 +1,26 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import dynamic from 'next/dynamic'
 import { useInView } from '@/lib/hooks'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
+
+const ProstheticViewer = dynamic(
+  () => import('@/components/three/ProstheticViewer'),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="glass rounded-xl aspect-square flex items-center justify-center">
+        <div className="flex flex-col items-center gap-3">
+          <div className="w-8 h-8 border-2 border-copper/30 border-t-copper rounded-full animate-spin" />
+          <span className="font-mono text-xs text-titanium">
+            Loading 3D viewer...
+          </span>
+        </div>
+      </div>
+    ),
+  }
+)
 
 export default function VAProstheticsPage() {
   const { ref: contentRef, isInView: contentInView } = useInView(0.1)
@@ -126,97 +144,18 @@ export default function VAProstheticsPage() {
               </motion.div>
             </div>
 
-            {/* 3D Viewer Placeholder */}
+            {/* Interactive 3D Viewer */}
             <div ref={viewerRef}>
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={viewerInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.6 }}
-                className="glass rounded-xl aspect-square flex flex-col items-center justify-center p-8 text-center relative overflow-hidden"
+                className="glass rounded-xl overflow-hidden"
               >
-                {/* Background wireframe hint */}
-                <svg
-                  viewBox="0 0 200 200"
-                  className="absolute inset-0 w-full h-full opacity-[0.05]"
-                >
-                  <motion.ellipse
-                    cx="100"
-                    cy="100"
-                    rx="60"
-                    ry="80"
-                    fill="none"
-                    stroke="#2D5A45"
-                    strokeWidth="0.5"
-                    initial={{ pathLength: 0 }}
-                    animate={viewerInView ? { pathLength: 1 } : {}}
-                    transition={{ duration: 2 }}
-                  />
-                  <motion.ellipse
-                    cx="100"
-                    cy="100"
-                    rx="80"
-                    ry="60"
-                    fill="none"
-                    stroke="#B87333"
-                    strokeWidth="0.5"
-                    initial={{ pathLength: 0 }}
-                    animate={viewerInView ? { pathLength: 1 } : {}}
-                    transition={{ duration: 2, delay: 0.3 }}
-                  />
-                  {Array.from({ length: 8 }).map((_, i) => (
-                    <motion.line
-                      key={i}
-                      x1="100"
-                      y1="100"
-                      x2={100 + 70 * Math.cos((i * Math.PI) / 4)}
-                      y2={100 + 70 * Math.sin((i * Math.PI) / 4)}
-                      stroke="#8A9BA8"
-                      strokeWidth="0.3"
-                      initial={{ pathLength: 0 }}
-                      animate={viewerInView ? { pathLength: 1 } : {}}
-                      transition={{ duration: 1.5, delay: 0.5 + i * 0.1 }}
-                    />
-                  ))}
-                </svg>
-
-                <div className="relative z-10">
-                  <div className="w-20 h-20 rounded-full bg-forest/10 flex items-center justify-center mb-6">
-                    <svg
-                      className="w-10 h-10 text-forest-light"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      strokeWidth="1"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"
-                      />
-                    </svg>
-                  </div>
-                  <h3 className="font-serif text-xl text-white mb-2">
-                    3D Model Viewer
-                  </h3>
-                  <p className="text-titanium text-sm mb-4">
-                    3D model viewer &mdash; swap in .glb file
-                  </p>
-                  <p className="text-titanium/40 text-xs font-mono mb-6">
-                    Place .glb file in public/models/ and integrate with
-                    React-Three-Fiber or model-viewer web component
-                  </p>
-                  <div className="grid grid-cols-3 gap-3">
-                    <div className="glass rounded-lg p-2 text-xs text-titanium/60">
-                      Rotate
-                    </div>
-                    <div className="glass rounded-lg p-2 text-xs text-titanium/60">
-                      Zoom
-                    </div>
-                    <div className="glass rounded-lg p-2 text-xs text-titanium/60">
-                      Annotate
-                    </div>
-                  </div>
-                </div>
+                <ProstheticViewer
+                  modelPath={null}
+                  className="aspect-square"
+                />
               </motion.div>
             </div>
           </div>
