@@ -130,7 +130,7 @@ export default function Languages() {
                     className="glass rounded-xl p-5 border-forest/20"
                   >
                     <div className="flex items-center justify-between mb-2">
-                      <h4 className="font-serif text-lg text-white font-mono">{lang.name}</h4>
+                      <h4 className="font-mono text-lg text-white">{lang.name}</h4>
                       <span className="font-mono text-xs text-forest-light">{lang.level}</span>
                     </div>
                     <p className="text-titanium text-sm leading-relaxed mb-3">{lang.description}</p>

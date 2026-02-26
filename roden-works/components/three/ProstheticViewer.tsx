@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense, useState, useRef, useCallback, useEffect, useMemo } from 'react'
+import { Suspense, useState, useRef, useEffect, useMemo } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import {
   OrbitControls,
@@ -14,7 +14,6 @@ import * as THREE from 'three'
 /* ─── Types ─────────────────────────────────────── */
 
 interface Annotation {
-  position: [number, number, number]
   label: string
   detail: string
 }
@@ -42,25 +41,21 @@ const DEFAULT_MODELS: ModelOption[] = [
 
 const DEFAULT_ANNOTATIONS: Annotation[] = [
   {
-    position: [0.8, 0.6, 0.3],
     label: 'Palatal Framework',
     detail:
       'Custom-contoured framework designed from CT scan data. Provides structural rigidity while minimizing tissue contact area.',
   },
   {
-    position: [-0.6, 0.2, 0.7],
     label: 'Retention Clasps',
     detail:
       'Flexible clasp arms engage undercuts on remaining teeth. Designed for passive insertion with active retention.',
   },
   {
-    position: [0.0, -0.3, 0.9],
     label: 'Denture Base',
     detail:
       'Biocompatible resin base seats against edentulous ridge. 3D-printed for precise fit to the veteran\'s anatomy.',
   },
   {
-    position: [-0.2, 0.8, -0.3],
     label: 'Occlusal Surface',
     detail:
       'Prosthetic teeth positioned to restore functional occlusion. Material selected for wear resistance and natural appearance.',
@@ -133,49 +128,6 @@ function GLBModel({
   )
 }
 
-/* ─── Annotation Hotspots ────────────────────────── */
-
-function AnnotationHotspot({
-  annotation,
-  index,
-  active,
-  onSelect,
-}: {
-  annotation: Annotation
-  index: number
-  active: boolean
-  onSelect: (i: number | null) => void
-}) {
-  return (
-    <Html
-      position={annotation.position}
-      center
-      distanceFactor={4}
-      zIndexRange={[10, 0]}
-    >
-      <button
-        onClick={(e) => {
-          e.stopPropagation()
-          onSelect(active ? null : index)
-        }}
-        className={`
-          w-6 h-6 rounded-full border-2 flex items-center justify-center
-          text-[10px] font-mono font-bold cursor-pointer
-          transition-all duration-200 select-none
-          ${
-            active
-              ? 'bg-copper border-copper text-white scale-125'
-              : 'bg-white/10 border-copper/60 text-copper hover:bg-copper/20 hover:scale-110'
-          }
-        `}
-        style={{ backdropFilter: 'blur(8px)' }}
-      >
-        {index + 1}
-      </button>
-    </Html>
-  )
-}
-
 /* ─── Loading Indicator ──────────────────────────── */
 
 function LoadingFallback() {
@@ -203,124 +155,133 @@ export default function ProstheticViewer({
   const [activeAnnotation, setActiveAnnotation] = useState<number | null>(null)
   const [autoRotate, setAutoRotate] = useState(true)
 
-  const handleAnnotationSelect = useCallback((i: number | null) => {
-    setActiveAnnotation(i)
-    if (i !== null) setAutoRotate(false)
-  }, [])
-
   return (
-    <div className={`relative rounded-xl overflow-hidden ${className}`}>
-      {/* Three.js Canvas */}
-      <Canvas
-        camera={{ position: [0, 0.5, 4], fov: 40 }}
-        dpr={[1, 2]}
-        gl={{ antialias: true, alpha: true }}
-        style={{ background: 'transparent' }}
-      >
-        <Suspense fallback={<LoadingFallback />}>
-          {/* Lighting */}
-          <ambientLight intensity={0.5} />
-          <directionalLight position={[5, 5, 5]} intensity={0.8} />
-          <directionalLight position={[-3, 3, -3]} intensity={0.3} />
-          <pointLight position={[0, 2, 0]} intensity={0.2} color="#B87333" />
+    <div className="flex flex-col">
+      <div className={`relative rounded-xl overflow-hidden ${className}`}>
+        {/* Three.js Canvas */}
+        <Canvas
+          camera={{ position: [0, 0.5, 4], fov: 40 }}
+          dpr={[1, 2]}
+          gl={{ antialias: true, alpha: true }}
+          style={{ background: 'transparent' }}
+        >
+          <Suspense fallback={<LoadingFallback />}>
+            {/* Lighting */}
+            <ambientLight intensity={0.5} />
+            <directionalLight position={[5, 5, 5]} intensity={0.8} />
+            <directionalLight position={[-3, 3, -3]} intensity={0.3} />
+            <pointLight position={[0, 2, 0]} intensity={0.2} color="#B87333" />
 
-          {/* Model */}
-          <GLBModel
-            key={models[activeModel].path}
-            path={models[activeModel].path}
-            wireframe={wireframe}
-          />
-
-          {/* Annotations */}
-          {annotations.map((ann, i) => (
-            <AnnotationHotspot
-              key={i}
-              annotation={ann}
-              index={i}
-              active={activeAnnotation === i}
-              onSelect={handleAnnotationSelect}
+            {/* Model */}
+            <GLBModel
+              key={models[activeModel].path}
+              path={models[activeModel].path}
+              wireframe={wireframe}
             />
-          ))}
 
-          {/* Environment & Shadows */}
-          <ContactShadows
-            position={[0, -1.5, 0]}
-            opacity={0.3}
-            scale={6}
-            blur={2}
-          />
-          <Environment preset="studio" />
+            {/* Environment & Shadows */}
+            <ContactShadows
+              position={[0, -1.5, 0]}
+              opacity={0.3}
+              scale={6}
+              blur={2}
+            />
+            <Environment preset="studio" />
 
-          {/* Controls */}
-          <OrbitControls
-            autoRotate={autoRotate && activeAnnotation === null}
-            autoRotateSpeed={1}
-            enablePan={false}
-            minDistance={1.5}
-            maxDistance={8}
-            maxPolarAngle={Math.PI * 0.8}
-          />
-        </Suspense>
-      </Canvas>
+            {/* Controls */}
+            <OrbitControls
+              autoRotate={autoRotate}
+              autoRotateSpeed={1}
+              enablePan={false}
+              minDistance={1.5}
+              maxDistance={8}
+              maxPolarAngle={Math.PI * 0.8}
+            />
+          </Suspense>
+        </Canvas>
 
-      {/* Control Bar */}
-      <div className="absolute bottom-0 left-0 right-0 p-3 flex items-center justify-between bg-gradient-to-t from-slate-950/90 via-slate-950/50 to-transparent">
-        <div className="flex items-center gap-2">
-          {/* Model switcher */}
-          {models.length > 1 &&
-            models.map((model, i) => (
-              <ControlButton
-                key={model.path}
-                active={activeModel === i}
-                onClick={() => {
-                  setActiveModel(i)
-                  setActiveAnnotation(null)
-                }}
-                label={model.label}
-              />
-            ))}
+        {/* Control Bar */}
+        <div className="absolute bottom-0 left-0 right-0 p-3 flex items-center justify-between bg-gradient-to-t from-slate-950/90 via-slate-950/50 to-transparent">
+          <div className="flex items-center gap-2">
+            {/* Model switcher */}
+            {models.length > 1 &&
+              models.map((model, i) => (
+                <ControlButton
+                  key={model.path}
+                  active={activeModel === i}
+                  onClick={() => {
+                    setActiveModel(i)
+                    setActiveAnnotation(null)
+                  }}
+                  label={model.label}
+                />
+              ))}
 
-          <div className="w-px h-4 bg-white/10 mx-1" />
+            <div className="w-px h-4 bg-white/10 mx-1" />
 
-          <ControlButton
-            active={wireframe}
-            onClick={() => setWireframe(!wireframe)}
-            label="Wireframe"
-          />
-          <ControlButton
-            active={autoRotate}
-            onClick={() => setAutoRotate(!autoRotate)}
-            label="Rotate"
-          />
+            <ControlButton
+              active={wireframe}
+              onClick={() => setWireframe(!wireframe)}
+              label="Wireframe"
+            />
+            <ControlButton
+              active={autoRotate}
+              onClick={() => setAutoRotate(!autoRotate)}
+              label="Rotate"
+            />
+          </div>
+
+          <span className="font-mono text-[10px] text-titanium/30 hidden sm:block">
+            Fusion 360 &rarr; GLB
+          </span>
         </div>
-
-        <span className="font-mono text-[10px] text-titanium/30 hidden sm:block">
-          Fusion 360 &rarr; GLB
-        </span>
       </div>
 
-      {/* Annotation Detail Panel */}
-      {activeAnnotation !== null && annotations[activeAnnotation] && (
-        <div className="absolute top-3 right-3 w-64 glass rounded-xl p-4">
-          <div className="flex items-start justify-between gap-2 mb-2">
-            <div className="flex items-center gap-2">
-              <span className="w-5 h-5 rounded-full bg-copper text-white text-[10px] font-mono font-bold flex items-center justify-center flex-shrink-0">
-                {activeAnnotation + 1}
-              </span>
-              <h4 className="font-serif text-sm text-white leading-tight">
-                {annotations[activeAnnotation].label}
-              </h4>
-            </div>
+      {/* Annotation List — below the viewer */}
+      {annotations.length > 0 && (
+        <div className="grid grid-cols-2 gap-2 mt-3">
+          {annotations.map((ann, i) => (
             <button
-              onClick={() => setActiveAnnotation(null)}
-              className="text-titanium/40 hover:text-white text-lg leading-none flex-shrink-0"
+              key={i}
+              onClick={() => setActiveAnnotation(activeAnnotation === i ? null : i)}
+              className={`
+                text-left rounded-lg p-3 transition-all duration-200 border
+                ${
+                  activeAnnotation === i
+                    ? 'bg-copper/10 border-copper/30'
+                    : 'bg-white/[0.02] border-white/5 hover:bg-white/5'
+                }
+              `}
             >
-              &times;
+              <div className="flex items-center gap-2 mb-1">
+                <span
+                  className={`
+                    w-4 h-4 rounded-full text-[9px] font-mono font-bold
+                    flex items-center justify-center flex-shrink-0
+                    ${
+                      activeAnnotation === i
+                        ? 'bg-copper text-white'
+                        : 'bg-white/10 text-titanium/60'
+                    }
+                  `}
+                >
+                  {i + 1}
+                </span>
+                <span
+                  className={`text-xs font-medium ${
+                    activeAnnotation === i ? 'text-copper' : 'text-titanium/80'
+                  }`}
+                >
+                  {ann.label}
+                </span>
+              </div>
+              {activeAnnotation === i && (
+                <p className="text-titanium/70 text-[11px] leading-relaxed mt-1 pl-6">
+                  {ann.detail}
+                </p>
+              )}
             </button>
-          </div>
-          <p className="text-titanium text-xs leading-relaxed">
-            {annotations[activeAnnotation].detail}
-          </p>
+          ))}
         </div>
       )}
     </div>
