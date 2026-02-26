@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useState, useCallback } from 'react'
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
+import { motion, useMotionValue, useSpring, useTransform, useMotionTemplate } from 'framer-motion'
 
 interface TiltCardProps {
   children: React.ReactNode
@@ -32,8 +32,9 @@ export default function TiltCard({
   const rotateX = useSpring(useTransform(mouseY, [0, 1], [maxTilt, -maxTilt]), springConfig)
   const rotateY = useSpring(useTransform(mouseX, [0, 1], [-maxTilt, maxTilt]), springConfig)
 
-  const glareX = useTransform(mouseX, [0, 1], ['-20%', '120%'])
-  const glareY = useTransform(mouseY, [0, 1], ['-20%', '120%'])
+  const glareXPercent = useTransform(mouseX, [0, 1], [0, 100])
+  const glareYPercent = useTransform(mouseY, [0, 1], [0, 100])
+  const glareBackground = useMotionTemplate`radial-gradient(circle at ${glareXPercent}% ${glareYPercent}%, rgba(255,255,255,${glare}), transparent 60%)`
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
@@ -83,8 +84,7 @@ export default function TiltCard({
           <motion.div
             className="absolute inset-0 rounded-2xl pointer-events-none z-10"
             style={{
-              background: `radial-gradient(circle at ${glareX}px ${glareY}px, rgba(255,255,255,${glare}), transparent 60%)`,
-              opacity: hovering ? 1 : 0,
+              background: glareBackground,
             }}
             animate={{ opacity: hovering ? 1 : 0 }}
             transition={{ duration: 0.3 }}

@@ -23,8 +23,15 @@ export default function NoiseOverlay({ opacity = 0.035 }: { opacity?: number }) 
     canvas.height = h
 
     let frame: number
+    let lastTime = 0
+    const interval = 1000 / 15 // ~15fps for film-like grain
 
-    const drawNoise = () => {
+    const drawNoise = (time: number) => {
+      frame = requestAnimationFrame(drawNoise)
+
+      if (time - lastTime < interval) return
+      lastTime = time
+
       const imageData = ctx.createImageData(w, h)
       const data = imageData.data
 
@@ -37,10 +44,9 @@ export default function NoiseOverlay({ opacity = 0.035 }: { opacity?: number }) 
       }
 
       ctx.putImageData(imageData, 0, 0)
-      frame = requestAnimationFrame(drawNoise)
     }
 
-    drawNoise()
+    frame = requestAnimationFrame(drawNoise)
     return () => cancelAnimationFrame(frame)
   }, [])
 
