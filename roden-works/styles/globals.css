@@ -15,9 +15,19 @@
 
 @layer base {
   html {
-    scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Lenis handles smooth scroll — disable native */
+  html.lenis, html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
   }
 
   body {
@@ -90,20 +100,23 @@
   }
 }
 
-/* Custom cursor */
+/* ─── Custom cursor (pointer: fine only) ──────────── */
 @media (pointer: fine) {
-  .custom-cursor {
-    cursor: none;
+  body {
+    cursor: none !important;
+  }
+  a, button, [role="button"], input, textarea, select, [data-cursor] {
+    cursor: none !important;
   }
 }
 
-/* Focus visible */
+/* ─── Focus visible ───────────────────────────────── */
 :focus-visible {
   @apply outline-2 outline-offset-4 outline-forest-light;
   outline-style: solid;
 }
 
-/* Reduced motion */
+/* ─── Reduced motion ──────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -113,4 +126,19 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* ─── Scrollbar (for browsers that show them) ─────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--slate-950);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(138, 155, 168, 0.15);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(138, 155, 168, 0.3);
 }
