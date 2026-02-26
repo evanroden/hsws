@@ -1,15 +1,13 @@
 'use client'
 
-import { Suspense, useState, useRef, useCallback, useEffect } from 'react'
-import { Canvas, useFrame, useThree } from '@react-three/fiber'
+import { Suspense, useState, useRef, useCallback, useEffect, useMemo } from 'react'
+import { Canvas, useFrame } from '@react-three/fiber'
 import {
   OrbitControls,
   Environment,
   ContactShadows,
   Html,
   useGLTF,
-  Center,
-  Bounds,
 } from '@react-three/drei'
 import * as THREE from 'three'
 
@@ -80,17 +78,36 @@ function GLBModel({
 }) {
   const { scene } = useGLTF(path)
   const groupRef = useRef<THREE.Group>(null)
-  const clonedScene = useRef<THREE.Group | null>(null)
 
-  // Clone the scene so each model instance is independent
-  useEffect(() => {
-    clonedScene.current = scene.clone(true)
+  // Clone and normalize to a consistent size
+  const normalizedScene = useMemo(() => {
+    const clone = scene.clone(true)
+
+    // Compute bounding box to normalize size
+    const box = new THREE.Box3().setFromObject(clone)
+    const size = new THREE.Vector3()
+    box.getSize(size)
+    const maxDim = Math.max(size.x, size.y, size.z)
+
+    // Scale so the largest dimension is ~2 units
+    const targetSize = 2
+    if (maxDim > 0) {
+      const scale = targetSize / maxDim
+      clone.scale.multiplyScalar(scale)
+    }
+
+    // Re-center after scaling
+    const newBox = new THREE.Box3().setFromObject(clone)
+    const center = new THREE.Vector3()
+    newBox.getCenter(center)
+    clone.position.sub(center)
+
+    return clone
   }, [scene])
 
   // Apply wireframe to all meshes
   useEffect(() => {
-    if (!clonedScene.current) return
-    clonedScene.current.traverse((child) => {
+    normalizedScene.traverse((child) => {
       if (child instanceof THREE.Mesh && child.material) {
         if (Array.isArray(child.material)) {
           child.material.forEach((m) => {
@@ -101,7 +118,7 @@ function GLBModel({
         }
       }
     })
-  }, [wireframe, scene])
+  }, [wireframe, normalizedScene])
 
   useFrame((_, delta) => {
     if (groupRef.current) {
@@ -110,11 +127,9 @@ function GLBModel({
   })
 
   return (
-    <Center>
-      <group ref={groupRef}>
-        <primitive object={clonedScene.current || scene} />
-      </group>
-    </Center>
+    <group ref={groupRef}>
+      <primitive object={normalizedScene} />
+    </group>
   )
 }
 
@@ -210,13 +225,11 @@ export default function ProstheticViewer({
           <pointLight position={[0, 2, 0]} intensity={0.2} color="#B87333" />
 
           {/* Model */}
-          <Bounds fit clip observe margin={1.4}>
-            <GLBModel
-              key={models[activeModel].path}
-              path={models[activeModel].path}
-              wireframe={wireframe}
-            />
-          </Bounds>
+          <GLBModel
+            key={models[activeModel].path}
+            path={models[activeModel].path}
+            wireframe={wireframe}
+          />
 
           {/* Annotations */}
           {annotations.map((ann, i) => (
