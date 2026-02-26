@@ -3,10 +3,10 @@
 import { useEffect, useRef } from 'react'
 
 /**
- * Animated film grain noise overlay using canvas.
- * Renders at low resolution for performance, scaled up for texture.
+ * Subtle film grain noise overlay using canvas.
+ * Uses a 512x512 canvas with smooth scaling for fine, organic grain.
  */
-export default function NoiseOverlay({ opacity = 0.035 }: { opacity?: number }) {
+export default function NoiseOverlay({ opacity = 0.025 }: { opacity?: number }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
@@ -16,15 +16,14 @@ export default function NoiseOverlay({ opacity = 0.035 }: { opacity?: number }) 
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    // Small canvas scaled up via CSS for performance
-    const w = 128
-    const h = 128
+    const w = 512
+    const h = 512
     canvas.width = w
     canvas.height = h
 
     let frame: number
     let lastTime = 0
-    const interval = 1000 / 15 // ~15fps for film-like grain
+    const interval = 1000 / 24 // 24fps — cinematic framerate
 
     const drawNoise = (time: number) => {
       frame = requestAnimationFrame(drawNoise)
@@ -36,10 +35,15 @@ export default function NoiseOverlay({ opacity = 0.035 }: { opacity?: number }) 
       const data = imageData.data
 
       for (let i = 0; i < data.length; i += 4) {
-        const v = Math.random() * 255
-        data[i] = v
-        data[i + 1] = v
-        data[i + 2] = v
+        // Gaussian-ish distribution for more natural film grain
+        const r1 = Math.random()
+        const r2 = Math.random()
+        const v = Math.sqrt(-2 * Math.log(r1 || 0.001)) * Math.cos(2 * Math.PI * r2)
+        const pixel = 128 + v * 40 // centered at mid-gray with moderate spread
+
+        data[i] = pixel
+        data[i + 1] = pixel
+        data[i + 2] = pixel
         data[i + 3] = 255
       }
 
@@ -57,7 +61,6 @@ export default function NoiseOverlay({ opacity = 0.035 }: { opacity?: number }) 
       style={{
         opacity,
         mixBlendMode: 'overlay',
-        imageRendering: 'pixelated',
       }}
       aria-hidden="true"
     />
