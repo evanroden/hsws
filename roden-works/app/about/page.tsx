@@ -10,7 +10,7 @@ import ContactSection from './ContactSection'
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'Evan Joseph Roden — Sustainability Engineer, biomedical researcher, nonprofit founder, filmmaker, and TEDx speaker.',
+    'Evan Roden — Sustainability Engineer, biomedical researcher, nonprofit founder, filmmaker, and TEDx speaker.',
 }
 
 export default function AboutPage() {

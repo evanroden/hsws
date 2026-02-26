@@ -214,7 +214,7 @@ export default function Hero() {
 
         {/* Name — character-level stagger */}
         <h1 className="font-serif text-display-xl text-white overflow-hidden">
-          {'Evan Joseph Roden.'.split('').map((char, i) => (
+          {'Evan Roden.'.split('').map((char, i) => (
             <motion.span
               key={i}
               className="inline-block"

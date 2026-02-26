@@ -827,6 +827,138 @@ function PartnershipIcon() {
   )
 }
 
+/* Card-specific versions of featured projects (320×80 format) */
+
+function EnfraIcon() {
+  return (
+    <svg viewBox="0 0 320 80" className="w-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <GridBg w={320} h={80} gap={20} opacity={0.025} />
+      {/* Boiler */}
+      <rect x="20" y="10" width="40" height="50" rx="2"
+        stroke={C.copper} strokeOpacity="0.25" strokeWidth="0.8" fill={C.copper} fillOpacity="0.04" />
+      <rect x="34" y="2" width="8" height="10" rx="1"
+        stroke={C.copper} strokeOpacity="0.2" strokeWidth="0.5" fill="none" />
+      {/* Steam wisp */}
+      <path d="M37 2 C36 -2 39 -4 38 -6" stroke={C.titanium} strokeOpacity="0.1" strokeWidth="0.5" />
+      {/* Fire tubes */}
+      {[22, 30, 38, 46].map((y) => (
+        <line key={y} x1="25" y1={y} x2="55" y2={y}
+          stroke={C.copper} strokeOpacity="0.06" strokeWidth="0.3" />
+      ))}
+      {/* Pressure gauge */}
+      <circle cx="48" cy="30" r="6" stroke={C.titanium} strokeOpacity="0.2" strokeWidth="0.5" fill={C.titanium} fillOpacity="0.03" />
+      <line x1="48" y1="30" x2="52" y2="26" stroke={C.copper} strokeOpacity="0.3" strokeWidth="0.5" />
+      <circle cx="48" cy="30" r="1" fill={C.copper} fillOpacity="0.25" />
+      {/* Supply pipe */}
+      <line x1="60" y1="28" x2="160" y2="28"
+        stroke={C.copper} strokeOpacity="0.2" strokeWidth="2" />
+      <polygon points="100,25.5 106,28 100,30.5" fill={C.copper} fillOpacity="0.22" />
+      {/* Return pipe */}
+      <line x1="60" y1="44" x2="160" y2="44"
+        stroke={C.forest} strokeOpacity="0.18" strokeWidth="1.5" />
+      <polygon points="130,41.5 124,44 130,46.5" fill={C.forest} fillOpacity="0.18" />
+      {/* Cooling tower */}
+      <path d="M180 62 Q180 38 192 24 Q192 14 188 6 L200 6 Q196 14 196 24 Q208 38 208 62Z"
+        stroke={C.forest} strokeOpacity="0.25" strokeWidth="0.8" fill={C.forest} fillOpacity="0.04" />
+      {/* Electrical panel */}
+      <rect x="230" y="14" width="32" height="24" rx="2"
+        stroke={C.titanium} strokeOpacity="0.2" strokeWidth="0.6" fill={C.titanium} fillOpacity="0.03" />
+      <path d="M246 18 L243 24 L248 24 L245 32"
+        stroke={C.copper} strokeOpacity="0.35" strokeWidth="0.8" fill="none" />
+      <circle cx="236" cy="20" r="1.5" fill="#2ECC71" fillOpacity="0.2" />
+      <circle cx="236" cy="26" r="1.5" fill="#2ECC71" fillOpacity="0.18" />
+      {/* Labels */}
+      <text x="68" y="24" fill={C.copper} fillOpacity="0.18" fontSize="3.5" fontFamily="monospace">STEAM</text>
+      <text x="68" y="41" fill={C.forest} fillOpacity="0.18" fontSize="3.5" fontFamily="monospace">CHW</text>
+      <text x="20" y="72" fill={C.titanium} fillOpacity="0.1" fontSize="3.5" fontFamily="monospace">CEP — CENTRAL ENERGY</text>
+    </svg>
+  )
+}
+
+function YcodIcon() {
+  return (
+    <svg viewBox="0 0 320 80" className="w-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <GridBg w={320} h={80} gap={20} color={C.copper} opacity={0.025} />
+      {/* Heart / organ symbol */}
+      <path d="M38 30 C38 20 50 17 50 25 C50 17 62 20 62 30 C62 42 50 50 50 50 C50 50 38 42 38 30Z"
+        stroke={C.copper} strokeOpacity="0.3" strokeWidth="0.8" fill={C.copper} fillOpacity="0.06" />
+      {/* Pulse through heart */}
+      <polyline points="25,35 36,35 40,28 44,42 48,32 52,37 56,35 70,35"
+        stroke={C.copper} strokeOpacity="0.25" strokeWidth="0.6" fill="none" />
+      {/* Checkbox — opt-out */}
+      <rect x="100" y="15" width="24" height="18" rx="2"
+        stroke={C.copper} strokeOpacity="0.22" strokeWidth="0.6" fill={C.copper} fillOpacity="0.03" />
+      <polyline points="106,24 110,28 120,19"
+        stroke={C.copper} strokeOpacity="0.35" strokeWidth="1" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      <line x1="100" y1="40" x2="124" y2="40" stroke={C.titanium} strokeOpacity="0.1" strokeWidth="0.4" />
+      <line x1="100" y1="46" x2="120" y2="46" stroke={C.titanium} strokeOpacity="0.07" strokeWidth="0.4" />
+      {/* Capitol dome */}
+      <path d="M170 55 L170 38 Q190 20 210 38 L210 55"
+        stroke={C.titanium} strokeOpacity="0.1" strokeWidth="0.5" fill={C.titanium} fillOpacity="0.015" />
+      <line x1="190" y1="20" x2="190" y2="12" stroke={C.titanium} strokeOpacity="0.08" strokeWidth="0.4" />
+      {/* People */}
+      {[240, 258, 276, 294].map((x, i) => (
+        <g key={i}>
+          <circle cx={x} cy={28 + i * 2} r="3"
+            stroke={C.forest} strokeOpacity={0.1 + i * 0.03} strokeWidth="0.4" fill="none" />
+          <line x1={x} y1={31 + i * 2} x2={x} y2={42 + i * 2}
+            stroke={C.forest} strokeOpacity={0.08 + i * 0.02} strokeWidth="0.4" />
+        </g>
+      ))}
+      <rect x="230" y="52" width="50" height="14" rx="1"
+        stroke={C.copper} strokeOpacity="0.12" strokeWidth="0.4" fill={C.copper} fillOpacity="0.025" />
+      <text x="255" y="62" fill={C.copper} fillOpacity="0.2" fontSize="4" fontFamily="monospace" textAnchor="middle">OPT-OUT</text>
+      <text x="20" y="72" fill={C.titanium} fillOpacity="0.1" fontSize="3.5" fontFamily="monospace">YCOD — LEGISLATIVE REFORM</text>
+    </svg>
+  )
+}
+
+function VaProstheticsIcon() {
+  return (
+    <svg viewBox="0 0 320 80" className="w-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <GridBg w={320} h={80} gap={20} color={C.titanium} opacity={0.025} />
+      {/* 3D printer frame */}
+      <rect x="20" y="8" width="60" height="54" rx="2"
+        stroke={C.titanium} strokeOpacity="0.2" strokeWidth="0.8" fill={C.titanium} fillOpacity="0.025" />
+      {/* Z-rails */}
+      <line x1="24" y1="12" x2="24" y2="60" stroke={C.titanium} strokeOpacity="0.12" strokeWidth="0.4" />
+      <line x1="76" y1="12" x2="76" y2="60" stroke={C.titanium} strokeOpacity="0.12" strokeWidth="0.4" />
+      {/* Print bed */}
+      <rect x="28" y="50" width="44" height="4" rx="0.5"
+        stroke={C.titanium} strokeOpacity="0.15" strokeWidth="0.4" fill={C.titanium} fillOpacity="0.04" />
+      {/* X-carriage */}
+      <line x1="28" y1="30" x2="72" y2="30"
+        stroke={C.copper} strokeOpacity="0.22" strokeWidth="0.6" />
+      {/* Print head */}
+      <rect x="42" y="26" width="12" height="8" rx="1"
+        stroke={C.copper} strokeOpacity="0.28" strokeWidth="0.6" fill={C.copper} fillOpacity="0.06" />
+      {/* Extrusion */}
+      <line x1="48" y1="34" x2="48" y2="42" stroke={C.copper} strokeOpacity="0.15" strokeWidth="0.3" strokeDasharray="2 1" />
+      {/* Prosthetic hand outline on bed */}
+      <path d="M38 50 L38 44 Q42 40 44 42 L44 46 L47 42 Q49 41 50 43 L50 46 L53 44 Q55 43 55 46 L55 50Z"
+        stroke={C.copper} strokeOpacity="0.2" strokeWidth="0.5" fill={C.copper} fillOpacity="0.04" />
+      {/* CAD wireframe */}
+      <rect x="110" y="10" width="70" height="48" rx="1"
+        stroke={C.titanium} strokeOpacity="0.15" strokeWidth="0.5" fill={C.titanium} fillOpacity="0.02" />
+      <rect x="112" y="12" width="66" height="6" rx="0.5"
+        fill={C.titanium} fillOpacity="0.03" />
+      {/* Wireframe hand */}
+      <path d="M130 55 L130 38 Q134 34 136 37 L136 42 L139 36 Q141 35 142 37 L142 42 L145 38 Q147 37 147 40 L147 55"
+        stroke={C.forest} strokeOpacity="0.2" strokeWidth="0.5" fill="none" />
+      {/* Dimension line */}
+      <line x1="127" y1="34" x2="127" y2="55" stroke={C.copper} strokeOpacity="0.12" strokeWidth="0.3" />
+      <text x="124" y="46" fill={C.copper} fillOpacity="0.15" fontSize="3" fontFamily="monospace" textAnchor="end">148mm</text>
+      {/* Material spec */}
+      <rect x="210" y="14" width="56" height="32" rx="1"
+        stroke={C.titanium} strokeOpacity="0.12" strokeWidth="0.4" fill={C.titanium} fillOpacity="0.015" />
+      <text x="215" y="24" fill={C.titanium} fillOpacity="0.14" fontSize="3.5" fontFamily="monospace">PLA+ 1.75mm</text>
+      <text x="215" y="32" fill={C.titanium} fillOpacity="0.1" fontSize="3" fontFamily="monospace">Infill: 25%</text>
+      <text x="215" y="40" fill={C.copper} fillOpacity="0.12" fontSize="3" fontFamily="monospace">FlowIt v3.2</text>
+      <text x="20" y="72" fill={C.titanium} fillOpacity="0.1" fontSize="3.5" fontFamily="monospace">VA PROSTHETICS — CAD/CAM</text>
+    </svg>
+  )
+}
+
 /* ═══════════════════════════════════════════════════════
    STUDIO GALLERY SCENES — Various aspect ratios
    ═══════════════════════════════════════════════════════ */
@@ -1220,27 +1352,32 @@ function AuroraTheatre() {
         stroke={C.titanium} strokeOpacity="0.06" strokeWidth="0.3" fill={C.titanium} fillOpacity="0.015" />
       <rect x="210" y="95" width="30" height="57" rx="1"
         stroke={C.titanium} strokeOpacity="0.06" strokeWidth="0.3" fill={C.titanium} fillOpacity="0.015" />
-      {/* Camera on tripod — POV position */}
-      <rect x="140" y="160" width="14" height="9" rx="1.5"
-        stroke={C.titanium} strokeOpacity="0.18" strokeWidth="0.5" fill={C.titanium} fillOpacity="0.04" />
-      <circle cx="145" cy="164" r="3" stroke={C.titanium} strokeOpacity="0.15" strokeWidth="0.4" fill="none" />
-      <circle cx="145" cy="164" r="1" fill={C.titanium} fillOpacity="0.08" />
-      {/* Tripod legs */}
-      <line x1="144" y1="169" x2="138" y2="178" stroke={C.titanium} strokeOpacity="0.1" strokeWidth="0.3" />
-      <line x1="147" y1="169" x2="147" y2="178" stroke={C.titanium} strokeOpacity="0.1" strokeWidth="0.3" />
-      <line x1="150" y1="169" x2="156" y2="178" stroke={C.titanium} strokeOpacity="0.1" strokeWidth="0.3" />
-      {/* Record indicator */}
-      <circle cx="152" cy="161" r="1" fill="#E04040" fillOpacity="0.2" />
-      {/* Audience seating rows (in front of camera) */}
+      {/* Audience seating rows */}
       {[0, 1, 2].map((row) => (
         <g key={row}>
-          {[170, 185, 200, 215, 230, 245, 260].map((x) => (
+          {[70, 85, 100, 115, 130, 145].map((x) => (
+            <rect key={`${row}-${x}`} x={x} y={162 + row * 5} width="8" height="3" rx="0.5"
+              stroke={C.titanium} strokeOpacity={0.04 - row * 0.008} strokeWidth="0.2"
+              fill={C.titanium} fillOpacity="0.01" />
+          ))}
+          {[185, 200, 215, 230, 245, 260].map((x) => (
             <rect key={`${row}-${x}`} x={x} y={162 + row * 5} width="8" height="3" rx="0.5"
               stroke={C.titanium} strokeOpacity={0.04 - row * 0.008} strokeWidth="0.2"
               fill={C.titanium} fillOpacity="0.01" />
           ))}
         </g>
       ))}
+      {/* Camera on tripod — center aisle */}
+      <rect x="158" y="161" width="14" height="9" rx="1.5"
+        stroke={C.titanium} strokeOpacity="0.18" strokeWidth="0.5" fill={C.titanium} fillOpacity="0.04" />
+      <circle cx="163" cy="165" r="3" stroke={C.titanium} strokeOpacity="0.15" strokeWidth="0.4" fill="none" />
+      <circle cx="163" cy="165" r="1" fill={C.titanium} fillOpacity="0.08" />
+      {/* Tripod legs */}
+      <line x1="162" y1="170" x2="155" y2="178" stroke={C.titanium} strokeOpacity="0.1" strokeWidth="0.3" />
+      <line x1="165" y1="170" x2="165" y2="178" stroke={C.titanium} strokeOpacity="0.1" strokeWidth="0.3" />
+      <line x1="168" y1="170" x2="175" y2="178" stroke={C.titanium} strokeOpacity="0.1" strokeWidth="0.3" />
+      {/* Record indicator */}
+      <circle cx="170" cy="162" r="1" fill="#E04040" fillOpacity="0.2" />
       {/* Exit sign */}
       <rect x="270" y="42" width="18" height="7" rx="1"
         stroke="#40E070" strokeOpacity="0.08" strokeWidth="0.3" fill="#40E070" fillOpacity="0.02" />
@@ -1262,9 +1399,8 @@ function BuffaloCentralTerminal() {
         stroke={C.titanium} strokeOpacity="0.18" strokeWidth="0.5" fill={C.titanium} fillOpacity="0.04" />
       <rect x="142" y="2" width="36" height="6" rx="1"
         stroke={C.titanium} strokeOpacity="0.14" strokeWidth="0.4" fill={C.titanium} fillOpacity="0.03" />
-      {/* Tower pinnacle and finial */}
-      <line x1="160" y1="-4" x2="160" y2="2" stroke={C.copper} strokeOpacity="0.15" strokeWidth="0.5" />
-      <circle cx="160" cy="-5" r="1.5" fill={C.copper} fillOpacity="0.12" />
+      {/* Tower pinnacle */}
+      <line x1="160" y1="2" x2="160" y2="0" stroke={C.copper} strokeOpacity="0.15" strokeWidth="0.5" />
       {/* Art deco vertical pilaster lines on tower */}
       <line x1="138" y1="16" x2="138" y2="150" stroke={C.titanium} strokeOpacity="0.05" strokeWidth="0.3" />
       <line x1="182" y1="16" x2="182" y2="150" stroke={C.titanium} strokeOpacity="0.05" strokeWidth="0.3" />
@@ -1379,15 +1515,15 @@ export const featuredScenes: Record<string, () => ReactNode> = {
 /** Card icons — wide banner format for AnimatedCard */
 export const cardIcons: Record<string, () => ReactNode> = {
   // Engineering
-  enfra: EnfraScene,
+  enfra: EnfraIcon,
   convergint: ConvergintIcon,
   odoo: OdooIcon,
-  'va-prosthetics': VaProstheticsScene,
+  'va-prosthetics': VaProstheticsIcon,
   haps: HapsIcon,
   swis: SwisIcon,
   'wimley-lab': WimleyLabIcon,
   // Advocacy
-  ycod: YcodScene,
+  ycod: YcodIcon,
   'our-climate': OurClimateIcon,
   tabi: TabiIcon,
   'nola-east': NolaEastIcon,

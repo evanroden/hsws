@@ -27,7 +27,7 @@ export default function AboutHero() {
           >
             <Image
               src="/portrait.jpg"
-              alt="Evan Joseph Roden"
+              alt="Evan Roden"
               width={600}
               height={600}
               className="w-full h-full object-cover"
@@ -51,7 +51,7 @@ export default function AboutHero() {
               transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
               className="font-serif text-display-xl text-white"
             >
-              Evan Joseph Roden
+              Evan Roden
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}

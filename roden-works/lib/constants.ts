@@ -1,6 +1,6 @@
 export const SITE_CONFIG = {
-  name: 'Evan Joseph Roden',
-  title: 'Evan Joseph Roden — Engineering, Advocacy, Creative',
+  name: 'Evan Roden',
+  title: 'Evan Roden — Engineering, Advocacy, Creative',
   description:
     'Optimizing complex systems to improve human quality of life at the intersection of engineering, sustainability, and public advocacy.',
   url: 'https://roden.works',

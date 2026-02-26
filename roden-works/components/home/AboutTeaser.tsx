@@ -21,7 +21,7 @@ export default function AboutTeaser() {
           >
             <Image
               src="/portrait.jpg"
-              alt="Evan Joseph Roden"
+              alt="Evan Roden"
               width={600}
               height={600}
               className="w-full h-full object-cover"
@@ -44,7 +44,7 @@ export default function AboutTeaser() {
               <p>
                 From founding a national organ donation advocacy organization at seventeen
                 to managing central energy plants for one of America&apos;s largest
-                healthcare EaaS partnerships, Evan Joseph Roden approaches every challenge
+                healthcare EaaS partnerships, Evan Roden approaches every challenge
                 as a system to be understood and optimized.
               </p>
               <p>
