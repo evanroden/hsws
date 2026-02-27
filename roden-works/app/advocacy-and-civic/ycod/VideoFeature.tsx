@@ -2,42 +2,34 @@
 
 import { motion } from 'framer-motion'
 import { useInView } from '@/lib/hooks'
+import CinemaEmbed from '@/components/ui/CinemaEmbed'
 
 export default function VideoFeature() {
   const { ref, isInView } = useInView(0.1)
 
   return (
-    <section className="section-padding bg-slate-950" ref={ref}>
+    <section
+      className="py-section-mobile md:py-section bg-gradient-to-b from-slate-950 via-copper/[0.02] to-slate-950 border-t border-white/5"
+      ref={ref}
+    >
       <div className="content-width">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="mb-8"
-        >
-          <span className="font-mono text-xs tracking-widest uppercase text-copper mb-3 block">
-            Watch
-          </span>
-          <h2 className="font-serif text-heading text-white">
-            See the mission in action.
-          </h2>
-        </motion.div>
-
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="glass rounded-xl overflow-hidden"
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
-            <iframe
-              className="absolute inset-0 w-full h-full"
-              src="https://www.youtube.com/embed/Bq3Swc8q0CY?si=tFIRdcCtnwUgH-6n"
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
+          <span className="font-mono text-xs tracking-widest uppercase text-copper mb-4 block">
+            Watch
+          </span>
+          <h2 className="font-serif text-heading text-white mb-8">
+            The TEDxTulane Talk
+          </h2>
+          <div className="max-w-4xl">
+            <CinemaEmbed
+              source={{ type: 'youtube', id: 'Bq3Swc8q0CY' }}
+              title="TEDxTulane — Youth Political Participation"
+              subtitle="Organ Donation Advocacy"
+              aspect="16:9"
             />
           </div>
         </motion.div>
