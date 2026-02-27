@@ -3,6 +3,7 @@ import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import YcodHero from './YcodHero'
 import CrisisDashboard from './CrisisDashboard'
 import YcodStory from './YcodStory'
+import VideoFeature from './VideoFeature'
 import LegislativeTimeline from './LegislativeTimeline'
 import MediaWall from './MediaWall'
 
@@ -24,6 +25,7 @@ export default function YcodPage() {
       <YcodHero />
       <CrisisDashboard />
       <YcodStory />
+      <VideoFeature />
       <LegislativeTimeline />
       <MediaWall />
     </>
