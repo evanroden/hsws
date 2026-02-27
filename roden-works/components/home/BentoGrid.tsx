@@ -47,8 +47,8 @@ const pillars = [
     description:
       'Cinematography with Claiborne Avenue Productions. Digital marketing for Tulane. Kiln-formed glass art. Vogue Italy editorial modeling.',
     href: '/studio',
-    stat: '6K',
-    statLabel: 'BlackMagic Cinema Camera',
+    stat: '4',
+    statLabel: 'Creative Disciplines',
     gradient: 'from-titanium/10 via-titanium/5 to-transparent',
     borderColor: 'border-titanium/20 hover:border-titanium/40',
     accentColor: 'text-titanium',

@@ -18,7 +18,7 @@ export default function AboutHero() {
 
       <div className="content-width relative z-10 pb-16 md:pb-24 pt-32">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-end">
-          {/* Portrait placeholder */}
+          {/* Portrait */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}

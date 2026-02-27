@@ -43,12 +43,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="font-sans antialiased bg-slate-950 text-white">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-forest-light focus:text-white focus:rounded-lg focus:text-sm"
+        >
+          Skip to content
+        </a>
         <SmoothScroll>
           <NoiseOverlay />
           <CustomCursor />
           <ScrollProgress />
           <Navbar />
-          <main className="min-h-screen">
+          <main id="main-content" className="min-h-screen">
             <PageTransition>
               {children}
             </PageTransition>

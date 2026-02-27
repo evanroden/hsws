@@ -29,7 +29,7 @@ export default function ImpactStats() {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-0 md:divide-x divide-white/10"
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 md:gap-0 md:divide-x divide-white/10"
         >
           {IMPACT_STATS.map((stat) => (
             <StatCounter

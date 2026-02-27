@@ -1,7 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useState, useEffect } from 'react'
 import { useInView, useCountUp } from '@/lib/hooks'
 
 const stateData = [
@@ -25,15 +24,6 @@ const racialDisparity = [
 export default function CrisisDashboard() {
   const { ref, isInView } = useInView(0.05)
   const waitlistCount = useCountUp(100000, 2500)
-  const [elapsed, setElapsed] = useState(0)
-
-  useEffect(() => {
-    const interval = setInterval(() => setElapsed((p) => p + 1), 1000)
-    return () => clearInterval(interval)
-  }, [])
-
-  const minutesPerAddition = 10
-  const addedToday = Math.floor((elapsed / 60) / minutesPerAddition)
 
   return (
     <section className="section-padding bg-slate-950" ref={ref}>

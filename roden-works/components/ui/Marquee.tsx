@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 
 interface MarqueeProps {
@@ -24,14 +25,18 @@ export default function Marquee({
   direction = 'left',
   className = '',
 }: MarqueeProps) {
+  const [paused, setPaused] = useState(false)
+
   return (
     <div
       className={`overflow-hidden relative ${className}`}
       style={{ maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}
+      onMouseEnter={pauseOnHover ? () => setPaused(true) : undefined}
+      onMouseLeave={pauseOnHover ? () => setPaused(false) : undefined}
     >
       <motion.div
-        className={`flex gap-8 w-max ${pauseOnHover ? 'hover:[animation-play-state:paused]' : ''}`}
-        animate={{
+        className="flex gap-8 w-max"
+        animate={paused ? undefined : {
           x: direction === 'left' ? ['0%', '-50%'] : ['-50%', '0%'],
         }}
         transition={{

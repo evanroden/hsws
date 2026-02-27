@@ -28,6 +28,8 @@ export default function NoiseOverlay({ opacity = 0.025 }: { opacity?: number }) 
     const drawNoise = (time: number) => {
       frame = requestAnimationFrame(drawNoise)
 
+      // Pause rendering when tab is hidden to save CPU/battery
+      if (document.hidden) return
       if (time - lastTime < interval) return
       lastTime = time
 

@@ -32,6 +32,16 @@ export default function Navbar() {
     setMobileOpen(false)
   }, [pathname])
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => { document.body.style.overflow = '' }
+  }, [mobileOpen])
+
   return (
     <>
       <motion.header
@@ -66,6 +76,7 @@ export default function Navbar() {
                   key={item.href}
                   href={item.href}
                   data-cursor="View"
+                  aria-current={isActive ? 'page' : undefined}
                   className={`relative px-4 py-2 text-sm font-sans tracking-wide transition-colors rounded-lg ${
                     isActive ? 'text-white' : 'text-titanium hover:text-white'
                   }`}

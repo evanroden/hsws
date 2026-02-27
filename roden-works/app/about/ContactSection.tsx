@@ -168,12 +168,12 @@ export default function ContactSection() {
                     {...register('subject', { required: 'Please select a subject' })}
                     className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-forest-light transition-colors"
                   >
-                    <option value="">Select a topic</option>
-                    <option value="general">General</option>
-                    <option value="engineering">Engineering Inquiry</option>
-                    <option value="creative">Creative Collaboration</option>
-                    <option value="speaking">Speaking Engagement</option>
-                    <option value="other">Other</option>
+                    <option value="" className="bg-slate-950">Select a topic</option>
+                    <option value="general" className="bg-slate-950">General</option>
+                    <option value="engineering" className="bg-slate-950">Engineering Inquiry</option>
+                    <option value="creative" className="bg-slate-950">Creative Collaboration</option>
+                    <option value="speaking" className="bg-slate-950">Speaking Engagement</option>
+                    <option value="other" className="bg-slate-950">Other</option>
                   </select>
                   {errors.subject && (
                     <p className="text-red-400 text-xs mt-1">{errors.subject.message}</p>

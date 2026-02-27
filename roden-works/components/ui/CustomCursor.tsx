@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, useSpring } from 'framer-motion'
 
 export default function CustomCursor() {
+  const [mounted, setMounted] = useState(false)
   const [visible, setVisible] = useState(false)
   const [hovering, setHovering] = useState(false)
   const [clicking, setClicking] = useState(false)
@@ -13,6 +14,8 @@ export default function CustomCursor() {
   const dotX = useSpring(0, { stiffness: 2000, damping: 50 })
   const dotY = useSpring(0, { stiffness: 2000, damping: 50 })
   const isTouch = useRef(false)
+
+  useEffect(() => { setMounted(true) }, [])
 
   useEffect(() => {
     // Detect touch devices
@@ -71,8 +74,8 @@ export default function CustomCursor() {
     }
   }, [cursorX, cursorY, dotX, dotY])
 
-  // Don't render on touch devices / SSR
-  if (typeof window === 'undefined') return null
+  // Don't render until after hydration (avoids SSR/client mismatch)
+  if (!mounted) return null
 
   return (
     <>

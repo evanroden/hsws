@@ -15,7 +15,7 @@ const timelineData = [
     year: '2025',
     title: 'Convergint',
     role: 'Account Executive',
-    description: 'Fire and life safety systems integration in San Francisco. Started in the CDP in Chicago.',
+    description: 'Fire and life safety systems integration in San Francisco. Started in the Career Development Program in Chicago.',
     color: 'bg-titanium',
   },
   {
