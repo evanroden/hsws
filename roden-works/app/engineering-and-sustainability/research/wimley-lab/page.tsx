@@ -3,6 +3,9 @@
 import { motion } from 'framer-motion'
 import { useInView } from '@/lib/hooks'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
+import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
+import ProjectNav from '@/components/navigation/ProjectNav'
+import ReadingTime from '@/components/ui/ReadingTime'
 
 const applications = [
   {
@@ -54,6 +57,13 @@ export default function WimleyLabPage() {
 
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Engineering', href: '/engineering-and-sustainability' },
+          { name: 'Research', href: '/engineering-and-sustainability/research' },
+          { name: 'Wimley Lab' },
+        ]}
+      />
       <Breadcrumbs
         items={[
           { label: 'Engineering', href: '/engineering-and-sustainability' },
@@ -64,6 +74,9 @@ export default function WimleyLabPage() {
           { label: 'Wimley Lab' },
         ]}
       />
+      <div className="content-width -mt-2 mb-4">
+        <ReadingTime wordCount={1000} />
+      </div>
 
       {/* Hero */}
       <section className="relative min-h-[50vh] flex items-end bg-gradient-to-br from-slate-950 via-clinical/5 to-slate-950 overflow-hidden">
@@ -434,6 +447,7 @@ export default function WimleyLabPage() {
           </div>
         </div>
       </section>
+      <ProjectNav currentSlug="wimley-lab" />
     </>
   )
 }

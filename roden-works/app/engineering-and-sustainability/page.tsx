@@ -5,7 +5,7 @@ import CaseStudyGrid from './CaseStudyGrid'
 import SkillsRadar from './SkillsRadar'
 
 export const metadata: Metadata = {
-  title: 'Engineering & Sustainability',
+  title: 'Engineering & Sustainability — EaaS, Biomedical Research & Systems',
   description:
     'From biomedical research labs to hospital energy plants — designing systems that keep people alive.',
 }

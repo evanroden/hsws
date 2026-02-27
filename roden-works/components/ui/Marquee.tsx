@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 
 interface MarqueeProps {
@@ -33,6 +34,8 @@ export default function Marquee({
       style={{ maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}
       onMouseEnter={pauseOnHover ? () => setPaused(true) : undefined}
       onMouseLeave={pauseOnHover ? () => setPaused(false) : undefined}
+      onFocus={() => setPaused(true)}
+      onBlur={() => setPaused(false)}
     >
       <motion.div
         className="flex gap-8 w-max"
@@ -56,30 +59,36 @@ export default function Marquee({
 
 /* ─── Divider Marquee with discipline keywords ───── */
 
-export function DisciplineMarquee() {
-  const items = [
-    'Biomedical Engineering',
-    'Energy-as-a-Service',
-    'Organ Donation Policy',
-    'Climate Advocacy',
-    'Cinematography',
-    'Urban Planning',
-    'Prosthetic Design',
-    'ERP Architecture',
-    'Public Health',
-    'Glass Art',
-    'TEDx Speaker',
-    'Sustainability',
-  ]
+const disciplineLinks: { label: string; href: string }[] = [
+  { label: 'Biomedical Engineering', href: '/engineering-and-sustainability/research/va-prosthetics' },
+  { label: 'Energy-as-a-Service', href: '/engineering-and-sustainability/enfra' },
+  { label: 'Organ Donation Policy', href: '/advocacy-and-civic/ycod' },
+  { label: 'Climate Advocacy', href: '/advocacy-and-civic/our-climate' },
+  { label: 'Cinematography', href: '/studio/cinematography' },
+  { label: 'Urban Planning', href: '/advocacy-and-civic/midtown-metairie' },
+  { label: 'Prosthetic Design', href: '/engineering-and-sustainability/research/va-prosthetics' },
+  { label: 'ERP Architecture', href: '/engineering-and-sustainability/odoo' },
+  { label: 'Public Health', href: '/engineering-and-sustainability/research/haps' },
+  { label: 'Glass Art', href: '/studio/glass-art' },
+  { label: 'TEDx Speaker', href: '/about/ted' },
+  { label: 'Sustainability', href: '/engineering-and-sustainability' },
+]
 
+export function DisciplineMarquee() {
   return (
     <Marquee speed={40} className="py-8 border-y border-white/5">
-      {items.map((item) => (
+      {disciplineLinks.map((item) => (
         <span
-          key={item}
-          className="flex items-center gap-8 font-mono text-sm tracking-widest uppercase text-titanium/30 whitespace-nowrap select-none"
+          key={item.label}
+          className="flex items-center gap-8 font-mono text-sm tracking-widest uppercase whitespace-nowrap select-none"
         >
-          <span>{item}</span>
+          <Link
+            href={item.href}
+            className="text-titanium/30 hover:text-copper transition-colors duration-300"
+            tabIndex={0}
+          >
+            {item.label}
+          </Link>
           <span className="w-1.5 h-1.5 rounded-full bg-copper/30 flex-shrink-0" />
         </span>
       ))}

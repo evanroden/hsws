@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
 import { useInView } from '@/lib/hooks'
@@ -17,13 +17,15 @@ export default function ContactSection() {
   const { ref, isInView } = useInView(0.1)
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState('')
+  const [shakeSubmit, setShakeSubmit] = useState(false)
 
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting, touchedFields },
     reset,
-  } = useForm<ContactForm>()
+    trigger,
+  } = useForm<ContactForm>({ mode: 'onChange' })
 
   const onSubmit = async (data: ContactForm) => {
     try {
@@ -38,6 +40,22 @@ export default function ContactSection() {
     } catch {
       setError('Something went wrong. Please email directly at ' + SITE_CONFIG.email)
     }
+  }
+
+  const onError = () => {
+    setShakeSubmit(true)
+    setTimeout(() => setShakeSubmit(false), 500)
+  }
+
+  const inputBase =
+    'w-full bg-white/5 border rounded-lg px-4 py-3 text-white text-sm transition-all duration-300 focus:outline-none'
+
+  const getInputClass = (field: keyof ContactForm) => {
+    const touched = touchedFields[field]
+    const hasError = errors[field]
+    if (hasError) return `${inputBase} border-red-400/60 focus:border-red-400 focus:shadow-[0_0_0_3px_rgba(248,113,113,0.1)]`
+    if (touched && !hasError) return `${inputBase} border-forest-light/40 focus:border-forest-light focus:shadow-[0_0_0_3px_rgba(45,90,69,0.15)]`
+    return `${inputBase} border-white/10 focus:border-copper/60 focus:shadow-[0_0_0_3px_rgba(184,115,51,0.1)]`
   }
 
   return (
@@ -105,108 +123,141 @@ export default function ContactSection() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            {submitted ? (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="glass rounded-xl p-8 text-center h-full flex flex-col items-center justify-center"
-              >
-                <div className="w-16 h-16 rounded-full bg-forest/20 flex items-center justify-center mb-4">
-                  <svg className="w-8 h-8 text-forest-light" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <h3 className="font-serif text-xl text-white mb-2">Message sent.</h3>
-                <p className="text-titanium text-sm">Thank you for reaching out. I&apos;ll get back to you soon.</p>
-              </motion.div>
-            ) : (
-              <form onSubmit={handleSubmit(onSubmit)} className="glass rounded-xl p-8 space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm text-titanium mb-2">
-                    Name
-                  </label>
-                  <input
-                    id="name"
-                    type="text"
-                    {...register('name', { required: 'Name is required' })}
-                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-forest-light transition-colors"
-                    placeholder="Your name"
-                  />
-                  {errors.name && (
-                    <p className="text-red-400 text-xs mt-1">{errors.name.message}</p>
-                  )}
-                </div>
-
-                <div>
-                  <label htmlFor="email" className="block text-sm text-titanium mb-2">
-                    Email
-                  </label>
-                  <input
-                    id="email"
-                    type="email"
-                    {...register('email', {
-                      required: 'Email is required',
-                      pattern: {
-                        value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                        message: 'Invalid email address',
-                      },
-                    })}
-                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-forest-light transition-colors"
-                    placeholder="your@email.com"
-                  />
-                  {errors.email && (
-                    <p className="text-red-400 text-xs mt-1">{errors.email.message}</p>
-                  )}
-                </div>
-
-                <div>
-                  <label htmlFor="subject" className="block text-sm text-titanium mb-2">
-                    Subject
-                  </label>
-                  <select
-                    id="subject"
-                    {...register('subject', { required: 'Please select a subject' })}
-                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-forest-light transition-colors"
-                  >
-                    <option value="" className="bg-slate-950">Select a topic</option>
-                    <option value="general" className="bg-slate-950">General</option>
-                    <option value="engineering" className="bg-slate-950">Engineering Inquiry</option>
-                    <option value="creative" className="bg-slate-950">Creative Collaboration</option>
-                    <option value="speaking" className="bg-slate-950">Speaking Engagement</option>
-                    <option value="other" className="bg-slate-950">Other</option>
-                  </select>
-                  {errors.subject && (
-                    <p className="text-red-400 text-xs mt-1">{errors.subject.message}</p>
-                  )}
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-sm text-titanium mb-2">
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    rows={5}
-                    {...register('message', { required: 'Message is required' })}
-                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-forest-light transition-colors resize-none"
-                    placeholder="Your message..."
-                  />
-                  {errors.message && (
-                    <p className="text-red-400 text-xs mt-1">{errors.message.message}</p>
-                  )}
-                </div>
-
-                {error && <p className="text-red-400 text-sm">{error}</p>}
-
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-forest-light hover:bg-forest text-white py-3.5 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed"
+            <AnimatePresence mode="wait">
+              {submitted ? (
+                <motion.div
+                  key="success"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="glass rounded-xl p-8 text-center h-full flex flex-col items-center justify-center"
                 >
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
-                </button>
-              </form>
-            )}
+                  <div className="w-16 h-16 rounded-full bg-forest/20 flex items-center justify-center mb-4">
+                    <svg className="w-8 h-8 text-forest-light" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                      <motion.path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M5 13l4 4L19 7"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
+                      />
+                    </svg>
+                  </div>
+                  <h3 className="font-serif text-xl text-white mb-2">Message sent.</h3>
+                  <p className="text-titanium text-sm">Thank you for reaching out. I&apos;ll get back to you soon.</p>
+                </motion.div>
+              ) : (
+                <motion.form
+                  key="form"
+                  onSubmit={handleSubmit(onSubmit, onError)}
+                  className="glass rounded-xl p-8 space-y-6"
+                >
+                  <div className="relative">
+                    <label htmlFor="name" className="block text-sm text-titanium mb-2">
+                      Name
+                    </label>
+                    <input
+                      id="name"
+                      type="text"
+                      {...register('name', { required: 'Name is required' })}
+                      className={getInputClass('name')}
+                      placeholder="Your name"
+                      onBlur={() => trigger('name')}
+                    />
+                    {touchedFields.name && !errors.name && (
+                      <span className="absolute right-3 top-[38px] text-forest-light">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                      </span>
+                    )}
+                    {errors.name && (
+                      <p className="text-red-400 text-xs mt-1">{errors.name.message}</p>
+                    )}
+                  </div>
+
+                  <div className="relative">
+                    <label htmlFor="email" className="block text-sm text-titanium mb-2">
+                      Email
+                    </label>
+                    <input
+                      id="email"
+                      type="email"
+                      {...register('email', {
+                        required: 'Email is required',
+                        pattern: {
+                          value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                          message: 'Invalid email address',
+                        },
+                      })}
+                      className={getInputClass('email')}
+                      placeholder="your@email.com"
+                      onBlur={() => trigger('email')}
+                    />
+                    {touchedFields.email && !errors.email && (
+                      <span className="absolute right-3 top-[38px] text-forest-light">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                      </span>
+                    )}
+                    {errors.email && (
+                      <p className="text-red-400 text-xs mt-1">{errors.email.message}</p>
+                    )}
+                  </div>
+
+                  <div>
+                    <label htmlFor="subject" className="block text-sm text-titanium mb-2">
+                      Subject
+                    </label>
+                    <select
+                      id="subject"
+                      {...register('subject', { required: 'Please select a subject' })}
+                      className={getInputClass('subject')}
+                    >
+                      <option value="" className="bg-slate-950">Select a topic</option>
+                      <option value="general" className="bg-slate-950">General</option>
+                      <option value="engineering" className="bg-slate-950">Engineering Inquiry</option>
+                      <option value="creative" className="bg-slate-950">Creative Collaboration</option>
+                      <option value="speaking" className="bg-slate-950">Speaking Engagement</option>
+                      <option value="other" className="bg-slate-950">Other</option>
+                    </select>
+                    {errors.subject && (
+                      <p className="text-red-400 text-xs mt-1">{errors.subject.message}</p>
+                    )}
+                  </div>
+
+                  <div>
+                    <label htmlFor="message" className="block text-sm text-titanium mb-2">
+                      Message
+                    </label>
+                    <textarea
+                      id="message"
+                      rows={5}
+                      {...register('message', { required: 'Message is required' })}
+                      className={`${getInputClass('message')} resize-none`}
+                      placeholder="Your message..."
+                      onBlur={() => trigger('message')}
+                    />
+                    {errors.message && (
+                      <p className="text-red-400 text-xs mt-1">{errors.message.message}</p>
+                    )}
+                  </div>
+
+                  {error && <p className="text-red-400 text-sm">{error}</p>}
+
+                  <motion.button
+                    type="submit"
+                    disabled={isSubmitting}
+                    animate={shakeSubmit ? { x: [0, -8, 8, -6, 6, -4, 4, 0] } : {}}
+                    transition={shakeSubmit ? { duration: 0.5 } : {}}
+                    className="w-full bg-forest-light hover:bg-forest text-white py-3.5 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                  </motion.button>
+                </motion.form>
+              )}
+            </AnimatePresence>
           </motion.div>
         </div>
       </div>

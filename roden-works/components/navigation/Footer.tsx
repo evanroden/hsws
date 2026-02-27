@@ -11,7 +11,10 @@ export default function Footer() {
   const isInView = useInView(ref, { once: true, margin: '-5%' })
 
   return (
-    <footer ref={ref} className="border-t border-white/5 bg-slate-950 relative overflow-hidden">
+    <footer ref={ref} className="relative overflow-hidden bg-gradient-to-b from-slate-950 to-[#0D1518]">
+      {/* Copper accent line */}
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-copper/30 to-transparent" />
+
       {/* Background gradient */}
       <div className="absolute inset-0 pointer-events-none">
         <div
@@ -50,7 +53,7 @@ export default function Footer() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-titanium/60 hover:text-copper transition-colors text-sm"
+                  className="text-titanium/60 hover:text-copper hover:scale-110 transition-all duration-200 text-sm inline-block"
                 >
                   {link.label}
                 </a>

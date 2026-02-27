@@ -7,6 +7,7 @@ import SmoothScroll from '@/components/providers/SmoothScroll'
 import CustomCursor from '@/components/ui/CustomCursor'
 import NoiseOverlay from '@/components/ui/NoiseOverlay'
 import PageTransition from '@/components/providers/PageTransition'
+import BackToTop from '@/components/navigation/BackToTop'
 import { SITE_CONFIG } from '@/lib/constants'
 
 export const metadata: Metadata = {
@@ -16,6 +17,10 @@ export const metadata: Metadata = {
     template: '%s | Evan Roden',
   },
   description: SITE_CONFIG.description,
+  icons: {
+    icon: '/favicon.svg',
+  },
+  manifest: '/manifest.json',
   openGraph: {
     title: SITE_CONFIG.title,
     description: SITE_CONFIG.description,
@@ -23,11 +28,20 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     locale: 'en_US',
     type: 'website',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Evan Roden — Engineering, Advocacy, Creative',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: SITE_CONFIG.title,
     description: SITE_CONFIG.description,
+    images: ['/og-image.png'],
   },
   robots: {
     index: true,
@@ -60,6 +74,7 @@ export default function RootLayout({
             </PageTransition>
           </main>
           <Footer />
+          <BackToTop />
         </SmoothScroll>
       </body>
     </html>

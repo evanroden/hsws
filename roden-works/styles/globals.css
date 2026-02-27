@@ -17,6 +17,7 @@
   html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
   }
 
   /* Lenis handles smooth scroll — disable native */
@@ -112,12 +113,23 @@
 
 /* ─── Focus visible ───────────────────────────────── */
 :focus-visible {
-  @apply outline-2 outline-offset-4 outline-forest-light;
-  outline-style: solid;
+  outline: 2px solid var(--copper);
+  outline-offset: 2px;
+}
+
+/* Ensure form inputs get the focus ring too */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--copper);
+  outline-offset: 2px;
 }
 
 /* ─── Reduced motion ──────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
   *,
   *::before,
   *::after {

@@ -4,6 +4,9 @@ import { motion } from 'framer-motion'
 import dynamic from 'next/dynamic'
 import { useInView } from '@/lib/hooks'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
+import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
+import ProjectNav from '@/components/navigation/ProjectNav'
+import ReadingTime from '@/components/ui/ReadingTime'
 
 const ProstheticViewer = dynamic(
   () => import('@/components/three/ProstheticViewer'),
@@ -30,6 +33,13 @@ export default function VAProstheticsPage() {
 
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Engineering', href: '/engineering-and-sustainability' },
+          { name: 'Research', href: '/engineering-and-sustainability/research' },
+          { name: 'VA Prosthetics' },
+        ]}
+      />
       <Breadcrumbs
         items={[
           { label: 'Engineering', href: '/engineering-and-sustainability' },
@@ -40,6 +50,9 @@ export default function VAProstheticsPage() {
           { label: 'VA Prosthetics' },
         ]}
       />
+      <div className="content-width -mt-2 mb-4">
+        <ReadingTime wordCount={900} />
+      </div>
 
       {/* Hero */}
       <section className="relative min-h-[50vh] flex items-end bg-slate-950 overflow-hidden">
@@ -305,6 +318,7 @@ export default function VAProstheticsPage() {
           </div>
         </div>
       </section>
+      <ProjectNav currentSlug="va-prosthetics" />
     </>
   )
 }

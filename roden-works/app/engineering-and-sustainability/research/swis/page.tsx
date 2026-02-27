@@ -4,6 +4,9 @@ import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { useInView } from '@/lib/hooks'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
+import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
+import ProjectNav from '@/components/navigation/ProjectNav'
+import ReadingTime from '@/components/ui/ReadingTime'
 
 export default function SWISPage() {
   const { ref: contentRef, isInView: contentInView } = useInView(0.1)
@@ -19,6 +22,13 @@ export default function SWISPage() {
 
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Engineering', href: '/engineering-and-sustainability' },
+          { name: 'Research', href: '/engineering-and-sustainability/research' },
+          { name: 'SWIS' },
+        ]}
+      />
       <Breadcrumbs
         items={[
           { label: 'Engineering', href: '/engineering-and-sustainability' },
@@ -29,6 +39,9 @@ export default function SWISPage() {
           { label: 'SWIS' },
         ]}
       />
+      <div className="content-width -mt-2 mb-4">
+        <ReadingTime wordCount={1300} />
+      </div>
 
       {/* Hero */}
       <section className="relative min-h-[50vh] flex items-end bg-slate-950 overflow-hidden">
@@ -525,6 +538,7 @@ export default function SWISPage() {
           </div>
         </div>
       </section>
+      <ProjectNav currentSlug="swis" />
     </>
   )
 }

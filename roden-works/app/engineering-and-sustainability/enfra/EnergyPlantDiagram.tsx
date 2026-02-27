@@ -464,7 +464,14 @@ const zones = [
 export default function EnergyPlantDiagram() {
   const { ref, isInView } = useInView(0.1)
   const [activeComponent, setActiveComponent] = useState<string | null>(null)
+  const [showOnboarding, setShowOnboarding] = useState(true)
   const active = components.find((c) => c.id === activeComponent)
+
+  // Dismiss onboarding after first click
+  const handleZoneClick = (id: string) => {
+    setShowOnboarding(false)
+    setActiveComponent(activeComponent === id ? null : id)
+  }
 
   return (
     <section className="section-padding bg-gradient-to-b from-slate-950 to-forest/5" ref={ref}>
@@ -515,13 +522,29 @@ export default function EnergyPlantDiagram() {
 
               {/* Clickable overlay zones */}
               {zones.map((z) => (
-                <rect
-                  key={z.id}
-                  x={z.x} y={z.y} width={z.w} height={z.h}
-                  fill="transparent"
-                  className="cursor-pointer"
-                  onClick={() => setActiveComponent(activeComponent === z.id ? null : z.id)}
-                />
+                <g key={z.id}>
+                  <rect
+                    x={z.x} y={z.y} width={z.w} height={z.h}
+                    fill="transparent"
+                    className="cursor-pointer"
+                    onClick={() => handleZoneClick(z.id)}
+                  />
+                  {/* Pulsing dot indicator */}
+                  {!activeComponent && (
+                    <g className="pointer-events-none">
+                      <circle
+                        cx={z.x + z.w / 2}
+                        cy={z.y + z.h / 2}
+                        r="3"
+                        fill={components.find(c => c.id === z.id)?.color || C.titanium}
+                        fillOpacity="0.6"
+                      >
+                        <animate attributeName="r" values="2;4;2" dur="2s" repeatCount="indefinite" />
+                        <animate attributeName="fillOpacity" values="0.6;0.2;0.6" dur="2s" repeatCount="indefinite" />
+                      </circle>
+                    </g>
+                  )}
+                </g>
               ))}
 
               {/* Active highlight border */}
@@ -551,10 +574,15 @@ export default function EnergyPlantDiagram() {
           </div>
 
           {/* Inline hint when nothing selected */}
-          {!active && (
-            <p className="text-center text-titanium/40 text-sm mt-4 font-mono tracking-wide">
-              Click on any system in the schematic above
-            </p>
+          {!active && showOnboarding && (
+            <motion.p
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-center text-titanium/40 text-sm mt-4 font-mono tracking-wide flex items-center justify-center gap-2"
+            >
+              <span className="inline-block w-2 h-2 rounded-full bg-copper/60 animate-heartbeat" />
+              Click a system to learn more
+            </motion.p>
           )}
         </motion.div>
 

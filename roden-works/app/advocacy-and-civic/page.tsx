@@ -4,7 +4,7 @@ import AnimatedCard from '@/components/ui/AnimatedCard'
 import { ProjectIllustration } from '@/components/ui/ProjectIllustrations'
 
 export const metadata: Metadata = {
-  title: 'Advocacy & Civic Impact',
+  title: 'Advocacy & Civic Impact — Organ Donation, Climate & Urban Policy',
   description:
     'From organ donation policy to broadband access — building systems that serve everyone.',
 }

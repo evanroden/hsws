@@ -3,7 +3,7 @@ import PageHero from '@/components/ui/PageHero'
 import StudioGallery from './StudioGallery'
 
 export const metadata: Metadata = {
-  title: 'The Studio',
+  title: 'Creative Studio — Cinematography, Glass Art & Photography',
   description:
     'Cinematography, photography, glass art, and editorial modeling — the creative portfolio of Evan Roden.',
 }

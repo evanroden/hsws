@@ -69,6 +69,23 @@ export default function AboutHero() {
             >
               Western New York
             </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.7 }}
+              className="mt-6"
+            >
+              <a
+                href="/resume.pdf"
+                download
+                className="inline-flex items-center gap-2 px-5 py-2.5 border border-copper/40 rounded-lg text-sm text-copper hover:bg-copper/10 hover:border-copper/60 transition-all duration-300"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                </svg>
+                Download Resume
+              </a>
+            </motion.div>
           </div>
         </div>
       </div>

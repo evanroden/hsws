@@ -1,0 +1,16 @@
+{
+  "name": "Evan Roden",
+  "short_name": "Roden",
+  "description": "Optimizing complex systems to improve human quality of life at the intersection of engineering, sustainability, and public advocacy.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0B1215",
+  "theme_color": "#0B1215",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

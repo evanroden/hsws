@@ -113,15 +113,17 @@ export default function BentoGrid() {
                       </p>
                     </div>
 
-                    <div className="mt-8 pt-6 border-t border-white/5">
-                      <span className="font-serif text-2xl text-white">{pillar.stat}</span>
-                      <span className="block font-mono text-xs text-titanium/60 mt-1">
-                        {pillar.statLabel}
+                    <div className="mt-8 pt-6 border-t border-white/5 flex items-end justify-between">
+                      <div>
+                        <span className="font-serif text-2xl text-white">{pillar.stat}</span>
+                        <span className="block font-mono text-xs text-titanium/60 mt-1">
+                          {pillar.statLabel}
+                        </span>
+                      </div>
+                      <span className="flex items-center gap-1.5 text-sm text-titanium/50 group-hover:text-copper transition-colors duration-300">
+                        Explore
+                        <span className="group-hover:translate-x-1 transition-transform duration-300">&rarr;</span>
                       </span>
-                    </div>
-
-                    <div className="absolute bottom-8 right-8 opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-                      <span className="text-copper text-lg">&rarr;</span>
                     </div>
                   </div>
                 </Link>

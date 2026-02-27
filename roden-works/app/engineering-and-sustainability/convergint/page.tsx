@@ -5,6 +5,9 @@ import { useState } from 'react'
 import { useInView } from '@/lib/hooks'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import StatCounter from '@/components/ui/StatCounter'
+import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
+import ProjectNav from '@/components/navigation/ProjectNav'
+import ReadingTime from '@/components/ui/ReadingTime'
 
 const fireSystemComponents = [
   {
@@ -109,12 +112,21 @@ export default function ConvergintPage() {
 
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Engineering', href: '/engineering-and-sustainability' },
+          { name: 'Convergint' },
+        ]}
+      />
       <Breadcrumbs
         items={[
           { label: 'Engineering', href: '/engineering-and-sustainability' },
           { label: 'Convergint' },
         ]}
       />
+      <div className="content-width -mt-2 mb-4">
+        <ReadingTime wordCount={1200} />
+      </div>
 
       {/* Hero Section */}
       <section className="relative min-h-[50vh] flex items-end bg-slate-950 overflow-hidden">
@@ -566,6 +578,7 @@ export default function ConvergintPage() {
           </div>
         </div>
       </section>
+      <ProjectNav currentSlug="convergint" />
     </>
   )
 }

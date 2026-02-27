@@ -1,7 +1,7 @@
 'use client'
 
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
-import { useEffect, useState, useRef, useMemo } from 'react'
+import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent } from 'framer-motion'
+import { useEffect, useState, useRef, useMemo, useCallback } from 'react'
 
 const words = [
   'Engineering.',
@@ -99,12 +99,12 @@ function HeroGrid() {
   )
 }
 
-/* ─── Particle field with varying sizes ──────────── */
+/* ─── Particle field with mouse parallax ──────────── */
 
-function ParticleField() {
+function ParticleField({ mouseX, mouseY }: { mouseX: number; mouseY: number }) {
   const particles = useMemo(
     () =>
-      Array.from({ length: 50 }, (_, i) => ({
+      Array.from({ length: 60 }, (_, i) => ({
         id: i,
         x: Math.random() * 100,
         y: Math.random() * 100,
@@ -112,6 +112,7 @@ function ParticleField() {
         duration: 5 + Math.random() * 8,
         delay: Math.random() * 5,
         opacity: Math.random() * 0.4 + 0.1,
+        depth: Math.random() * 0.5 + 0.5,
       })),
     []
   )
@@ -127,6 +128,7 @@ function ParticleField() {
             top: `${p.y}%`,
             width: p.size,
             height: p.size,
+            transform: `translate(${(mouseX - 0.5) * 20 * p.depth}px, ${(mouseY - 0.5) * 20 * p.depth}px)`,
           }}
           animate={{
             y: [0, -40, 0],
@@ -162,6 +164,8 @@ function AnimatedRule({ delay = 0 }: { delay?: number }) {
 
 export default function Hero() {
   const [currentWord, setCurrentWord] = useState(0)
+  const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 })
+  const [scrollIndicatorVisible, setScrollIndicatorVisible] = useState(true)
   const sectionRef = useRef<HTMLElement>(null)
 
   const { scrollYProgress } = useScroll({
@@ -173,21 +177,35 @@ export default function Hero() {
   const heroScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95])
   const heroY = useTransform(scrollYProgress, [0, 0.5], [0, 60])
 
+  useMotionValueEvent(scrollYProgress, 'change', (v) => {
+    setScrollIndicatorVisible(v < 0.05)
+  })
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentWord((prev) => (prev + 1) % words.length)
-    }, 3000)
+    }, 2500)
     return () => clearInterval(interval)
+  }, [])
+
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    if (!sectionRef.current) return
+    const rect = sectionRef.current.getBoundingClientRect()
+    setMousePos({
+      x: (e.clientX - rect.left) / rect.width,
+      y: (e.clientY - rect.top) / rect.height,
+    })
   }, [])
 
   return (
     <section
       ref={sectionRef}
+      onMouseMove={handleMouseMove}
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-950"
     >
       <GradientMesh />
       <HeroGrid />
-      <ParticleField />
+      <ParticleField mouseX={mousePos.x} mouseY={mousePos.y} />
 
       {/* Content with scroll-linked parallax */}
       <motion.div
@@ -249,15 +267,15 @@ export default function Hero() {
             Optimizing complex systems to improve human quality of life
             <br className="hidden md:block" />
             {' '}at the intersection of{' '}
-            <span className="relative inline-block min-w-[200px] text-left">
+            <span className="relative inline-block min-w-[200px] text-left overflow-hidden align-bottom" style={{ height: '1.4em' }}>
               <AnimatePresence mode="wait">
                 <motion.span
                   key={currentWord}
-                  initial={{ opacity: 0, y: 16, filter: 'blur(4px)' }}
-                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                  exit={{ opacity: 0, y: -16, filter: 'blur(4px)' }}
-                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                  className="text-copper font-serif italic"
+                  initial={{ opacity: 0, y: '100%' }}
+                  animate={{ opacity: 1, y: '0%' }}
+                  exit={{ opacity: 0, y: '-100%' }}
+                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  className="text-copper font-serif italic absolute left-0"
                 >
                   {words[currentWord]}
                 </motion.span>
@@ -296,30 +314,33 @@ export default function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
-          className="flex flex-col items-center gap-3"
-        >
-          <span className="text-titanium/40 text-[10px] font-mono tracking-[0.3em] uppercase">
-            Scroll
-          </span>
-          <div className="w-5 h-8 rounded-full border border-titanium/20 flex justify-center pt-1.5">
+      {/* Scroll indicator — animated chevron */}
+      <AnimatePresence>
+        {scrollIndicatorVisible && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            transition={{ duration: 0.4 }}
+            className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
+          >
             <motion.div
-              className="w-1 h-1.5 rounded-full bg-copper/60"
-              animate={{ y: [0, 12, 0], opacity: [1, 0.3, 1] }}
-              transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
-            />
-          </div>
-        </motion.div>
-      </motion.div>
+              animate={{ y: [0, 6, 0] }}
+              transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
+            >
+              <svg
+                className="w-6 h-6 text-titanium/40"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   )
 }

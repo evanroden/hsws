@@ -54,7 +54,7 @@ export default function Navbar() {
             : 'bg-transparent'
         }`}
       >
-        <nav className="content-width flex items-center justify-between h-16 md:h-20">
+        <nav aria-label="Main navigation" className="content-width flex items-center justify-between h-16 md:h-20">
           <Link
             href="/"
             className="relative font-serif text-xl md:text-2xl tracking-tight font-bold text-white group"
@@ -98,6 +98,7 @@ export default function Navbar() {
             onClick={() => setMobileOpen(!mobileOpen)}
             className="md:hidden relative w-10 h-10 flex flex-col justify-center items-center gap-1.5 rounded-lg hover:bg-white/5 transition-colors"
             aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={mobileOpen}
           >
             <motion.span
               animate={mobileOpen ? { rotate: 45, y: 5 } : { rotate: 0, y: 0 }}

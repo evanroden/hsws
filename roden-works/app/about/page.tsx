@@ -6,9 +6,10 @@ import Awards from './Awards'
 import Languages from './Languages'
 import Skills from './Skills'
 import ContactSection from './ContactSection'
+import { PersonJsonLd } from '@/components/seo/JsonLd'
 
 export const metadata: Metadata = {
-  title: 'About',
+  title: 'About — Evan Roden',
   description:
     'Evan Roden — Sustainability Engineer, biomedical researcher, nonprofit founder, filmmaker, and TEDx speaker.',
 }
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
+      <PersonJsonLd />
       <AboutHero />
       <Bio />
       <Education />
