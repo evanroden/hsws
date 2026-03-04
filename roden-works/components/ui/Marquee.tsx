@@ -50,8 +50,13 @@ export default function Marquee({
           },
         }}
       >
-        {children}
-        {children}
+        <div className="flex gap-8">
+          {children}
+        </div>
+        {/* Duplicate for seamless loop — hidden from screen readers & crawlers */}
+        <div className="flex gap-8" aria-hidden="true">
+          {children}
+        </div>
       </motion.div>
     </div>
   )
@@ -66,7 +71,7 @@ const disciplineLinks: { label: string; href: string }[] = [
   { label: 'Climate Advocacy', href: '/advocacy-and-civic/our-climate' },
   { label: 'Cinematography', href: '/studio/cinematography' },
   { label: 'Urban Planning', href: '/advocacy-and-civic/midtown-metairie' },
-  { label: 'Prosthetic Design', href: '/engineering-and-sustainability/research/va-prosthetics' },
+  { label: 'Fire & Life Safety', href: '/engineering-and-sustainability/convergint' },
   { label: 'ERP Architecture', href: '/engineering-and-sustainability/odoo' },
   { label: 'Public Health', href: '/engineering-and-sustainability/research/haps' },
   { label: 'Glass Art', href: '/studio/glass-art' },

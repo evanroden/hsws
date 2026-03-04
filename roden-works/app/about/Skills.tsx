@@ -106,7 +106,14 @@ export default function Skills() {
                       </span>
                       <span className="text-xs text-titanium/60 font-mono">{skill.level}%</span>
                     </div>
-                    <div className="h-1 bg-white/5 rounded-full overflow-hidden">
+                    <div
+                      className="h-1 bg-white/5 rounded-full overflow-hidden"
+                      role="progressbar"
+                      aria-valuenow={skill.level}
+                      aria-valuemin={0}
+                      aria-valuemax={100}
+                      aria-label={`${skill.name}: ${skill.level}%`}
+                    >
                       <motion.div
                         initial={{ width: 0 }}
                         animate={isInView ? { width: `${skill.level}%` } : {}}

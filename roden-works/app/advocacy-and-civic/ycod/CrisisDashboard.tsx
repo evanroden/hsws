@@ -130,7 +130,14 @@ export default function CrisisDashboard() {
                     Avg. kidney wait: {item.waitDays.toLocaleString()} days
                   </span>
                 </div>
-                <div className="h-3 bg-white/5 rounded-full overflow-hidden">
+                <div
+                  className="h-3 bg-white/5 rounded-full overflow-hidden"
+                  role="progressbar"
+                  aria-valuenow={item.waitDays}
+                  aria-valuemin={0}
+                  aria-valuemax={1400}
+                  aria-label={`${item.group}: average kidney wait ${item.waitDays.toLocaleString()} days`}
+                >
                   <motion.div
                     initial={{ width: 0 }}
                     animate={isInView ? { width: `${(item.waitDays / 1400) * 100}%` } : {}}

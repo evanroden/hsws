@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { useInView } from '@/lib/hooks'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import StatCounter from '@/components/ui/StatCounter'
-import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
+import { BreadcrumbJsonLd, ArticleJsonLd } from '@/components/seo/JsonLd'
 import ProjectNav from '@/components/navigation/ProjectNav'
 import ReadingTime from '@/components/ui/ReadingTime'
 
@@ -94,6 +94,11 @@ export default function OdooPage() {
 
   return (
     <>
+      <ArticleJsonLd
+        title="Odoo — ERP Implementation for Manufacturing"
+        description="ERP consulting and implementation for manufacturing and distribution companies — 160% of non-recurring revenue goal."
+        path="/engineering-and-sustainability/odoo"
+      />
       <BreadcrumbJsonLd
         items={[
           { name: 'Engineering', href: '/engineering-and-sustainability' },

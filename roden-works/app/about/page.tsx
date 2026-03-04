@@ -9,7 +9,7 @@ import ContactSection from './ContactSection'
 import { PersonJsonLd } from '@/components/seo/JsonLd'
 
 export const metadata: Metadata = {
-  title: 'About — Evan Roden',
+  title: 'About',
   description:
     'Evan Roden — Sustainability Engineer, biomedical researcher, nonprofit founder, filmmaker, and TEDx speaker.',
 }

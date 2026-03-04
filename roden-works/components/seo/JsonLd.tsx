@@ -45,6 +45,43 @@ export function PersonJsonLd() {
   )
 }
 
+export function ArticleJsonLd({
+  title,
+  description,
+  path,
+  datePublished,
+}: {
+  title: string
+  description: string
+  path: string
+  datePublished?: string
+}) {
+  const data = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description,
+    url: `${SITE_CONFIG.url}${path}`,
+    author: {
+      '@type': 'Person',
+      name: 'Evan Roden',
+      url: SITE_CONFIG.url,
+    },
+    publisher: {
+      '@type': 'Person',
+      name: 'Evan Roden',
+      url: SITE_CONFIG.url,
+    },
+    ...(datePublished ? { datePublished } : {}),
+  }
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  )
+}
+
 export function BreadcrumbJsonLd({
   items,
 }: {

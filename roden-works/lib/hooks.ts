@@ -59,10 +59,22 @@ export function useCountUp(end: number, duration = 2000, startOnView = true) {
           observer.unobserve(el)
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0, rootMargin: '50px 0px' }
     )
     observer.observe(el)
-    return () => observer.disconnect()
+
+    // Safety fallback: if the observer hasn't triggered within 4s, start anyway
+    const fallbackTimer = setTimeout(() => {
+      setStarted((prev) => {
+        if (!prev) observer.disconnect()
+        return true
+      })
+    }, 4000)
+
+    return () => {
+      clearTimeout(fallbackTimer)
+      observer.disconnect()
+    }
   }, [startOnView])
 
   useEffect(() => {
@@ -75,9 +87,11 @@ export function useCountUp(end: number, duration = 2000, startOnView = true) {
       const elapsed = timestamp - startTime
       const progress = Math.min(elapsed / duration, 1)
       const eased = 1 - Math.pow(1 - progress, 3)
-      setCount(Math.floor(eased * end * 10) / 10)
 
-      if (progress < 1) {
+      if (progress >= 1) {
+        setCount(end)
+      } else {
+        setCount(Math.floor(eased * end * 10) / 10)
         animationFrame = requestAnimationFrame(animate)
       }
     }

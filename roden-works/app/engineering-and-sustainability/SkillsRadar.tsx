@@ -52,7 +52,14 @@ export default function SkillsRadar() {
                 </div>
                 <span className="font-mono text-sm text-copper">{skill.level}%</span>
               </div>
-              <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
+              <div
+                className="h-1.5 bg-white/5 rounded-full overflow-hidden"
+                role="progressbar"
+                aria-valuenow={skill.level}
+                aria-valuemin={0}
+                aria-valuemax={100}
+                aria-label={`${skill.name}: ${skill.level}%`}
+              >
                 <motion.div
                   initial={{ width: 0 }}
                   animate={isInView ? { width: `${skill.level}%` } : {}}

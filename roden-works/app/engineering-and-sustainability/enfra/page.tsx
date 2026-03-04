@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
-import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
+import { BreadcrumbJsonLd, ArticleJsonLd } from '@/components/seo/JsonLd'
 import ProjectNav from '@/components/navigation/ProjectNav'
 import ReadingTime from '@/components/ui/ReadingTime'
 import EnfraHero from './EnfraHero'
@@ -18,6 +18,11 @@ export const metadata: Metadata = {
 export default function EnfraPage() {
   return (
     <>
+      <ArticleJsonLd
+        title="ENFRA × Rochester Regional Health — $143.8M EaaS Partnership"
+        description="$143.8 million, 30-year Energy-as-a-Service partnership delivering $354.6M in guaranteed savings."
+        path="/engineering-and-sustainability/enfra"
+      />
       <BreadcrumbJsonLd
         items={[
           { name: 'Engineering', href: '/engineering-and-sustainability' },

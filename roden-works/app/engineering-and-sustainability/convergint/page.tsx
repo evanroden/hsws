@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { useInView } from '@/lib/hooks'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import StatCounter from '@/components/ui/StatCounter'
-import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
+import { BreadcrumbJsonLd, ArticleJsonLd } from '@/components/seo/JsonLd'
 import ProjectNav from '@/components/navigation/ProjectNav'
 import ReadingTime from '@/components/ui/ReadingTime'
 
@@ -112,6 +112,11 @@ export default function ConvergintPage() {
 
   return (
     <>
+      <ArticleJsonLd
+        title="Convergint — Fire & Life Safety Systems Integration"
+        description="Fire alarm system design, commissioning, and compliance — from bootcamp to field leadership."
+        path="/engineering-and-sustainability/convergint"
+      />
       <BreadcrumbJsonLd
         items={[
           { name: 'Engineering', href: '/engineering-and-sustainability' },

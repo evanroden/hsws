@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
-import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
+import { BreadcrumbJsonLd, ArticleJsonLd } from '@/components/seo/JsonLd'
 import ProjectNav from '@/components/navigation/ProjectNav'
 import ReadingTime from '@/components/ui/ReadingTime'
 import YcodHero from './YcodHero'
@@ -19,6 +19,11 @@ export const metadata: Metadata = {
 export default function YcodPage() {
   return (
     <>
+      <ArticleJsonLd
+        title="The YCOD — Opt-Out Organ Donation Advocacy"
+        description="The Youth Coalition For Organ Donation — a 501(c)(4) organization reshaping organ donation policy through presumed consent legislation."
+        path="/advocacy-and-civic/ycod"
+      />
       <BreadcrumbJsonLd
         items={[
           { name: 'Advocacy', href: '/advocacy-and-civic' },
