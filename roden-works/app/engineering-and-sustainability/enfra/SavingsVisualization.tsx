@@ -84,7 +84,14 @@ export default function SavingsVisualization() {
                     <div className="flex-1 space-y-1.5">
                       {/* Before */}
                       <div className="flex items-center gap-3">
-                        <div className="h-4 bg-white/5 rounded-full flex-1 overflow-hidden">
+                        <div
+                          className="h-4 bg-white/5 rounded-full flex-1 overflow-hidden"
+                          role="progressbar"
+                          aria-valuenow={beforeVal}
+                          aria-valuemin={0}
+                          aria-valuemax={maxValue}
+                          aria-label={`${item.year} without ENFRA: $${beforeVal.toFixed(1)}M`}
+                        >
                           <motion.div
                             initial={{ width: 0 }}
                             animate={isInView ? { width: `${(beforeVal / maxValue) * 100}%` } : {}}
@@ -98,7 +105,14 @@ export default function SavingsVisualization() {
                       </div>
                       {/* After */}
                       <div className="flex items-center gap-3">
-                        <div className="h-4 bg-white/5 rounded-full flex-1 overflow-hidden">
+                        <div
+                          className="h-4 bg-white/5 rounded-full flex-1 overflow-hidden"
+                          role="progressbar"
+                          aria-valuenow={afterVal}
+                          aria-valuemin={0}
+                          aria-valuemax={maxValue}
+                          aria-label={`${item.year} with ENFRA: $${afterVal.toFixed(1)}M`}
+                        >
                           <motion.div
                             initial={{ width: 0 }}
                             animate={isInView ? { width: `${(afterVal / maxValue) * 100}%` } : {}}

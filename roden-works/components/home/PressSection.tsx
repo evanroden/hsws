@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 import { useInView } from '@/lib/hooks'
 
 const pressItems = [
@@ -70,12 +71,12 @@ export default function PressSection() {
                 &ldquo;{item.quote}&rdquo;
               </p>
               {item.link && (
-                <a
+                <Link
                   href={item.link}
                   className="inline-flex items-center gap-1.5 mt-4 text-xs text-titanium/50 hover:text-copper transition-colors"
                 >
                   Read more <span>&rarr;</span>
-                </a>
+                </Link>
               )}
             </motion.div>
           ))}

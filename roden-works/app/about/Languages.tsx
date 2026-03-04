@@ -100,7 +100,14 @@ export default function Languages() {
                       <span className="font-mono text-xs text-copper">{lang.level}</span>
                     </div>
                     <p className="text-titanium text-sm leading-relaxed mb-3">{lang.description}</p>
-                    <div className="h-1 bg-white/5 rounded-full overflow-hidden">
+                    <div
+                      className="h-1 bg-white/5 rounded-full overflow-hidden"
+                      role="progressbar"
+                      aria-valuenow={lang.proficiency}
+                      aria-valuemin={0}
+                      aria-valuemax={100}
+                      aria-label={`${lang.name}: ${lang.level} (${lang.proficiency}%)`}
+                    >
                       <motion.div
                         initial={{ width: 0 }}
                         animate={isInView ? { width: `${lang.proficiency}%` } : {}}
@@ -134,7 +141,14 @@ export default function Languages() {
                       <span className="font-mono text-xs text-forest-light">{lang.level}</span>
                     </div>
                     <p className="text-titanium text-sm leading-relaxed mb-3">{lang.description}</p>
-                    <div className="h-1 bg-white/5 rounded-full overflow-hidden">
+                    <div
+                      className="h-1 bg-white/5 rounded-full overflow-hidden"
+                      role="progressbar"
+                      aria-valuenow={lang.proficiency}
+                      aria-valuemin={0}
+                      aria-valuemax={100}
+                      aria-label={`${lang.name}: ${lang.level} (${lang.proficiency}%)`}
+                    >
                       <motion.div
                         initial={{ width: 0 }}
                         animate={isInView ? { width: `${lang.proficiency}%` } : {}}

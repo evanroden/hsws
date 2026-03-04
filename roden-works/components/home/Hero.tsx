@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent } from 'framer-motion'
 import { useEffect, useState, useRef, useMemo, useCallback } from 'react'
+import Link from 'next/link'
 
 const words = [
   'Engineering.',
@@ -291,7 +292,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 1.3 }}
           className="mt-10 flex flex-col sm:flex-row gap-4 justify-center"
         >
-          <a
+          <Link
             href="/engineering-and-sustainability"
             data-cursor="Explore"
             className="group relative inline-flex items-center justify-center px-8 py-3.5 bg-forest-light text-white text-sm font-medium rounded-lg transition-all duration-300 overflow-hidden"
@@ -303,14 +304,14 @@ export default function Hero() {
               whileHover={{ x: '0%' }}
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             />
-          </a>
-          <a
+          </Link>
+          <Link
             href="/about"
             data-cursor="About"
             className="group relative inline-flex items-center justify-center px-8 py-3.5 glass text-white text-sm font-medium rounded-lg transition-all duration-300 overflow-hidden hover:border-white/20"
           >
             <span className="relative z-10">About Me</span>
-          </a>
+          </Link>
         </motion.div>
       </motion.div>
 
