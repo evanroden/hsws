@@ -1,8 +1,8 @@
 'use client'
 
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useState, type KeyboardEvent, type ReactNode } from 'react'
-import { useInView } from '@/lib/hooks'
+import { useInView, useReducedMotion } from '@/lib/hooks'
 import SegmentedControl from '@/components/ui/SegmentedControl'
 import { chart } from '@/components/charts/tokens'
 import { useElementSize } from '@/components/charts/useElementSize'
@@ -31,7 +31,8 @@ const ALERT = '#E5605A' // 5.0:1 on surface; used only for "utility feed lost"
 
 export default function EnergyPlantDiagram() {
   const { ref, isInView } = useInView(0.1)
-  const reduce = useReducedMotion() ?? false
+  // Starts false on server and client, then syncs — avoids a hydration mismatch
+  const reduce = useReducedMotion()
   const [selected, setSelected] = useState<GroupId | null>(null)
   const [hovered, setHovered] = useState<GroupId | null>(null)
   const [touched, setTouched] = useState(false)
@@ -672,14 +673,14 @@ function LoopLegend() {
     return { id, text: l.supply, ret: l.return }
   })
   return (
-    <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-2" aria-label="Loop legend">
+    <ul className="flex flex-wrap gap-x-6 gap-y-2.5" aria-label="Loop legend">
       {items.map((it) => (
         <li key={it.id} className="flex items-center gap-2 text-xs text-titanium">
           <LoopSwatch id={it.id} />
           {it.ret && <LoopSwatch id={it.id} dashed />}
           <span>
             {it.text}
-            {it.ret && <span className="text-muted"> / {it.ret} (dashed)</span>}
+            {it.ret && <span className="text-muted"> / {it.ret}</span>}
           </span>
         </li>
       ))}
@@ -687,7 +688,7 @@ function LoopLegend() {
         <svg aria-hidden="true" width="18" height="6" viewBox="0 0 18 6">
           <line x1="1" x2="17" y1="3" y2="3" stroke={DEAD} strokeWidth="1.5" strokeDasharray="4 2.5" />
         </svg>
-        <span className="text-muted">Gray dashed — de-energized / standby</span>
+        <span className="text-muted">De-energized / standby</span>
       </li>
     </ul>
   )

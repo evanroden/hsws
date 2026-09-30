@@ -1,9 +1,10 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useState, useEffect } from 'react'
 import { useInView } from '@/lib/hooks'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
+import CoverageChart from './CoverageChart'
+import SpeedChart from './SpeedChart'
 
 const coverageData = [
   { area: 'Town of Aurora (Overall)', connected: 62, underserved: 25, unserved: 13 },
@@ -48,21 +49,6 @@ export default function TabiPage() {
   const gapView = useInView(0.05)
   const speedView = useInView(0.05)
   const pillarsView = useInView(0.05)
-  const [animationStep, setAnimationStep] = useState(0)
-
-  useEffect(() => {
-    if (!gapView.isInView) return
-    const interval = setInterval(() => {
-      setAnimationStep((prev) => {
-        if (prev >= 4) {
-          clearInterval(interval)
-          return prev
-        }
-        return prev + 1
-      })
-    }, 600)
-    return () => clearInterval(interval)
-  }, [gapView.isInView])
 
   return (
     <>
@@ -198,80 +184,11 @@ export default function TabiPage() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={gapView.isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="glass rounded-xl p-6 md:p-8"
+            initial={{ opacity: 0, y: 24 }}
+            animate={gapView.isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.2 }}
           >
-            {/* Animated bar chart */}
-            <div className="space-y-8">
-              {coverageData.map((item, i) => (
-                <motion.div
-                  key={item.area}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={animationStep >= i ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.5 }}
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-white text-sm font-medium">{item.area}</span>
-                    <span className="font-mono text-xs text-muted">
-                      {item.unserved}% unserved
-                    </span>
-                  </div>
-                  <div className="h-6 bg-white/5 rounded-full overflow-hidden flex">
-                    {/* Connected */}
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={animationStep >= i ? { width: `${item.connected}%` } : {}}
-                      transition={{ duration: 0.8, delay: 0.2 }}
-                      className="h-full bg-gradient-to-r from-forest to-forest-light rounded-l-full flex items-center justify-end pr-2"
-                    >
-                      {item.connected >= 30 && (
-                        <span className="text-white/80 text-[10px] font-mono">{item.connected}%</span>
-                      )}
-                    </motion.div>
-                    {/* Underserved */}
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={animationStep >= i ? { width: `${item.underserved}%` } : {}}
-                      transition={{ duration: 0.8, delay: 0.4 }}
-                      className="h-full bg-copper/40 flex items-center justify-center"
-                    >
-                      {item.underserved >= 15 && (
-                        <span className="text-titanium text-[10px] font-mono">{item.underserved}%</span>
-                      )}
-                    </motion.div>
-                    {/* Unserved */}
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={animationStep >= i ? { width: `${item.unserved}%` } : {}}
-                      transition={{ duration: 0.8, delay: 0.6 }}
-                      className="h-full bg-copper/80 rounded-r-full flex items-center justify-center"
-                    >
-                      {item.unserved >= 10 && (
-                        <span className="text-white/80 text-[10px] font-mono">{item.unserved}%</span>
-                      )}
-                    </motion.div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Legend */}
-            <div className="mt-8 pt-6 border-t border-white/5 flex flex-wrap gap-6">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-forest-light" />
-                <span className="text-xs text-titanium">Adequately Served (25+ Mbps)</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-copper/40" />
-                <span className="text-xs text-titanium">Underserved (10-25 Mbps)</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-copper/80" />
-                <span className="text-xs text-titanium">Unserved (&lt;10 Mbps or None)</span>
-              </div>
-            </div>
+            <CoverageChart data={coverageData} animate={gapView.isInView} />
           </motion.div>
         </div>
       </section>
@@ -293,51 +210,13 @@ export default function TabiPage() {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {speedTiers.map((tier, i) => (
-              <motion.div
-                key={tier.label}
-                initial={{ opacity: 0, y: 30 }}
-                animate={speedView.isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.1 + i * 0.1 }}
-                className={`glass rounded-xl p-6 text-center ${
-                  tier.label === 'TABI Target'
-                    ? 'border-forest/30 bg-forest/10'
-                    : !tier.adequate
-                    ? 'border-copper/20'
-                    : ''
-                }`}
-              >
-                <span className="font-mono text-xs text-copper uppercase tracking-widest block mb-4">
-                  {tier.label}
-                </span>
-                <div className="space-y-3">
-                  <div>
-                    <span className="font-serif text-3xl text-white">{tier.down}</span>
-                    <span className="text-titanium text-sm ml-1">Mbps</span>
-                    <span className="block font-mono text-xs text-muted mt-1">Download</span>
-                  </div>
-                  <div className="w-12 h-px bg-white/10 mx-auto" />
-                  <div>
-                    <span className="font-serif text-3xl text-white">{tier.up}</span>
-                    <span className="text-titanium text-sm ml-1">Mbps</span>
-                    <span className="block font-mono text-xs text-muted mt-1">Upload</span>
-                  </div>
-                </div>
-                <div className="mt-4 pt-4 border-t border-white/5">
-                  <span
-                    className={`inline-block px-3 py-1 rounded-full text-xs font-mono ${
-                      tier.adequate
-                        ? 'bg-forest/20 text-verdigris'
-                        : 'bg-copper/10 text-copper'
-                    }`}
-                  >
-                    {tier.adequate ? 'Adequate' : 'Inadequate'}
-                  </span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={speedView.isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.2 }}
+          >
+            <SpeedChart data={speedTiers} highlight="Rural Aurora Average" animate={speedView.isInView} />
+          </motion.div>
         </div>
       </section>
 

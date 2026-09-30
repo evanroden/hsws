@@ -233,7 +233,7 @@ export const INTAKES = LANDMARKS.filter((l) => l.kind === 'intake')
 
 /** Plain-language position of a toe relative to the landmarks. */
 export function describeToe(toe: number): string {
-  if (toe <= 0) return 'Held below Head of Passes'
+  if (toe < -1.2) return 'Pushed out past Head of Passes into the Gulf'
   if (toe > RM_UPSTREAM) return 'Upstream of New Orleans, past this chart'
   const sorted = [...LANDMARKS].sort((a, b) => a.rm - b.rm)
   const at = sorted.find((l) => Math.abs(l.rm - toe) < 1.2)

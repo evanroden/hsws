@@ -20,7 +20,7 @@ export interface LoopDef {
 }
 
 export const LOOPS: Record<LoopId, LoopDef> = {
-  steam: { id: 'steam', label: 'Steam & condensate', supply: 'Steam', return: 'Condensate', color: chart.copper, tint: '#E2B994' },
+  steam: { id: 'steam', label: 'Steam & condensate', supply: 'Steam', return: 'condensate', color: chart.copper, tint: '#E2B994' },
   chw: { id: 'chw', label: 'Chilled water', supply: 'Chilled water supply', return: 'return', color: chart.steel, tint: '#B4C5EE' },
   cw: { id: 'cw', label: 'Condenser water', supply: 'Condenser water supply', return: 'return', color: chart.verdigris, tint: '#97D3C0' },
   gas: { id: 'gas', label: 'Natural gas', supply: 'Natural gas', color: '#A386E0', tint: '#D0C0F0' },

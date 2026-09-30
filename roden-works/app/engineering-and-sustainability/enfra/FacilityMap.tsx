@@ -59,7 +59,7 @@ const ROAD = '#56646D'
 
 /* Visible window in map units: full frame on wide screens, a Niagara → Finger Lakes crop on phones */
 const WIDE = { x: 0, y: 0, w: MAP_FRAME.width, h: MAP_FRAME.height }
-const COMPACT = { x: 40, y: 48, w: 620, h: 344 }
+const COMPACT = { x: 100, y: 60, w: 520, h: 340 }
 
 interface CityLabel {
   id: keyof typeof MAP_PLACES
@@ -247,12 +247,12 @@ function MapCanvas({
 
           {/* ── Region labels ── */}
           <motion.g {...fade(0.2)} fontStyle="italic" fill={chart.text.muted} style={{ fontFamily: 'var(--font-newsreader), Georgia, serif' }}>
-            <RegionLabel at={px(compact ? 330 : 590, compact ? 80 : 88)} size={compact ? 14 : 17} spacing={0.04}>
+            <RegionLabel at={px(compact ? 290 : 590, compact ? 90 : 88)} size={compact ? 14 : 17} spacing={0.04}>
               Lake Ontario
             </RegionLabel>
             {!compact && (
               <>
-                <RegionLabel at={px(36, 404)} size={14} anchor="start">
+                <RegionLabel at={px(14, 404)} size={14} anchor="start">
                   Lake Erie
                 </RegionLabel>
                 <RegionLabel at={px(40, 250)} size={13}>
@@ -268,10 +268,10 @@ function MapCanvas({
             </RegionLabel>
           </motion.g>
 
-          {/* I-90 route tag */}
+          {/* I-90 route tag (the legend covers it on phones) */}
           <motion.g {...fade(0.3)}>
-            {(() => {
-              const [x, y] = px(compact ? 250 : 700, compact ? 257 : 262)
+            {!compact && (() => {
+              const [x, y] = px(700, 262)
               return (
                 <text x={x} y={y + 17} textAnchor="middle" fontSize={11} fontWeight={500} fill={chart.text.muted} letterSpacing="0.04em">
                   I-90
@@ -323,9 +323,11 @@ function MapCanvas({
             const on = active === f.id
             const dim = active !== null && !on
             // UMMC labels above-left (I-90 runs just below Batavia); St. Mary's to the right
-            const lx = f.id === 'ummc' ? x - 12 : x + 14
-            const ly = f.id === 'ummc' ? y - 24 : y - 3
-            const anchor = f.id === 'ummc' ? 'end' : 'start'
+            // (on phones St. Mary's sits above its marker so it never clips the right edge)
+            const above = compact && f.id === 'stmarys'
+            const lx = f.id === 'ummc' ? x - 12 : above ? x : x + 14
+            const ly = f.id === 'ummc' ? y - 24 : above ? y - 31 : y - 3
+            const anchor = f.id === 'ummc' ? 'end' : above ? 'middle' : 'start'
             return (
               <motion.g
                 key={f.id}
@@ -359,8 +361,9 @@ function MapCanvas({
           })}
 
           {/* ── North + scale ── */}
-          <motion.g {...fade(0.4)} transform={`translate(${width - (compact ? 14 : 24) - scaleLen} ${height - (compact ? 16 : 24)})`}>
-            <g transform={`translate(${scaleLen + (compact ? 0 : 0)} ${compact ? -30 : -42})`}>
+          {/* bottom-right on wide screens; bottom-left (open land south of Buffalo) on phones */}
+          <motion.g {...fade(0.4)} transform={`translate(${compact ? 12 : width - 24 - scaleLen} ${height - (compact ? 14 : 24)})`}>
+            <g transform={`translate(${scaleLen} ${compact ? -36 : -42})`}>
               <path d="M0,-9 L4,3 L0,0.5 L-4,3 Z" fill={chart.text.muted} />
               <text y={16} textAnchor="middle" fontSize={11} fontWeight={600} fill={chart.text.muted}>
                 N

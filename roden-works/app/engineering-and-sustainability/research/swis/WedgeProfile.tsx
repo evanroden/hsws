@@ -23,7 +23,7 @@ import {
   saltFraction,
   type Landmark,
   type WedgeState,
-} from './wedgeModel'
+} from './wedgePhysics'
 
 const D_MAX = 160 // ft shown on the depth axis
 const STEP = 0.25 // sampling interval, river miles
@@ -446,10 +446,10 @@ export default function WedgeProfile({ state }: { state: WedgeState }) {
           )}
 
           {/* Sill crest depth */}
-          {rise > 0.5 && (
+          {rise > 0.5 && !compact && (
             <text
               x={x(SILL_RM - crestHalf) + 7}
-              y={y(crestDepth) + 4}
+              y={y(crestDepth) + 16}
               fontSize={11}
               fill={chart.text.secondary}
               stroke={HALO}

@@ -125,11 +125,11 @@ export const WIDE: Layout = {
   pipes: [
     { id: 'cws', loop: 'cw', pts: [[296, 192], [284, 192], [284, 274], [300, 274]], groups: ['towers', 'chillers', 'pumps'], arrows: [[284, 208]] },
     { id: 'cwr', loop: 'cw', dashed: true, pts: [[460, 274], [492, 274], [492, 146], [460, 146]], groups: ['towers', 'chillers'], arrows: [[492, 178]] },
-    { id: 'chws', loop: 'chw', pts: [[460, 331], [716, 331]], groups: ['chillers', 'pumps', 'hospital'], arrows: [[652, 331]] },
-    { id: 'chwr', loop: 'chw', dashed: true, pts: [[716, 368], [336, 368], [336, 344]], groups: ['chillers', 'pumps', 'hospital'], arrows: [[652, 368]] },
-    { id: 'steam', loop: 'steam', pts: [[428, 424], [428, 404], [716, 404]], groups: ['boilers', 'hospital'], arrows: [[652, 404]] },
+    { id: 'chws', loop: 'chw', pts: [[460, 331], [716, 331]], groups: ['chillers', 'pumps', 'hospital'], arrows: [[560, 331]] },
+    { id: 'chwr', loop: 'chw', dashed: true, pts: [[716, 368], [336, 368], [336, 344]], groups: ['chillers', 'pumps', 'hospital'], arrows: [[560, 368]] },
+    { id: 'steam', loop: 'steam', pts: [[428, 424], [428, 404], [716, 404]], groups: ['boilers', 'hospital'], arrows: [[620, 404]] },
     { id: 'steam2', loop: 'steam', pts: [[688, 404], [688, 464], [716, 464]], groups: ['boilers', 'hospital'] },
-    { id: 'cond', loop: 'steam', dashed: true, pts: [[716, 496], [476, 496], [476, 452], [452, 452]], groups: ['boilers', 'pumps', 'hospital'], arrows: [[652, 496]] },
+    { id: 'cond', loop: 'steam', dashed: true, pts: [[716, 496], [476, 496], [476, 452], [452, 452]], groups: ['boilers', 'pumps', 'hospital'], arrows: [[692, 496]] },
     { id: 'gas', loop: 'gas', pts: [[0, 444], [284, 444]], groups: ['boilers'], arrows: [[88, 444]] },
     { id: 'utility', loop: 'power', power: 'utility', pts: [[0, 532], [580, 532]], groups: ['generators'], arrows: [[88, 532]] },
     { id: 'genfeed', loop: 'power', power: 'emergency', pts: [[444, 584], [580, 584]], groups: ['generators'], arrows: [[520, 584]] },
@@ -139,10 +139,10 @@ export const WIDE: Layout = {
   pipeLabels: [
     { pipe: 'cws', text: 'CWS 85°F', x: 298, y: 219 },
     { pipe: 'cwr', text: 'CWR 95°F', x: 502, y: 214 },
-    { pipe: 'chws', text: 'CHWS 42°F', x: 560, y: 325 },
-    { pipe: 'chwr', text: 'CHWR 56°F', x: 560, y: 362 },
-    { pipe: 'steam', text: 'Steam 150 psi', x: 560, y: 398 },
-    { pipe: 'cond', text: 'Condensate', x: 580, y: 490 },
+    { pipe: 'chws', text: 'CHWS 42°F', x: 596, y: 325 },
+    { pipe: 'chwr', text: 'CHWR 56°F', x: 596, y: 362 },
+    { pipe: 'steam', text: 'Steam 150 psi', x: 468, y: 398 },
+    { pipe: 'cond', text: 'Condensate', x: 590, y: 490 },
   ],
 
   signals: [

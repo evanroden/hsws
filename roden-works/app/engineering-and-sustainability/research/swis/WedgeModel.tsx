@@ -24,7 +24,7 @@ import {
   unobstructedToe,
   type SillCrest,
   type SourceId,
-} from './wedgeModel'
+} from './wedgePhysics'
 
 type Preset = 'spring' | 'threshold' | 'sept2023'
 
@@ -55,7 +55,7 @@ export default function WedgeModel() {
   }
 
   const threatened = INTAKES.map((lm) => ({ lm, status: intakeStatus(lm.rm, state) })).filter((i) => i.status !== 'clear')
-  const toeText = state.toe <= 0 ? 'Below Head of Passes' : `≈ RM ${Math.round(state.toe)}`
+  const toeText = state.toe < -1.2 ? 'Out of the river' : `≈ RM ${Math.max(0, Math.round(state.toe))}`
 
   const table = useMemo(() => {
     const flows = [600_000, 450_000, 300_000, 250_000, 200_000, 175_000, 150_000, 148_000, 130_000, 120_000, 100_000]

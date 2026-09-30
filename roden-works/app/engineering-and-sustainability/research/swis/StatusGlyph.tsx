@@ -1,5 +1,5 @@
 import { chart } from '@/components/charts/tokens'
-import type { IntakeStatus, SillState } from './wedgeModel'
+import type { IntakeStatus, SillState } from './wedgePhysics'
 
 /* Status shapes carry meaning on their own (filled vs outlined triangle, ring,
  * check), so no state is ever signalled by colour alone. 14 × 14 box. */

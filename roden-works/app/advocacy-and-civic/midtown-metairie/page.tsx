@@ -210,7 +210,7 @@ export default function MidtownMetairiePage() {
                 transition={{ duration: 0.4, delay: 0.5 + i * 0.1 }}
                 className="glass rounded-xl p-5 text-center"
               >
-                <span className="block font-serif text-2xl text-white">{stat.value}</span>
+                <span className="block font-sans font-semibold tracking-tight text-2xl md:text-3xl text-white">{stat.value}</span>
                 <span className="block mt-2 font-mono text-xs text-titanium uppercase">{stat.label}</span>
               </motion.div>
             ))}
