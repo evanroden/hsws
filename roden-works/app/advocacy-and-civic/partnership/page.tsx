@@ -1,9 +1,9 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useState } from 'react'
 import { useInView } from '@/lib/hooks'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
+import EngagementDumbbell from './EngagementDumbbell'
 
 const engagementData = [
   { category: 'Overall Engagement', before: 37, after: 74 },
@@ -69,7 +69,6 @@ export default function PartnershipPage() {
   const engagementView = useInView(0.05)
   const workView = useInView(0.05)
   const timelineView = useInView(0.05)
-  const [selectedMetric, setSelectedMetric] = useState<number | null>(null)
 
   return (
     <>
@@ -116,19 +115,19 @@ export default function PartnershipPage() {
             className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-0 md:divide-x divide-white/10"
           >
             <div className="text-center px-6 py-4">
-              <span className="block font-serif text-3xl md:text-4xl text-white">~37</span>
+              <span className="block font-sans font-semibold tracking-tight text-3xl md:text-4xl text-white">~37</span>
               <span className="block mt-2 font-mono text-xs tracking-wide text-titanium uppercase">Score Before</span>
             </div>
             <div className="text-center px-6 py-4">
-              <span className="block font-serif text-3xl md:text-4xl text-verdigris">74</span>
+              <span className="block font-sans font-semibold tracking-tight text-3xl md:text-4xl text-verdigris">74</span>
               <span className="block mt-2 font-mono text-xs tracking-wide text-titanium uppercase">Score After</span>
             </div>
             <div className="text-center px-6 py-4">
-              <span className="block font-serif text-3xl md:text-4xl text-copper">2x</span>
+              <span className="block font-sans font-semibold tracking-tight text-3xl md:text-4xl text-copper">2x</span>
               <span className="block mt-2 font-mono text-xs tracking-wide text-titanium uppercase">Score Increase</span>
             </div>
             <div className="text-center px-6 py-4">
-              <span className="block font-serif text-3xl md:text-4xl text-white">5 mo</span>
+              <span className="block font-sans font-semibold tracking-tight text-3xl md:text-4xl text-white">5 mo</span>
               <span className="block mt-2 font-mono text-xs tracking-wide text-titanium uppercase">Duration</span>
             </div>
           </motion.div>
@@ -198,11 +197,11 @@ export default function PartnershipPage() {
                 </p>
                 <div className="grid grid-cols-2 gap-4 pt-4 border-t border-white/5">
                   <div>
-                    <span className="font-serif text-2xl text-white block">$6.5B</span>
+                    <span className="font-sans font-semibold tracking-tight text-2xl text-white block">$6.5B</span>
                     <span className="font-mono text-xs text-muted mt-1 block">Annual Budget</span>
                   </div>
                   <div>
-                    <span className="font-serif text-2xl text-white block">500+</span>
+                    <span className="font-sans font-semibold tracking-tight text-2xl text-white block">500+</span>
                     <span className="font-mono text-xs text-muted mt-1 block">Employees</span>
                   </div>
                 </div>
@@ -242,86 +241,11 @@ export default function PartnershipPage() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={engagementView.isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="glass rounded-xl p-6 md:p-8"
+            initial={{ opacity: 0, y: 24 }}
+            animate={engagementView.isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.2 }}
           >
-            <div className="space-y-8">
-              {engagementData.map((metric, i) => {
-                const isSelected = selectedMetric === i
-                const improvement = metric.after - metric.before
-
-                return (
-                  <motion.div
-                    key={metric.category}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={engagementView.isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.5, delay: 0.4 + i * 0.1 }}
-                    className={`cursor-pointer rounded-lg p-4 transition-all duration-300 ${
-                      isSelected ? 'bg-white/5' : 'hover:bg-white/[0.02]'
-                    }`}
-                    onClick={() => setSelectedMetric(isSelected ? null : i)}
-                  >
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-white text-sm font-medium">{metric.category}</span>
-                      <span className="font-mono text-xs text-verdigris">
-                        +{improvement} pts
-                      </span>
-                    </div>
-
-                    <div className="relative">
-                      {/* Before bar */}
-                      <div className="h-4 bg-white/5 rounded-full overflow-hidden mb-1.5">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          animate={engagementView.isInView ? { width: `${metric.before}%` } : {}}
-                          transition={{ duration: 0.8, delay: 0.6 + i * 0.1 }}
-                          className="h-full bg-titanium/30 rounded-full"
-                        />
-                      </div>
-
-                      {/* After bar */}
-                      <div className="h-4 bg-white/5 rounded-full overflow-hidden">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          animate={engagementView.isInView ? { width: `${metric.after}%` } : {}}
-                          transition={{ duration: 1, delay: 0.8 + i * 0.1 }}
-                          className="h-full bg-gradient-to-r from-forest to-forest-light rounded-full"
-                        />
-                      </div>
-
-                      {/* Score labels */}
-                      <div className="flex items-center justify-between mt-1">
-                        <div className="flex items-center gap-4">
-                          <span className="font-mono text-xs text-muted">
-                            Before: {metric.before}
-                          </span>
-                          <span className="font-mono text-xs text-verdigris">
-                            After: {metric.after}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                )
-              })}
-            </div>
-
-            {/* Legend */}
-            <div className="mt-8 pt-6 border-t border-white/5 flex flex-wrap gap-6">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-titanium/30" />
-                <span className="text-xs text-titanium">Before Partnership Engagement</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-forest-light" />
-                <span className="text-xs text-titanium">After Partnership Engagement</span>
-              </div>
-              <div className="ml-auto">
-                <span className="text-xs text-muted font-mono">Source: Best Places to Work in the Federal Government</span>
-              </div>
-            </div>
+            <EngagementDumbbell data={engagementData} animate={engagementView.isInView} />
           </motion.div>
         </div>
       </section>

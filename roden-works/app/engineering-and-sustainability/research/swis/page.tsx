@@ -1,24 +1,17 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useState } from 'react'
 import { useInView } from '@/lib/hooks'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 import ProjectNav from '@/components/navigation/ProjectNav'
 import ReadingTime from '@/components/ui/ReadingTime'
+import WedgeModel from './WedgeModel'
 
 export default function SWISPage() {
   const { ref: contentRef, isInView: contentInView } = useInView(0.1)
   const { ref: diagramRef, isInView: diagramInView } = useInView(0.1)
   const { ref: impactRef, isInView: impactInView } = useInView(0.1)
-  const [flowRate, setFlowRate] = useState(300)
-
-  // Calculate wedge position: lower flow = further upstream intrusion
-  const wedgeExtent = Math.max(
-    0,
-    Math.min(100, ((300 - flowRate) / 200) * 100)
-  )
 
   return (
     <>
@@ -198,7 +191,7 @@ export default function SWISPage() {
 
       {/* Animated Saltwater Wedge Cross-Section */}
       <section
-        className="section-padding bg-gradient-to-b from-slate-950 to-forest/5"
+        className="section-padding bg-slate-950"
         ref={diagramRef}
       >
         <div className="content-width">
@@ -223,258 +216,11 @@ export default function SWISPage() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={diagramInView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="glass rounded-xl p-6 md:p-8"
+            initial={{ opacity: 0, y: 24 }}
+            animate={diagramInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.15 }}
           >
-            <div className="relative w-full" style={{ paddingBottom: '35%' }}>
-              <svg
-                viewBox="0 0 200 70"
-                className="absolute inset-0 w-full h-full"
-              >
-                {/* Sky */}
-                <rect
-                  x="0"
-                  y="0"
-                  width="200"
-                  height="10"
-                  fill="rgba(11,18,21,0.5)"
-                />
-
-                {/* River banks / surface labels */}
-                <text
-                  x="5"
-                  y="8"
-                  className="fill-titanium/30 text-[3px] font-mono"
-                >
-                  UPSTREAM
-                </text>
-                <text
-                  x="175"
-                  y="8"
-                  className="fill-titanium/30 text-[3px] font-mono"
-                >
-                  GULF OF MEXICO
-                </text>
-
-                {/* Fresh water layer */}
-                <rect
-                  x="0"
-                  y="10"
-                  width="200"
-                  height="35"
-                  fill="rgba(45,90,69,0.12)"
-                />
-
-                {/* River bed / sediment */}
-                <rect
-                  x="0"
-                  y="45"
-                  width="200"
-                  height="25"
-                  fill="rgba(138,155,168,0.08)"
-                />
-                <text
-                  x="100"
-                  y="58"
-                  textAnchor="middle"
-                  className="fill-titanium/15 text-[4px] font-mono"
-                >
-                  RIVER BED
-                </text>
-
-                {/* Animated saltwater wedge */}
-                <motion.path
-                  d={`M 200 45 L 200 18 Q ${200 - wedgeExtent * 1.5} 28 ${200 - wedgeExtent * 2} 45 Z`}
-                  fill="rgba(184,115,51,0.15)"
-                  stroke="#B87333"
-                  strokeWidth="0.5"
-                  animate={{
-                    d: `M 200 45 L 200 18 Q ${200 - wedgeExtent * 1.5} 28 ${200 - wedgeExtent * 2} 45 Z`,
-                  }}
-                  transition={{ duration: 0.3 }}
-                />
-
-                {/* Saltwater label */}
-                {wedgeExtent > 10 && (
-                  <text
-                    x={Math.max(155, 200 - wedgeExtent * 1.2)}
-                    y="38"
-                    className="fill-copper text-[3.5px] font-mono"
-                  >
-                    SALT WEDGE
-                  </text>
-                )}
-
-                {/* Freshwater label */}
-                <text
-                  x="30"
-                  y="28"
-                  className="fill-forest-light text-[4px] font-mono"
-                >
-                  FRESHWATER
-                </text>
-
-                {/* Flow direction arrow */}
-                <defs>
-                  <marker
-                    id="flow-arrow"
-                    viewBox="0 0 10 10"
-                    refX="5"
-                    refY="5"
-                    markerWidth="4"
-                    markerHeight="4"
-                    orient="auto-start-reverse"
-                  >
-                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#2D5A45" />
-                  </marker>
-                </defs>
-                <motion.line
-                  x1="10"
-                  y1="22"
-                  x2="50"
-                  y2="22"
-                  stroke="#2D5A45"
-                  strokeWidth="0.5"
-                  markerEnd="url(#flow-arrow)"
-                  initial={{ pathLength: 0 }}
-                  animate={diagramInView ? { pathLength: 1 } : {}}
-                  transition={{ duration: 1, delay: 0.5 }}
-                />
-                <text
-                  x="30"
-                  y="19"
-                  textAnchor="middle"
-                  className="fill-forest-light/50 text-[2.5px] font-mono"
-                >
-                  RIVER FLOW
-                </text>
-
-                {/* New Orleans marker */}
-                <motion.g
-                  initial={{ opacity: 0 }}
-                  animate={diagramInView ? { opacity: 1 } : {}}
-                  transition={{ delay: 1 }}
-                >
-                  <line
-                    x1="60"
-                    y1="10"
-                    x2="60"
-                    y2="14"
-                    stroke="#FAFAFA"
-                    strokeWidth="0.5"
-                  />
-                  <circle cx="60" cy="9" r="1.5" fill="#FAFAFA" />
-                  <text
-                    x="60"
-                    y="6"
-                    textAnchor="middle"
-                    className="fill-white text-[3px] font-serif"
-                  >
-                    New Orleans
-                  </text>
-                </motion.g>
-
-                {/* Carrollton intake marker */}
-                <motion.g
-                  initial={{ opacity: 0 }}
-                  animate={diagramInView ? { opacity: 1 } : {}}
-                  transition={{ delay: 1.2 }}
-                >
-                  <line
-                    x1="65"
-                    y1="14"
-                    x2="65"
-                    y2="30"
-                    stroke="#8A9BA8"
-                    strokeWidth="0.3"
-                    strokeDasharray="1 0.5"
-                  />
-                  <text
-                    x="65"
-                    y="34"
-                    textAnchor="middle"
-                    className="fill-titanium/40 text-[2px] font-mono"
-                  >
-                    WATER INTAKE
-                  </text>
-                </motion.g>
-
-                {/* Emergency sill */}
-                {flowRate < 250 && (
-                  <motion.g initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                    <rect
-                      x="110"
-                      y="38"
-                      width="6"
-                      height="7"
-                      fill="rgba(138,155,168,0.3)"
-                      stroke="#8A9BA8"
-                      strokeWidth="0.3"
-                    />
-                    <text
-                      x="113"
-                      y="37"
-                      textAnchor="middle"
-                      className="fill-titanium/40 text-[2px] font-mono"
-                    >
-                      SILL
-                    </text>
-                  </motion.g>
-                )}
-              </svg>
-            </div>
-
-            {/* Flow rate slider */}
-            <div className="mt-6 pt-6 border-t border-white/5">
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-sm text-titanium">
-                  River Flow Rate
-                </span>
-                <span
-                  className={`font-mono text-sm ${
-                    flowRate < 200 ? 'text-copper' : 'text-verdigris'
-                  }`}
-                >
-                  {flowRate.toLocaleString()} kcfs
-                </span>
-              </div>
-              <input
-                type="range"
-                min="100"
-                max="400"
-                value={flowRate}
-                onChange={(e) => setFlowRate(Number(e.target.value))}
-                className="w-full accent-copper"
-              />
-              <div className="flex justify-between text-xs text-muted font-mono mt-1">
-                <span>100 kcfs (Crisis)</span>
-                <span>300 kcfs (Safe threshold)</span>
-                <span>400 kcfs (Normal)</span>
-              </div>
-              {flowRate < 200 && (
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="mt-3 text-copper text-sm"
-                >
-                  At this flow rate, the saltwater wedge threatens the
-                  Carrollton drinking water intake for 1.2 million residents of
-                  Greater New Orleans.
-                </motion.p>
-              )}
-              {flowRate >= 200 && flowRate < 300 && (
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="mt-3 text-titanium text-sm"
-                >
-                  Below the safe threshold. The Army Corps of Engineers may
-                  deploy an emergency sill to slow the saltwater advance.
-                </motion.p>
-              )}
-            </div>
+            <WedgeModel />
           </motion.div>
         </div>
       </section>
@@ -524,10 +270,10 @@ export default function SWISPage() {
                 transition={{ duration: 0.5, delay: 0.2 + i * 0.15 }}
                 className="glass rounded-xl p-6 text-center"
               >
-                <span className="font-serif text-3xl text-copper">
+                <span className="block font-sans font-semibold tracking-tight text-4xl text-white">
                   {item.stat}
                 </span>
-                <span className="block text-white text-sm font-mono mt-1">
+                <span className="block text-titanium text-xs font-mono uppercase tracking-wider mt-2">
                   {item.label}
                 </span>
                 <p className="text-titanium text-sm mt-3 leading-relaxed">

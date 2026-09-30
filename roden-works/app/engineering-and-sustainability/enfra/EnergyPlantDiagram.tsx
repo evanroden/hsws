@@ -1,631 +1,694 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
+import { useEffect, useState, type KeyboardEvent, type ReactNode } from 'react'
 import { useInView } from '@/lib/hooks'
+import SegmentedControl from '@/components/ui/SegmentedControl'
+import { chart } from '@/components/charts/tokens'
+import { useElementSize } from '@/components/charts/useElementSize'
+import { GROUPS, GROUP_BY_ID, LOOPS, LOOP_ORDER, OUTAGE_STEPS, type GroupId, type LoopId, type Mode } from './plant-model'
+import { WIDE, type PipeDef, type Pt, type Rect } from './plant-layout'
+import {
+  Ats,
+  BasUnit,
+  Boiler,
+  Chiller,
+  Generator,
+  HAIRLINE,
+  HospitalCardView,
+  Meter,
+  Pump,
+  SURFACE,
+  T,
+  Tower,
+  Transformer,
+  type Tone,
+} from './plant-symbols'
 
-/* ═══════════════════════════════════════════════════════
-   Colors — matches site design tokens
-   ═══════════════════════════════════════════════════════ */
-const C = {
-  copper: '#B87333',
-  forest: '#2D5A45',
-  titanium: '#8A9BA8',
-  white: '#ffffff',
-}
+const L = WIDE
+const DEAD = chart.deemph
+const ALERT = '#E5605A' // 5.0:1 on surface; used only for "utility feed lost"
 
-/* ═══════════════════════════════════════════════════════
-   Component data — position, description, key specs
-   ═══════════════════════════════════════════════════════ */
-const components = [
-  {
-    id: 'boiler',
-    label: 'Steam Boilers',
-    color: C.copper,
-    specs: ['2× 600 HP fire-tube', '150 PSI / 350 °F', 'Natural gas + #2 fuel oil'],
-    description:
-      'Dual-fuel fire-tube boilers generate high-pressure steam for heating, sterilization (autoclaves), kitchen, laundry, and humidification. Steam is the lifeblood of hospital operations — a single VA medical center may consume 40,000+ lb/hr at peak. Redundant units ensure N+1 reliability for life-safety.',
-  },
-  {
-    id: 'chiller',
-    label: 'Centrifugal Chillers',
-    color: C.forest,
-    specs: ['2× 1,200-ton centrifugal', 'CHW supply 42 °F / return 56 °F', 'R-134a refrigerant'],
-    description:
-      'Water-cooled centrifugal chillers produce chilled water for air conditioning, operating-room cooling, MRI suites, pharmaceutical storage, and server rooms. Each unit circulates refrigerant through an evaporator (cooling the CHW) and a condenser (rejecting heat to the condenser-water loop). Variable-speed drives optimize part-load efficiency.',
-  },
-  {
-    id: 'cooling-tower',
-    label: 'Cooling Towers',
-    color: C.titanium,
-    specs: ['2-cell induced-draft', 'CW supply 85 °F / return 95 °F', 'Evaporative heat rejection'],
-    description:
-      'Induced-draft cooling towers reject condenser heat to the atmosphere through evaporative cooling. Hot condenser water cascades over fill media while fans draw ambient air upward, evaporating a small fraction and cooling the remainder. Chemical water treatment controls scale, corrosion, and biological growth in the open loop.',
-  },
-  {
-    id: 'generator',
-    label: 'Emergency Generators',
-    color: C.copper,
-    specs: ['2× 2 MW diesel gensets', 'ATS transfer < 10 sec', 'NEC 700 / NFPA 110 Type 10'],
-    description:
-      'Diesel-electric generators with automatic transfer switches (ATS) ensure uninterrupted power to life-safety loads — ICUs, operating rooms, ventilators, and fire alarm systems. Required to reach full load within 10 seconds of a utility outage. On-site fuel storage provides 96+ hours of runtime at full load per Joint Commission requirements.',
-  },
-  {
-    id: 'pumps',
-    label: 'Pumping & Distribution',
-    color: C.forest,
-    specs: ['Primary / secondary decoupled', 'VFD-driven, N+1 redundancy', 'Underground pipe network'],
-    description:
-      'Variable-frequency-drive pumps circulate chilled water, condenser water, and condensate through the plant and underground distribution to every building. The primary-secondary decoupled loop allows chillers to run at constant flow while building loads vary. Differential pressure sensors at remote buildings modulate pump speed to match real-time demand.',
-  },
-  {
-    id: 'bas',
-    label: 'Building Automation (BAS)',
-    color: C.titanium,
-    specs: ['ENFRA Connect® platform', 'BACnet / Modbus integration', '24/7 remote monitoring'],
-    description:
-      'The BAS head-end aggregates data from thousands of field sensors — temperature, pressure, flow, power — and executes optimized control sequences across all mechanical systems. ENFRA Connect® provides real-time dashboards, automated fault detection & diagnostics (AFDD), and predictive maintenance alerts, reducing energy consumption 15-25% over baseline.',
-  },
-]
-
-/* ═══════════════════════════════════════════════════════
-   SVG sub-components for equipment detail
-   ═══════════════════════════════════════════════════════ */
-
-function BoilerDrawing({ active }: { active: boolean }) {
-  const o = active ? 1 : 0.6
-  return (
-    <g opacity={o} className="transition-opacity duration-300">
-      {/* Boiler #1 shell */}
-      <rect x="22" y="38" width="52" height="38" rx="3"
-        stroke={C.copper} strokeWidth="0.8" fill={C.copper} fillOpacity="0.06" />
-      {/* Fire tubes */}
-      {[48, 54, 60, 66].map((y) => (
-        <line key={y} x1="28" y1={y} x2="68" y2={y}
-          stroke={C.copper} strokeOpacity="0.2" strokeWidth="0.5" />
-      ))}
-      {/* Burner */}
-      <path d="M45 76 C40 68 45 60 48 60 C51 60 56 68 51 76"
-        stroke={C.copper} strokeOpacity="0.5" strokeWidth="0.6" fill={C.copper} fillOpacity="0.15" />
-      {/* Stack / flue */}
-      <rect x="42" y="22" width="12" height="16" rx="1"
-        stroke={C.copper} strokeOpacity="0.4" strokeWidth="0.6" fill={C.copper} fillOpacity="0.03" />
-      {/* Steam wisps */}
-      <path d="M46 22 C44 16 48 12 46 6" stroke={C.titanium} strokeOpacity="0.2" strokeWidth="0.5" fill="none" />
-      <path d="M50 20 C52 14 48 10 51 4" stroke={C.titanium} strokeOpacity="0.15" strokeWidth="0.4" fill="none" />
-      {/* Pressure gauge */}
-      <circle cx="64" cy="44" r="5" stroke={C.titanium} strokeOpacity="0.35" strokeWidth="0.5" fill={C.titanium} fillOpacity="0.04" />
-      <line x1="64" y1="44" x2="67" y2="41" stroke={C.copper} strokeOpacity="0.6" strokeWidth="0.5" />
-      <circle cx="64" cy="44" r="0.8" fill={C.copper} fillOpacity="0.5" />
-      {/* Gauge ticks */}
-      {[0, 45, 90, 135, 180].map((deg) => {
-        const r = (deg - 90) * Math.PI / 180
-        return (
-          <line key={deg}
-            x1={64 + Math.cos(r) * 4} y1={44 + Math.sin(r) * 4}
-            x2={64 + Math.cos(r) * 5} y2={44 + Math.sin(r) * 5}
-            stroke={C.titanium} strokeOpacity="0.3" strokeWidth="0.3" />
-        )
-      })}
-      {/* Boiler #2 (behind, smaller) */}
-      <rect x="28" y="82" width="42" height="28" rx="2"
-        stroke={C.copper} strokeOpacity="0.3" strokeWidth="0.5" fill={C.copper} fillOpacity="0.03" />
-      {[92, 97, 102].map((y) => (
-        <line key={y} x1="33" y1={y} x2="65" y2={y}
-          stroke={C.copper} strokeOpacity="0.12" strokeWidth="0.4" />
-      ))}
-      {/* Gas supply line */}
-      <line x1="4" y1="95" x2="28" y2="95" stroke={C.copper} strokeOpacity="0.3" strokeWidth="1.2" />
-      <polygon points="20,93 24,95 20,97" fill={C.copper} fillOpacity="0.35" />
-      <text x="4" y="100" fill={C.titanium} fillOpacity="0.35" fontSize="4" fontFamily="monospace">GAS</text>
-      {/* Steam output header */}
-      <line x1="74" y1="50" x2="90" y2="50" stroke={C.copper} strokeOpacity="0.5" strokeWidth="1.8" />
-      <polygon points="84,47.5 89,50 84,52.5" fill={C.copper} fillOpacity="0.4" />
-      {/* Labels */}
-      <text x="48" y="34" textAnchor="middle" fill={C.white} fillOpacity="0.5" fontSize="5" fontFamily="monospace">BOILER #1</text>
-      <text x="49" y="90" textAnchor="middle" fill={C.white} fillOpacity="0.35" fontSize="4" fontFamily="monospace">BOILER #2</text>
-      <text x="82" y="46" fill={C.copper} fillOpacity="0.4" fontSize="3.5" fontFamily="monospace">350°F</text>
-      <text x="82" y="55" fill={C.copper} fillOpacity="0.35" fontSize="3" fontFamily="monospace">150 PSI</text>
-    </g>
-  )
-}
-
-function ChillerDrawing({ active }: { active: boolean }) {
-  const o = active ? 1 : 0.6
-  return (
-    <g opacity={o} className="transition-opacity duration-300">
-      {/* Chiller #1 — evaporator barrel */}
-      <rect x="135" y="42" width="60" height="18" rx="9"
-        stroke={C.forest} strokeOpacity="0.5" strokeWidth="0.8" fill={C.forest} fillOpacity="0.06" />
-      <text x="165" y="54" textAnchor="middle" fill={C.forest} fillOpacity="0.35" fontSize="3.5" fontFamily="monospace">EVAPORATOR</text>
-      {/* Tube bundle hint */}
-      {[48, 52, 56].map((y) => (
-        <line key={y} x1="142" y1={y} x2="188" y2={y}
-          stroke={C.forest} strokeOpacity="0.08" strokeWidth="0.3" />
-      ))}
-      {/* Condenser barrel */}
-      <rect x="135" y="68" width="60" height="18" rx="9"
-        stroke={C.titanium} strokeOpacity="0.4" strokeWidth="0.7" fill={C.titanium} fillOpacity="0.04" />
-      <text x="165" y="80" textAnchor="middle" fill={C.titanium} fillOpacity="0.3" fontSize="3.5" fontFamily="monospace">CONDENSER</text>
-      {/* Compressor between barrels */}
-      <circle cx="165" cy="63" r="6" stroke={C.forest} strokeOpacity="0.45" strokeWidth="0.7" fill={C.forest} fillOpacity="0.08" />
-      <text x="165" y="65" textAnchor="middle" fill={C.white} fillOpacity="0.35" fontSize="3.5" fontFamily="monospace">M</text>
-      {/* Refrigerant loop arrows */}
-      <path d="M159 57 L159 60" stroke={C.forest} strokeOpacity="0.2" strokeWidth="0.4" />
-      <path d="M171 66 L171 69" stroke={C.forest} strokeOpacity="0.2" strokeWidth="0.4" />
-      {/* Chiller #2 (below, secondary) */}
-      <rect x="140" y="94" width="50" height="14" rx="7"
-        stroke={C.forest} strokeOpacity="0.25" strokeWidth="0.5" fill={C.forest} fillOpacity="0.03" />
-      <rect x="140" y="112" width="50" height="14" rx="7"
-        stroke={C.titanium} strokeOpacity="0.2" strokeWidth="0.5" fill={C.titanium} fillOpacity="0.02" />
-      <circle cx="165" cy="108" r="4" stroke={C.forest} strokeOpacity="0.25" strokeWidth="0.5" fill={C.forest} fillOpacity="0.04" />
-      <text x="165" y="110" textAnchor="middle" fill={C.white} fillOpacity="0.2" fontSize="3" fontFamily="monospace">M</text>
-      {/* CHW supply output */}
-      <line x1="195" y1="51" x2="220" y2="51" stroke={C.forest} strokeOpacity="0.5" strokeWidth="1.8" />
-      <polygon points="212,48.5 217,51 212,53.5" fill={C.forest} fillOpacity="0.4" />
-      {/* CHW return input */}
-      <line x1="195" y1="58" x2="220" y2="58" stroke={C.forest} strokeOpacity="0.3" strokeWidth="1.2" strokeDasharray="3 2" />
-      <polygon points="143,55.5 138,58 143,60.5" fill={C.forest} fillOpacity="0.25" />
-      {/* CW to cooling towers (down) */}
-      <line x1="175" y1="86" x2="175" y2="145" stroke={C.titanium} strokeOpacity="0.35" strokeWidth="1.2" />
-      <polygon points="172.5,138 175,143 177.5,138" fill={C.titanium} fillOpacity="0.3" />
-      {/* CW return from cooling towers (up) */}
-      <line x1="155" y1="145" x2="155" y2="86" stroke={C.titanium} strokeOpacity="0.25" strokeWidth="1.0" strokeDasharray="3 2" />
-      <polygon points="152.5,92 155,87 157.5,92" fill={C.titanium} fillOpacity="0.2" />
-      {/* Labels */}
-      <text x="165" y="36" textAnchor="middle" fill={C.white} fillOpacity="0.5" fontSize="5" fontFamily="monospace">CHILLER #1 — 1,200 TON</text>
-      <text x="165" y="92" textAnchor="middle" fill={C.white} fillOpacity="0.3" fontSize="4" fontFamily="monospace">CHILLER #2</text>
-      <text x="208" y="47" fill={C.forest} fillOpacity="0.4" fontSize="3.5" fontFamily="monospace">42°F</text>
-      <text x="208" y="64" fill={C.forest} fillOpacity="0.3" fontSize="3" fontFamily="monospace">56°F</text>
-    </g>
-  )
-}
-
-function CoolingTowerDrawing({ active }: { active: boolean }) {
-  const o = active ? 1 : 0.6
-  return (
-    <g opacity={o} className="transition-opacity duration-300">
-      {/* Tower cell #1 — hyperboloid shape */}
-      <path d="M135 218 Q135 185 148 165 Q148 155 144 148 L156 148 Q152 155 152 165 Q165 185 165 218Z"
-        stroke={C.titanium} strokeOpacity="0.5" strokeWidth="0.8" fill={C.titanium} fillOpacity="0.04" />
-      {/* Fill media lines */}
-      {[185, 192, 199, 206].map((y) => (
-        <line key={y} x1="138" y1={y} x2="162" y2={y}
-          stroke={C.titanium} strokeOpacity="0.12" strokeWidth="0.3" />
-      ))}
-      {/* Fan */}
-      <circle cx="150" cy="152" r="4" stroke={C.titanium} strokeOpacity="0.3" strokeWidth="0.5" fill="none" />
-      <line x1="147" y1="149" x2="153" y2="155" stroke={C.titanium} strokeOpacity="0.25" strokeWidth="0.4" />
-      <line x1="153" y1="149" x2="147" y2="155" stroke={C.titanium} strokeOpacity="0.25" strokeWidth="0.4" />
-      {/* Mist/evaporation */}
-      {[146, 150, 154].map((x, i) => (
-        <path key={i} d={`M${x} 148 C${x - 1} 143 ${x + 1} 140 ${x} 136`}
-          stroke={C.titanium} strokeOpacity={0.1 + i * 0.03} strokeWidth="0.4" fill="none" />
-      ))}
-      {/* Basin */}
-      <rect x="133" y="218" width="34" height="6" rx="1"
-        stroke={C.titanium} strokeOpacity="0.3" strokeWidth="0.5" fill={C.titanium} fillOpacity="0.05" />
-      {/* Tower cell #2 */}
-      <path d="M175 218 Q175 188 186 168 Q186 158 183 152 L193 152 Q190 158 190 168 Q201 188 201 218Z"
-        stroke={C.titanium} strokeOpacity="0.35" strokeWidth="0.6" fill={C.titanium} fillOpacity="0.03" />
-      <circle cx="188" cy="155" r="3" stroke={C.titanium} strokeOpacity="0.2" strokeWidth="0.4" fill="none" />
-      <rect x="173" y="218" width="30" height="6" rx="1"
-        stroke={C.titanium} strokeOpacity="0.25" strokeWidth="0.4" fill={C.titanium} fillOpacity="0.03" />
-      {/* CW pipe labels */}
-      <text x="178" y="143" fill={C.titanium} fillOpacity="0.35" fontSize="3" fontFamily="monospace">95°F</text>
-      <text x="145" y="143" fill={C.titanium} fillOpacity="0.3" fontSize="3" fontFamily="monospace">85°F</text>
-      {/* Make-up water */}
-      <line x1="120" y1="221" x2="133" y2="221" stroke={C.forest} strokeOpacity="0.2" strokeWidth="0.6" />
-      <text x="108" y="219" fill={C.forest} fillOpacity="0.25" fontSize="3" fontFamily="monospace">MAKE-UP</text>
-      {/* Label */}
-      <text x="168" y="234" textAnchor="middle" fill={C.white} fillOpacity="0.4" fontSize="4.5" fontFamily="monospace">COOLING TOWERS</text>
-    </g>
-  )
-}
-
-function GeneratorDrawing({ active }: { active: boolean }) {
-  const o = active ? 1 : 0.6
-  return (
-    <g opacity={o} className="transition-opacity duration-300">
-      {/* Generator #1 — engine block */}
-      <rect x="20" y="155" width="40" height="24" rx="2"
-        stroke={C.copper} strokeOpacity="0.45" strokeWidth="0.7" fill={C.copper} fillOpacity="0.05" />
-      {/* Cylinder heads */}
-      {[26, 33, 40, 47, 54].map((x) => (
-        <rect key={x} x={x} y="158" width="4" height="18" rx="0.5"
-          stroke={C.copper} strokeOpacity="0.15" strokeWidth="0.3" fill={C.copper} fillOpacity="0.04" />
-      ))}
-      <text x="40" y="168" textAnchor="middle" fill={C.white} fillOpacity="0.3" fontSize="3.5" fontFamily="monospace">ENGINE</text>
-      {/* Alternator */}
-      <circle cx="72" cy="167" r="10" stroke={C.copper} strokeOpacity="0.4" strokeWidth="0.7" fill={C.copper} fillOpacity="0.04" />
-      <circle cx="72" cy="167" r="5" stroke={C.copper} strokeOpacity="0.2" strokeWidth="0.4" fill="none" />
-      <text x="72" y="169" textAnchor="middle" fill={C.white} fillOpacity="0.3" fontSize="3" fontFamily="monospace">ALT</text>
-      {/* Shaft connecting engine to alternator */}
-      <line x1="60" y1="167" x2="62" y2="167" stroke={C.copper} strokeOpacity="0.3" strokeWidth="1" />
-      {/* Generator #2 */}
-      <rect x="20" y="188" width="36" height="18" rx="2"
-        stroke={C.copper} strokeOpacity="0.25" strokeWidth="0.5" fill={C.copper} fillOpacity="0.03" />
-      <circle cx="66" cy="197" r="7" stroke={C.copper} strokeOpacity="0.25" strokeWidth="0.5" fill={C.copper} fillOpacity="0.03" />
-      <text x="66" y="199" textAnchor="middle" fill={C.white} fillOpacity="0.2" fontSize="2.5" fontFamily="monospace">ALT</text>
-      {/* Fuel tank */}
-      <rect x="8" y="215" width="32" height="14" rx="2"
-        stroke={C.copper} strokeOpacity="0.3" strokeWidth="0.5" fill={C.copper} fillOpacity="0.04" />
-      <text x="24" y="224" textAnchor="middle" fill={C.copper} fillOpacity="0.35" fontSize="3.5" fontFamily="monospace">DIESEL</text>
-      <text x="24" y="234" textAnchor="middle" fill={C.titanium} fillOpacity="0.25" fontSize="2.5" fontFamily="monospace">96 HR SUPPLY</text>
-      {/* Fuel line */}
-      <line x1="24" y1="215" x2="24" y2="206" stroke={C.copper} strokeOpacity="0.2" strokeWidth="0.5" />
-      {/* ATS (Automatic Transfer Switch) */}
-      <rect x="52" y="215" width="30" height="20" rx="2"
-        stroke={C.titanium} strokeOpacity="0.4" strokeWidth="0.6" fill={C.titanium} fillOpacity="0.04" />
-      <text x="67" y="224" textAnchor="middle" fill={C.white} fillOpacity="0.35" fontSize="3.5" fontFamily="monospace">ATS</text>
-      <text x="67" y="231" textAnchor="middle" fill={C.titanium} fillOpacity="0.25" fontSize="2.5" fontFamily="monospace">&lt;10 SEC</text>
-      {/* Utility feed into ATS */}
-      <line x1="4" y1="225" x2="52" y2="225" stroke={C.titanium} strokeOpacity="0.25" strokeWidth="0.8" />
-      <text x="4" y="220" fill={C.titanium} fillOpacity="0.3" fontSize="3" fontFamily="monospace">UTILITY</text>
-      {/* Generator feed into ATS */}
-      <line x1="72" y1="177" x2="72" y2="215" stroke={C.copper} strokeOpacity="0.3" strokeWidth="1" />
-      {/* Power output from ATS */}
-      <line x1="82" y1="225" x2="98" y2="225" stroke={C.copper} strokeOpacity="0.4" strokeWidth="1.5" />
-      <polygon points="92,222.5 97,225 92,227.5" fill={C.copper} fillOpacity="0.35" />
-      {/* Labels */}
-      <text x="40" y="150" fill={C.white} fillOpacity="0.45" fontSize="5" fontFamily="monospace">GEN SET #1 — 2 MW</text>
-      <text x="40" y="186" fill={C.white} fillOpacity="0.3" fontSize="4" fontFamily="monospace">GEN SET #2</text>
-    </g>
-  )
-}
-
-function PumpDrawing({ active }: { active: boolean }) {
-  const o = active ? 1 : 0.6
-  // P&ID pump symbol: circle with triangle inside
-  const Pump = ({ x, y, size, color, label }: { x: number; y: number; size: number; color: string; label: string }) => (
-    <g>
-      <circle cx={x} cy={y} r={size} stroke={color} strokeOpacity="0.45" strokeWidth="0.6" fill={color} fillOpacity="0.06" />
-      <polygon
-        points={`${x - size * 0.5},${y - size * 0.55} ${x + size * 0.65},${y} ${x - size * 0.5},${y + size * 0.55}`}
-        fill={color} fillOpacity="0.2" />
-      <text x={x} y={y + size + 5} textAnchor="middle" fill={color} fillOpacity="0.35" fontSize="3" fontFamily="monospace">{label}</text>
-    </g>
-  )
-  return (
-    <g opacity={o} className="transition-opacity duration-300">
-      {/* Primary CHW pumps */}
-      <Pump x={240} y={165} size={6} color={C.forest} label="PRI CHW" />
-      <Pump x={260} y={165} size={6} color={C.forest} label="" />
-      {/* Secondary CHW pumps */}
-      <Pump x={240} y={195} size={6} color={C.forest} label="SEC CHW" />
-      <Pump x={260} y={195} size={6} color={C.forest} label="" />
-      {/* CW pumps */}
-      <Pump x={240} y={220} size={5} color={C.titanium} label="CW" />
-      <Pump x={258} y={220} size={5} color={C.titanium} label="" />
-      {/* Condensate pump */}
-      <Pump x={248} y={245} size={5} color={C.copper} label="COND" />
-      {/* VFD indicators */}
-      {[165, 195].map((y) => (
-        <g key={y}>
-          <rect x="268" y={y - 4} width="12" height="8" rx="1"
-            stroke={C.forest} strokeOpacity="0.25" strokeWidth="0.4" fill={C.forest} fillOpacity="0.04" />
-          <text x="274" y={y + 2} textAnchor="middle" fill={C.forest} fillOpacity="0.3" fontSize="2.8" fontFamily="monospace">VFD</text>
-        </g>
-      ))}
-      {/* Pipe headers — horizontal lines through pumps */}
-      <line x1="220" y1="165" x2="295" y2="165" stroke={C.forest} strokeOpacity="0.15" strokeWidth="0.4" />
-      <line x1="220" y1="195" x2="295" y2="195" stroke={C.forest} strokeOpacity="0.12" strokeWidth="0.4" />
-      <line x1="220" y1="220" x2="280" y2="220" stroke={C.titanium} strokeOpacity="0.12" strokeWidth="0.4" />
-      {/* Label */}
-      <text x="250" y="150" textAnchor="middle" fill={C.white} fillOpacity="0.4" fontSize="4.5" fontFamily="monospace">PUMP HOUSE</text>
-    </g>
-  )
-}
-
-function BasDrawing({ active }: { active: boolean }) {
-  const o = active ? 1 : 0.6
-  return (
-    <g opacity={o} className="transition-opacity duration-300">
-      {/* Head-end workstation — monitor */}
-      <rect x="310" y="170" width="45" height="30" rx="2"
-        stroke={C.titanium} strokeOpacity="0.45" strokeWidth="0.7" fill={C.titanium} fillOpacity="0.04" />
-      {/* Screen content — dashboard */}
-      <rect x="314" y="174" width="37" height="20" rx="1"
-        stroke={C.titanium} strokeOpacity="0.2" strokeWidth="0.3" fill={C.titanium} fillOpacity="0.03" />
-      {/* Dashboard elements — mini bar chart */}
-      {[0, 1, 2, 3, 4, 5].map((i) => (
-        <rect key={i} x={317 + i * 5} y={188 - (3 + i * 1.2)} width="3" height={3 + i * 1.2} rx="0.3"
-          fill={i < 4 ? C.forest : C.copper} fillOpacity={0.15 + i * 0.03} />
-      ))}
-      {/* Trend line on screen */}
-      <polyline points="316,180 322,179 328,181 334,177 340,175 346,176"
-        stroke={C.forest} strokeOpacity="0.3" strokeWidth="0.5" fill="none" />
-      {/* Status LEDs */}
-      <circle cx="318" cy="176" r="1" fill="#2ECC71" fillOpacity="0.35" />
-      <circle cx="323" cy="176" r="1" fill="#2ECC71" fillOpacity="0.3" />
-      <circle cx="328" cy="176" r="1" fill={C.copper} fillOpacity="0.3" />
-      {/* Monitor stand */}
-      <line x1="332" y1="200" x2="332" y2="208" stroke={C.titanium} strokeOpacity="0.25" strokeWidth="0.5" />
-      <rect x="325" y="208" width="15" height="3" rx="0.5"
-        stroke={C.titanium} strokeOpacity="0.2" strokeWidth="0.3" fill={C.titanium} fillOpacity="0.03" />
-      {/* Network hub */}
-      <rect x="315" y="218" width="20" height="10" rx="1"
-        stroke={C.titanium} strokeOpacity="0.35" strokeWidth="0.5" fill={C.titanium} fillOpacity="0.04" />
-      {[320, 324, 328, 332].map((x) => (
-        <circle key={x} cx={x} cy="223" r="0.8" fill="#2ECC71" fillOpacity="0.25" />
-      ))}
-      <text x="325" y="226" textAnchor="middle" fill={C.titanium} fillOpacity="0.25" fontSize="2.5" fontFamily="monospace">HUB</text>
-      {/* BACnet / Modbus labels */}
-      <text x="345" y="224" fill={C.titanium} fillOpacity="0.25" fontSize="2.8" fontFamily="monospace">BACnet</text>
-      <text x="345" y="230" fill={C.titanium} fillOpacity="0.2" fontSize="2.5" fontFamily="monospace">Modbus</text>
-      {/* Monitoring lines to equipment (dashed) */}
-      {[
-        { x1: 315, y1: 223, x2: 90, y2: 180 },   // to generators
-        { x1: 315, y1: 218, x2: 90, y2: 75 },     // to boilers
-        { x1: 315, y1: 216, x2: 195, y2: 75 },    // to chillers
-        { x1: 315, y1: 220, x2: 200, y2: 200 },   // to cooling towers
-        { x1: 315, y1: 225, x2: 280, y2: 195 },   // to pumps
-      ].map((line, i) => (
-        <line key={i} {...line}
-          stroke={C.titanium} strokeOpacity="0.06" strokeWidth="0.4" strokeDasharray="4 3" />
-      ))}
-      {/* ENFRA Connect label */}
-      <rect x="308" y="236" width="50" height="12" rx="1"
-        stroke={C.copper} strokeOpacity="0.3" strokeWidth="0.5" fill={C.copper} fillOpacity="0.04" />
-      <text x="333" y="244" textAnchor="middle" fill={C.copper} fillOpacity="0.4" fontSize="3.5" fontFamily="monospace">ENFRA Connect®</text>
-      {/* Label */}
-      <text x="332" y="164" textAnchor="middle" fill={C.white} fillOpacity="0.4" fontSize="4.5" fontFamily="monospace">BAS HEAD-END</text>
-    </g>
-  )
-}
-
-function BuildingLoad() {
-  return (
-    <g opacity="0.55">
-      {/* Hospital building silhouette */}
-      <rect x="310" y="34" width="75" height="100" rx="2"
-        stroke={C.titanium} strokeOpacity="0.2" strokeWidth="0.6" fill={C.titanium} fillOpacity="0.02" />
-      {/* Hospital cross */}
-      <line x1="347" y1="40" x2="347" y2="56" stroke={C.titanium} strokeOpacity="0.15" strokeWidth="0.5" />
-      <line x1="339" y1="48" x2="355" y2="48" stroke={C.titanium} strokeOpacity="0.15" strokeWidth="0.5" />
-      {/* Window rows */}
-      {[64, 78, 92, 106].map((y) =>
-        [318, 330, 342, 354, 366, 378].map((x) => (
-          <rect key={`${x}-${y}`} x={x} y={y} width="5" height="7" rx="0.5"
-            fill={C.titanium} fillOpacity="0.03" stroke={C.titanium} strokeOpacity="0.05" strokeWidth="0.2" />
-        ))
-      )}
-      {/* AHU symbol inside building */}
-      <rect x="330" y="118" width="20" height="10" rx="1"
-        stroke={C.forest} strokeOpacity="0.15" strokeWidth="0.4" fill={C.forest} fillOpacity="0.03" />
-      <text x="340" y="125" textAnchor="middle" fill={C.forest} fillOpacity="0.2" fontSize="3" fontFamily="monospace">AHU</text>
-      {/* Label */}
-      <text x="347" y="30" textAnchor="middle" fill={C.white} fillOpacity="0.3" fontSize="4" fontFamily="monospace">HOSPITAL</text>
-      <text x="347" y="142" textAnchor="middle" fill={C.titanium} fillOpacity="0.2" fontSize="3" fontFamily="monospace">VA MEDICAL CENTER</text>
-    </g>
-  )
-}
-
-/* ═══════════════════════════════════════════════════════
-   Main piping network — connects all equipment
-   ═══════════════════════════════════════════════════════ */
-function PipingNetwork({ isInView }: { isInView: boolean }) {
-  const pipes = [
-    // Steam supply: Boilers → Building (copper, solid)
-    { d: 'M 90 50 L 300 50 L 300 60 L 310 60', color: C.copper, w: 1.8, dash: '', delay: 0.8, label: 'STEAM SUPPLY', lx: 200, ly: 46 },
-    // Condensate return: Building → Boilers (copper, dashed)
-    { d: 'M 310 120 L 300 120 L 300 95 L 74 95 L 74 76', color: C.copper, w: 1.0, dash: '3 2', delay: 1.0, label: 'CONDENSATE RETURN', lx: 200, ly: 92 },
-    // CHW supply: Chillers → Pumps → Building (forest, solid)
-    { d: 'M 220 51 L 295 51 L 295 80 L 310 80', color: C.forest, w: 1.8, dash: '', delay: 1.2, label: 'CHW SUPPLY', lx: 280, ly: 77 },
-    // CHW return: Building → Chillers (forest, dashed)
-    { d: 'M 310 100 L 295 100 L 295 58 L 220 58', color: C.forest, w: 1.0, dash: '3 2', delay: 1.4, label: 'CHW RETURN', lx: 280, ly: 104 },
-    // Electrical: Generators → Building
-    { d: 'M 98 225 L 295 225 L 295 130 L 310 130', color: C.copper, w: 1.0, dash: '1 2', delay: 1.8, label: 'EMERGENCY POWER', lx: 200, ly: 222 },
-  ]
-
-  return (
-    <g>
-      {pipes.map((p, i) => (
-        <g key={i}>
-          <motion.path
-            d={p.d}
-            stroke={p.color}
-            strokeOpacity="0.35"
-            strokeWidth={p.w}
-            strokeDasharray={p.dash || undefined}
-            fill="none"
-            initial={{ pathLength: 0 }}
-            animate={isInView ? { pathLength: 1 } : {}}
-            transition={{ duration: 2, delay: p.delay }}
-          />
-          <text x={p.lx} y={p.ly} fill={p.color} fillOpacity="0.25" fontSize="3" fontFamily="monospace">{p.label}</text>
-        </g>
-      ))}
-      {/* Underground distribution zone */}
-      <rect x="98" y="260" width="200" height="14" rx="1"
-        stroke={C.titanium} strokeOpacity="0.08" strokeWidth="0.4" fill={C.titanium} fillOpacity="0.01" />
-      <text x="198" y="269" textAnchor="middle" fill={C.titanium} fillOpacity="0.2" fontSize="3.5" fontFamily="monospace">
-        UNDERGROUND DISTRIBUTION TUNNEL
-      </text>
-    </g>
-  )
-}
-
-/* ═══════════════════════════════════════════════════════
-   Clickable overlay zones (invisible hit areas)
-   ═══════════════════════════════════════════════════════ */
-const zones = [
-  { id: 'boiler', x: 4, y: 20, w: 86, h: 100 },
-  { id: 'chiller', x: 125, y: 20, w: 100, h: 115 },
-  { id: 'cooling-tower', x: 125, y: 135, w: 90, h: 120 },
-  { id: 'generator', x: 4, y: 140, w: 100, h: 110 },
-  { id: 'pumps', x: 220, y: 145, w: 70, h: 115 },
-  { id: 'bas', x: 300, y: 155, w: 70, h: 105 },
-]
-
-/* ═══════════════════════════════════════════════════════
-   Main component
-   ═══════════════════════════════════════════════════════ */
 export default function EnergyPlantDiagram() {
   const { ref, isInView } = useInView(0.1)
-  const [activeComponent, setActiveComponent] = useState<string | null>(null)
-  const [showOnboarding, setShowOnboarding] = useState(true)
-  const active = components.find((c) => c.id === activeComponent)
+  const reduce = useReducedMotion() ?? false
+  const [selected, setSelected] = useState<GroupId | null>(null)
+  const [hovered, setHovered] = useState<GroupId | null>(null)
+  const [touched, setTouched] = useState(false)
+  const [mode, setMode] = useState<Mode>('normal')
+  const [stage, setStage] = useState(0)
 
-  // Dismiss onboarding after first click
-  const handleZoneClick = (id: string) => {
-    setShowOnboarding(false)
-    setActiveComponent(activeComponent === id ? null : id)
+  // Outage sequence: 1 feed lost → 2 generators start → 3 ATS transfers → 4 loads carried
+  useEffect(() => {
+    if (mode === 'normal') {
+      setStage(0)
+      return
+    }
+    if (reduce) {
+      setStage(4)
+      return
+    }
+    setStage(1)
+    const timers = [700, 1500, 2300].map((ms, i) => setTimeout(() => setStage(i + 2), ms))
+    return () => timers.forEach(clearTimeout)
+  }, [mode, reduce])
+
+  const select = (id: GroupId | null) => {
+    setTouched(true)
+    setSelected(id)
+  }
+  const changeMode = (m: Mode) => {
+    setTouched(true)
+    setMode(m)
+    setSelected(m === 'outage' ? 'generators' : null)
   }
 
+  const active = hovered ?? selected
+
   return (
-    <section className="section-padding bg-gradient-to-b from-slate-950 to-forest/5" ref={ref}>
+    <section className="section-padding bg-slate-950" ref={ref}>
       <div className="content-width">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-12"
+          className="mb-10 md:mb-12 max-w-3xl"
         >
-          <span className="font-mono text-xs tracking-widest uppercase text-copper">
-            Interactive Diagram
-          </span>
-          <h2 className="font-serif text-heading text-white mt-3">
-            Anatomy of a Central Energy Plant.
-          </h2>
-          <p className="mt-4 text-titanium max-w-2xl">
-            The &ldquo;heart and lungs&rdquo; of a hospital — producing steam, chilled water,
-            and emergency power for an entire VA medical center campus. Click each system to learn more.
+          <span className="font-mono text-xs tracking-widest uppercase text-copper">Interactive Diagram</span>
+          <h2 className="font-serif text-heading text-white mt-3">Anatomy of a Central Energy Plant.</h2>
+          <p className="mt-4 text-titanium leading-relaxed">
+            The &ldquo;heart and lungs&rdquo; of a hospital campus — producing the steam, chilled water, and emergency
+            power a hospital needs for heating, cooling, sterilization, and critical care. Select a system to see what it
+            does, or switch to a utility outage to watch the plant keep critical loads powered.
           </p>
         </motion.div>
 
-        {/* Diagram — full width */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="glass rounded-xl p-4 md:p-6 lg:p-8"
+        <motion.figure
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.15 }}
+          aria-labelledby="plant-title"
+          className="rounded-2xl border border-white/[0.08] bg-surface p-5 md:p-8"
         >
-          <div className="relative w-full" style={{ paddingBottom: '68%' }}>
-            <svg
-              viewBox="0 0 400 275"
-              className="absolute inset-0 w-full h-full"
-              fill="none"
-              preserveAspectRatio="xMidYMid meet"
-            >
-              {/* Piping first (behind equipment) */}
-              <PipingNetwork isInView={isInView} />
-
-              {/* Equipment drawings */}
-              <BoilerDrawing active={activeComponent === 'boiler'} />
-              <ChillerDrawing active={activeComponent === 'chiller'} />
-              <CoolingTowerDrawing active={activeComponent === 'cooling-tower'} />
-              <GeneratorDrawing active={activeComponent === 'generator'} />
-              <PumpDrawing active={activeComponent === 'pumps'} />
-              <BasDrawing active={activeComponent === 'bas'} />
-              <BuildingLoad />
-
-              {/* Clickable overlay zones */}
-              {zones.map((z) => (
-                <g key={z.id}>
-                  <rect
-                    x={z.x} y={z.y} width={z.w} height={z.h}
-                    fill="transparent"
-                    className="cursor-pointer"
-                    onClick={() => handleZoneClick(z.id)}
-                  />
-                  {/* Pulsing dot indicator */}
-                  {!activeComponent && (
-                    <g className="pointer-events-none">
-                      <circle
-                        cx={z.x + z.w / 2}
-                        cy={z.y + z.h / 2}
-                        r="3"
-                        fill={components.find(c => c.id === z.id)?.color || C.titanium}
-                        fillOpacity="0.6"
-                      >
-                        <animate attributeName="r" values="2;4;2" dur="2s" repeatCount="indefinite" />
-                        <animate attributeName="fillOpacity" values="0.6;0.2;0.6" dur="2s" repeatCount="indefinite" />
-                      </circle>
-                    </g>
-                  )}
-                </g>
-              ))}
-
-              {/* Active highlight border */}
-              {activeComponent && (() => {
-                const z = zones.find((z) => z.id === activeComponent)
-                if (!z) return null
-                const comp = components.find((c) => c.id === activeComponent)
-                return (
-                  <rect
-                    x={z.x} y={z.y} width={z.w} height={z.h}
-                    rx="3"
-                    fill="transparent"
-                    stroke={comp?.color || C.titanium}
-                    strokeOpacity="0.25"
-                    strokeWidth="1"
-                    strokeDasharray="4 2"
-                    className="pointer-events-none"
-                  />
-                )
-              })()}
-
-              {/* Title */}
-              <text x="200" y="12" textAnchor="middle" className="fill-white/30 text-[4px] font-mono tracking-widest">
-                CENTRAL ENERGY PLANT — P&amp;ID SCHEMATIC
-              </text>
-            </svg>
+          <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between mb-6">
+            <div className="min-w-0">
+              <h3 id="plant-title" className="font-sans text-base md:text-lg font-medium text-white">
+                Hospital central energy plant, simplified schematic
+              </h3>
+              <p className="mt-1 text-sm text-muted max-w-2xl">
+                Six systems, five utility loops, one campus. Pipes animate in the direction of flow.
+              </p>
+            </div>
+            <SegmentedControl<Mode>
+              label="Plant operating mode"
+              value={mode}
+              onChange={changeMode}
+              options={[
+                { value: 'normal', label: 'Normal operation' },
+                { value: 'outage', label: 'Utility outage' },
+              ]}
+            />
           </div>
 
-          {/* Inline hint when nothing selected */}
-          {!active && showOnboarding && (
-            <motion.p
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-center text-muted text-sm mt-4 font-mono tracking-wide flex items-center justify-center gap-2"
-            >
-              <span className="inline-block w-2 h-2 rounded-full bg-copper/60 animate-heartbeat" />
-              Click a system to learn more
-            </motion.p>
-          )}
-        </motion.div>
-
-        {/* Info panel — appears below diagram when a component is selected */}
-        {active && (
-          <motion.div
-            key={active.id}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
-            className="glass rounded-xl p-6 md:p-8 mt-6"
-          >
-            <div className="flex flex-col md:flex-row gap-6 md:gap-10">
-              <div className="flex-1">
-                <div className="flex items-center gap-3 mb-3">
-                  <div
-                    className="w-3 h-3 rounded-full"
-                    style={{ backgroundColor: active.color }}
-                  />
-                  <h3 className="font-serif text-xl text-white">{active.label}</h3>
-                </div>
-                <p className="text-titanium text-sm leading-relaxed">{active.description}</p>
-              </div>
-              {active.specs && (
-                <ul className="space-y-2 md:border-l md:border-white/5 md:pl-10 shrink-0 md:w-64">
-                  {active.specs.map((spec, i) => (
-                    <li key={i} className="text-muted text-xs font-mono flex items-start gap-2">
-                      <span className="text-copper mt-0.5">&#x25B8;</span>
-                      {spec}
-                    </li>
-                  ))}
-                </ul>
-              )}
+          <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 xl:gap-8">
+            <div className="xl:col-span-2 min-w-0">
+              <Schematic
+                active={active}
+                selected={selected}
+                mode={mode}
+                stage={stage}
+                reduce={reduce}
+                showMarkers={!touched}
+                onSelect={(id) => select(selected === id ? null : id)}
+                onHover={setHovered}
+              />
             </div>
-            <button
-              onClick={() => setActiveComponent(null)}
-              className="mt-4 text-faint hover:text-muted text-xs font-mono transition-colors"
-            >
-              Close
-            </button>
-          </motion.div>
-        )}
+            <DetailPanel
+              selected={selected}
+              mode={mode}
+              stage={stage}
+              touched={touched}
+              onSelect={select}
+            />
+          </div>
+
+          <figcaption className="mt-6 pt-5 border-t border-white/[0.06] flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+            <LoopLegend />
+            <p className="text-xs text-muted lg:text-right lg:max-w-sm shrink-0">
+              Representative schematic — not an as-built drawing. Equipment ratings are illustrative; the outage sequence
+              is simulated and not to scale.
+            </p>
+          </figcaption>
+        </motion.figure>
       </div>
     </section>
+  )
+}
+
+/* ═════════════════════════════════════════════════════════════════════════
+   Schematic
+   ═════════════════════════════════════════════════════════════════════════ */
+
+interface SchematicProps {
+  active: GroupId | null
+  selected: GroupId | null
+  mode: Mode
+  stage: number
+  reduce: boolean
+  showMarkers: boolean
+  onSelect: (id: GroupId) => void
+  onHover: (id: GroupId | null) => void
+}
+
+type PipeState = 'live' | 'idle' | 'lost'
+
+function Schematic({ active, selected, mode, stage, reduce, showMarkers, onSelect, onHover }: SchematicProps) {
+  const { ref: scrollRef, width: viewport } = useElementSize<HTMLDivElement>()
+  const { ref, width } = useElementSize<HTMLDivElement>()
+  const [focused, setFocused] = useState<GroupId | null>(null)
+  const px = width > 0 ? L.W / width : 1.1
+  const overflowing = viewport > 0 && viewport < L.minWidth
+
+  const outage = mode === 'outage'
+  const utilityLost = outage && stage >= 1
+  const genRunning = outage && stage >= 2
+  const onEmergency = outage && stage >= 3
+
+  const pipeState = (p: PipeDef): PipeState => {
+    if (p.power === 'utility') return utilityLost ? 'lost' : 'live'
+    if (p.power === 'emergency') return genRunning ? 'live' : 'idle'
+    if (p.power === 'critical') return utilityLost && !onEmergency ? 'lost' : 'live'
+    return 'live'
+  }
+
+  const lit = (groups: GroupId[]) => !active || groups.includes(active)
+  // In an outage the electrical path is the story: other loops recede
+  const recede = (p: PipeDef) => outage && !active && p.loop !== 'power'
+  const eqOpacity = (g: GroupId) => (active && active !== g ? 0.35 : 1)
+  const tone = (g: GroupId): Tone => (active === g ? 'active' : 'normal')
+
+  const flowDash = `${3 * px} ${13 * px}`
+
+  return (
+    <div>
+      <div ref={scrollRef} className="overflow-x-auto -mx-5 px-5 md:mx-0 md:px-0" data-lenis-prevent>
+        <div ref={ref} className="relative mx-auto" style={{ minWidth: L.minWidth, maxWidth: L.maxWidth }}>
+          <svg
+            viewBox={`0 0 ${L.W} ${L.H}`}
+            className="block w-full h-auto select-none"
+            role="group"
+            aria-label="Schematic of a hospital central energy plant. Use Tab to move between systems and Enter to select one."
+          >
+            <defs>
+              <pattern id="plant-grid" width={16} height={16} patternUnits="userSpaceOnUse">
+                <path d="M16,0 H0 V16" fill="none" stroke="#1A2226" strokeWidth={px} />
+              </pattern>
+            </defs>
+
+            {/* Boundaries */}
+            <rect x={L.plant.x} y={L.plant.y} width={L.plant.w} height={L.plant.h} rx={10} fill="url(#plant-grid)" stroke={HAIRLINE} strokeWidth={px} />
+            <T x={L.plantLabel[0]} y={L.plantLabel[1]} px={px} mono fill={chart.text.muted} tracking={0.08}>
+              CENTRAL ENERGY PLANT
+            </T>
+            <rect x={L.hospital.x} y={L.hospital.y} width={L.hospital.w} height={L.hospital.h} rx={10} fill="none" stroke={active === 'hospital' ? '#4A5761' : HAIRLINE} strokeWidth={px} />
+            <T x={L.hospitalLabel[0]} y={L.hospitalLabel[1]} px={px} mono fill={chart.text.muted} tracking={0.08}>
+              HOSPITAL CAMPUS
+            </T>
+
+            {/* Utility side */}
+            <T x={L.utilityLabels.gas[0]} y={L.utilityLabels.gas[1]} px={px} fill={chart.text.secondary}>
+              Natural gas
+            </T>
+            <T x={L.utilityLabels.power[0]} y={L.utilityLabels.power[1]} px={px} fill={chart.text.secondary}>
+              Utility power
+            </T>
+
+            {/* Lane labels */}
+            {L.lanes.map((lane) => (
+              <g key={lane.group} opacity={eqOpacity(lane.group)} style={{ transition: 'opacity 250ms' }}>
+                <T x={lane.x} y={lane.y} px={px} size={13} weight={600} fill={chart.text.primary}>
+                  {lane.name}
+                </T>
+                <T x={lane.x} y={lane.y + 17 * px} px={px} mono fill={chart.text.muted}>
+                  {lane.spec}
+                </T>
+              </g>
+            ))}
+            <g opacity={eqOpacity('generators')} style={{ transition: 'opacity 250ms' }}>
+              <circle cx={L.status[0] + 4 * px} cy={L.status[1] - 4 * px} r={3.5 * px} fill={genRunning ? LOOPS.power.color : DEAD} />
+              <T x={L.status[0] + 14 * px} y={L.status[1]} px={px} mono fill={genRunning ? chart.text.primary : chart.text.muted}>
+                {genRunning ? (onEmergency ? 'Running · on load' : 'Starting') : 'Standby'}
+              </T>
+            </g>
+
+            {/* Control signals */}
+            <g opacity={lit(['bas']) && !(outage && !active) ? 1 : 0.2} style={{ transition: 'opacity 250ms' }}>
+              {L.signals.map((s, i) => (
+                <polyline
+                  key={i}
+                  points={s.map((p) => p.join(',')).join(' ')}
+                  fill="none"
+                  stroke={LOOPS.controls.color}
+                  strokeWidth={px}
+                  strokeDasharray={`${1.5 * px} ${3 * px}`}
+                  opacity={active === 'bas' ? 1 : 0.55}
+                />
+              ))}
+              {active === 'bas' &&
+                !reduce &&
+                L.signals.map((s, i) => (
+                  <polyline
+                    key={`p${i}`}
+                    points={s.map((p) => p.join(',')).join(' ')}
+                    fill="none"
+                    stroke={LOOPS.controls.tint}
+                    strokeWidth={2 * px}
+                    strokeLinecap="round"
+                    strokeDasharray={`${2 * px} ${22 * px}`}
+                  >
+                    <animate attributeName="stroke-dashoffset" from="0" to={-24 * px} dur="0.9s" repeatCount="indefinite" />
+                  </polyline>
+                ))}
+            </g>
+
+            {/* Pipes */}
+            {L.pipes.map((p) => {
+              const state = pipeState(p)
+              const loop = LOOPS[p.loop]
+              const on = lit(p.groups)
+              const color = state === 'live' ? loop.color : DEAD
+              const pts = p.pts.map((q) => q.join(',')).join(' ')
+              const opacity = !on ? 0.14 : recede(p) ? 0.3 : 1
+              return (
+                <g key={p.id} opacity={opacity} style={{ transition: 'opacity 250ms' }}>
+                  <polyline
+                    points={pts}
+                    fill="none"
+                    stroke={color}
+                    strokeWidth={(state === 'idle' ? 1.25 : 2) * px}
+                    strokeLinejoin="round"
+                    strokeDasharray={p.dashed || state !== 'live' ? `${6 * px} ${4 * px}` : undefined}
+                    style={{ transition: 'stroke 300ms' }}
+                  />
+                  {state === 'live' && !reduce && (
+                    <polyline points={pts} fill="none" stroke={loop.tint} strokeWidth={2 * px} strokeLinecap="round" strokeDasharray={flowDash}>
+                      <animate attributeName="stroke-dashoffset" from="0" to={-16 * px} dur={p.loop === 'power' ? '0.6s' : '1.1s'} repeatCount="indefinite" />
+                    </polyline>
+                  )}
+                  {state === 'live' && p.arrows?.map((a, i) => <Chevron key={i} at={a} pts={p.pts} color={color} px={px} />)}
+                </g>
+              )
+            })}
+
+            {/* Pipe labels */}
+            {L.pipeLabels.map((lab) => {
+              const pipe = L.pipes.find((p) => p.id === lab.pipe)!
+              const opacity = !lit(pipe.groups) ? 0.2 : recede(pipe) ? 0.45 : 1
+              return (
+                <g key={lab.pipe} opacity={opacity} style={{ transition: 'opacity 250ms' }}>
+                  <T x={lab.x} y={lab.y} px={px} mono anchor={lab.anchor} fill={chart.text.secondary}>
+                    {lab.text}
+                  </T>
+                </g>
+              )
+            })}
+            <g opacity={lit(['generators']) ? 1 : 0.2} style={{ transition: 'opacity 250ms' }}>
+              <T x={470} y={526} px={px} mono fill={utilityLost ? chart.text.muted : chart.text.secondary}>
+                Normal
+              </T>
+              <T x={470} y={578} px={px} mono fill={genRunning ? chart.text.secondary : chart.text.muted}>
+                Emergency
+              </T>
+            </g>
+
+            {/* Utility feed lost */}
+            {utilityLost && (
+              <g>
+                <circle cx={L.outageMark[0]} cy={L.outageMark[1]} r={9} fill={SURFACE} stroke={ALERT} strokeWidth={1.5 * px} />
+                <path
+                  d={`M${L.outageMark[0] - 4},${L.outageMark[1] - 4} l8,8 m0,-8 l-8,8`}
+                  stroke={ALERT}
+                  strokeWidth={1.75 * px}
+                  strokeLinecap="round"
+                />
+                <T x={L.utilityLabels.lost[0]} y={L.utilityLabels.lost[1]} px={px} weight={600} fill={chart.text.primary}>
+                  Feed lost
+                </T>
+              </g>
+            )}
+
+            {/* Equipment */}
+            <Equip opacity={eqOpacity('bas')}>
+              <BasUnit r={L.bas} px={px} tone={tone('bas')} />
+            </Equip>
+            <Equip opacity={eqOpacity('towers')}>
+              <Tower r={L.tower} px={px} tone={tone('towers')} />
+            </Equip>
+            <Equip opacity={eqOpacity('chillers')}>
+              <Chiller r={L.chiller} px={px} tone={tone('chillers')} />
+            </Equip>
+            <Equip opacity={eqOpacity('boilers')}>
+              <Boiler r={L.boiler} px={px} tone={tone('boilers')} />
+              <Meter x={L.meter[0]} y={L.meter[1]} px={px} tone={tone('boilers')} />
+            </Equip>
+            <Equip opacity={eqOpacity('generators')}>
+              <Generator r={L.generator} px={px} tone={tone('generators')} running={genRunning} />
+              <Ats r={L.ats} px={px} tone={tone('generators')} position={onEmergency ? 'E' : 'N'} />
+              <Transformer x={L.transformer[0]} y={L.transformer[1]} px={px} tone={tone('generators')} />
+            </Equip>
+            <Equip opacity={eqOpacity('pumps')}>
+              {L.pumps.map((p) => (
+                <g key={p.id}>
+                  <Pump x={p.x} y={p.y} dir={p.dir} px={px} tone={tone('pumps')} />
+                  <T x={p.tagX} y={p.tagY} px={px} mono anchor={p.tagAnchor} fill={active === 'pumps' ? chart.text.primary : chart.text.muted}>
+                    {p.tag}
+                  </T>
+                </g>
+              ))}
+            </Equip>
+            <Equip opacity={active && active !== 'hospital' && !GROUP_BY_ID[active].loops.some((l) => l !== 'gas' && l !== 'controls' && l !== 'cw') ? 0.35 : 1}>
+              {L.cards.map((c) => {
+                let status: { text: string; color: string } | undefined
+                if (c.id === 'power' && utilityLost)
+                  status = onEmergency ? { text: 'On generator', color: LOOPS.power.color } : { text: 'Transferring…', color: ALERT }
+                return <HospitalCardView key={c.id} id={c.id} r={c.rect} label={c.label} sub={c.sub} px={px} tone={tone('hospital')} status={status} />
+              })}
+            </Equip>
+
+            {/* Selection brackets */}
+            {GROUPS.map((g) => {
+              const show = g.id === active || g.id === focused
+              if (!show) return null
+              const strong = g.id === selected || g.id === focused
+              return L.brackets[g.id].map((r, i) => (
+                <Bracket key={`${g.id}${i}`} r={r} px={px} color={strong ? chart.text.primary : chart.text.muted} />
+              ))
+            })}
+
+            {/* First-visit markers */}
+            {showMarkers &&
+              GROUPS.map((g) => {
+                const [x, y] = L.markers[g.id]
+                return (
+                  <g key={g.id} pointerEvents="none">
+                    {!reduce && (
+                      <circle cx={x} cy={y} r={5 * px} fill="none" stroke={chart.copper} strokeWidth={1.5 * px}>
+                        <animate attributeName="r" values={`${5 * px};${13 * px}`} dur="1.8s" repeatCount="indefinite" />
+                        <animate attributeName="opacity" values="0.9;0" dur="1.8s" repeatCount="indefinite" />
+                      </circle>
+                    )}
+                    <circle cx={x} cy={y} r={4.5 * px} fill="#D08C4F" stroke={SURFACE} strokeWidth={2 * px} />
+                  </g>
+                )
+              })}
+
+            {/* Hit targets — one keyboard stop per system */}
+            {GROUPS.map((g) => (
+              <g
+                key={g.id}
+                role="button"
+                tabIndex={0}
+                aria-pressed={selected === g.id}
+                aria-label={`${g.name}: ${g.short}`}
+                data-cursor=""
+                className="outline-none"
+                onClick={() => onSelect(g.id)}
+                onKeyDown={(e: KeyboardEvent<SVGGElement>) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault()
+                    onSelect(g.id)
+                  }
+                }}
+                onPointerEnter={(e) => e.pointerType === 'mouse' && onHover(g.id)}
+                onPointerLeave={() => onHover(null)}
+                onFocus={() => setFocused(g.id)}
+                onBlur={() => setFocused(null)}
+              >
+                {L.hits[g.id].map((r, i) => (
+                  <rect key={i} x={r.x} y={r.y} width={r.w} height={r.h} rx={6} fill="transparent" />
+                ))}
+              </g>
+            ))}
+          </svg>
+        </div>
+      </div>
+      {overflowing && (
+        <p className="mt-3 text-xs text-muted flex items-center gap-2">
+          <svg aria-hidden="true" className="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
+            <path d="M3 8h10M10 5l3 3-3 3" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          Scroll sideways to see the whole plant
+        </p>
+      )}
+    </div>
+  )
+}
+
+function Equip({ opacity, children }: { opacity: number; children: ReactNode }) {
+  return (
+    <g opacity={opacity} style={{ transition: 'opacity 250ms' }}>
+      {children}
+    </g>
+  )
+}
+
+/** Flow chevron at a point on a polyline, oriented along its segment */
+function Chevron({ at, pts, color, px }: { at: Pt; pts: Pt[]; color: string; px: number }) {
+  let angle = 0
+  for (let i = 0; i < pts.length - 1; i++) {
+    const [ax, ay] = pts[i]
+    const [bx, by] = pts[i + 1]
+    const onX = ay === by && at[1] === ay && at[0] >= Math.min(ax, bx) && at[0] <= Math.max(ax, bx)
+    const onY = ax === bx && at[0] === ax && at[1] >= Math.min(ay, by) && at[1] <= Math.max(ay, by)
+    if (onX || onY) {
+      angle = (Math.atan2(by - ay, bx - ax) * 180) / Math.PI
+      break
+    }
+  }
+  return (
+    <path
+      d={`M${-4 * px},${-5 * px} L${3 * px},0 L${-4 * px},${5 * px}`}
+      transform={`translate(${at[0]},${at[1]}) rotate(${angle})`}
+      fill="none"
+      stroke={color}
+      strokeWidth={2 * px}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  )
+}
+
+/** Corner brackets — the "selected" state, like a crop mark on a drawing */
+function Bracket({ r, px, color }: { r: Rect; px: number; color: string }) {
+  const g = 6 * px
+  const c = Math.min(12 * px, r.w / 3, r.h / 3)
+  const x0 = r.x - g
+  const y0 = r.y - g
+  const x1 = r.x + r.w + g
+  const y1 = r.y + r.h + g
+  const d = [
+    `M${x0},${y0 + c} V${y0} H${x0 + c}`,
+    `M${x1 - c},${y0} H${x1} V${y0 + c}`,
+    `M${x1},${y1 - c} V${y1} H${x1 - c}`,
+    `M${x0 + c},${y1} H${x0} V${y1 - c}`,
+  ].join(' ')
+  return <path d={d} fill="none" stroke={color} strokeWidth={1.5 * px} strokeLinecap="round" pointerEvents="none" />
+}
+
+/* ═════════════════════════════════════════════════════════════════════════
+   Detail panel
+   ═════════════════════════════════════════════════════════════════════════ */
+
+function LoopChip({ id }: { id: LoopId }) {
+  const loop = LOOPS[id]
+  return (
+    <span className="inline-flex items-center gap-1.5 rounded-md border border-white/[0.08] px-2 py-1 text-xs text-titanium">
+      <LoopSwatch id={id} />
+      {loop.label}
+    </span>
+  )
+}
+
+function LoopSwatch({ id, dashed }: { id: LoopId; dashed?: boolean }) {
+  const loop = LOOPS[id]
+  const dotted = id === 'controls'
+  return (
+    <svg aria-hidden="true" width="18" height="6" viewBox="0 0 18 6" className="shrink-0">
+      <line
+        x1="1"
+        x2="17"
+        y1="3"
+        y2="3"
+        stroke={loop.color}
+        strokeWidth={dotted ? 1.5 : 2}
+        strokeLinecap={dotted ? 'round' : 'butt'}
+        strokeDasharray={dotted ? '0.5 3' : dashed ? '4 2.5' : undefined}
+      />
+    </svg>
+  )
+}
+
+interface PanelProps {
+  selected: GroupId | null
+  mode: Mode
+  stage: number
+  touched: boolean
+  onSelect: (id: GroupId | null) => void
+}
+
+function DetailPanel({ selected, mode, stage, touched, onSelect }: PanelProps) {
+  const group = selected ? GROUP_BY_ID[selected] : null
+  const idx = selected ? GROUPS.findIndex((g) => g.id === selected) : -1
+
+  return (
+    <aside aria-live="polite" className="rounded-xl border border-white/[0.08] bg-surface-raised p-5 md:p-6 xl:min-h-full">
+      <AnimatePresence mode="wait" initial={false}>
+        {group ? (
+          <motion.div key={group.id} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
+            <div className="flex items-center justify-between gap-3 mb-4">
+              <button
+                type="button"
+                onClick={() => onSelect(null)}
+                className="text-xs font-medium text-muted hover:text-white transition-colors inline-flex items-center gap-1"
+              >
+                <span aria-hidden="true">←</span> All systems
+              </button>
+              <span className="font-mono text-[11px] text-muted tabular-nums">
+                {idx + 1} / {GROUPS.length}
+              </span>
+            </div>
+
+            {mode === 'outage' && selected === 'generators' && <OutageSequence stage={stage} />}
+
+            <h4 className="font-sans text-lg font-semibold tracking-tight text-white">{group.name}</h4>
+            <div className="mt-3 flex flex-wrap gap-1.5">
+              {group.loops.map((l) => (
+                <LoopChip key={l} id={l} />
+              ))}
+            </div>
+            <p className="mt-4 text-sm text-titanium leading-relaxed">{group.description}</p>
+
+            <dl className="mt-5 divide-y divide-white/[0.06] border-y border-white/[0.06]">
+              {group.params.map((p) => (
+                <div key={p.label} className="flex items-baseline justify-between gap-4 py-2">
+                  <dt className="text-xs text-muted">{p.label}</dt>
+                  <dd className="text-sm text-white text-right">{p.value}</dd>
+                </div>
+              ))}
+            </dl>
+            {group.note && <p className="mt-2 font-mono text-[11px] text-muted leading-relaxed">{group.note}</p>}
+
+            <div className="mt-5 border-l-2 border-copper pl-3">
+              <div className="font-mono text-[11px] uppercase tracking-widest text-copper-light">Evan&rsquo;s role</div>
+              <p className="mt-1 text-sm text-white/90 leading-relaxed">{group.role}</p>
+            </div>
+
+            <div className="mt-5 flex justify-between gap-3">
+              <button
+                type="button"
+                onClick={() => onSelect(GROUPS[(idx - 1 + GROUPS.length) % GROUPS.length].id)}
+                className="rounded-lg border border-white/[0.08] px-3 py-1.5 text-xs font-medium text-muted hover:text-white hover:border-white/20 transition-colors"
+              >
+                ← Previous
+              </button>
+              <button
+                type="button"
+                onClick={() => onSelect(GROUPS[(idx + 1) % GROUPS.length].id)}
+                className="rounded-lg border border-white/[0.08] px-3 py-1.5 text-xs font-medium text-muted hover:text-white hover:border-white/20 transition-colors"
+              >
+                Next →
+              </button>
+            </div>
+          </motion.div>
+        ) : (
+          <motion.div key="list" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
+            {mode === 'outage' && <OutageSequence stage={stage} />}
+            <div className="flex items-center gap-2">
+              {!touched && <span aria-hidden="true" className="inline-block w-2 h-2 rounded-full bg-copper-light animate-heartbeat" />}
+              <span className="font-mono text-[11px] uppercase tracking-widest text-copper-light">Select a system</span>
+            </div>
+            <p className="mt-2 text-sm text-titanium">Tap equipment in the drawing, or choose from the list.</p>
+            <ul className="mt-4 divide-y divide-white/[0.06]">
+              {GROUPS.map((g) => (
+                <li key={g.id}>
+                  <button
+                    type="button"
+                    onClick={() => onSelect(g.id)}
+                    className="group w-full flex items-center justify-between gap-3 py-2.5 text-left"
+                  >
+                    <span className="min-w-0">
+                      <span className="block text-sm font-medium text-white group-hover:text-copper-light transition-colors">{g.name}</span>
+                      <span className="block text-xs text-muted">{g.short}</span>
+                    </span>
+                    <span className="flex items-center gap-1 shrink-0">
+                      {g.loops.map((l) => (
+                        <LoopSwatch key={l} id={l} />
+                      ))}
+                    </span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </aside>
+  )
+}
+
+function OutageSequence({ stage }: { stage: number }) {
+  return (
+    <div className="mb-5 rounded-lg border border-white/[0.08] bg-surface p-4">
+      <div className="font-mono text-[11px] uppercase tracking-widest text-copper-light">Utility outage · simulated</div>
+      <ol className="mt-3 space-y-2.5">
+        {OUTAGE_STEPS.map((s, i) => {
+          const done = stage >= i + 1
+          return (
+            <li key={s.title} className={`flex gap-3 transition-opacity duration-300 ${done ? 'opacity-100' : 'opacity-40'}`}>
+              <span
+                className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-[11px] font-semibold tabular-nums"
+                style={{
+                  borderColor: done ? (i === 0 ? ALERT : LOOPS.power.color) : 'rgba(255,255,255,0.15)',
+                  color: done ? chart.text.primary : chart.text.muted,
+                }}
+              >
+                {i + 1}
+              </span>
+              <span>
+                <span className="block text-sm font-medium text-white">{s.title}</span>
+                <span className="block text-xs text-muted leading-relaxed">{s.detail}</span>
+              </span>
+            </li>
+          )
+        })}
+      </ol>
+    </div>
+  )
+}
+
+function LoopLegend() {
+  const items: { id: LoopId; text: string; ret?: string }[] = LOOP_ORDER.map((id) => {
+    const l = LOOPS[id]
+    return { id, text: l.supply, ret: l.return }
+  })
+  return (
+    <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-2" aria-label="Loop legend">
+      {items.map((it) => (
+        <li key={it.id} className="flex items-center gap-2 text-xs text-titanium">
+          <LoopSwatch id={it.id} />
+          {it.ret && <LoopSwatch id={it.id} dashed />}
+          <span>
+            {it.text}
+            {it.ret && <span className="text-muted"> / {it.ret} (dashed)</span>}
+          </span>
+        </li>
+      ))}
+      <li className="flex items-center gap-2 text-xs text-titanium">
+        <svg aria-hidden="true" width="18" height="6" viewBox="0 0 18 6">
+          <line x1="1" x2="17" y1="3" y2="3" stroke={DEAD} strokeWidth="1.5" strokeDasharray="4 2.5" />
+        </svg>
+        <span className="text-muted">Gray dashed — de-energized / standby</span>
+      </li>
+    </ul>
   )
 }
