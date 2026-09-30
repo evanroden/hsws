@@ -114,7 +114,7 @@ export const WIDE: Layout = {
   meter: [52, 444],
   transformer: [52, 532],
   utilityLabels: { gas: [12, 428], power: [12, 516], lost: [12, 556] },
-  outageMark: [88, 532],
+  outageMark: [94, 532],
 
   pumps: [
     { id: 'cwp', pipe: 'cws', x: 284, y: 238, dir: 'down', tag: 'CWP', tagX: 298, tagY: 243, tagAnchor: 'start' },
@@ -132,7 +132,7 @@ export const WIDE: Layout = {
     { id: 'cond', loop: 'steam', dashed: true, pts: [[716, 496], [476, 496], [476, 452], [452, 452]], groups: ['boilers', 'pumps', 'hospital'], arrows: [[692, 496]] },
     { id: 'gas', loop: 'gas', pts: [[0, 444], [284, 444]], groups: ['boilers'], arrows: [[88, 444]] },
     { id: 'utility', loop: 'power', power: 'utility', pts: [[0, 532], [580, 532]], groups: ['generators'], arrows: [[88, 532]] },
-    { id: 'genfeed', loop: 'power', power: 'emergency', pts: [[444, 584], [580, 584]], groups: ['generators'], arrows: [[520, 584]] },
+    { id: 'genfeed', loop: 'power', power: 'emergency', pts: [[444, 584], [580, 584]], groups: ['generators'], arrows: [[560, 584]] },
     { id: 'critical', loop: 'power', power: 'critical', pts: [[652, 558], [716, 558]], groups: ['generators', 'hospital'], arrows: [[690, 558]] },
   ],
 

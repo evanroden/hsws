@@ -74,7 +74,7 @@ function Bars({ data, metric, highlight, animate }: { data: SpeedTier[]; metric:
   const height = plotH + AXIS_BAND
   const max = niceMax(Math.max(...data.map((d) => d[metric])), 4)
   const x = linearScale([0, max], [0, plotW])
-  const ticks = niceTicks(0, max, compact ? 2 : 4)
+  const ticks = niceTicks(0, max, compact ? 2 : 8)
   const drawn = animate || reduceMotion
   const activeRow = active !== null ? data[active] : null
 

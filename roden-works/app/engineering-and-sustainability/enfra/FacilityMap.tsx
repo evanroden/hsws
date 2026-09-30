@@ -59,7 +59,7 @@ const ROAD = '#56646D'
 
 /* Visible window in map units: full frame on wide screens, a Niagara → Finger Lakes crop on phones */
 const WIDE = { x: 0, y: 0, w: MAP_FRAME.width, h: MAP_FRAME.height }
-const COMPACT = { x: 100, y: 60, w: 520, h: 340 }
+const COMPACT = { x: 100, y: 36, w: 520, h: 360 }
 
 interface CityLabel {
   id: keyof typeof MAP_PLACES
@@ -247,7 +247,7 @@ function MapCanvas({
 
           {/* ── Region labels ── */}
           <motion.g {...fade(0.2)} fontStyle="italic" fill={chart.text.muted} style={{ fontFamily: 'var(--font-newsreader), Georgia, serif' }}>
-            <RegionLabel at={px(compact ? 290 : 590, compact ? 90 : 88)} size={compact ? 14 : 17} spacing={0.04}>
+            <RegionLabel at={px(compact ? 290 : 590, compact ? 76 : 88)} size={compact ? 14 : 17} spacing={0.04}>
               Lake Ontario
             </RegionLabel>
             {!compact && (

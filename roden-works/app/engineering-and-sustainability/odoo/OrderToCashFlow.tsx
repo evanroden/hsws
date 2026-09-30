@@ -413,7 +413,6 @@ export default function OrderToCashFlow() {
           ) : (
             <p className="text-sm text-muted">
               Select a module for Evan&apos;s implementation notes, or trace an order through the flow.
-              {reduceMotion && ' Steps advance with the arrow buttons.'}
             </p>
           )}
         </div>

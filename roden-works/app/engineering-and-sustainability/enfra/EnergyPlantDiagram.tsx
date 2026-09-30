@@ -190,8 +190,29 @@ function Schematic({ active, selected, mode, stage, reduce, showMarkers, onSelec
 
   const flowDash = `${3 * px} ${13 * px}`
 
+  // On narrow screens, bring the selected system into view inside the scroller
+  useEffect(() => {
+    const el = scrollRef.current
+    if (!el || !selected || !overflowing || width === 0) return
+    const rs = L.brackets[selected]
+    const x0 = Math.min(...rs.map((r) => r.x))
+    const x1 = Math.max(...rs.map((r) => r.x + r.w))
+    const center = (((x0 + x1) / 2) / L.W) * width
+    el.scrollTo({ left: Math.max(0, center - el.clientWidth / 2), behavior: reduce ? 'auto' : 'smooth' })
+  }, [selected, overflowing, width, reduce, scrollRef])
+
+  const hint = overflowing && (
+    <p className="mb-3 text-xs text-muted flex items-center gap-2">
+      <svg aria-hidden="true" className="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M3 8h10M10 5l3 3-3 3" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+      Scroll sideways to see the whole plant
+    </p>
+  )
+
   return (
     <div>
+      {hint}
       <div ref={scrollRef} className="overflow-x-auto -mx-5 px-5 md:mx-0 md:px-0" data-lenis-prevent>
         <div ref={ref} className="relative mx-auto" style={{ minWidth: L.minWidth, maxWidth: L.maxWidth }}>
           <svg
@@ -317,7 +338,7 @@ function Schematic({ active, selected, mode, stage, reduce, showMarkers, onSelec
               <T x={470} y={526} px={px} mono fill={utilityLost ? chart.text.muted : chart.text.secondary}>
                 Normal
               </T>
-              <T x={470} y={578} px={px} mono fill={genRunning ? chart.text.secondary : chart.text.muted}>
+              <T x={452} y={578} px={px} mono fill={genRunning ? chart.text.secondary : chart.text.muted}>
                 Emergency
               </T>
             </g>
@@ -433,14 +454,6 @@ function Schematic({ active, selected, mode, stage, reduce, showMarkers, onSelec
           </svg>
         </div>
       </div>
-      {overflowing && (
-        <p className="mt-3 text-xs text-muted flex items-center gap-2">
-          <svg aria-hidden="true" className="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
-            <path d="M3 8h10M10 5l3 3-3 3" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-          Scroll sideways to see the whole plant
-        </p>
-      )}
     </div>
   )
 }
@@ -567,7 +580,9 @@ function DetailPanel({ selected, mode, stage, touched, onSelect }: PanelProps) {
                 <LoopChip key={l} id={l} />
               ))}
             </div>
-            <p className="mt-4 text-sm text-titanium leading-relaxed">{group.description}</p>
+            {!(mode === 'outage' && selected === 'generators') && (
+              <p className="mt-4 text-sm text-titanium leading-relaxed">{group.description}</p>
+            )}
 
             <dl className="mt-5 divide-y divide-white/[0.06] border-y border-white/[0.06]">
               {group.params.map((p) => (
