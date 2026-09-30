@@ -393,7 +393,7 @@ export default function OrderToCashFlow() {
           aria-live="polite"
         >
           {tracing ? (
-            <div className="flex items-start gap-3 md:gap-4">
+            <div className="flex flex-col gap-1.5 sm:flex-row sm:items-start sm:gap-4">
               <span className="font-mono text-[11px] tracking-wider uppercase text-copper-light whitespace-nowrap pt-0.5">
                 {current ? `Step ${step! + 1} / ${EDGES.length}` : 'Complete'}
               </span>
@@ -484,7 +484,7 @@ export default function OrderToCashFlow() {
               <p className="mt-3 text-white text-base leading-relaxed">
                 Choose a module to see how Evan implemented it for clients.
               </p>
-              <ul className="mt-6 grid grid-cols-2 gap-2">
+              <ul className="mt-6 flex flex-wrap gap-2">
                 {MODULES.filter((m) => !m.generic).map((m) => (
                   <li key={m.id}>
                     <button
@@ -493,10 +493,10 @@ export default function OrderToCashFlow() {
                         stopTrace()
                         setSelected(m.id)
                       }}
-                      className="w-full flex items-center gap-2 rounded-lg border border-white/[0.06] px-3 py-2 text-xs text-titanium hover:text-white hover:border-white/20 transition-colors"
+                      className="flex items-center gap-2 rounded-lg border border-white/[0.06] px-3 py-2 text-xs whitespace-nowrap text-titanium hover:text-white hover:border-white/20 transition-colors"
                     >
                       <ModuleIcon id={m.id} className="w-4 h-4 shrink-0" />
-                      <span className="truncate">{m.label}</span>
+                      <span>{m.label}</span>
                     </button>
                   </li>
                 ))}

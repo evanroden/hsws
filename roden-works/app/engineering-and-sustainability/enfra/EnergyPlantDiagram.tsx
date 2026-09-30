@@ -196,10 +196,10 @@ function Schematic({ active, selected, mode, stage, reduce, showMarkers, onSelec
     if (!el || !selected || !overflowing || width === 0) return
     const rs = L.brackets[selected]
     const x0 = Math.min(...rs.map((r) => r.x))
-    const x1 = Math.max(...rs.map((r) => r.x + r.w))
+    const x1 = selected === 'generators' && outage ? L.cards[3].rect.x + L.cards[3].rect.w : Math.max(...rs.map((r) => r.x + r.w))
     const center = (((x0 + x1) / 2) / L.W) * width
     el.scrollTo({ left: Math.max(0, center - el.clientWidth / 2), behavior: reduce ? 'auto' : 'smooth' })
-  }, [selected, overflowing, width, reduce, scrollRef])
+  }, [selected, outage, overflowing, width, reduce, scrollRef])
 
   const hint = overflowing && (
     <p className="mb-3 text-xs text-muted flex items-center gap-2">
