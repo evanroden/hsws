@@ -73,7 +73,7 @@ export default function PageHero({
       </div>
 
       <motion.div
-        className="content-width relative z-10 pb-16 md:pb-24 pt-32"
+        className="content-width w-full relative z-10 pb-16 md:pb-24 pt-32"
         style={{ opacity, y }}
       >
         {label && (

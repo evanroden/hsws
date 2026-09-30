@@ -102,21 +102,32 @@ function HeroGrid() {
 
 /* ─── Particle field with mouse parallax ──────────── */
 
+// Seeded PRNG (mulberry32) so server and client render identical particles — no hydration mismatch
+function seededRandom(seed: number) {
+  return () => {
+    seed |= 0
+    seed = (seed + 0x6d2b79f5) | 0
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed)
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296
+  }
+}
+
 function ParticleField({ mouseX, mouseY }: { mouseX: number; mouseY: number }) {
-  const particles = useMemo(
-    () =>
-      Array.from({ length: 60 }, (_, i) => ({
-        id: i,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        size: Math.random() * 2.5 + 0.5,
-        duration: 5 + Math.random() * 8,
-        delay: Math.random() * 5,
-        opacity: Math.random() * 0.4 + 0.1,
-        depth: Math.random() * 0.5 + 0.5,
-      })),
-    []
-  )
+  const particles = useMemo(() => {
+    const rand = seededRandom(1919)
+    return Array.from({ length: 60 }, (_, i) => ({
+      id: i,
+      x: rand() * 100,
+      y: rand() * 100,
+      size: rand() * 2.5 + 0.5,
+      duration: 5 + rand() * 8,
+      delay: rand() * 5,
+      opacity: rand() * 0.4 + 0.1,
+      depth: rand() * 0.5 + 0.5,
+      drift: (rand() - 0.5) * 20,
+    }))
+  }, [])
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -133,7 +144,7 @@ function ParticleField({ mouseX, mouseY }: { mouseX: number; mouseY: number }) {
           }}
           animate={{
             y: [0, -40, 0],
-            x: [0, (Math.random() - 0.5) * 20, 0],
+            x: [0, p.drift, 0],
             opacity: [p.opacity * 0.5, p.opacity, p.opacity * 0.5],
           }}
           transition={{
@@ -210,7 +221,7 @@ export default function Hero() {
 
       {/* Content with scroll-linked parallax */}
       <motion.div
-        className="content-width relative z-10 text-center"
+        className="content-width w-full relative z-10 text-center"
         style={{
           opacity: heroOpacity,
           scale: heroScale,
@@ -224,7 +235,7 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mb-6"
         >
-          <span className="inline-flex items-center gap-3 font-mono text-xs tracking-[0.3em] uppercase text-titanium/60">
+          <span className="inline-flex items-center gap-3 font-mono text-xs tracking-[0.3em] uppercase text-muted">
             <span className="w-8 h-px bg-copper/50" />
             Portfolio
             <span className="w-8 h-px bg-copper/50" />
@@ -268,15 +279,19 @@ export default function Hero() {
             Optimizing complex systems to improve human quality of life
             <br className="hidden md:block" />
             {' '}at the intersection of{' '}
-            <span className="relative inline-block min-w-[200px] text-left overflow-hidden align-bottom" style={{ height: '1.4em' }}>
-              <AnimatePresence mode="wait">
+            {/* Own centered line on mobile; inline slot on desktop. Words cross-slide so it's never blank. */}
+            <span
+              className="relative block md:inline-block md:min-w-[210px] text-center md:text-left overflow-hidden align-bottom mt-1 md:mt-0"
+              style={{ height: '1.45em' }}
+            >
+              <AnimatePresence initial={false}>
                 <motion.span
                   key={currentWord}
                   initial={{ opacity: 0, y: '100%' }}
                   animate={{ opacity: 1, y: '0%' }}
                   exit={{ opacity: 0, y: '-100%' }}
-                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  className="text-copper font-serif italic absolute left-0"
+                  transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                  className="text-copper-light font-serif italic absolute inset-x-0 md:right-auto"
                 >
                   {words[currentWord]}
                 </motion.span>
@@ -330,7 +345,7 @@ export default function Hero() {
               transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
             >
               <svg
-                className="w-6 h-6 text-titanium/40"
+                className="w-6 h-6 text-muted"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"

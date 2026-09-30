@@ -6,6 +6,7 @@ import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 import ProjectNav from '@/components/navigation/ProjectNav'
 import ReadingTime from '@/components/ui/ReadingTime'
+import MembraneModel from './MembraneModel'
 
 const applications = [
   {
@@ -140,7 +141,7 @@ export default function WimleyLabPage() {
           </svg>
         </div>
 
-        <div className="content-width relative z-10 pb-12 md:pb-16">
+        <div className="content-width w-full relative z-10 pb-12 md:pb-16">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -203,7 +204,7 @@ export default function WimleyLabPage() {
                   </p>
                 </div>
 
-                <div className="mt-8 glass rounded-xl p-6">
+                <div className="mt-8 rounded-xl border border-white/[0.08] bg-surface p-6">
                   <h3 className="font-serif text-lg text-white mb-3">
                     Lab Context
                   </h3>
@@ -232,124 +233,14 @@ export default function WimleyLabPage() {
               </motion.div>
             </div>
 
-            {/* Molecular Visualization */}
+            {/* Molecular Visualization — interactive membrane model */}
             <div ref={vizRef}>
               <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={vizInView ? { opacity: 1, scale: 1 } : {}}
+                initial={{ opacity: 0, y: 24 }}
+                animate={vizInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6 }}
-                className="glass rounded-xl aspect-square flex flex-col items-center justify-center p-8 text-center relative overflow-hidden"
               >
-                {/* Lipid bilayer + pore SVG */}
-                <svg
-                  viewBox="0 0 200 200"
-                  className="absolute inset-0 w-full h-full opacity-10"
-                >
-                  {/* Bilayer upper leaflet */}
-                  <line
-                    x1="0"
-                    y1="80"
-                    x2="200"
-                    y2="80"
-                    stroke="#8A9BA8"
-                    strokeWidth="0.5"
-                  />
-                  {/* Bilayer lower leaflet */}
-                  <line
-                    x1="0"
-                    y1="120"
-                    x2="200"
-                    y2="120"
-                    stroke="#8A9BA8"
-                    strokeWidth="0.5"
-                  />
-                  {/* Lipid head groups */}
-                  {Array.from({ length: 20 }).map((_, i) => (
-                    <g key={`lipid-${i}`}>
-                      <circle
-                        cx={10 + i * 10}
-                        cy="80"
-                        r="2.5"
-                        fill="rgba(138,155,168,0.2)"
-                        stroke="rgba(138,155,168,0.4)"
-                        strokeWidth="0.3"
-                      />
-                      <circle
-                        cx={10 + i * 10}
-                        cy="120"
-                        r="2.5"
-                        fill="rgba(138,155,168,0.2)"
-                        stroke="rgba(138,155,168,0.4)"
-                        strokeWidth="0.3"
-                      />
-                    </g>
-                  ))}
-                  {/* Peptide pore assembly */}
-                  {Array.from({ length: 6 }).map((_, i) => (
-                    <motion.circle
-                      key={`pore-${i}`}
-                      cx={
-                        100 +
-                        18 * Math.cos((i * Math.PI * 2) / 6)
-                      }
-                      cy={
-                        100 +
-                        18 * Math.sin((i * Math.PI * 2) / 6)
-                      }
-                      r="5"
-                      fill="rgba(45,90,69,0.2)"
-                      stroke="rgba(45,90,69,0.6)"
-                      strokeWidth="0.5"
-                      initial={{ scale: 0 }}
-                      animate={vizInView ? { scale: 1 } : {}}
-                      transition={{
-                        duration: 0.4,
-                        delay: 0.5 + i * 0.1,
-                      }}
-                    />
-                  ))}
-                  {/* Central pore lumen */}
-                  <motion.circle
-                    cx="100"
-                    cy="100"
-                    r="8"
-                    fill="none"
-                    stroke="rgba(184,115,51,0.4)"
-                    strokeWidth="0.5"
-                    strokeDasharray="2 1"
-                    initial={{ scale: 0 }}
-                    animate={vizInView ? { scale: 1 } : {}}
-                    transition={{ duration: 0.6, delay: 1.2 }}
-                  />
-                </svg>
-
-                <div className="relative z-10">
-                  <div className="w-20 h-20 rounded-full bg-forest/10 flex items-center justify-center mb-6">
-                    <svg
-                      className="w-10 h-10 text-forest-light"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      strokeWidth="1"
-                    >
-                      <circle cx="12" cy="12" r="3" />
-                      <circle cx="12" cy="4" r="1.5" />
-                      <circle cx="18.5" cy="8" r="1.5" />
-                      <circle cx="18.5" cy="16" r="1.5" />
-                      <circle cx="12" cy="20" r="1.5" />
-                      <circle cx="5.5" cy="16" r="1.5" />
-                      <circle cx="5.5" cy="8" r="1.5" />
-                    </svg>
-                  </div>
-                  <h3 className="font-serif text-xl text-white mb-2">
-                    Molecular Visualization
-                  </h3>
-                  <p className="text-titanium text-sm">
-                    Lipid bilayer membrane with self-assembling peptide pores.
-                    Six peptide subunits form a transmembrane channel allowing
-                    controlled molecular transport.
-                  </p>
-                </div>
+                <MembraneModel />
               </motion.div>
             </div>
           </div>
@@ -388,7 +279,7 @@ export default function WimleyLabPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={peptideInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.2 + i * 0.15 }}
-                className="glass rounded-xl p-6"
+                className="rounded-xl border border-white/[0.08] bg-surface p-6"
               >
                 <h3 className="font-serif text-xl text-white mb-1">
                   {peptide.name}
@@ -429,7 +320,7 @@ export default function WimleyLabPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={appInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.2 + i * 0.15 }}
-                className="glass rounded-xl p-6 border-t-2"
+                className="rounded-xl border border-white/[0.08] bg-surface p-6 border-t-2"
                 style={{ borderTopColor: app.color + '60' }}
               >
                 <div

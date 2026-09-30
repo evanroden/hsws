@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import fs from 'node:fs'
+import path from 'node:path'
 import AboutHero from './AboutHero'
 import Bio from './Bio'
 import Education from './Education'
@@ -15,10 +17,13 @@ export const metadata: Metadata = {
 }
 
 export default function AboutPage() {
+  // Offer a download only when a resume has actually been added to /public
+  const hasResume = fs.existsSync(path.join(process.cwd(), 'public', 'resume.pdf'))
+
   return (
     <>
       <PersonJsonLd />
-      <AboutHero />
+      <AboutHero hasResume={hasResume} />
       <Bio />
       <Education />
       <Awards />

@@ -15,7 +15,7 @@ const featured = [
       '$143.8 million, 30-year EaaS partnership delivering $354.6M in guaranteed savings and 52.5% reduction in purchased electricity.',
     href: '/engineering-and-sustainability/enfra',
     tag: 'Engineering',
-    color: 'bg-forest/20 text-forest-light border-forest-light/20',
+    color: 'bg-forest/20 text-verdigris border-forest-light/20',
     gradientFrom: 'from-forest/10',
   },
   {
@@ -116,7 +116,7 @@ export default function FeaturedWork() {
                         >
                           {item.tag}
                         </span>
-                        <span className="text-titanium/40 text-xs font-mono">
+                        <span className="text-muted text-xs font-mono">
                           {item.category}
                         </span>
                       </div>
@@ -126,7 +126,7 @@ export default function FeaturedWork() {
                       <p className="text-titanium text-sm leading-relaxed">
                         {item.description}
                       </p>
-                      <div className="mt-4 flex items-center gap-2 text-sm text-titanium/60 group-hover:text-copper transition-colors duration-300">
+                      <div className="mt-4 flex items-center gap-2 text-sm text-muted group-hover:text-copper transition-colors duration-300">
                         <span>Read case study</span>
                         <span className="group-hover:translate-x-1.5 transition-transform duration-300">&rarr;</span>
                       </div>

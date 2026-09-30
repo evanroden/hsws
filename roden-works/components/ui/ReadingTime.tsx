@@ -5,7 +5,7 @@
 export default function ReadingTime({ wordCount }: { wordCount: number }) {
   const minutes = Math.max(1, Math.ceil(wordCount / 200))
   return (
-    <span className="font-mono text-xs text-titanium/50">
+    <span className="font-mono text-xs text-muted">
       {minutes} min read
     </span>
   )

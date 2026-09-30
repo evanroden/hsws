@@ -112,7 +112,7 @@ export default function TabiPage() {
           </svg>
         </div>
 
-        <div className="content-width relative z-10 pb-12 md:pb-16">
+        <div className="content-width w-full relative z-10 pb-12 md:pb-16">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -214,7 +214,7 @@ export default function TabiPage() {
                 >
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-white text-sm font-medium">{item.area}</span>
-                    <span className="font-mono text-xs text-titanium/60">
+                    <span className="font-mono text-xs text-muted">
                       {item.unserved}% unserved
                     </span>
                   </div>
@@ -238,7 +238,7 @@ export default function TabiPage() {
                       className="h-full bg-copper/40 flex items-center justify-center"
                     >
                       {item.underserved >= 15 && (
-                        <span className="text-white/60 text-[10px] font-mono">{item.underserved}%</span>
+                        <span className="text-titanium text-[10px] font-mono">{item.underserved}%</span>
                       )}
                     </motion.div>
                     {/* Unserved */}
@@ -315,20 +315,20 @@ export default function TabiPage() {
                   <div>
                     <span className="font-serif text-3xl text-white">{tier.down}</span>
                     <span className="text-titanium text-sm ml-1">Mbps</span>
-                    <span className="block font-mono text-xs text-titanium/60 mt-1">Download</span>
+                    <span className="block font-mono text-xs text-muted mt-1">Download</span>
                   </div>
                   <div className="w-12 h-px bg-white/10 mx-auto" />
                   <div>
                     <span className="font-serif text-3xl text-white">{tier.up}</span>
                     <span className="text-titanium text-sm ml-1">Mbps</span>
-                    <span className="block font-mono text-xs text-titanium/60 mt-1">Upload</span>
+                    <span className="block font-mono text-xs text-muted mt-1">Upload</span>
                   </div>
                 </div>
                 <div className="mt-4 pt-4 border-t border-white/5">
                   <span
                     className={`inline-block px-3 py-1 rounded-full text-xs font-mono ${
                       tier.adequate
-                        ? 'bg-forest/20 text-forest-light'
+                        ? 'bg-forest/20 text-verdigris'
                         : 'bg-copper/10 text-copper'
                     }`}
                   >

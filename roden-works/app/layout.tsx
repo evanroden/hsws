@@ -1,4 +1,7 @@
 import type { Metadata } from 'next'
+import localFont from 'next/font/local'
+import { GeistSans } from 'geist/font/sans'
+import { GeistMono } from 'geist/font/mono'
 import '@/styles/globals.css'
 import Navbar from '@/components/navigation/Navbar'
 import Footer from '@/components/navigation/Footer'
@@ -9,6 +12,17 @@ import NoiseOverlay from '@/components/ui/NoiseOverlay'
 import PageTransition from '@/components/providers/PageTransition'
 import BackToTop from '@/components/navigation/BackToTop'
 import { SITE_CONFIG } from '@/lib/constants'
+
+// Display serif: Newsreader (variable wght + optical size), self-hosted
+const newsreader = localFont({
+  src: [
+    { path: './fonts/Newsreader-Variable.woff2', weight: '200 800', style: 'normal' },
+    { path: './fonts/Newsreader-Variable-Italic.woff2', weight: '200 800', style: 'italic' },
+  ],
+  variable: '--font-newsreader',
+  display: 'swap',
+  fallback: ['Georgia', 'Times New Roman', 'serif'],
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.url),
@@ -55,7 +69,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className={`${GeistSans.variable} ${GeistMono.variable} ${newsreader.variable}`}
+    >
       <body className="font-sans antialiased bg-slate-950 text-white">
         <a
           href="#main-content"

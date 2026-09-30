@@ -3,16 +3,18 @@
 import { motion } from 'framer-motion'
 import { useInView } from '@/lib/hooks'
 
-const events = [
-  { year: '2017', title: 'Founded The YCOD', description: 'Co-founded with Henry McLaughlin, Grace Tapani, and Sage Sellers in East Aurora, NY.' },
-  { year: '2018', title: 'Coalition Building', description: 'Established partnerships with WaitList Zero, ONE8FIFTY, and the Chris Klug Foundation.' },
-  { year: '2019', title: 'Legislative Introduction', description: 'Opt-out organ donation bill introduced in the NY Assembly.' },
-  { year: '2020', title: 'National Media Campaign', description: 'Coverage by CBC, Yahoo News, Business Insider, WKBW, and Spectrum News.' },
-  { year: '2021', title: 'Bill Revision', description: 'Evan personally drafted the revised NY Assembly Bill A07954 — presumed consent at the DMV.' },
-  { year: '2021', title: 'Real Heroes Nomination', description: 'Nominated for the American Red Cross Real Heroes Education Award.' },
-  { year: '2022–24', title: 'Continued Advocacy', description: 'Sustained lobbying, social media campaigns, and coalition management while attending Tulane.' },
-  { year: '2023', title: 'Living Donor Support Act Passed', description: 'Advocated for the NYS Living Donor Support Act — removing financial barriers for living organ donors through reimbursement for lost wages, travel, and child care. The bill passed into law.' },
-  { year: '2024', title: 'Transition', description: 'After 7+ years of leadership, Evan transitioned focus while the framework and coalition persist.' },
+type Kind = 'milestone' | 'legislative' | 'default'
+
+const events: { year: string; title: string; description: string; kind: Kind }[] = [
+  { year: '2017', title: 'Founded The YCOD', description: 'Co-founded with Henry McLaughlin, Grace Tapani, and Sage Sellers in East Aurora, NY.', kind: 'default' },
+  { year: '2018', title: 'Coalition Building', description: 'Established partnerships with WaitList Zero, ONE8FIFTY, and the Chris Klug Foundation.', kind: 'default' },
+  { year: '2019', title: 'Legislative Introduction', description: 'Opt-out organ donation bill introduced in the NY Assembly.', kind: 'legislative' },
+  { year: '2020', title: 'National Media Campaign', description: 'Coverage by CBC, Yahoo News, Business Insider, WKBW, and Spectrum News.', kind: 'default' },
+  { year: '2021', title: 'Bill Revision', description: 'Evan personally drafted the revised NY Assembly Bill A07954 — presumed consent at the DMV.', kind: 'legislative' },
+  { year: '2021', title: 'Real Heroes Nomination', description: 'Nominated for the American Red Cross Real Heroes Education Award.', kind: 'default' },
+  { year: '2022–24', title: 'Continued Advocacy', description: 'Sustained lobbying, social media campaigns, and coalition management while attending Tulane.', kind: 'default' },
+  { year: '2023', title: 'Living Donor Support Act Passed', description: 'Advocated for the NYS Living Donor Support Act — removing financial barriers for living organ donors through reimbursement for lost wages, travel, and child care. The bill passed into law.', kind: 'milestone' },
+  { year: '2024', title: 'Transition', description: 'After 7+ years of leadership, Evan transitioned focus while the framework and coalition persist.', kind: 'default' },
 ]
 
 export default function LegislativeTimeline() {
@@ -20,40 +22,76 @@ export default function LegislativeTimeline() {
 
   return (
     <section className="section-padding bg-slate-950" ref={ref}>
-      <div className="content-width">
+      <div className="content-width grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-12"
+          className="lg:col-span-4"
         >
-          <span className="font-mono text-xs tracking-widest uppercase text-copper">
-            Legislative Journey
-          </span>
-          <h2 className="font-serif text-heading text-white mt-3">
-            Seven years in the making.
-          </h2>
+          <div className="lg:sticky lg:top-28">
+            <span className="font-mono text-xs tracking-widest uppercase text-copper">Legislative Journey</span>
+            <h2 className="font-serif text-heading text-white mt-3">Seven years in the making.</h2>
+            <ul className="mt-8 space-y-3 text-sm text-titanium">
+              <li className="flex items-center gap-3">
+                <span aria-hidden="true" className="h-3 w-3 rounded-full bg-verdigris ring-4 ring-verdigris/15" />
+                Passed into law
+              </li>
+              <li className="flex items-center gap-3">
+                <span aria-hidden="true" className="h-3 w-3 rounded-full bg-copper" />
+                Legislative action
+              </li>
+              <li className="flex items-center gap-3">
+                <span aria-hidden="true" className="h-3 w-3 rounded-full border-2 border-white/25 bg-slate-950" />
+                Organizing &amp; outreach
+              </li>
+            </ul>
+          </div>
         </motion.div>
 
-        <div className="relative">
-          <div className="absolute left-4 md:left-8 top-0 bottom-0 w-px bg-copper/20" />
-          <div className="space-y-8">
-            {events.map((event, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: -20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="relative pl-12 md:pl-20"
+        <ol className="lg:col-span-8">
+          {events.map((event, i) => {
+            const last = i === events.length - 1
+            return (
+              <motion.li
+                key={`${event.year}-${event.title}`}
+                initial={{ opacity: 0, y: 16 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.1 + i * 0.07 }}
+                className="grid grid-cols-[56px_20px_1fr] md:grid-cols-[80px_24px_1fr] gap-x-3 md:gap-x-5"
               >
-                <div className="absolute left-2.5 md:left-6.5 w-3 h-3 rounded-full bg-slate-950 border-2 border-copper/40 z-10" />
-                <span className="font-mono text-xs text-copper">{event.year}</span>
-                <h3 className="font-serif text-lg text-white mt-1">{event.title}</h3>
-                <p className="text-titanium text-sm mt-1 leading-relaxed">{event.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+                <span className="pt-1 font-mono text-xs text-copper-light text-right tabular-nums">{event.year}</span>
+
+                {/* Rail + node: the line runs through the padded item so nodes connect */}
+                <div className="relative flex justify-center">
+                  {!last && <span aria-hidden="true" className="absolute top-3 bottom-0 w-px bg-white/[0.12]" />}
+                  <span
+                    aria-hidden="true"
+                    className={`relative mt-1.5 h-3 w-3 rounded-full ${
+                      event.kind === 'milestone'
+                        ? 'bg-verdigris ring-4 ring-verdigris/15'
+                        : event.kind === 'legislative'
+                          ? 'bg-copper'
+                          : 'border-2 border-white/25 bg-slate-950'
+                    }`}
+                  />
+                </div>
+
+                <div className={last ? 'pb-0' : 'pb-9'}>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h3 className="font-serif text-xl text-white">{event.title}</h3>
+                    {event.kind === 'milestone' && (
+                      <span className="rounded-full border border-verdigris/30 bg-verdigris/10 px-2 py-0.5 text-[11px] font-medium text-verdigris">
+                        Passed into law
+                      </span>
+                    )}
+                  </div>
+                  <p className="mt-1.5 text-sm text-titanium leading-relaxed max-w-2xl">{event.description}</p>
+                </div>
+              </motion.li>
+            )
+          })}
+        </ol>
       </div>
     </section>
   )

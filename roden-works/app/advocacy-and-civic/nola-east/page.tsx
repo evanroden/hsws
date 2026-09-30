@@ -156,13 +156,13 @@ export default function NolaEastPage() {
             }}
           />
         </div>
-        <div className="content-width relative z-10 pb-12 md:pb-16">
+        <div className="content-width w-full relative z-10 pb-12 md:pb-16">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className="font-mono text-xs tracking-widest uppercase text-forest-light mb-4 block">
+            <span className="font-mono text-xs tracking-widest uppercase text-verdigris mb-4 block">
               C40 Reinventing Cities Award
             </span>
             <h1 className="font-serif text-display text-white max-w-4xl">
@@ -273,7 +273,7 @@ export default function NolaEastPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="space-y-2"
             >
-              <span className="font-mono text-xs text-titanium/60 uppercase tracking-widest block mb-4">
+              <span className="font-mono text-xs text-muted uppercase tracking-widest block mb-4">
                 Toggle Layers
               </span>
               {layers.map((layer) => {
@@ -298,7 +298,7 @@ export default function NolaEastPage() {
                       />
                       <span
                         className={`text-sm transition-colors ${
-                          isActive ? 'text-white' : 'text-titanium/50'
+                          isActive ? 'text-white' : 'text-muted'
                         }`}
                       >
                         {layer.name}
@@ -309,7 +309,7 @@ export default function NolaEastPage() {
                       className={`px-2 py-3 rounded-lg text-xs font-mono transition-all ${
                         isSelected
                           ? 'bg-white/10 text-white'
-                          : 'text-titanium/40 hover:text-titanium hover:bg-white/5'
+                          : 'text-muted hover:text-titanium hover:bg-white/5'
                       }`}
                     >
                       info
@@ -581,9 +581,9 @@ export default function NolaEastPage() {
 
               {/* Active layers indicator */}
               <div className="mt-4 pt-4 border-t border-white/5 flex flex-wrap gap-2">
-                <span className="font-mono text-xs text-titanium/40 mr-2 self-center">Active:</span>
+                <span className="font-mono text-xs text-muted mr-2 self-center">Active:</span>
                 {activeLayerData.length === 0 ? (
-                  <span className="font-mono text-xs text-titanium/40 italic">No layers selected</span>
+                  <span className="font-mono text-xs text-muted italic">No layers selected</span>
                 ) : (
                   activeLayerData.map((layer) => (
                     <span
@@ -627,7 +627,7 @@ export default function NolaEastPage() {
                 </div>
                 <button
                   onClick={() => setSelectedLayer(null)}
-                  className="text-titanium/40 hover:text-white text-sm font-mono transition-colors"
+                  className="text-muted hover:text-white text-sm font-mono transition-colors"
                 >
                   close
                 </button>
@@ -643,7 +643,7 @@ export default function NolaEastPage() {
                     className="bg-white/[0.03] rounded-lg p-4"
                   >
                     <span className="text-white text-sm font-medium block">{feature.label}</span>
-                    <span className="text-titanium/60 text-xs mt-1 block">{feature.detail}</span>
+                    <span className="text-muted text-xs mt-1 block">{feature.detail}</span>
                   </motion.div>
                 ))}
               </div>
@@ -692,7 +692,7 @@ export default function NolaEastPage() {
                 <h3 className="font-serif text-sm text-white mb-2 group-hover:text-copper transition-colors">
                   {layer.name}
                 </h3>
-                <p className="text-titanium/60 text-xs leading-relaxed line-clamp-3">
+                <p className="text-muted text-xs leading-relaxed line-clamp-3">
                   {layer.description}
                 </p>
               </motion.button>

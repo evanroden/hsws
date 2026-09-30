@@ -53,7 +53,7 @@ export default function Footer() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-titanium/60 hover:text-copper hover:scale-110 transition-all duration-200 text-sm inline-block"
+                  className="text-muted hover:text-copper hover:scale-110 transition-all duration-200 text-sm inline-block"
                 >
                   {link.label}
                 </a>
@@ -67,7 +67,7 @@ export default function Footer() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <h3 className="font-mono text-xs font-medium text-titanium/40 mb-4 tracking-[0.2em] uppercase">
+            <h3 className="font-mono text-xs font-medium text-muted mb-4 tracking-[0.2em] uppercase">
               Navigate
             </h3>
             <ul className="space-y-3">
@@ -75,7 +75,7 @@ export default function Footer() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-titanium/60 hover:text-white transition-colors text-sm"
+                    className="text-muted hover:text-white transition-colors text-sm"
                   >
                     {item.label}
                   </Link>
@@ -90,27 +90,27 @@ export default function Footer() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h3 className="font-mono text-xs font-medium text-titanium/40 mb-4 tracking-[0.2em] uppercase">
+            <h3 className="font-mono text-xs font-medium text-muted mb-4 tracking-[0.2em] uppercase">
               Contact
             </h3>
             <ul className="space-y-3">
               <li>
                 <a
                   href={`mailto:${SITE_CONFIG.email}`}
-                  className="text-titanium/60 hover:text-white transition-colors text-sm"
+                  className="text-muted hover:text-white transition-colors text-sm"
                 >
                   {SITE_CONFIG.email}
                 </a>
               </li>
               <li>
-                <span className="text-titanium/40 text-sm">{SITE_CONFIG.phone}</span>
+                <span className="text-muted text-sm">{SITE_CONFIG.phone}</span>
               </li>
               <li>
                 <a
                   href={SITE_CONFIG.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-titanium/60 hover:text-white transition-colors text-sm"
+                  className="text-muted hover:text-white transition-colors text-sm"
                 >
                   linkedin.com/in/evanroden
                 </a>
@@ -126,10 +126,10 @@ export default function Footer() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4"
         >
-          <p className="text-titanium/40 text-xs">
+          <p className="text-muted text-xs">
             &copy; {currentYear} Evan Roden. All rights reserved.
           </p>
-          <p className="text-titanium/20 text-xs font-mono tracking-wider">
+          <p className="text-faint text-xs font-mono tracking-wider">
             Built with Next.js &middot; Framer Motion &middot; Three.js
           </p>
         </motion.div>

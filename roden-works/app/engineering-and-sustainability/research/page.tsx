@@ -97,7 +97,7 @@ export default function ResearchPage() {
           </svg>
         </div>
 
-        <div className="content-width relative z-10 pb-16 md:pb-24 pt-32">
+        <div className="content-width w-full relative z-10 pb-16 md:pb-24 pt-32">
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -222,7 +222,7 @@ export default function ResearchPage() {
                 <h3 className="font-serif text-lg text-white mt-2 mb-1">
                   {lab.lab}
                 </h3>
-                <p className="text-titanium/60 text-xs font-mono mb-3">
+                <p className="text-muted text-xs font-mono mb-3">
                   {lab.pi}
                 </p>
                 <p className="text-titanium text-sm leading-relaxed">

@@ -30,7 +30,7 @@ export default function StatCounter({
     <div className="text-center px-6 py-4" role="group" aria-label={label}>
       <span
         ref={ref}
-        className="block font-serif text-3xl md:text-4xl text-white"
+        className="block font-sans font-semibold tracking-tight text-3xl md:text-[2.5rem] leading-none text-white"
         aria-label={`${fullValue} ${label}`}
         aria-live="polite"
       >

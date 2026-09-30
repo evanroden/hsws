@@ -77,7 +77,7 @@ export default function VAProstheticsPage() {
           </svg>
         </div>
 
-        <div className="content-width relative z-10 pb-12 md:pb-16">
+        <div className="content-width w-full relative z-10 pb-12 md:pb-16">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -250,7 +250,7 @@ export default function VAProstheticsPage() {
                       }}
                       className="w-8 h-8 rounded-full bg-forest/20 border border-forest-light/40 flex items-center justify-center"
                     >
-                      <span className="font-mono text-xs text-forest-light">
+                      <span className="font-mono text-xs text-verdigris">
                         {phase.step}
                       </span>
                     </motion.div>
@@ -310,7 +310,7 @@ export default function VAProstheticsPage() {
                 className="glass rounded-lg p-4 text-center"
               >
                 <span className="text-white text-sm block">{item.tool}</span>
-                <span className="text-titanium/50 text-xs font-mono mt-1 block">
+                <span className="text-muted text-xs font-mono mt-1 block">
                   {item.detail}
                 </span>
               </motion.div>

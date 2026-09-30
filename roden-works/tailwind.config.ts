@@ -19,13 +19,26 @@ const config: Config = {
           light: '#2D5A45',
         },
         cream: '#F5F2ED',
-        copper: '#B87333',
+        copper: {
+          DEFAULT: '#B87333',
+          light: '#D08C4F', // copper as small text on dark (6.8:1)
+        },
         clinical: '#E8EDF1',
+        // Text tokens (contrast measured on #0B1215 page / #151C1F card)
+        muted: '#7E8F9B', // 5.7:1 / 5.2:1 — secondary labels, captions
+        faint: '#65737D', // 3.9:1 / 3.5:1 — decorative or large text only
+        // Chart / accent hues — validated as a categorical set (dark mode, all-pairs)
+        verdigris: '#3DA887',
+        steel: '#6A8CDB',
+        surface: {
+          DEFAULT: '#151C1F', // chart & card surface
+          raised: '#1B2327',
+        },
       },
       fontFamily: {
-        serif: ['Georgia', 'Cambria', 'Times New Roman', 'serif'],
-        sans: ['system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
-        mono: ['Menlo', 'Consolas', 'Liberation Mono', 'monospace'],
+        serif: ['var(--font-newsreader)', 'Georgia', 'Times New Roman', 'serif'],
+        sans: ['var(--font-geist-sans)', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+        mono: ['var(--font-geist-mono)', 'ui-monospace', 'Menlo', 'monospace'],
       },
       fontSize: {
         'display-xl': ['clamp(3rem, 8vw, 7rem)', { lineHeight: '0.95', letterSpacing: '-0.02em' }],

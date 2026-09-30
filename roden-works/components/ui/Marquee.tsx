@@ -89,7 +89,7 @@ export function DisciplineMarquee() {
         >
           <Link
             href={item.href}
-            className="text-titanium/30 hover:text-copper transition-colors duration-300"
+            className="text-faint hover:text-copper transition-colors duration-300"
             tabIndex={0}
           >
             {item.label}

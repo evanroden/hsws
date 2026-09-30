@@ -92,7 +92,7 @@ export default function PartnershipPage() {
           />
         </div>
 
-        <div className="content-width relative z-10 pb-12 md:pb-16">
+        <div className="content-width w-full relative z-10 pb-12 md:pb-16">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -120,7 +120,7 @@ export default function PartnershipPage() {
               <span className="block mt-2 font-mono text-xs tracking-wide text-titanium uppercase">Score Before</span>
             </div>
             <div className="text-center px-6 py-4">
-              <span className="block font-serif text-3xl md:text-4xl text-forest-light">74</span>
+              <span className="block font-serif text-3xl md:text-4xl text-verdigris">74</span>
               <span className="block mt-2 font-mono text-xs tracking-wide text-titanium uppercase">Score After</span>
             </div>
             <div className="text-center px-6 py-4">
@@ -199,11 +199,11 @@ export default function PartnershipPage() {
                 <div className="grid grid-cols-2 gap-4 pt-4 border-t border-white/5">
                   <div>
                     <span className="font-serif text-2xl text-white block">$6.5B</span>
-                    <span className="font-mono text-xs text-titanium/60 mt-1 block">Annual Budget</span>
+                    <span className="font-mono text-xs text-muted mt-1 block">Annual Budget</span>
                   </div>
                   <div>
                     <span className="font-serif text-2xl text-white block">500+</span>
-                    <span className="font-mono text-xs text-titanium/60 mt-1 block">Employees</span>
+                    <span className="font-mono text-xs text-muted mt-1 block">Employees</span>
                   </div>
                 </div>
               </div>
@@ -265,7 +265,7 @@ export default function PartnershipPage() {
                   >
                     <div className="flex items-center justify-between mb-3">
                       <span className="text-white text-sm font-medium">{metric.category}</span>
-                      <span className="font-mono text-xs text-forest-light">
+                      <span className="font-mono text-xs text-verdigris">
                         +{improvement} pts
                       </span>
                     </div>
@@ -294,10 +294,10 @@ export default function PartnershipPage() {
                       {/* Score labels */}
                       <div className="flex items-center justify-between mt-1">
                         <div className="flex items-center gap-4">
-                          <span className="font-mono text-xs text-titanium/50">
+                          <span className="font-mono text-xs text-muted">
                             Before: {metric.before}
                           </span>
-                          <span className="font-mono text-xs text-forest-light">
+                          <span className="font-mono text-xs text-verdigris">
                             After: {metric.after}
                           </span>
                         </div>
@@ -319,7 +319,7 @@ export default function PartnershipPage() {
                 <span className="text-xs text-titanium">After Partnership Engagement</span>
               </div>
               <div className="ml-auto">
-                <span className="text-xs text-titanium/40 font-mono">Source: Best Places to Work in the Federal Government</span>
+                <span className="text-xs text-muted font-mono">Source: Best Places to Work in the Federal Government</span>
               </div>
             </div>
           </motion.div>

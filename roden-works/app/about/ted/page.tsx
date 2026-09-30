@@ -108,7 +108,7 @@ function AnimatedQuote({
           initial={{ opacity: 0, y: 10 }}
           animate={revealed ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.4, delay: words.length * 0.03 + 0.2 }}
-          className="inline-block mt-4 font-mono text-xs text-titanium/50 tracking-widest uppercase"
+          className="inline-block mt-4 font-mono text-xs text-muted tracking-widest uppercase"
         >
           {quote.context}
         </motion.span>
@@ -143,12 +143,12 @@ function StatCallout({
       <div className="mb-6">
         <span
           ref={countRef}
-          className="font-serif text-4xl md:text-5xl text-white group-hover:text-copper transition-colors duration-500"
+          className="font-sans font-semibold tracking-tight text-4xl md:text-5xl text-white"
         >
           {displayValue}
           {takeaway.suffix}
         </span>
-        <span className="block mt-2 font-mono text-xs tracking-widest uppercase text-copper">
+        <span className="block mt-2 font-mono text-xs tracking-widest uppercase text-copper-light">
           {takeaway.label}
         </span>
       </div>
@@ -350,7 +350,7 @@ export default function TedPage() {
 
             <div className="mt-8 flex items-center justify-center gap-3">
               <div className="w-8 h-px bg-red-600/50" />
-              <span className="font-mono text-xs text-titanium/50 tracking-widest uppercase">
+              <span className="font-mono text-xs text-muted tracking-widest uppercase">
                 TEDxTulane
               </span>
               <div className="w-8 h-px bg-red-600/50" />

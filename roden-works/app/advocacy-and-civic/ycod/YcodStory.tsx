@@ -3,27 +3,35 @@
 import { motion } from 'framer-motion'
 import { useInView } from '@/lib/hooks'
 
+// Every fact here is restated from the story text beside it
+const glance = [
+  { label: 'Founded', value: 'August 2017 · East Aurora, NY' },
+  { label: 'Co-founders', value: 'Henry McLaughlin, Grace Tapani, Sage Sellers' },
+  { label: 'Primary bill', value: 'NY Assembly Bill A07954 — opt-out donation at the DMV (2021 revision drafted by Evan)' },
+  { label: 'Passed', value: 'NYS Living Donor Support Act' },
+  { label: 'Partners', value: 'WaitList Zero · ONE8FIFTY · Chris Klug Foundation' },
+  { label: 'Recognition', value: '2021 American Red Cross Real Heroes Education Award nominee' },
+]
+
 export default function YcodStory() {
   const { ref, isInView } = useInView(0.1)
 
   return (
     <section className="section-padding bg-gradient-to-b from-slate-950 to-forest/5" ref={ref}>
-      <div className="content-width">
-        <div className="max-w-3xl">
+      <div className="content-width grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
+        <div className="lg:col-span-7">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <span className="font-mono text-xs tracking-widest uppercase text-copper mb-6 block">
-              The Story
-            </span>
+            <span className="font-mono text-xs tracking-widest uppercase text-copper mb-6 block">The Story</span>
             <h2 className="font-serif text-heading text-white mb-8">
               A seventeen-year-old&apos;s answer to a systemic failure.
             </h2>
           </motion.div>
 
-          <div className="space-y-6 text-titanium leading-relaxed">
+          <div className="space-y-6 text-titanium leading-relaxed text-[17px]">
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -64,16 +72,36 @@ export default function YcodStory() {
               Beyond the opt-out bill, Evan advocated for the <span className="text-white">Living Donor Support Act</span> in New York State — legislation designed to remove financial barriers for living organ donors by providing reimbursement for lost wages, travel, and child care expenses. The bill passed, making New York one of the first states to formally support living donors and addressing a key inequity in the donation system.
             </motion.p>
 
-            <motion.p
+            <motion.blockquote
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="text-white text-lg font-serif"
+              className="mt-10 border-l-2 border-copper/60 pl-6 text-white text-xl md:text-2xl font-serif leading-snug"
             >
               The work is not finished. But the framework is built, legislation has been passed, and the coalition endures.
-            </motion.p>
+            </motion.blockquote>
           </div>
         </div>
+
+        {/* At a glance — sticky on desktop */}
+        <motion.aside
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.25 }}
+          className="lg:col-span-4 lg:col-start-9"
+        >
+          <div className="lg:sticky lg:top-28 rounded-2xl border border-white/[0.08] bg-surface p-6 md:p-7">
+            <h3 className="font-mono text-[11px] tracking-[0.18em] uppercase text-copper-light">At a glance</h3>
+            <dl className="mt-4 divide-y divide-white/[0.06]">
+              {glance.map((item) => (
+                <div key={item.label} className="py-4">
+                  <dt className="text-xs text-muted">{item.label}</dt>
+                  <dd className="mt-1 text-sm text-white leading-relaxed">{item.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </motion.aside>
       </div>
     </section>
   )

@@ -41,13 +41,13 @@ export default function EnfraHero() {
         </svg>
       </div>
 
-      <div className="content-width relative z-10 pb-12 md:pb-16">
+      <div className="content-width w-full relative z-10 pb-12 md:pb-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span className="font-mono text-xs tracking-widest uppercase text-forest-light mb-4 block">
+          <span className="font-mono text-xs tracking-widest uppercase text-verdigris mb-4 block">
             Energy-as-a-Service
           </span>
           <h1 className="font-serif text-display text-white max-w-3xl">

@@ -3,60 +3,64 @@
 import { motion } from 'framer-motion'
 import { useInView } from '@/lib/hooks'
 
-const languages = [
-  {
-    name: 'English',
-    level: 'Native',
-    type: 'natural',
-    description: 'Native language',
-    proficiency: 100,
-  },
+// Proficiency uses the standard five-level scale (as on LinkedIn / ILR), shown as
+// discrete steps rather than an invented percentage.
+const LEVELS = ['Elementary', 'Limited Working', 'Professional Working', 'Full Professional', 'Native'] as const
+type Level = (typeof LEVELS)[number]
+
+const languages: { name: string; level: Level; type: 'natural' | 'technical'; description: string }[] = [
+  { name: 'English', level: 'Native', type: 'natural', description: 'Native language.' },
   {
     name: 'Classical Latin',
     level: 'Full Professional',
     type: 'natural',
     description: 'The Latin of Cicero, Caesar, and Virgil — the literary and philosophical language of the Roman Republic and Empire.',
-    proficiency: 90,
   },
   {
     name: 'Ecclesiastical Latin',
     level: 'Full Professional',
     type: 'natural',
     description: 'The Latin of the Catholic Church, Vatican documents, and liturgical tradition — maintained as a living language of scholarship and worship.',
-    proficiency: 90,
   },
   {
     name: 'Interlingua',
     level: 'Professional Working',
     type: 'natural',
     description: 'The most widely used naturalistic international auxiliary language, developed by IALA. Immediately readable by speakers of Romance languages without prior study.',
-    proficiency: 75,
   },
-  {
-    name: 'Chinese (Mandarin)',
-    level: 'Limited Working',
-    type: 'natural',
-    description: 'Developing proficiency in Mandarin Chinese.',
-    proficiency: 35,
-  },
+  { name: 'Chinese (Mandarin)', level: 'Limited Working', type: 'natural', description: 'Developing proficiency in Mandarin Chinese.' },
   {
     name: 'Python',
     level: 'Professional Working',
     type: 'technical',
     description: 'Data analysis, automation, scientific computing. Applied across energy optimization and epidemiological research.',
-    proficiency: 75,
   },
   {
     name: 'R',
     level: 'Full Professional',
     type: 'technical',
     description: 'Statistical analysis, data visualization, research methodology. Primary tool for biomedical and environmental research.',
-    proficiency: 90,
   },
 ]
 
+function LevelMeter({ level, accent }: { level: Level; accent: string }) {
+  const step = LEVELS.indexOf(level) + 1
+  return (
+    <div className="flex items-center gap-3" aria-label={`Proficiency: ${level} (${step} of ${LEVELS.length})`} role="img">
+      <div className="flex gap-1" aria-hidden="true">
+        {LEVELS.map((_, i) => (
+          <span key={i} className="h-1.5 w-6 rounded-full" style={{ background: i < step ? accent : 'rgba(255,255,255,0.08)' }} />
+        ))}
+      </div>
+      <span className="w-[8.5rem] text-xs text-titanium">{level}</span>
+    </div>
+  )
+}
+
 export default function Languages() {
   const { ref, isInView } = useInView(0.1)
+  const natural = languages.filter((l) => l.type === 'natural')
+  const technical = languages.filter((l) => l.type === 'technical')
 
   return (
     <section className="section-padding bg-gradient-to-b from-slate-950 to-forest/5" ref={ref}>
@@ -67,99 +71,41 @@ export default function Languages() {
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
-          <span className="font-mono text-xs tracking-widest uppercase text-copper">
-            Languages
-          </span>
-          <h2 className="font-serif text-heading text-white mt-3">
-            A polyglot perspective.
-          </h2>
+          <span className="font-mono text-xs tracking-widest uppercase text-copper">Languages</span>
+          <h2 className="font-serif text-heading text-white mt-3">A polyglot perspective.</h2>
           <p className="mt-4 text-titanium max-w-2xl">
             From the precision of Classical Latin to the logic of Python — each language opens a different way of thinking about problems.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Natural languages */}
-          <div>
-            <h3 className="font-mono text-xs tracking-widest uppercase text-titanium/60 mb-4">
-              Natural Languages
-            </h3>
-            <div className="space-y-4">
-              {languages
-                .filter((l) => l.type === 'natural')
-                .map((lang, i) => (
-                  <motion.div
-                    key={lang.name}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.5, delay: i * 0.1 }}
-                    className="glass rounded-xl p-5"
-                  >
-                    <div className="flex items-center justify-between mb-2">
-                      <h4 className="font-serif text-lg text-white">{lang.name}</h4>
-                      <span className="font-mono text-xs text-copper">{lang.level}</span>
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 items-start">
+          {[
+            { title: 'Natural languages', items: natural, accent: '#B87333', span: 'lg:col-span-3' },
+            { title: 'Technical languages', items: technical, accent: '#3DA887', span: 'lg:col-span-2' },
+          ].map((col, ci) => (
+            <motion.div
+              key={col.title}
+              initial={{ opacity: 0, y: 24 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: ci * 0.1 }}
+              className={`rounded-2xl border border-white/[0.08] bg-surface p-6 md:p-8 ${col.span}`}
+            >
+              <h3 className="font-mono text-[11px] tracking-[0.18em] uppercase text-muted mb-2">{col.title}</h3>
+              <ul className="divide-y divide-white/[0.06]">
+                {col.items.map((lang) => (
+                  <li key={lang.name} className="py-5">
+                    <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between mb-2">
+                      <h4 className={`${col.accent === '#3DA887' ? 'font-mono text-base' : 'font-serif text-xl'} text-white`}>
+                        {lang.name}
+                      </h4>
+                      <LevelMeter level={lang.level} accent={col.accent} />
                     </div>
-                    <p className="text-titanium text-sm leading-relaxed mb-3">{lang.description}</p>
-                    <div
-                      className="h-1 bg-white/5 rounded-full overflow-hidden"
-                      role="progressbar"
-                      aria-valuenow={lang.proficiency}
-                      aria-valuemin={0}
-                      aria-valuemax={100}
-                      aria-label={`${lang.name}: ${lang.level} (${lang.proficiency}%)`}
-                    >
-                      <motion.div
-                        initial={{ width: 0 }}
-                        animate={isInView ? { width: `${lang.proficiency}%` } : {}}
-                        transition={{ duration: 1, delay: 0.5 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                        className="h-full bg-gradient-to-r from-forest-light to-copper rounded-full"
-                      />
-                    </div>
-                  </motion.div>
+                    <p className="text-sm text-muted leading-relaxed max-w-xl">{lang.description}</p>
+                  </li>
                 ))}
-            </div>
-          </div>
-
-          {/* Technical languages */}
-          <div>
-            <h3 className="font-mono text-xs tracking-widest uppercase text-titanium/60 mb-4">
-              Technical Languages
-            </h3>
-            <div className="space-y-4">
-              {languages
-                .filter((l) => l.type === 'technical')
-                .map((lang, i) => (
-                  <motion.div
-                    key={lang.name}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.5, delay: i * 0.1 }}
-                    className="glass rounded-xl p-5 border-forest/20"
-                  >
-                    <div className="flex items-center justify-between mb-2">
-                      <h4 className="font-mono text-lg text-white">{lang.name}</h4>
-                      <span className="font-mono text-xs text-forest-light">{lang.level}</span>
-                    </div>
-                    <p className="text-titanium text-sm leading-relaxed mb-3">{lang.description}</p>
-                    <div
-                      className="h-1 bg-white/5 rounded-full overflow-hidden"
-                      role="progressbar"
-                      aria-valuenow={lang.proficiency}
-                      aria-valuemin={0}
-                      aria-valuemax={100}
-                      aria-label={`${lang.name}: ${lang.level} (${lang.proficiency}%)`}
-                    >
-                      <motion.div
-                        initial={{ width: 0 }}
-                        animate={isInView ? { width: `${lang.proficiency}%` } : {}}
-                        transition={{ duration: 1, delay: 0.5 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                        className="h-full bg-gradient-to-r from-forest to-forest-light rounded-full"
-                      />
-                    </div>
-                  </motion.div>
-                ))}
-            </div>
-          </div>
+              </ul>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

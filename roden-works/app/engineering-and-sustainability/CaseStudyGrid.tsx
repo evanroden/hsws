@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import AnimatedCard from '@/components/ui/AnimatedCard'
+import SegmentedControl from '@/components/ui/SegmentedControl'
 import { ProjectIllustration } from '@/components/ui/ProjectIllustrations'
 import { useInView } from '@/lib/hooks'
 
@@ -89,41 +90,37 @@ export default function CaseStudyGrid() {
           </h2>
         </div>
 
-        {/* Filter buttons */}
+        {/* Filters */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="flex flex-wrap gap-3 mb-10"
+          className="mb-10 overflow-x-auto no-scrollbar"
         >
-          {filterOptions.map((opt) => (
-            <button
-              key={opt.key}
-              onClick={() => setActiveFilter(opt.key)}
-              className={`px-4 py-2 rounded-lg text-sm font-mono transition-all duration-300 ${
-                activeFilter === opt.key
-                  ? 'bg-copper text-white'
-                  : 'bg-white/5 text-titanium hover:bg-white/10'
-              }`}
-            >
-              {opt.label}
-            </button>
-          ))}
+          <SegmentedControl<FilterKey>
+            label="Filter case studies"
+            size="md"
+            value={activeFilter}
+            onChange={setActiveFilter}
+            options={filterOptions.map((o) => ({ value: o.key, label: o.label }))}
+          />
         </motion.div>
 
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* 4-column grid: the flagship spans two, so seven studies tile evenly (2+1+1 / 1+1+1+1) */}
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
           <AnimatePresence mode="popLayout">
             {filtered.map((study, i) => (
               <motion.div
                 key={study.href}
                 layout
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.4, delay: i * 0.05 }}
+                exit={{ opacity: 0, scale: 0.96 }}
+                transition={{ duration: 0.35, delay: i * 0.04 }}
+                className={activeFilter === 'all' && i === 0 ? 'md:col-span-2' : ''}
               >
                 <AnimatedCard index={0} {...study}>
-                  <div className="mb-4 -mx-2 opacity-80">
+                  <div className="mb-5 -mx-2">
                     <ProjectIllustration slug={study.slug} variant="card" />
                   </div>
                 </AnimatedCard>

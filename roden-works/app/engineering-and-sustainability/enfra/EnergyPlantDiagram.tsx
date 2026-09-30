@@ -578,7 +578,7 @@ export default function EnergyPlantDiagram() {
             <motion.p
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-center text-titanium/40 text-sm mt-4 font-mono tracking-wide flex items-center justify-center gap-2"
+              className="text-center text-muted text-sm mt-4 font-mono tracking-wide flex items-center justify-center gap-2"
             >
               <span className="inline-block w-2 h-2 rounded-full bg-copper/60 animate-heartbeat" />
               Click a system to learn more
@@ -609,7 +609,7 @@ export default function EnergyPlantDiagram() {
               {active.specs && (
                 <ul className="space-y-2 md:border-l md:border-white/5 md:pl-10 shrink-0 md:w-64">
                   {active.specs.map((spec, i) => (
-                    <li key={i} className="text-titanium/60 text-xs font-mono flex items-start gap-2">
+                    <li key={i} className="text-muted text-xs font-mono flex items-start gap-2">
                       <span className="text-copper mt-0.5">&#x25B8;</span>
                       {spec}
                     </li>
@@ -619,7 +619,7 @@ export default function EnergyPlantDiagram() {
             </div>
             <button
               onClick={() => setActiveComponent(null)}
-              className="mt-4 text-titanium/30 hover:text-titanium/60 text-xs font-mono transition-colors"
+              className="mt-4 text-faint hover:text-muted text-xs font-mono transition-colors"
             >
               Close
             </button>

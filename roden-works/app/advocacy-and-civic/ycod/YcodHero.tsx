@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 export default function YcodHero() {
   return (
     <section className="relative min-h-[50vh] flex items-end bg-gradient-to-br from-slate-950 via-copper/5 to-slate-950 overflow-hidden">
-      <div className="content-width relative z-10 pb-12 md:pb-16">
+      <div className="content-width w-full relative z-10 pb-12 md:pb-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

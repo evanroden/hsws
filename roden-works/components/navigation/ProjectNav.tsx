@@ -90,13 +90,13 @@ export default function ProjectNav({ currentSlug }: { currentSlug: string }) {
               href={prevProject.href}
               className="group block py-12 md:py-16 md:pr-8 border-b md:border-b-0 md:border-r border-white/5"
             >
-              <span className="font-mono text-xs text-titanium/40 tracking-widest uppercase">
+              <span className="font-mono text-xs text-muted tracking-widest uppercase">
                 &larr; Previous Project
               </span>
               <h3 className="font-serif text-xl md:text-2xl text-white mt-3 group-hover:text-copper transition-colors duration-300">
                 {prevProject.title}
               </h3>
-              <span className="inline-block mt-2 font-mono text-xs text-copper/60">
+              <span className="inline-block mt-2 font-mono text-xs text-copper">
                 {prevProject.category}
               </span>
               <p className="text-titanium text-sm mt-2">{prevProject.description}</p>
@@ -113,13 +113,13 @@ export default function ProjectNav({ currentSlug }: { currentSlug: string }) {
               href={nextProject.href}
               className="group block py-12 md:py-16 md:pl-8 text-right"
             >
-              <span className="font-mono text-xs text-titanium/40 tracking-widest uppercase">
+              <span className="font-mono text-xs text-muted tracking-widest uppercase">
                 Next Project &rarr;
               </span>
               <h3 className="font-serif text-xl md:text-2xl text-white mt-3 group-hover:text-copper transition-colors duration-300">
                 {nextProject.title}
               </h3>
-              <span className="inline-block mt-2 font-mono text-xs text-copper/60">
+              <span className="inline-block mt-2 font-mono text-xs text-copper">
                 {nextProject.category}
               </span>
               <p className="text-titanium text-sm mt-2">{nextProject.description}</p>

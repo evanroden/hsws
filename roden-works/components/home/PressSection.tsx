@@ -4,28 +4,33 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useInView } from '@/lib/hooks'
 
-const pressItems = [
+// Outlets named in The YCOD's 2020 national media campaign (see /advocacy-and-civic/ycod)
+const outlets = ['CBC', 'Yahoo News', 'Business Insider', 'WKBW', 'Spectrum News']
+
+const recognition = [
   {
-    source: 'TEDxTulane',
-    quote: 'A compelling argument for lowering the barriers to youth political participation — delivered by someone who has already broken through them.',
-    link: '/about/ted',
-    year: '2023',
+    title: 'C40 Reinventing Cities Award',
+    issuer: 'Mayor of New Orleans',
+    detail: 'For a comprehensive revitalization plan for New Orleans East — disaster planning, solar, transit, and green housing.',
+    href: '/advocacy-and-civic/nola-east',
   },
   {
-    source: 'Tulane School of Science & Engineering',
-    quote: 'Biomedical engineering research bridging prosthetic design, membrane protein studies, and environmental health — contributing to published findings on air pollution and cardiovascular outcomes.',
-    year: '2020–2024',
+    title: 'TEDxTulane speaker',
+    issuer: 'Youth political participation',
+    detail: 'A talk on the structural barriers that exclude young people from the systems that govern their lives.',
+    href: '/about/ted',
   },
   {
-    source: 'ENFRA',
-    quote: 'Managing central energy plants as part of the $143.8M Rochester Regional Health EaaS partnership — delivering $354.6M in guaranteed savings across a 30-year term.',
-    year: '2024–Present',
+    title: 'Real Heroes nominee',
+    issuer: 'American Red Cross · 2021',
+    detail: 'Nominated for the Real Heroes Education Award for founding The YCOD and leading its advocacy.',
+    href: '/advocacy-and-civic/ycod',
   },
   {
-    source: 'Vogue Italy — BizarrAudi',
-    quote: 'Featured in the SchoolTime collection runway presentation, bridging engineering discipline with creative expression.',
-    link: '/studio/modeling',
-    year: '2020',
+    title: 'Vogue Italy',
+    issuer: 'BizarrAudi · SchoolTime · 2020',
+    detail: "Runway modeling for Vogue Italy's feature of BizarrAudi's SchoolTime collection.",
+    href: '/studio/modeling',
   },
 ]
 
@@ -43,41 +48,50 @@ export default function PressSection() {
         >
           <div className="flex items-center gap-3 mb-3">
             <span className="w-8 h-px bg-copper/50" />
-            <span className="font-mono text-xs tracking-[0.2em] uppercase text-copper">
-              Press & Recognition
-            </span>
+            <span className="font-mono text-xs tracking-[0.2em] uppercase text-copper">Recognition</span>
           </div>
-          <h2 className="font-serif text-heading text-white">
-            In the record.
-          </h2>
+          <h2 className="font-serif text-heading text-white">On the record.</h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {pressItems.map((item, i) => (
+        {/* Media coverage strip */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="mb-10 rounded-2xl border border-white/[0.08] bg-surface px-6 py-6 md:px-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between"
+        >
+          <p className="text-sm text-muted md:max-w-[15rem] shrink-0">
+            Advocacy for The YCOD covered by
+          </p>
+          <ul className="flex flex-wrap items-center gap-x-8 gap-y-3">
+            {outlets.map((name) => (
+              <li key={name} className="font-sans text-lg md:text-xl font-semibold tracking-tight text-titanium">
+                {name}
+              </li>
+            ))}
+          </ul>
+        </motion.div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {recognition.map((item, i) => (
             <motion.div
-              key={item.source}
-              initial={{ opacity: 0, y: 30 }}
+              key={item.title}
+              initial={{ opacity: 0, y: 24 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="glass rounded-xl p-6 md:p-8 hover:bg-white/10 hover:border-white/20 transition-all duration-500"
+              transition={{ duration: 0.6, delay: 0.15 + i * 0.08, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="flex items-center justify-between mb-4">
-                <span className="font-mono text-xs tracking-widest uppercase text-copper">
-                  {item.source}
+              <Link
+                href={item.href}
+                className="group flex h-full flex-col rounded-2xl border border-white/[0.08] bg-surface p-6 transition-colors duration-300 hover:border-white/20 hover:bg-surface-raised"
+              >
+                <span aria-hidden="true" className="mb-5 block h-px w-8 bg-copper/60 transition-all duration-300 group-hover:w-12" />
+                <h3 className="font-serif text-xl text-white leading-snug">{item.title}</h3>
+                <p className="mt-1 font-mono text-[11px] tracking-wider uppercase text-copper-light">{item.issuer}</p>
+                <p className="mt-4 text-sm text-titanium leading-relaxed flex-1">{item.detail}</p>
+                <span className="mt-5 inline-flex items-center gap-1.5 text-xs font-medium text-muted group-hover:text-white transition-colors">
+                  View project <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">&rarr;</span>
                 </span>
-                <span className="font-mono text-xs text-titanium/40">{item.year}</span>
-              </div>
-              <p className="text-titanium text-sm leading-relaxed italic">
-                &ldquo;{item.quote}&rdquo;
-              </p>
-              {item.link && (
-                <Link
-                  href={item.link}
-                  className="inline-flex items-center gap-1.5 mt-4 text-xs text-titanium/50 hover:text-copper transition-colors"
-                >
-                  Read more <span>&rarr;</span>
-                </Link>
-              )}
+              </Link>
             </motion.div>
           ))}
         </div>

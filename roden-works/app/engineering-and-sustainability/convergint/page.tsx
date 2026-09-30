@@ -160,7 +160,7 @@ export default function ConvergintPage() {
           </svg>
         </div>
 
-        <div className="content-width relative z-10 pb-12 md:pb-16">
+        <div className="content-width w-full relative z-10 pb-12 md:pb-16">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -485,7 +485,7 @@ export default function ConvergintPage() {
                 <div className="h-full flex flex-col items-center justify-center text-center py-8">
                   <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-4">
                     <svg
-                      className="w-6 h-6 text-titanium/40"
+                      className="w-6 h-6 text-muted"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -498,7 +498,7 @@ export default function ConvergintPage() {
                       />
                     </svg>
                   </div>
-                  <p className="text-titanium/60 text-sm">
+                  <p className="text-muted text-sm">
                     Click on a component in the diagram to learn about its role in
                     fire protection.
                   </p>
@@ -561,7 +561,7 @@ export default function ConvergintPage() {
                         </span>
                       </motion.div>
                     </div>
-                    <span className="font-mono text-xs text-titanium/60">
+                    <span className="font-mono text-xs text-muted">
                       {step.phase}
                     </span>
                   </div>

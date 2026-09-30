@@ -15,25 +15,32 @@ public/
 │   ├── modeling/    # Vogue/runway images
 │   ├── projects/    # Case study imagery
 │   └── press/       # Media logos
-└── fonts/           # Custom font files (.woff2)
+└── resume.pdf       # Optional — enables the "Download Resume" button
 ```
+
+Galleries are **automatic**: any `.jpg`, `.png`, or `.webp` placed in
+`public/images/photography/`, `public/images/glass-art/`, or `public/images/modeling/`
+appears on its page at the next build, sorted by filename, with correct aspect ratios.
+Until a folder has images, the page shows a "request the portfolio" panel instead of
+empty placeholder tiles.
+
+Name files with a numeric prefix to control order; the rest becomes the alt text:
+`01-golden-hour-study.jpg` → alt text "Golden hour study".
 
 ## Adding Assets
 
 ### Profile Portrait
-1. Place your portrait image in `public/images/portrait/`
-2. Recommended: 800x1067px (3:4 ratio), JPEG or WebP
-3. Update the portrait placeholder in `app/about/AboutHero.tsx` with:
-   ```tsx
-   import Image from 'next/image'
-   <Image src="/images/portrait/your-photo.jpg" alt="Evan Roden" fill className="object-cover" />
-   ```
+The portrait lives at `public/portrait.jpg` (square, used on the home and About pages).
+Replace the file to update it — keep it square, at least 1200×1200px.
 
 ### Photography Gallery
-1. Place images in `public/images/photography/`
+1. Place images in `public/images/photography/` — they appear automatically
 2. Recommended formats: WebP or JPEG, max 2400px on longest side
-3. Add entries to the gallery array in `app/studio/photography/page.tsx`
-4. Include EXIF data if available (camera, lens, settings)
+3. Clicking an image opens a full-screen viewer (arrow keys to browse, Esc to close)
+
+### Resume
+Place a PDF at `public/resume.pdf`. The About page detects it at build time and shows a
+"Download Resume" button; without it, the button links to LinkedIn instead.
 
 ### 3D Models (VA Prosthetics)
 1. Export from Fusion 360 as .glb (binary glTF)
@@ -49,49 +56,33 @@ public/
 4. Update the video player in `app/studio/cinematography/page.tsx`
 
 ### Glass Art Images
-1. Place in `public/images/glass-art/`
-2. High-resolution recommended (3000px+) for zoom feature
-3. Update gallery in `app/studio/glass-art/page.tsx`
+1. Place in `public/images/glass-art/` — they appear automatically
+2. The first image (by filename) becomes the zoomable hero; 3000px+ recommended
+3. Remaining images form a grid below the firing schedule
 
 ### Modeling/Editorial Images
-1. Place in `public/images/modeling/`
-2. Full-bleed layout works best with portrait orientation (3:4 or 2:3)
-3. Update `app/studio/modeling/page.tsx`
+1. Place in `public/images/modeling/` — they appear automatically
+2. Portrait orientation (3:4 or 2:3) works best in the masonry layout
 
 ## Fonts
 
-The site uses system font fallbacks by default. To use custom fonts:
+Fonts are self-hosted and load automatically — no action needed:
 
-1. Download font files (.woff2 format):
-   - [Inter](https://fonts.google.com/specimen/Inter) — body text
-   - [Playfair Display](https://fonts.google.com/specimen/Playfair+Display) — headings
-   - [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono) — monospace/data
+- **Newsreader** (display headings) — `app/fonts/`, loaded with `next/font/local` in `app/layout.tsx`
+- **Geist Sans** (body, UI, and all numbers) and **Geist Mono** (labels) — from the `geist` package
 
-2. Place in `public/fonts/` as `inter-variable.woff2`, `playfair-variable.woff2`, `jetbrains-mono-variable.woff2`
-
-3. Update `app/layout.tsx` to use `next/font/local`:
-   ```tsx
-   import localFont from 'next/font/local'
-   const sans = localFont({ src: '../public/fonts/inter-variable.woff2', variable: '--font-inter' })
-   ```
-
-4. Update `tailwind.config.ts` font families to use CSS variables:
-   ```ts
-   fontFamily: {
-     serif: ['var(--font-playfair)', 'Georgia', 'serif'],
-     sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
-     mono: ['var(--font-jetbrains)', 'monospace'],
-   }
-   ```
+Tailwind maps them to `font-serif`, `font-sans`, and `font-mono`.
 
 ## Contact Form
 
-The contact form currently logs submissions to the server console. To wire it up to email:
+The form posts to `app/api/contact/route.ts`, which delivers mail through
+[Resend](https://resend.com)'s REST API. Set these environment variables on the host:
 
-1. Install Resend: `npm install resend`
-2. Get an API key from [resend.com](https://resend.com)
-3. Add `RESEND_API_KEY` to your environment variables
-4. Update `app/api/contact/route.ts` to use the Resend SDK
+| Variable | Purpose |
+|---|---|
+| `RESEND_API_KEY` | Required. Without it the form does not pretend to send — it offers visitors a pre-filled email instead. |
+| `CONTACT_FROM` | Sender on a domain verified in Resend, e.g. `roden.works <contact@roden.works>` |
+| `CONTACT_TO` | Recipient; defaults to the email in `lib/constants.ts` |
 
 ## MDX Case Studies
 

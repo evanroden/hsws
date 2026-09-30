@@ -20,7 +20,7 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
         </li>
         {items.map((item, i) => (
           <li key={i} className="flex items-center gap-2">
-            <span className="text-titanium/40">/</span>
+            <span className="text-muted">/</span>
             {item.href ? (
               <Link href={item.href} className="text-titanium hover:text-white transition-colors">
                 {item.label}

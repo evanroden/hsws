@@ -61,19 +61,19 @@ export default function EnfraOverview() {
               <h3 className="font-serif text-lg text-white mb-3">Rochester Regional Health</h3>
               <ul className="space-y-2 text-sm text-titanium">
                 <li className="flex items-start gap-2">
-                  <span className="text-forest-light mt-1">•</span>
+                  <span className="text-verdigris mt-1">•</span>
                   Nine hospitals, 500+ ambulatory facilities, 19,400+ employees
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-forest-light mt-1">•</span>
+                  <span className="text-verdigris mt-1">•</span>
                   Second-largest employer in Rochester, NY
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-forest-light mt-1">•</span>
+                  <span className="text-verdigris mt-1">•</span>
                   Goal: 100% renewable electricity — one of healthcare&apos;s most aggressive sustainability targets
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-forest-light mt-1">•</span>
+                  <span className="text-verdigris mt-1">•</span>
                   Second-largest solar project in New York State (5.5 MW)
                 </li>
               </ul>

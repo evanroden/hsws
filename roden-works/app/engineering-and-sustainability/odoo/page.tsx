@@ -149,7 +149,7 @@ export default function OdooPage() {
           </svg>
         </div>
 
-        <div className="content-width relative z-10 pb-12 md:pb-16">
+        <div className="content-width w-full relative z-10 pb-12 md:pb-16">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -337,7 +337,7 @@ export default function OdooPage() {
                     className={`h-full ${item.color} rounded-full`}
                   />
                 </div>
-                <span className="text-xs text-titanium/50 mt-2 block">
+                <span className="text-xs text-muted mt-2 block">
                   {item.note}
                 </span>
               </motion.div>
@@ -556,7 +556,7 @@ export default function OdooPage() {
                 <div className="h-full flex flex-col items-center justify-center text-center py-8">
                   <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-4">
                     <svg
-                      className="w-6 h-6 text-titanium/40"
+                      className="w-6 h-6 text-muted"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -569,7 +569,7 @@ export default function OdooPage() {
                       />
                     </svg>
                   </div>
-                  <p className="text-titanium/60 text-sm">
+                  <p className="text-muted text-sm">
                     Click on a module in the diagram to see how Evan implemented
                     it for clients.
                   </p>

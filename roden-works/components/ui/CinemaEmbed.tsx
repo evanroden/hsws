@@ -146,7 +146,7 @@ export default function CinemaEmbed({
 
               {/* Platform badge — bottom right */}
               <div className="absolute bottom-4 right-4 md:bottom-6 md:right-6 z-10">
-                <span className="font-mono text-[10px] text-titanium/30 tracking-wider uppercase">
+                <span className="font-mono text-[10px] text-faint tracking-wider uppercase">
                   {source.type === 'vimeo' ? 'Vimeo' : 'YouTube'}
                 </span>
               </div>
@@ -154,7 +154,7 @@ export default function CinemaEmbed({
               {/* Aspect badge for cinematic */}
               {aspect === '2.35:1' && (
                 <div className="absolute top-4 right-4 z-10">
-                  <span className="font-mono text-[10px] text-titanium/30 tracking-wider">
+                  <span className="font-mono text-[10px] text-faint tracking-wider">
                     2.35:1
                   </span>
                 </div>
@@ -239,7 +239,7 @@ export function CinemaEmbedCompact({
               {/* Title */}
               <div className="absolute bottom-3 left-3 z-10 max-w-[70%]">
                 {subtitle && (
-                  <span className="font-mono text-[9px] text-copper/60 tracking-widest uppercase block mb-0.5">
+                  <span className="font-mono text-[9px] text-copper tracking-widest uppercase block mb-0.5">
                     {subtitle}
                   </span>
                 )}
@@ -251,7 +251,7 @@ export function CinemaEmbedCompact({
               {/* Duration badge */}
               {duration && (
                 <div className="absolute bottom-3 right-3 z-10 px-2 py-0.5 rounded bg-black/60 backdrop-blur-sm">
-                  <span className="font-mono text-[10px] text-titanium/60">
+                  <span className="font-mono text-[10px] text-muted">
                     {duration}
                   </span>
                 </div>

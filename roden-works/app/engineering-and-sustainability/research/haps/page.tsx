@@ -92,7 +92,7 @@ export default function HAPSPage() {
           </svg>
         </div>
 
-        <div className="content-width relative z-10 pb-12 md:pb-16">
+        <div className="content-width w-full relative z-10 pb-12 md:pb-16">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -254,7 +254,7 @@ export default function HAPSPage() {
                       )}
                     </h3>
                   </div>
-                  <span className="font-mono text-xs text-titanium/60">
+                  <span className="font-mono text-xs text-muted">
                     Relative indoor exposure
                   </span>
                 </div>
@@ -322,7 +322,7 @@ export default function HAPSPage() {
               cardiovascular disease burden.
             </p>
             <div className="mt-8 pt-6 border-t border-white/5">
-              <p className="text-titanium/40 text-xs font-mono">
+              <p className="text-muted text-xs font-mono">
                 A 2 mmHg population-level increase in systolic BP is associated
                 with a 7% increase in ischemic heart disease mortality and a 10%
                 increase in stroke mortality (Lewington et al., Lancet 2002)
@@ -381,7 +381,7 @@ export default function HAPSPage() {
                 <span className="text-white text-sm block">
                   {item.instrument}
                 </span>
-                <span className="text-titanium/50 text-xs font-mono mt-1 block">
+                <span className="text-muted text-xs font-mono mt-1 block">
                   {item.measures}
                 </span>
               </motion.div>

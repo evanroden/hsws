@@ -15,11 +15,11 @@ const pillars = [
     statLabel: 'EaaS Partnership',
     gradient: 'from-forest/20 via-forest/5 to-transparent',
     borderColor: 'border-forest-light/20 hover:border-forest-light/40',
-    accentColor: 'text-forest-light',
+    accentColor: 'text-verdigris',
     icon: (
       <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M24 4v40M4 24h40M12 12l24 24M36 12L12 36" opacity="0.3" />
-        <circle cx="24" cy="24" r="8" className="text-forest-light" />
+        <circle cx="24" cy="24" r="8" className="text-verdigris" />
         <circle cx="24" cy="24" r="16" opacity="0.5" />
         <path d="M24 8v4M24 36v4M8 24h4M36 24h4" strokeWidth="2" />
       </svg>
@@ -115,12 +115,12 @@ export default function BentoGrid() {
 
                     <div className="mt-8 pt-6 border-t border-white/5 flex items-end justify-between">
                       <div>
-                        <span className="font-serif text-2xl text-white">{pillar.stat}</span>
-                        <span className="block font-mono text-xs text-titanium/60 mt-1">
+                        <span className="font-sans text-2xl font-semibold tracking-tight text-white">{pillar.stat}</span>
+                        <span className="block font-mono text-[11px] tracking-wider uppercase text-muted mt-1.5">
                           {pillar.statLabel}
                         </span>
                       </div>
-                      <span className="flex items-center gap-1.5 text-sm text-titanium/50 group-hover:text-copper transition-colors duration-300">
+                      <span className="flex items-center gap-1.5 text-sm text-muted group-hover:text-copper transition-colors duration-300">
                         Explore
                         <span className="group-hover:translate-x-1 transition-transform duration-300">&rarr;</span>
                       </span>

@@ -70,7 +70,7 @@ export default function SWISPage() {
           </svg>
         </div>
 
-        <div className="content-width relative z-10 pb-12 md:pb-16">
+        <div className="content-width w-full relative z-10 pb-12 md:pb-16">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -434,7 +434,7 @@ export default function SWISPage() {
                 </span>
                 <span
                   className={`font-mono text-sm ${
-                    flowRate < 200 ? 'text-copper' : 'text-forest-light'
+                    flowRate < 200 ? 'text-copper' : 'text-verdigris'
                   }`}
                 >
                   {flowRate.toLocaleString()} kcfs
@@ -448,7 +448,7 @@ export default function SWISPage() {
                 onChange={(e) => setFlowRate(Number(e.target.value))}
                 className="w-full accent-copper"
               />
-              <div className="flex justify-between text-xs text-titanium/40 font-mono mt-1">
+              <div className="flex justify-between text-xs text-muted font-mono mt-1">
                 <span>100 kcfs (Crisis)</span>
                 <span>300 kcfs (Safe threshold)</span>
                 <span>400 kcfs (Normal)</span>

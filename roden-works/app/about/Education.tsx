@@ -29,14 +29,14 @@ export default function Education() {
             <div className="glass rounded-xl p-8">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-lg bg-forest/20 flex items-center justify-center flex-shrink-0">
-                  <span className="font-serif text-lg text-forest-light">T</span>
+                  <span className="font-serif text-lg text-verdigris">T</span>
                 </div>
                 <div>
                   <h3 className="font-serif text-xl text-white">Tulane University</h3>
                   <p className="text-titanium mt-1">
                     Bachelor of Engineering, Biomedical/Medical Engineering
                   </p>
-                  <p className="text-titanium/60 text-sm mt-1">2020 – 2024</p>
+                  <p className="text-muted text-sm mt-1">2020 – 2024</p>
                 </div>
               </div>
             </div>

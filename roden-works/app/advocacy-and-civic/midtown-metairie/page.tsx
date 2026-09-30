@@ -255,7 +255,7 @@ export default function MidtownMetairiePage() {
                   <span className="font-serif text-2xl text-copper">{project.funding}</span>
                 </div>
                 <p className="text-titanium text-sm leading-relaxed">{project.description}</p>
-                <div className="mt-4 flex items-center gap-2 text-sm text-titanium/40">
+                <div className="mt-4 flex items-center gap-2 text-sm text-muted">
                   <span className="font-mono text-xs">{expandedProject === i ? 'collapse' : 'expand'}</span>
                 </div>
 
@@ -266,7 +266,7 @@ export default function MidtownMetairiePage() {
                     transition={{ duration: 0.3 }}
                     className="mt-4 pt-4 border-t border-white/5"
                   >
-                    <p className="text-titanium/60 text-xs leading-relaxed">
+                    <p className="text-muted text-xs leading-relaxed">
                       {i === 0
                         ? 'The Fat City district, bounded roughly by Division Street, 18th Street, Severn Avenue, and the Metairie Country Club, was once a thriving entertainment destination. The CDBG-funded redevelopment focuses on streetscaping, drainage improvements, public art, and commercial facade grants to attract new tenants and foot traffic.'
                         : 'The Clearview Mall site, anchored at the intersection of Veterans Memorial Blvd and Clearview Pkwy, is being reimagined as a mixed-use town center. The $100M project includes residential towers, a grocery anchor, retail, office space, and structured parking — a radical departure from the enclosed mall format.'}

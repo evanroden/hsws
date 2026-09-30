@@ -47,7 +47,7 @@ export default function MediaWall() {
                   className="glass rounded-lg p-4 text-center hover:bg-white/10 transition-colors"
                 >
                   <span className="text-white text-sm font-medium">{outlet.name}</span>
-                  <span className="block text-titanium/40 text-xs mt-1 font-mono">{outlet.type}</span>
+                  <span className="block text-muted text-xs mt-1 font-mono">{outlet.type}</span>
                 </motion.div>
               ))}
             </div>

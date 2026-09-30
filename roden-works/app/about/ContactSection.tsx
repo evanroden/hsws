@@ -16,7 +16,7 @@ interface ContactForm {
 export default function ContactSection() {
   const { ref, isInView } = useInView(0.1)
   const [submitted, setSubmitted] = useState(false)
-  const [error, setError] = useState('')
+  const [failed, setFailed] = useState<ContactForm | null>(null)
   const [shakeSubmit, setShakeSubmit] = useState(false)
 
   const {
@@ -28,6 +28,7 @@ export default function ContactSection() {
   } = useForm<ContactForm>({ mode: 'onChange' })
 
   const onSubmit = async (data: ContactForm) => {
+    setFailed(null)
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
@@ -38,9 +39,15 @@ export default function ContactSection() {
       setSubmitted(true)
       reset()
     } catch {
-      setError('Something went wrong. Please email directly at ' + SITE_CONFIG.email)
+      // Keep what they wrote and hand it to their email app instead
+      setFailed(data)
     }
   }
+
+  const mailtoFallback = (data: ContactForm) =>
+    `mailto:${SITE_CONFIG.email}?subject=${encodeURIComponent(`${data.subject}: ${data.name}`)}&body=${encodeURIComponent(
+      `${data.message}\n\n— ${data.name} (${data.email})`
+    )}`
 
   const onError = () => {
     setShakeSubmit(true)
@@ -132,7 +139,7 @@ export default function ContactSection() {
                   className="glass rounded-xl p-8 text-center h-full flex flex-col items-center justify-center"
                 >
                   <div className="w-16 h-16 rounded-full bg-forest/20 flex items-center justify-center mb-4">
-                    <svg className="w-8 h-8 text-forest-light" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                    <svg className="w-8 h-8 text-verdigris" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
                       <motion.path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -165,7 +172,7 @@ export default function ContactSection() {
                       onBlur={() => trigger('name')}
                     />
                     {touchedFields.name && !errors.name && (
-                      <span className="absolute right-3 top-[38px] text-forest-light">
+                      <span className="absolute right-3 top-[38px] text-verdigris">
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                         </svg>
@@ -195,7 +202,7 @@ export default function ContactSection() {
                       onBlur={() => trigger('email')}
                     />
                     {touchedFields.email && !errors.email && (
-                      <span className="absolute right-3 top-[38px] text-forest-light">
+                      <span className="absolute right-3 top-[38px] text-verdigris">
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                         </svg>
@@ -244,7 +251,30 @@ export default function ContactSection() {
                     )}
                   </div>
 
-                  {error && <p className="text-red-400 text-sm">{error}</p>}
+                  {/* Honeypot — hidden from people, tempting to bots */}
+                  <input
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    className="absolute -left-[9999px] h-0 w-0 opacity-0"
+                    {...register('website' as keyof ContactForm)}
+                  />
+
+                  {failed && (
+                    <div role="alert" className="rounded-lg border border-copper/30 bg-copper/10 p-4 text-sm">
+                      <p className="text-white">This form couldn&apos;t send your message.</p>
+                      <p className="mt-1 text-titanium">
+                        Your text is safe — send it from your email app, or write to {SITE_CONFIG.email}.
+                      </p>
+                      <a
+                        href={mailtoFallback(failed)}
+                        className="mt-3 inline-flex items-center gap-2 rounded-md bg-copper px-3 py-1.5 text-xs font-medium text-slate-950 hover:bg-copper-light transition-colors"
+                      >
+                        Open in email app <span aria-hidden="true">&rarr;</span>
+                      </a>
+                    </div>
+                  )}
 
                   <motion.button
                     type="submit"

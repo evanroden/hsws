@@ -1,9 +1,9 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useState } from 'react'
 import { useInView } from '@/lib/hooks'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
+import StateTileMap from './StateTileMap'
 
 const victories = [
   {
@@ -62,69 +62,11 @@ const timelineEvents = [
   },
 ]
 
-// Simplified US state paths for the map visualization
-// Active states are highlighted; others are shown as outlines
-const usStates: { abbr: string; name: string; cx: number; cy: number }[] = [
-  { abbr: 'WA', name: 'Washington', cx: 12, cy: 8 },
-  { abbr: 'OR', name: 'Oregon', cx: 11, cy: 15 },
-  { abbr: 'CA', name: 'California', cx: 8, cy: 28 },
-  { abbr: 'NV', name: 'Nevada', cx: 14, cy: 23 },
-  { abbr: 'ID', name: 'Idaho', cx: 18, cy: 14 },
-  { abbr: 'MT', name: 'Montana', cx: 24, cy: 8 },
-  { abbr: 'WY', name: 'Wyoming', cx: 26, cy: 16 },
-  { abbr: 'UT', name: 'Utah', cx: 19, cy: 23 },
-  { abbr: 'CO', name: 'Colorado', cx: 27, cy: 24 },
-  { abbr: 'AZ', name: 'Arizona', cx: 17, cy: 33 },
-  { abbr: 'NM', name: 'New Mexico', cx: 24, cy: 33 },
-  { abbr: 'ND', name: 'North Dakota', cx: 34, cy: 8 },
-  { abbr: 'SD', name: 'South Dakota', cx: 34, cy: 14 },
-  { abbr: 'NE', name: 'Nebraska', cx: 34, cy: 20 },
-  { abbr: 'KS', name: 'Kansas', cx: 35, cy: 26 },
-  { abbr: 'OK', name: 'Oklahoma', cx: 37, cy: 31 },
-  { abbr: 'TX', name: 'Texas', cx: 34, cy: 38 },
-  { abbr: 'MN', name: 'Minnesota', cx: 40, cy: 10 },
-  { abbr: 'IA', name: 'Iowa', cx: 42, cy: 18 },
-  { abbr: 'MO', name: 'Missouri', cx: 43, cy: 26 },
-  { abbr: 'AR', name: 'Arkansas', cx: 43, cy: 32 },
-  { abbr: 'LA', name: 'Louisiana', cx: 43, cy: 38 },
-  { abbr: 'WI', name: 'Wisconsin', cx: 47, cy: 11 },
-  { abbr: 'IL', name: 'Illinois', cx: 48, cy: 21 },
-  { abbr: 'MS', name: 'Mississippi', cx: 48, cy: 34 },
-  { abbr: 'MI', name: 'Michigan', cx: 53, cy: 12 },
-  { abbr: 'IN', name: 'Indiana', cx: 53, cy: 21 },
-  { abbr: 'AL', name: 'Alabama', cx: 52, cy: 34 },
-  { abbr: 'OH', name: 'Ohio', cx: 58, cy: 19 },
-  { abbr: 'TN', name: 'Tennessee', cx: 55, cy: 28 },
-  { abbr: 'KY', name: 'Kentucky', cx: 57, cy: 25 },
-  { abbr: 'GA', name: 'Georgia', cx: 57, cy: 34 },
-  { abbr: 'FL', name: 'Florida', cx: 60, cy: 42 },
-  { abbr: 'SC', name: 'South Carolina', cx: 62, cy: 31 },
-  { abbr: 'NC', name: 'North Carolina', cx: 64, cy: 27 },
-  { abbr: 'VA', name: 'Virginia', cx: 65, cy: 23 },
-  { abbr: 'WV', name: 'West Virginia', cx: 62, cy: 22 },
-  { abbr: 'PA', name: 'Pennsylvania', cx: 67, cy: 17 },
-  { abbr: 'NY', name: 'New York', cx: 72, cy: 13 },
-  { abbr: 'NJ', name: 'New Jersey', cx: 72, cy: 18 },
-  { abbr: 'DE', name: 'Delaware', cx: 71, cy: 21 },
-  { abbr: 'MD', name: 'Maryland', cx: 69, cy: 20 },
-  { abbr: 'CT', name: 'Connecticut', cx: 76, cy: 15 },
-  { abbr: 'RI', name: 'Rhode Island', cx: 78, cy: 15 },
-  { abbr: 'MA', name: 'Massachusetts', cx: 78, cy: 13 },
-  { abbr: 'VT', name: 'Vermont', cx: 74, cy: 9 },
-  { abbr: 'NH', name: 'New Hampshire', cx: 76, cy: 9 },
-  { abbr: 'ME', name: 'Maine', cx: 79, cy: 6 },
-  { abbr: 'AK', name: 'Alaska', cx: 8, cy: 44 },
-  { abbr: 'HI', name: 'Hawaii', cx: 20, cy: 44 },
-]
-
-const activeStates = ['NY', 'MA', 'OR']
-
 export default function OurClimatePage() {
   const heroView = useInView(0.1)
   const mapView = useInView(0.05)
   const victoriesView = useInView(0.05)
   const timelineView = useInView(0.05)
-  const [hoveredState, setHoveredState] = useState<string | null>(null)
 
   return (
     <>
@@ -146,13 +88,13 @@ export default function OurClimatePage() {
             }}
           />
         </div>
-        <div className="content-width relative z-10 pb-12 md:pb-16">
+        <div className="content-width w-full relative z-10 pb-12 md:pb-16">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className="font-mono text-xs tracking-widest uppercase text-forest-light mb-4 block">
+            <span className="font-mono text-xs tracking-widest uppercase text-verdigris mb-4 block">
               Fellowship -- Nov 2019 to Oct 2020
             </span>
             <h1 className="font-serif text-display text-white max-w-4xl">
@@ -170,19 +112,19 @@ export default function OurClimatePage() {
             className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-0 md:divide-x divide-white/10"
           >
             <div className="text-center px-6 py-4">
-              <span className="block font-serif text-3xl md:text-4xl text-white">12</span>
+              <span className="block font-sans font-semibold tracking-tight text-3xl md:text-4xl text-white">12</span>
               <span className="block mt-2 font-mono text-xs tracking-wide text-titanium uppercase">Month Fellowship</span>
             </div>
             <div className="text-center px-6 py-4">
-              <span className="block font-serif text-3xl md:text-4xl text-white">3</span>
+              <span className="block font-sans font-semibold tracking-tight text-3xl md:text-4xl text-white">3</span>
               <span className="block mt-2 font-mono text-xs tracking-wide text-titanium uppercase">State Victories</span>
             </div>
             <div className="text-center px-6 py-4">
-              <span className="block font-serif text-3xl md:text-4xl text-white">~$500M</span>
+              <span className="block font-sans font-semibold tracking-tight text-3xl md:text-4xl text-white">~$500M</span>
               <span className="block mt-2 font-mono text-xs tracking-wide text-titanium uppercase">Green Retrofits (MA)</span>
             </div>
             <div className="text-center px-6 py-4">
-              <span className="block font-serif text-3xl md:text-4xl text-white">2050</span>
+              <span className="block font-sans font-semibold tracking-tight text-3xl md:text-4xl text-white">2050</span>
               <span className="block mt-2 font-mono text-xs tracking-wide text-titanium uppercase">Net-Zero Target (NY)</span>
             </div>
           </motion.div>
@@ -256,114 +198,11 @@ export default function OurClimatePage() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={mapView.isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="glass rounded-xl p-6 md:p-8"
+            initial={{ opacity: 0, y: 24 }}
+            animate={mapView.isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.2 }}
           >
-            <div className="relative w-full" style={{ paddingBottom: '55%' }}>
-              <svg viewBox="0 0 88 50" className="absolute inset-0 w-full h-full">
-                {/* Background continental outline */}
-                <motion.rect
-                  x="5"
-                  y="3"
-                  width="78"
-                  height="42"
-                  rx="2"
-                  fill="none"
-                  stroke="rgba(138,155,168,0.08)"
-                  strokeWidth="0.3"
-                  initial={{ pathLength: 0 }}
-                  animate={mapView.isInView ? { pathLength: 1 } : {}}
-                  transition={{ duration: 1.5 }}
-                />
-
-                {/* State dots */}
-                {usStates.map((state, i) => {
-                  const isActive = activeStates.includes(state.abbr)
-                  const isHovered = hoveredState === state.abbr
-
-                  return (
-                    <motion.g
-                      key={state.abbr}
-                      initial={{ opacity: 0, scale: 0 }}
-                      animate={mapView.isInView ? { opacity: 1, scale: 1 } : {}}
-                      transition={{ duration: 0.4, delay: 0.5 + i * 0.02 }}
-                      onMouseEnter={() => setHoveredState(state.abbr)}
-                      onMouseLeave={() => setHoveredState(null)}
-                      className="cursor-pointer"
-                    >
-                      {/* Pulse ring for active states */}
-                      {isActive && (
-                        <motion.circle
-                          cx={state.cx}
-                          cy={state.cy}
-                          r="3"
-                          fill="none"
-                          stroke="#2D5A45"
-                          strokeWidth="0.3"
-                          animate={{ r: [3, 5, 3], opacity: [0.6, 0, 0.6] }}
-                          transition={{ repeat: Infinity, duration: 3, delay: activeStates.indexOf(state.abbr) * 1 }}
-                        />
-                      )}
-
-                      {/* State dot */}
-                      <circle
-                        cx={state.cx}
-                        cy={state.cy}
-                        r={isActive ? 2.2 : isHovered ? 1.8 : 1.2}
-                        fill={isActive ? '#2D5A45' : isHovered ? 'rgba(138,155,168,0.4)' : 'rgba(138,155,168,0.15)'}
-                        className="transition-all duration-300"
-                      />
-                      {isActive && (
-                        <circle cx={state.cx} cy={state.cy} r="0.8" fill="#FAFAFA" />
-                      )}
-
-                      {/* State label */}
-                      {(isActive || isHovered) && (
-                        <text
-                          x={state.cx}
-                          y={state.cy - (isActive ? 3.5 : 3)}
-                          textAnchor="middle"
-                          className={`font-mono ${isActive ? 'fill-forest-light' : 'fill-titanium'}`}
-                          style={{ fontSize: '2px' }}
-                        >
-                          {state.abbr}
-                        </text>
-                      )}
-                    </motion.g>
-                  )
-                })}
-
-                {/* Legend */}
-                <circle cx="8" cy="48" r="1.2" fill="#2D5A45" />
-                <text x="11" y="48.8" className="fill-titanium font-mono" style={{ fontSize: '2px' }}>
-                  Legislative Victory
-                </text>
-                <circle cx="32" cy="48" r="1.2" fill="rgba(138,155,168,0.15)" />
-                <text x="35" y="48.8" className="fill-titanium/50 font-mono" style={{ fontSize: '2px' }}>
-                  Other States
-                </text>
-              </svg>
-            </div>
-
-            {/* Active state summary cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6 pt-6 border-t border-white/5">
-              {victories.map((v, i) => (
-                <motion.div
-                  key={v.abbr}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={mapView.isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 1.2 + i * 0.15 }}
-                  className="bg-forest/10 border border-forest/20 rounded-lg p-4"
-                  onMouseEnter={() => setHoveredState(v.abbr)}
-                  onMouseLeave={() => setHoveredState(null)}
-                >
-                  <span className="font-mono text-xs text-forest-light">{v.abbr}</span>
-                  <h3 className="font-serif text-sm text-white mt-1">{v.state}</h3>
-                </motion.div>
-              ))}
-            </div>
+            <StateTileMap victories={victories} animate={mapView.isInView} />
           </motion.div>
         </div>
       </section>
@@ -397,7 +236,7 @@ export default function OurClimatePage() {
                 <div className="flex flex-col md:flex-row md:items-start gap-6">
                   <div className="flex-shrink-0">
                     <div className="w-16 h-16 rounded-xl bg-forest/20 border border-forest/30 flex items-center justify-center">
-                      <span className="font-mono text-lg text-forest-light font-bold">{victory.abbr}</span>
+                      <span className="font-mono text-lg text-verdigris font-bold">{victory.abbr}</span>
                     </div>
                   </div>
                   <div className="flex-1">
@@ -443,7 +282,7 @@ export default function OurClimatePage() {
                   className="relative pl-12 md:pl-20"
                 >
                   <div className="absolute left-2.5 md:left-6.5 w-3 h-3 rounded-full bg-slate-950 border-2 border-forest/50 z-10" />
-                  <span className="font-mono text-xs text-forest-light">{event.date}</span>
+                  <span className="font-mono text-xs text-verdigris">{event.date}</span>
                   <h3 className="font-serif text-lg text-white mt-1">{event.title}</h3>
                   <p className="text-titanium text-sm mt-1 leading-relaxed">{event.description}</p>
                 </motion.div>
