@@ -200,8 +200,8 @@ export function Evidence() {
               +2
               <span className="ml-2 align-baseline text-2xl md:text-3xl font-medium text-titanium">mmHg</span>
             </p>
-            <p className="mt-4 flex items-center gap-2 text-lg text-white">
-              <span aria-hidden="true" className="inline-block h-0.5 w-5 rounded-full bg-copper" />
+            <p className="mt-4 flex items-start gap-2 text-lg text-white">
+              <span aria-hidden="true" className="mt-[0.8em] inline-block h-0.5 w-5 shrink-0 rounded-full bg-copper" />
               Systolic blood pressure increase
             </p>
             <p className="mt-3 max-w-lg text-sm leading-relaxed text-titanium">
