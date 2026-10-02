@@ -63,6 +63,31 @@ function getEmbedUrl(source: VideoSource, autoplay: boolean): string {
   return `https://www.youtube.com/embed/${source.id}?${params.toString()}`
 }
 
+/* ─── Poster frame ──────────────────────────────── */
+
+/** Real thumbnail for each video, downloaded into public/images/video-posters
+ *  (YouTube maxres/hq thumbnail, Vimeo oEmbed thumbnail). */
+function posterSrc(source: VideoSource): string {
+  return `/images/video-posters/${source.type === 'vimeo' ? 'vimeo' : 'yt'}-${source.id}.jpg`
+}
+
+function PosterFrame({ source }: { source: VideoSource }) {
+  return (
+    <>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={posterSrc(source)}
+        alt=""
+        loading="lazy"
+        decoding="async"
+        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover/cinema:scale-[1.03] motion-reduce:transition-none"
+      />
+      {/* Scrim keeps the title and play button legible on bright frames */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/10 pointer-events-none" />
+    </>
+  )
+}
+
 /* ─── Main Component ─────────────────────────────── */
 
 export default function CinemaEmbed({
@@ -95,6 +120,8 @@ export default function CinemaEmbed({
               className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 cursor-pointer"
               onClick={() => setIsPlaying(true)}
             >
+              <PosterFrame source={source} />
+
               {/* Film grain overlay */}
               {showGrain && (
                 <div
@@ -105,9 +132,6 @@ export default function CinemaEmbed({
                   }}
                 />
               )}
-
-              {/* Anamorphic lens flare */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-copper/[0.03] to-transparent pointer-events-none" />
 
               {/* Letterbox bars for cinematic aspect */}
               {aspect === '2.35:1' && (
@@ -121,7 +145,7 @@ export default function CinemaEmbed({
               <motion.button
                 whileHover={{ scale: 1.08 }}
                 whileTap={{ scale: 0.95 }}
-                className="relative z-10 flex items-center justify-center w-20 h-20 md:w-24 md:h-24 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm hover:bg-white/20 transition-all duration-300"
+                className="relative z-10 flex items-center justify-center w-20 h-20 md:w-24 md:h-24 rounded-full bg-black/40 border border-white/30 backdrop-blur-sm hover:bg-black/60 transition-all duration-300"
               >
                 <svg
                   className="w-8 h-8 md:w-10 md:h-10 text-white ml-1"
@@ -135,18 +159,18 @@ export default function CinemaEmbed({
               {/* Title overlay — bottom left */}
               <div className="absolute bottom-4 left-4 md:bottom-6 md:left-6 z-10">
                 {subtitle && (
-                  <span className="font-mono text-[10px] md:text-xs text-copper/70 tracking-widest uppercase block mb-1">
+                  <span className="font-mono text-[10px] md:text-xs text-copper-light tracking-widest uppercase block mb-1">
                     {subtitle}
                   </span>
                 )}
-                <h3 className="font-serif text-sm md:text-lg text-white/80">
+                <h3 className="font-serif text-sm md:text-lg text-white drop-shadow">
                   {title}
                 </h3>
               </div>
 
               {/* Platform badge — bottom right */}
               <div className="absolute bottom-4 right-4 md:bottom-6 md:right-6 z-10">
-                <span className="font-mono text-[10px] text-faint tracking-wider uppercase">
+                <span className="font-mono text-[10px] text-white/70 tracking-wider uppercase">
                   {source.type === 'vimeo' ? 'Vimeo' : 'YouTube'}
                 </span>
               </div>
@@ -211,21 +235,13 @@ export function CinemaEmbedCompact({
               className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 cursor-pointer"
               onClick={() => setIsPlaying(true)}
             >
-              {/* Subtle grid pattern */}
-              <div
-                className="absolute inset-0 opacity-[0.03] pointer-events-none"
-                style={{
-                  backgroundImage:
-                    'radial-gradient(circle at 1px 1px, white 1px, transparent 1px)',
-                  backgroundSize: '16px 16px',
-                }}
-              />
+              <PosterFrame source={source} />
 
               {/* Play button */}
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                className="relative z-10 flex items-center justify-center w-14 h-14 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm hover:bg-white/20 transition-all duration-300"
+                className="relative z-10 flex items-center justify-center w-14 h-14 rounded-full bg-black/40 border border-white/30 backdrop-blur-sm hover:bg-black/60 transition-all duration-300"
               >
                 <svg
                   className="w-6 h-6 text-white ml-0.5"
@@ -243,7 +259,7 @@ export function CinemaEmbedCompact({
                     {subtitle}
                   </span>
                 )}
-                <h4 className="font-serif text-sm text-white/80 leading-snug truncate">
+                <h4 className="font-serif text-sm text-white leading-snug truncate drop-shadow">
                   {title}
                 </h4>
               </div>
