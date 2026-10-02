@@ -23,7 +23,7 @@ Every factual claim on the site was checked against public sources. Fixes are li
 5. **Resolved (Oct 2026):** Founded in 2016, when Evan was about fifteen. The site now says 2016 / "at fifteen". Note: ycod.org/about still says 2017.
 6. **Resolved (Oct 2026):** IRS notice CP 575 E (Feb 3, 2022) assigned an EIN to the Youth Coalition for Organ Donation as a non-profit organization. The site now says "registered nonprofit". An EIN alone does not grant 501(c) tax-exempt status, so the site makes no 501(c)(4) claim. If Form 1024-A was filed and approved, send the determination letter and the label can go back.
 7. Is your 2021 draft the text that became Senate bill S4334? Was there a 2021–22 Assembly bill number?
-8. **Partly resolved (Oct 2026):** ycod.org/coverage shows that the Yahoo News, Yahoo Finance, Business Insider/Markets Insider, MarketWatch, MSN and Morningstar items were syndications of the YCOD's own PR Newswire release ("Youth Coalition For Organ Donation Strives to Save Lives"), not independent coverage. They stay off the press list. CBC is listed there as "Radio One / CBC", with no link. Which show was it, and when did it air?
+8. **Resolved (Oct 2026):** CBC was a 2020 interview of Evan and Henry McLaughlin on CBC Radio's Information Morning (Nova Scotia, host Portia Clark), owner-confirmed; no archived link was found, so it's listed without a footnote. The Yahoo, Business Insider and similar items were syndications of the YCOD's own PR Newswire release and stay off.
 9. Can you confirm the WaitList Zero, ONE8FIFTY and Chris Klug Foundation partnerships? Did you lead the group for seven or more years? Is it still active? What did your Living Donor Support Act advocacy involve?
 
 **Policy work**

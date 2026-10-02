@@ -4,12 +4,13 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useInView } from '@/lib/hooks'
 
-// Only outlets with coverage we could find. CBC, Yahoo News and Business Insider (named on the
-// YCOD page) could not be located and are left off pending a link from Evan.
+// Yahoo News and Business Insider items were syndications of the YCOD's own PR Newswire release, so they
+// are not listed as coverage. CBC: Evan and Henry McLaughlin were interviewed on CBC Radio's Information
+// Morning (Nova Scotia, host Portia Clark) in 2020; owner-confirmed Oct 2026, no archived link found.
 // WKBW (Olivia Proia, syndicated to Scripps stations): https://www.tmj4.com/news/national/college-freshmen-in-new-york-develop-plan-to-encourage-more-organ-donors
 // Spectrum News: https://spectrumlocalnews.com/nys/buffalo/news/2021/01/13/college-students-push-for-more-organ-donations-in-ny-
 //   and https://mynews13.com/fl/orlando/news/2021/09/24/wny-teens-nominated-for-american-red-cross-award-for-organ-donation-coalition
-const outlets = ['WKBW', 'Spectrum News']
+const outlets = ['CBC Radio', 'WKBW', 'Spectrum News']
 
 const recognition = [
   {
