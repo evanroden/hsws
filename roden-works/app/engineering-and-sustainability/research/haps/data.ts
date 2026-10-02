@@ -32,8 +32,12 @@ export const POLLUTANTS: Record<PollutantId, Pollutant> = {
     label: 'Black carbon',
     color: chart.verdigris,
     kind: 'particles',
+    // Published finding (Rabito et al. 2021, PMC7985991): a 1 µg/m³ increase in
+    // residential black carbon was associated with a 7.55 mmHg increase in
+    // systolic blood pressure (P = .02) in the 0–72 h before measurement.
+    // https://pmc.ncbi.nlm.nih.gov/articles/PMC7985991/
     description:
-      'A component of soot from incomplete combustion of fossil fuels, biomass, and cooking fuels. In the study, participants in the highest quartile of black carbon exposure had systolic blood pressure about 2 mmHg higher.',
+      'A component of soot from incomplete combustion of fossil fuels, biomass, and cooking fuels. In the study, each 1 µg/m³ increase in residential black carbon was associated with a 7.55 mmHg increase in systolic blood pressure.',
   },
   no2: {
     id: 'no2',

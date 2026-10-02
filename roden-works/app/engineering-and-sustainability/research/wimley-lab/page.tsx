@@ -33,8 +33,12 @@ const keyPeptides = [
   {
     name: 'Macrolittins',
     origin: 'Evolved from melittin (bee venom)',
+    // Macrolittins release macromolecular cargo from PC vesicles at ratios as
+    // low as ~1 peptide per 1,000 lipids and show no measurable cytolytic
+    // activity against human cells. Source:
+    // https://medicine.tulane.edu/wimley-lab/pore-forming-peptides
     mechanism:
-      'Form large, stable pores in lipid membranes at nanomolar concentrations and stay antibacterial under physiological conditions.',
+      'Form large pores in lipid membranes at very low peptide-to-lipid ratios to release macromolecule-sized cargo, with no measurable toxicity to human cells.',
   },
   {
     name: 'pHD Peptides',
@@ -43,10 +47,15 @@ const keyPeptides = [
       'pH-dependent nanopores that stay inactive at physiological pH (7.4) and open at acidic pH (< 6), which makes them candidates for tumor-targeted delivery.',
   },
   {
-    name: 'ATRAM',
-    origin: 'Acidity-Triggered Rational Membrane insertion',
+    // MelP5 is the Wimley lab's first-generation gain-of-function melittin
+    // variant and the parent used to evolve the macrolittins. Source:
+    // https://medicine.tulane.edu/wimley-lab/pore-forming-peptides
+    // (ATRAM was removed here: it is from Francisco Barrera's lab at the
+    // University of Tennessee, not the Wimley lab.)
+    name: 'MelP5',
+    origin: 'Gain-of-function melittin variant',
     mechanism:
-      'Inserts into membranes only under acidic conditions, so it works as a switch for controlled membrane disruption.',
+      'A potent equilibrium pore-former evolved from melittin. It releases macromolecule-sized cargo from lipid vesicles and served as the parent for the macrolittins.',
   },
 ]
 
@@ -208,19 +217,19 @@ export default function WimleyLabPage() {
                     Lab Context
                   </h3>
                   <ul className="space-y-2 text-sm text-titanium">
+                    {/* Removed an unsourced "$1.6M NIH grant" bullet and an
+                        unsourced "10,000+ variants per screen" figure. The
+                        JHU/Hristova collaboration is documented at
+                        https://medicine.tulane.edu/wimley-lab/pore-forming-peptides */}
                     <li className="flex items-start gap-2">
                       <span className="text-copper mt-1">&#8226;</span>
-                      $1.6M NIH grant for nanopore medicine research
+                      Combinatorial peptide libraries screened by iterative
+                      synthetic molecular evolution
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-copper mt-1">&#8226;</span>
-                      Combinatorial peptide libraries with 10,000+ variants per
-                      screen
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-copper mt-1">&#8226;</span>
-                      Collaboration with Tulane Biochemistry and Biomedical
-                      Engineering departments
+                      Collaboration with the Hristova Lab at Johns Hopkins
+                      University
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-copper mt-1">&#8226;</span>

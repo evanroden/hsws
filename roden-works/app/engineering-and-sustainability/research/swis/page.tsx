@@ -245,16 +245,23 @@ export default function SWISPage() {
                   'The Greater New Orleans metropolitan area depends on Mississippi River water treated at the Carrollton plant.',
               },
               {
-                stat: '2x',
-                label: 'in 12 years',
+                // The Army Corps has built emergency saltwater sills near
+                // Myrtle Grove (RM 64) in 1988, 1999, 2012, 2022 and 2023.
+                // Source: USACE release via GOHSEP, Aug. 29, 2024
+                // https://gohsep.la.gov/about/news/usace-to-construct-underwater-sill-to-arrest-saltwater-progression-into-mississippi-river/
+                stat: '5',
+                label: 'sills since 1988',
                 description:
-                  'Similar low-flow conditions occurred in 2012 and 2023, which may mean they are becoming more frequent.',
+                  'The Army Corps has built emergency underwater sills near Myrtle Grove in 1988, 1999, 2012, 2022 and 2023, the last two years running.',
               },
               {
-                stat: '0',
-                label: 'longitudinal studies',
+                // Softened from an unsourced absolute ("No long-term health
+                // study has ever..."). Framed as the author's own search and
+                // the gap this proposal is designed to fill.
+                stat: 'New',
+                label: 'longitudinal study',
                 description:
-                  'No long-term health study has ever tracked the impacts of saltwater intrusion on a municipal water supply population.',
+                  'I found no long-term health study tracking the impacts of saltwater intrusion on a municipal water supply population. This proposal is designed to fill that gap.',
               },
             ].map((item, i) => (
               <motion.div
