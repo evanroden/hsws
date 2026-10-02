@@ -8,6 +8,8 @@ interface StatCounterProps {
   suffix?: string
   label: string
   duration?: number
+  /** Footnote marker rendered after the value, e.g. <Cite sources={S} id="x" /> */
+  cite?: React.ReactNode
 }
 
 export default function StatCounter({
@@ -16,6 +18,7 @@ export default function StatCounter({
   suffix = '',
   label,
   duration = 2000,
+  cite,
 }: StatCounterProps) {
   const { count, ref } = useCountUp(value, duration)
 
@@ -37,6 +40,7 @@ export default function StatCounter({
         {prefix}
         {displayValue}
         {suffix}
+        {cite && <span className="text-[1.1rem] align-top">{cite}</span>}
       </span>
       <span className="block mt-2 font-mono text-xs tracking-wide text-titanium uppercase" aria-hidden="true">
         {label}

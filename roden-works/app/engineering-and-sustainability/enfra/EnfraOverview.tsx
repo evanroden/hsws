@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion'
 import { useInView } from '@/lib/hooks'
+import { Cite } from '@/components/ui/Sources'
+import { ENFRA_SOURCES as S } from './sources'
 
 export default function EnfraOverview() {
   const { ref, isInView } = useInView(0.1)
@@ -30,7 +32,7 @@ export default function EnfraOverview() {
                     (Bernhard renamed ENFRA May 1, 2025; operates in 24 states; EaaS grew >35% CAGR since 2017).
                   The Bernhard name dates to 2014-15, when five companies united, so "founded in 1919 as Bernhard" was wrong. */}
               <p>
-                ENFRA traces its roots to 1919 and operated as Bernhard until it rebranded in May 2025. It is an energy infrastructure company with 3,000+ employees, 29 offices, and operations in 24 states. Its EaaS portfolio includes more than $2 billion in financed projects with $87 million in guaranteed annual utility savings.
+                ENFRA traces its roots to 1919 and operated as Bernhard until it rebranded in May 2025. It is an energy infrastructure company with 3,000+ employees, 29 offices, and operations in 24 states.<Cite sources={S} id={['enfra-about', 'enfra-rebrand']} /> Its EaaS portfolio includes more than $2 billion in financed projects with $87 million in guaranteed annual utility savings.<Cite sources={S} id="enfra-about" />
               </p>
               <p>
                 Under ENFRA&apos;s Energy-as-a-Service model, a hospital pays a predictable operating expense instead of funding plant upgrades as capital. ENFRA designs, builds, finances, operates, and maintains the energy systems under long-term agreements, typically 30 years, and monitors them with its own software, ENFRA Connect®, for real-time data and fault detection.
@@ -40,7 +42,7 @@ export default function EnfraOverview() {
                   Beacon $54.2M: https://enfrasolutions.com/enfra-and-beacon-health-system-partner-on-30-year-energy-as-a-service-agreement-to-advance-sustainability-and-efficiency-2
                   Novant $855M, "largest EaaS transaction in U.S. healthcare history" (2025): https://enfrasolutions.com/projects/novant-health */}
               <p>
-                Clients include Ochsner Health (in 2017, the first U.S. healthcare Energy Asset Concession), Hackensack Meridian ($134M), Beacon Health ($54.2M), and Novant Health ($855M, which ENFRA called the largest EaaS transaction in U.S. healthcare history when it was announced in 2025). The EaaS business has grown at more than 35% CAGR since 2017.
+                Clients include Ochsner Health (in 2017, the first U.S. healthcare Energy Asset Concession),<Cite sources={S} id="ochsner" /> Hackensack Meridian ($134M),<Cite sources={S} id="hackensack" /> Beacon Health ($54.2M),<Cite sources={S} id="beacon" /> and Novant Health ($855M, which ENFRA called the largest EaaS transaction in U.S. healthcare history when it was announced in 2025).<Cite sources={S} id="novant" /> The EaaS business has grown at more than 35% CAGR since 2017.<Cite sources={S} id="enfra-rebrand" />
               </p>
             </div>
           </motion.div>
@@ -60,7 +62,7 @@ export default function EnfraOverview() {
             <div className="space-y-4 text-titanium leading-relaxed">
               <p>
                 {/* RRH names the Rochester site "St. Mary's Medical Campus": https://rochesterregional.org/locations/medical-campuses/st-marys */}
-                I manage the Central Energy Plants at two Rochester Regional Health facilities: United Memorial Medical Center (UMMC) in Batavia, NY and St. Mary&apos;s Medical Campus in Rochester, NY. The work falls under a $143.8 million, 30-year EaaS partnership, announced January 20, 2026, that covers all nine RRH hospital locations.
+                I manage the Central Energy Plants at two Rochester Regional Health facilities: United Memorial Medical Center (UMMC) in Batavia, NY and St. Mary&apos;s Medical Campus in Rochester, NY. The work falls under a $143.8 million, 30-year EaaS partnership, announced January 20, 2026, that covers all nine RRH hospital locations.<Cite sources={S} id="rrh-announcement" />
               </p>
               <p>
                 I oversee subcontractors, manage maintenance budgets, and analyze energy data to find savings. My main job is keeping the plants running, since the hospitals depend on them for heating, cooling, sterilization, and power.
@@ -75,22 +77,22 @@ export default function EnfraOverview() {
                   <span className="text-verdigris mt-1">•</span>
                   {/* https://www.rochesterregional.org/about/facts-and-statistics (9 hospital locations,
                       557 practice locations, 19.4K+ employees, second-largest employer in Rochester) */}
-                  Nine hospitals, 557 practice locations, 19,400+ employees
+                  Nine hospitals, 557 practice locations, 19,400+ employees<Cite sources={S} id="rrh-facts" />
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-verdigris mt-1">•</span>
-                  Second-largest employer in Rochester, NY
+                  Second-largest employer in Rochester, NY<Cite sources={S} id="rrh-facts" />
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-verdigris mt-1">•</span>
                   {/* https://rochesterregional.org/hub/solar-energy (100% of electricity use by 2025) */}
-                  Set a goal of sourcing 100% of its electricity from renewables by 2025
+                  Set a goal of sourcing 100% of its electricity from renewables by 2025<Cite sources={S} id="rrh-solar" />
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-verdigris mt-1">•</span>
                   {/* https://greensparksolar.com/2019/04/24/rochester-regional-health/ (5.48 MW, Parma, NY;
                       "second-largest single-site solar farm in New York State" at activation, 2019) */}
-                  A 5.48 MW solar farm in Parma, NY, the second-largest single-site solar farm in New York State when it came online in 2019
+                  A 5.48 MW solar farm in Parma, NY, the second-largest single-site solar farm in New York State when it came online in 2019<Cite sources={S} id="greenspark" />
                 </li>
               </ul>
             </div>

@@ -10,6 +10,8 @@ import SegmentedControl from '@/components/ui/SegmentedControl'
 import { chart } from '@/components/charts/tokens'
 import { formatMillions, linearScale, niceTicks } from '@/components/charts/scale'
 import { useElementSize } from '@/components/charts/useElementSize'
+import { Cite } from '@/components/ui/Sources'
+import { ENFRA_SOURCES as S } from './sources'
 
 /* ─── Modeled series ────────────────────────────────────────────────────────
  * Calibrated only to the three figures in ENFRA's Jan 20, 2026 announcement
@@ -140,7 +142,7 @@ export default function SavingsVisualization() {
                 Modeled illustration calibrated to ENFRA&apos;s announced figures ($6.9M projected first-year savings,
                 34.4% guaranteed savings, $354.6M avoided costs over 30 years), assuming a constant 34.4% saving and{' '}
                 {(BASELINE_ESCALATION * 100).toFixed(1)}%/yr cost escalation on both curves. Not billing data. Source:
-                ENFRA press release, Jan 20, 2026.
+                ENFRA press release, Jan 20, 2026.<Cite sources={S} id="rrh-announcement" />
               </>
             }
             table={{

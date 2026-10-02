@@ -8,6 +8,8 @@ import EnfraOverview from './EnfraOverview'
 import EnergyPlantDiagram from './EnergyPlantDiagram'
 import SavingsVisualization from './SavingsVisualization'
 import FacilityMap from './FacilityMap'
+import { SourceList } from '@/components/ui/Sources'
+import { ENFRA_SOURCES } from './sources'
 
 export const metadata: Metadata = {
   title: 'ENFRA × Rochester Regional Health — $143.8M EaaS Partnership',
@@ -44,6 +46,7 @@ export default function EnfraPage() {
       <EnergyPlantDiagram />
       <SavingsVisualization />
       <FacilityMap />
+      <SourceList sources={ENFRA_SOURCES} />
       <ProjectNav currentSlug="enfra" />
     </>
   )

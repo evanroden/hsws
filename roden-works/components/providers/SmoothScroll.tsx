@@ -15,6 +15,8 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       touchMultiplier: 2,
       infinite: false,
+      // Smooth-scroll in-page links (footnotes, sources) and clear the fixed header
+      anchors: { offset: -112 },
     })
 
     lenisRef.current = lenis

@@ -9,6 +9,8 @@ import Legend from '@/components/charts/Legend'
 import { chart } from '@/components/charts/tokens'
 import { useElementSize } from '@/components/charts/useElementSize'
 import { FACILITY_DISTANCE_MI, MAP_FRAME, MAP_PATHS, MAP_PLACES, MAP_UNITS_PER_MILE } from './map-data'
+import { Cite } from '@/components/ui/Sources'
+import { ENFRA_SOURCES as S } from './sources'
 
 /* Geography is real, generated into ./map-data.ts from U.S. Census Bureau cartographic
  * boundary + TIGER/Line files, Statistics Canada boundaries and OpenStreetMap (sources
@@ -24,6 +26,7 @@ interface Facility {
   city: string
   county: string
   description: string
+  sources: string[]
 }
 
 /* Facility facts:
@@ -45,6 +48,7 @@ const facilities: Facility[] = [
     county: 'Genesee County',
     description:
       '131 beds, 900+ employees. Largest private employer in Genesee County. Sole maternity provider for Genesee and Orleans counties.',
+    sources: ['ummc', 'ummc-wiki'],
   },
   {
     id: 'stmarys',
@@ -54,6 +58,7 @@ const facilities: Facility[] = [
     county: 'Monroe County',
     description:
       'Opened 1857. 13,000+ annual dialysis treatments. Behavioral health, homeless healthcare, and senior housing.',
+    sources: ['rbj-stmarys', 'stmarys'],
   },
 ]
 
@@ -176,7 +181,7 @@ export default function FacilityMap() {
                   />
                   <h3 className="font-serif text-lg text-white">{f.name}</h3>
                 </div>
-                <p className="text-titanium text-sm leading-relaxed">{f.description}</p>
+                <p className="text-titanium text-sm leading-relaxed">{f.description}<Cite sources={S} id={f.sources} /></p>
               </motion.div>
             )
           })}

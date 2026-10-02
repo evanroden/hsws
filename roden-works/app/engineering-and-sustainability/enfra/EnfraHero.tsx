@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion'
 import StatCounter from '@/components/ui/StatCounter'
+import { Cite } from '@/components/ui/Sources'
+import { ENFRA_SOURCES as S } from './sources'
 
 export default function EnfraHero() {
   return (
@@ -58,7 +60,7 @@ export default function EnfraHero() {
               ($143.8M value; $6.9M projected first-year savings; 34.4% guaranteed savings over 30 years,
               "equivalent to more than $354.6 million in total avoided costs"; 52.5% expected cut in purchased electricity) */}
           <p className="mt-4 text-titanium text-lg max-w-2xl">
-            A $143.8 million, 30-year partnership to modernize and operate energy infrastructure across the health system&apos;s nine hospital locations, from heating and cooling plants to solar and EV charging.
+            A $143.8 million, 30-year partnership to modernize and operate energy infrastructure across the health system&apos;s nine hospital locations, from heating and cooling plants to solar and EV charging.<Cite sources={S} id="rrh-announcement" />
           </p>
         </motion.div>
 
@@ -68,10 +70,10 @@ export default function EnfraHero() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-0 md:divide-x divide-white/10"
         >
-          <StatCounter value={143.8} prefix="$" suffix="M" label="Partnership Value" />
-          <StatCounter value={354.6} prefix="$" suffix="M" label="30-Year Avoided Costs" />
-          <StatCounter value={52.5} suffix="%" label="Purchased Electricity Cut (Expected)" />
-          <StatCounter value={6.9} prefix="$" suffix="M" label="Year 1 Savings (Projected)" />
+          <StatCounter value={143.8} prefix="$" suffix="M" label="Partnership Value" cite={<Cite sources={S} id="rrh-announcement" />} />
+          <StatCounter value={354.6} prefix="$" suffix="M" label="30-Year Avoided Costs" cite={<Cite sources={S} id="rrh-announcement" />} />
+          <StatCounter value={52.5} suffix="%" label="Purchased Electricity Cut (Expected)" cite={<Cite sources={S} id="rrh-announcement" />} />
+          <StatCounter value={6.9} prefix="$" suffix="M" label="Year 1 Savings (Projected)" cite={<Cite sources={S} id="rrh-announcement" />} />
         </motion.div>
       </div>
     </section>
