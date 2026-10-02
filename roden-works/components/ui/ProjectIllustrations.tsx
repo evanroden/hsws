@@ -510,7 +510,7 @@ function SwisIcon() {
         stroke={C.copper} strokeOpacity="0.4" strokeWidth="0.5" fill="none" />
       <text x="35" y="56" fill={C.titanium} fillOpacity="0.17" fontSize="3" fontFamily="monospace">Cl⁻ mg/L</text>
       {/* Population stat */}
-      <text x="200" y="70" fill={C.titanium} fillOpacity="0.204" fontSize="3.5" fontFamily="monospace">1.2M RESIDENTS</text>
+      <text x="200" y="70" fill={C.titanium} fillOpacity="0.204" fontSize="3.5" fontFamily="monospace">~1M RESIDENTS</text>
     </svg>
   )
 }

@@ -55,7 +55,7 @@ const timelineData = [
     year: '2020–2024',
     title: 'Tulane University',
     role: 'B.S.E. in Biomedical Engineering',
-    description: 'Three research labs. TEDx speaker.',
+    description: 'Three research labs. TEDxTulane speaker (2022).',
     color: 'bg-forest-light',
   },
 ]

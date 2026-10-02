@@ -77,8 +77,8 @@ export default function SWISPage() {
             </h1>
             <p className="mt-4 text-titanium text-lg max-w-2xl">
               A proposed longitudinal study of saltwater intrusion into the
-              Greater New Orleans water supply and its effects on the health of
-              1.2 million residents.
+              Greater New Orleans water supply and its effects on residents&apos;
+              health.
             </p>
           </motion.div>
         </div>
@@ -117,9 +117,11 @@ export default function SWISPage() {
                   becomes more common.
                 </p>
                 <p>
-                  For weeks, salinity crept toward the intake. If the wedge had
-                  reached the treatment plant at Carrollton, 1.2 million people
-                  would have faced a drinking water emergency.
+                  {/* "close to a million residents in four parishes": https://www.pbs.org/newshour/nation/why-salt-water-is-threatening-drinking-water-in-new-orleans-and-what-officials-are-doing-about-it */}
+                  For weeks, salinity crept toward the intakes. Officials
+                  warned that the wedge threatened drinking water for close to
+                  a million residents across four parishes, including the
+                  Carrollton plant that serves New Orleans&apos;s east bank.
                 </p>
               </div>
             </motion.div>
@@ -239,10 +241,11 @@ export default function SWISPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
-                stat: '1.2M',
+                // PBS NewsHour, Sept 2023: "close to a million residents in four parishes"
+                stat: '~1M',
                 label: 'Residents at risk',
                 description:
-                  'The Greater New Orleans metropolitan area depends on Mississippi River water treated at the Carrollton plant.',
+                  'In 2023, officials said the saltwater wedge threatened drinking water for close to a million people in four parishes that draw from the Mississippi.',
               },
               {
                 // The Army Corps has built emergency saltwater sills near
