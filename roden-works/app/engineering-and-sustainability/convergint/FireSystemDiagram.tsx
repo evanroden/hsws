@@ -84,7 +84,7 @@ const DEVICES: Device[] = [
     group: 'Suppression',
     icon: 'riser',
     description:
-      'Vertical pipes that connect the water supply to the sprinkler system. Each riser serves a zone and includes a tamper switch and flow switch that reports to the FACP. Wet, dry, pre-action, and deluge systems are selected based on the hazard classification per NFPA 13.',
+      'Vertical pipes that connect the water supply to the sprinkler system. Each riser serves a zone and includes a tamper switch and flow switch that reports to the FACP. Wet, dry, pre-action, and deluge systems are chosen to suit the space, such as freezing risk, sensitivity to water damage, or a high hazard, and are designed per NFPA 13.',
   },
   {
     id: 'facp',

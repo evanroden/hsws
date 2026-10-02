@@ -25,7 +25,7 @@ const recognition = [
     // https://www.ted.com/talks/evan_roden_the_myth_of_the_apolitical_youth
     title: 'TEDxTulane speaker',
     issuer: 'The Myth of the Apolitical Youth · 2022',
-    detail: 'A talk arguing that young people are more politically engaged than they get credit for, told through the story of The YCOD.',
+    detail: 'A talk arguing that young people are more politically engaged than they get credit for.',
     href: '/about/ted',
   },
   {

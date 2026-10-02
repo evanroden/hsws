@@ -58,14 +58,16 @@ const allProjects = [
     slug: 'swis',
     title: 'Saltwater Intrusion Study',
     category: 'Research',
-    description: 'Longitudinal study on saltwater intrusion into the Greater New Orleans water supply.',
+    // SWIS is a proposal (see research/swis/page.tsx)
+    description: 'Proposed longitudinal study on saltwater intrusion into the Greater New Orleans water supply.',
     href: '/engineering-and-sustainability/research/swis',
   },
   {
     slug: 'wimley-lab',
     title: 'Wimley Lab — Membrane Proteins',
     category: 'Molecular Biology',
-    description: 'Peptide assemblies interacting with membrane proteins for drug design.',
+    // Wimley lab peptides act on lipid bilayers (see research/wimley-lab/page.tsx)
+    description: 'Peptide assemblies interacting with lipid membranes for drug design.',
     href: '/engineering-and-sustainability/research/wimley-lab',
   },
 ]

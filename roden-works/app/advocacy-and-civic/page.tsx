@@ -14,7 +14,9 @@ const projects = [
     href: '/advocacy-and-civic/ycod',
     slug: 'ycod',
     title: 'The Youth Coalition For Organ Donation',
-    description: 'Co-founded at 17. Seven years of advocacy for presumed consent organ donation legislation in New York.',
+    // "At 17" softened; founders were East Aurora High School students:
+    // https://mynews13.com/fl/orlando/news/2021/09/24/wny-teens-nominated-for-american-red-cross-award-for-organ-donation-coalition
+    description: 'Co-founded in high school. Seven years of advocacy for presumed consent organ donation legislation in New York.',
     label: 'Founded 2017',
   },
   {
@@ -35,13 +37,17 @@ const projects = [
     href: '/advocacy-and-civic/nola-east',
     slug: 'nola-east',
     title: 'New Orleans East Revitalization',
-    description: 'Revitalization plan covering solar energy, transit, green housing, and disaster planning. Won the C40 Reinventing Cities Award.',
-    label: 'C40 Award',
+    // Honorable mention in C40's Students Reinventing Cities (2023), not the Reinventing Cities award:
+    // https://css.loyno.edu/news/sep-14-2023_loyola-team-wins-honorable-mention-global-students-reinventing-cities-competition
+    description: 'Revitalization plan covering energy, transit, green housing, and disaster planning. Honorable mention in C40\'s Students Reinventing Cities competition.',
+    label: 'C40 Honorable Mention',
   },
   {
     href: '/advocacy-and-civic/midtown-metairie',
     slug: 'midtown-metairie',
     title: 'Midtown Metairie',
+    // Metairie CDP, pop. 143,507 (2020), the largest CDP in Louisiana:
+    // https://en.wikipedia.org/wiki/List_of_census-designated_places_in_Louisiana
     description: 'Urban planning proposal for Louisiana\'s most populous unincorporated community.',
     label: 'Urban Planning',
   },
@@ -49,7 +55,9 @@ const projects = [
     href: '/advocacy-and-civic/partnership',
     slug: 'partnership',
     title: 'Partnership for Public Service',
-    description: 'Federal workforce project with SAMHSA. Employee engagement scores rose from about 37 to 74 over the broader collaboration.',
+    // SAMHSA's Best Places to Work score went from roughly 37 to 74 within three years of partnering (Aug 2021):
+    // https://ourpublicservice.org/about/history-and-impact/samhsa-strong-teaming-up-to-transform-the-workplace
+    description: 'Federal workforce project with SAMHSA. The agency\'s employee engagement score rose from about 37 to 74 over the Partnership\'s broader collaboration.',
     label: 'Federal Service',
   },
 ]

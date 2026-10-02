@@ -45,7 +45,8 @@ const items = [
     title: 'Vogue Italy — BizarrAudi',
     category: 'modeling' as const,
     slug: 'vogue-italy',
-    description: '2020 runway modeling for Vogue Italy\'s feature of BizarrAudi\'s SchoolTime collection.',
+    // Matches studio/modeling wording; Vogue Italia coverage not found publicly (OWNER-CONFIRM)
+    description: 'Runway modeling for BizarrAudi\'s SchoolTime collection, which Vogue Italy covered in 2020.',
     href: '/studio/modeling',
     aspect: 'aspect-[3/4]',
   },

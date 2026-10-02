@@ -19,7 +19,7 @@ export default function OdooPage() {
     <>
       <ArticleJsonLd
         title="Odoo: ERP Implementation for Manufacturing"
-        description="My year selling and implementing Odoo ERP for manufacturing and distribution companies, including a month at 160% of my non-recurring revenue goal."
+        description="My year selling and implementing Odoo ERP for manufacturing, food and beverage, and retail clients, including a month at 160% of my non-recurring revenue goal."
         path="/engineering-and-sustainability/odoo"
       />
       <BreadcrumbJsonLd
@@ -84,10 +84,14 @@ export default function OdooPage() {
             <h1 className="font-serif text-display text-white max-w-3xl">
               Odoo
             </h1>
+            {/* Users: "28 million users", https://www.odoo.com/page/about-us (checked Oct 2026).
+                Valuation: EUR 10B announced Sept 24, 2026, https://www.brusselstimes.com/2332306/odoo-announces-e10-billion-valuation-and-a-partial-price-increase
+                Nov 2024 EUR 5B round led by CapitalG and Sequoia, BlackRock participating:
+                https://www.summitpartners.com/news/odoo-announces-a-500-million-transaction-increasing-the-belgian-unicorns-valuation-to-5-billion */}
             <p className="mt-4 text-titanium text-lg max-w-2xl">
-              Open-source ERP software with 13M+ users worldwide, backed by
-              CapitalG, Sequoia, and BlackRock at a valuation above &euro;5
-              billion.
+              Open-source ERP software with 28 million users worldwide. A 2024
+              round led by CapitalG and Sequoia valued it at &euro;5 billion,
+              and in 2026 it announced a &euro;10 billion valuation.
             </p>
           </motion.div>
 
@@ -98,8 +102,8 @@ export default function OdooPage() {
             className="mt-10 grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-0 md:divide-x divide-white/10"
           >
             <StatCounter value={160} suffix="%" label="Non-Recurring Revenue Goal" />
-            <StatCounter value={13} suffix="M+" label="Global Users" />
-            <StatCounter value={5} prefix="€" suffix="B" label="Valuation" />
+            <StatCounter value={28} suffix="M" label="Global Users" />
+            <StatCounter value={10} prefix="€" suffix="B" label="Valuation (2026)" />
           </motion.div>
         </div>
       </section>
@@ -121,18 +125,24 @@ export default function OdooPage() {
               </h2>
               <div className="space-y-4 text-titanium leading-relaxed">
                 <p>
-                  Odoo is an open-source ERP platform with more than 13 million
-                  users in 180+ countries. Compared with SAP or Oracle, it is
+                  Odoo is an open-source ERP platform with 28 million users.
+                  Compared with SAP or Oracle, it is
                   modular: a business can start with one application, such as
                   CRM, Accounting, or Inventory, and add others later.
                 </p>
+                {/* Founding year removed: Odoo's Nov 2024 release says "founded in April 2002"; Wikipedia dates
+                    TinyERP to 2005. Founder and Belgian origin are consistent across both.
+                    Apps: "50 main applications" and "50,000+ apps" from the community, https://www.odoo.com/page/about-us
+                    Investors: CapitalG and Sequoia led the Nov 2024 EUR 500M secondary; BlackRock, Mubadala,
+                    HarbourVest, AVP and Alkeon participated (Summit Partners release above). */}
                 <p>
-                  Founded in Belgium in 2005 by Fabien Pinckaers, Odoo has grown
-                  to a &euro;5B+ valuation with backing from CapitalG
-                  (Alphabet&apos;s investment arm), Sequoia Capital, and
-                  BlackRock. The platform includes 82 official modules and
-                  50,000+ community apps for manufacturing, accounting,
-                  point-of-sale, website building, and more.
+                  Fabien Pinckaers founded Odoo in Belgium. In November 2024,
+                  CapitalG (Alphabet&apos;s investment arm) and Sequoia Capital
+                  led a &euro;500 million secondary investment, with BlackRock
+                  among the other participants, that valued the company at
+                  &euro;5 billion. Odoo builds about 50 main applications, and
+                  its community has added 50,000+ more apps for manufacturing,
+                  accounting, point-of-sale, website building, and more.
                 </p>
                 <p>
                   Odoo has two editions: Community (open-source) and Enterprise

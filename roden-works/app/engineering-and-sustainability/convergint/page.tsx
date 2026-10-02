@@ -14,7 +14,8 @@ const cdpJourney: CdpStep[] = [
   {
     phase: 'Week 1-4',
     title: '4-Week Bootcamp',
-    location: 'Chicago, IL',
+    // Convergint HQ was in Schaumburg, IL until Oct 2025 (https://dailyherald.com/?p=1301823)
+    location: 'Schaumburg, IL',
     description:
       'Technical and sales training at Convergint headquarters in Schaumburg. We covered fire alarm, access control, video surveillance, intrusion, and nurse call systems, with a focus on fire alarm design and inspection.',
   },
@@ -113,10 +114,13 @@ export default function ConvergintPage() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-0 md:divide-x divide-white/10"
           >
-            <StatCounter value={2.6} prefix="$" suffix="B" label="Annual Revenue" />
+            {/* All four per Convergint's July 2025 release (during my tenure): "$2.6 billion", "over 10,000
+                colleagues", "more than 220 locations", #1 in SDM's Top Systems Integrators for the eighth year
+                in a row. https://www.convergint.com/press-releases/convergint-named-1-systems-integrator-by-sdm-magazine-for-eighth-year-in-a-row/ */}
+            <StatCounter value={2.6} prefix="$" suffix="B" label="Annual Revenue (2025)" />
             <StatCounter value={10000} suffix="+" label="Employees" />
             <StatCounter value={220} suffix="+" label="Locations" />
-            <StatCounter value={8} suffix=" yrs" label="#1 SDM Ranking" />
+            <StatCounter value={8} suffix=" yrs" label="#1 in SDM Rankings (thru 2025)" />
           </motion.div>
         </div>
       </section>
@@ -138,12 +142,13 @@ export default function ConvergintPage() {
               </h2>
               <div className="space-y-4 text-titanium leading-relaxed">
                 <p>
-                  Convergint is a global, service-based systems integrator ranked
-                  #1 by SDM Magazine for eight consecutive years. With $2.6 billion
-                  in annual revenue, 10,000+ colleagues, and 220+ locations
-                  worldwide, Convergint installs and services fire alarm, life
-                  safety, electronic security, and building automation systems for
-                  commercial, enterprise, healthcare, and government clients.
+                  Convergint is a global, service-based systems integrator that
+                  SDM Magazine ranked the #1 systems integrator for the eighth
+                  year in a row in 2025. As of 2025 it reported $2.6 billion in
+                  revenue, 10,000+ colleagues, and 220+ locations worldwide. It
+                  installs and services fire alarm, life safety, electronic
+                  security, and building automation systems for commercial,
+                  enterprise, healthcare, and government clients.
                 </p>
                 <p>
                   Every office works from the same set of company values, which
@@ -151,11 +156,14 @@ export default function ConvergintPage() {
                   new account executives with a technical bootcamp, then field
                   mentorship, then a growing set of accounts.
                 </p>
+                {/* Edwards: "one of the largest Edwards partners in the world", https://www.convergint.com/edwards/
+                    (seen in search index; the page returned 404 when re-checked Oct 2026)
+                    Honeywell and Silent Knight: https://old.convergint.com/?p=197304 Notifier, Simplex and Siemens
+                    certified-partner claims could not be verified and were removed. */}
                 <p>
-                  Convergint is technology-agnostic and a certified service
-                  partner for the major fire alarm manufacturers, including Notifier
-                  by Honeywell, Edwards (Kidde), Simplex (Johnson Controls), and
-                  Siemens.
+                  Convergint works across fire alarm manufacturers. It is one of
+                  the largest Edwards partners in the world and also works with
+                  Honeywell fire brands such as Silent Knight.
                 </p>
               </div>
             </motion.div>
