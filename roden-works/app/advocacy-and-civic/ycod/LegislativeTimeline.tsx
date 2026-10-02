@@ -10,11 +10,11 @@ const events: { year: string; title: string; description: string; kind: Kind }[]
   { year: '2018', title: 'Coalition Building', description: 'Established partnerships with WaitList Zero, ONE8FIFTY, and the Chris Klug Foundation.', kind: 'default' },
   { year: '2019', title: 'Legislative Introduction', description: 'Opt-out organ donation bill introduced in the NY Assembly.', kind: 'legislative' },
   { year: '2020', title: 'National Media Campaign', description: 'Coverage by CBC, Yahoo News, Business Insider, WKBW, and Spectrum News.', kind: 'default' },
-  { year: '2021', title: 'Bill Revision', description: 'Evan personally drafted the revised NY Assembly Bill A07954 — presumed consent at the DMV.', kind: 'legislative' },
+  { year: '2021', title: 'Bill Revision', description: 'I drafted the revised NY Assembly Bill A07954, which sets up presumed consent at the DMV.', kind: 'legislative' },
   { year: '2021', title: 'Real Heroes Nomination', description: 'Nominated for the American Red Cross Real Heroes Education Award.', kind: 'default' },
-  { year: '2022–24', title: 'Continued Advocacy', description: 'Sustained lobbying, social media campaigns, and coalition management while attending Tulane.', kind: 'default' },
-  { year: '2023', title: 'Living Donor Support Act Passed', description: 'Advocated for the NYS Living Donor Support Act — removing financial barriers for living organ donors through reimbursement for lost wages, travel, and child care. The bill passed into law.', kind: 'milestone' },
-  { year: '2024', title: 'Transition', description: 'After 7+ years of leadership, Evan transitioned focus while the framework and coalition persist.', kind: 'default' },
+  { year: '2022–24', title: 'Continued Advocacy', description: 'Kept up lobbying, social media, and coalition work while at Tulane.', kind: 'default' },
+  { year: '2023', title: 'Living Donor Support Act Passed', description: 'Advocated for the NYS Living Donor Support Act, which reimburses living organ donors for lost wages, travel, and child care. The bill passed into law.', kind: 'milestone' },
+  { year: '2024', title: 'Transition', description: 'After more than seven years leading The YCOD, I stepped back. The coalition continues.', kind: 'default' },
 ]
 
 export default function LegislativeTimeline() {
@@ -30,8 +30,8 @@ export default function LegislativeTimeline() {
           className="lg:col-span-4"
         >
           <div className="lg:sticky lg:top-28">
-            <span className="font-mono text-xs tracking-widest uppercase text-copper">Legislative Journey</span>
-            <h2 className="font-serif text-heading text-white mt-3">Seven years in the making.</h2>
+            <span className="font-mono text-xs tracking-widest uppercase text-copper">Legislative Timeline</span>
+            <h2 className="font-serif text-heading text-white mt-3">Seven years of work.</h2>
             <ul className="mt-8 space-y-3 text-sm text-titanium">
               <li className="flex items-center gap-3">
                 <span aria-hidden="true" className="h-3 w-3 rounded-full bg-verdigris ring-4 ring-verdigris/15" />

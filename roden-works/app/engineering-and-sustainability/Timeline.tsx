@@ -8,7 +8,7 @@ const timelineData = [
     year: '2026–',
     title: 'ENFRA',
     role: 'Sustainability Engineer II / Asset Manager',
-    description: 'Managing Central Energy Plants for Rochester Regional Health. $143.8M EaaS partnership.',
+    description: 'Asset manager for the Central Energy Plants at Rochester Regional Health under a $143.8M EaaS partnership.',
     color: 'bg-forest-light',
   },
   {
@@ -42,7 +42,7 @@ const timelineData = [
   {
     year: '2022–2023',
     title: 'Tulane School of Medicine',
-    role: 'Research Assistant — Wimley Lab',
+    role: 'Research Assistant, Wimley Lab',
     description: 'Membrane protein models, peptide pore design, combinatorial chemistry.',
     color: 'bg-titanium',
   },
@@ -71,7 +71,7 @@ export default function Timeline() {
             Career Timeline
           </span>
           <h2 className="font-serif text-heading text-white mt-3">
-            A trajectory of systems.
+            Where I&apos;ve worked.
           </h2>
         </motion.div>
 

@@ -11,17 +11,17 @@ import LegislativeTimeline from './LegislativeTimeline'
 import MediaWall from './MediaWall'
 
 export const metadata: Metadata = {
-  title: 'The YCOD — Opt-Out Organ Donation Advocacy',
+  title: 'The YCOD: Opt-Out Organ Donation Advocacy',
   description:
-    'The Youth Coalition For Organ Donation — a 501(c)(4) organization reshaping organ donation policy through presumed consent legislation.',
+    'The Youth Coalition For Organ Donation is a 501(c)(4) organization working to pass presumed consent organ donation legislation.',
 }
 
 export default function YcodPage() {
   return (
     <>
       <ArticleJsonLd
-        title="The YCOD — Opt-Out Organ Donation Advocacy"
-        description="The Youth Coalition For Organ Donation — a 501(c)(4) organization reshaping organ donation policy through presumed consent legislation."
+        title="The YCOD: Opt-Out Organ Donation Advocacy"
+        description="The Youth Coalition For Organ Donation is a 501(c)(4) organization working to pass presumed consent organ donation legislation."
         path="/advocacy-and-civic/ycod"
       />
       <BreadcrumbJsonLd

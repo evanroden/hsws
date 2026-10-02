@@ -90,8 +90,8 @@ export default function VAProstheticsPage() {
               VA Prosthetics
             </h1>
             <p className="mt-4 text-titanium text-lg max-w-2xl">
-              Designing and 3D-printing custom prosthetic devices that restore
-              autonomy to American veterans — one device, one person at a time.
+              I designed and 3D-printed custom prosthetic devices for American
+              veterans in Southern Louisiana.
             </p>
           </motion.div>
         </div>
@@ -116,26 +116,22 @@ export default function VAProstheticsPage() {
                 </h2>
                 <div className="space-y-4 text-titanium leading-relaxed">
                   <p>
-                    A partnership between Tulane University and the U.S.
-                    Department of Veterans Affairs under the Taylor Foundation.
-                    Evan modeled custom medical devices in Autodesk Fusion 360
-                    and FlowIt for 3D printing, building prosthetic devices for
-                    American veterans in the Southern Louisiana region.
+                    This was a partnership between Tulane University and the
+                    U.S. Department of Veterans Affairs under the Taylor
+                    Foundation. I modeled custom medical devices in Autodesk
+                    Fusion 360 and FlowIt for 3D printing and built prosthetic
+                    devices for veterans in the Southern Louisiana region.
                   </p>
                   <p>
-                    Each device is unique — designed around the specific anatomy,
-                    lifestyle, and functional needs of the individual veteran.
-                    The process begins with clinical assessment and 3D scanning,
-                    moves through iterative CAD modeling, and culminates in a
-                    printed device that is fitted, tested, and refined until it
-                    works for the person it was built for.
+                    Every device was built for one veteran. We started with a
+                    clinical assessment and a 3D scan, modeled the device in
+                    Fusion 360, printed it, and adjusted the fit until it worked
+                    for daily use.
                   </p>
                   <p>
-                    The project operated at the intersection of biomedical
-                    engineering and direct patient care, requiring both technical
-                    fluency in additive manufacturing and the interpersonal
-                    sensitivity to work with veterans navigating limb loss and
-                    mobility challenges.
+                    The job was part engineering and part patient care. I had to
+                    know additive manufacturing well, and I had to work directly
+                    with veterans dealing with limb loss and limited mobility.
                   </p>
                 </div>
 
@@ -147,11 +143,9 @@ export default function VAProstheticsPage() {
                   className="mt-8 glass rounded-xl p-6 border-l-2 border-copper/40"
                 >
                   <p className="text-white italic font-serif text-lg leading-relaxed">
-                    &ldquo;This is not clinical work in the abstract. Every
-                    device represents a person regaining something they lost —
-                    the ability to grip a coffee cup, to reach a shelf, to live
-                    without depending on someone else for basic tasks. Engineering
-                    has never felt more personal.&rdquo;
+                    Each device was meant to give back an everyday task, like
+                    gripping a coffee cup or reaching a shelf, so the veteran
+                    could do it without help.
                   </p>
                 </motion.div>
               </motion.div>
@@ -194,12 +188,11 @@ export default function VAProstheticsPage() {
               Process
             </span>
             <h2 className="font-serif text-heading text-white mt-3">
-              From assessment to autonomy.
+              How each device was made.
             </h2>
             <p className="mt-4 text-titanium max-w-2xl">
-              Every device follows a structured design process — but flexibility
-              is built in at every step, because no two veterans have the same
-              needs.
+              Every device went through the same four steps, adjusted for each
+              veteran&apos;s needs.
             </p>
           </motion.div>
 
@@ -212,25 +205,25 @@ export default function VAProstheticsPage() {
                   step: '01',
                   title: 'Clinical Assessment',
                   description:
-                    'Work directly with the veteran and clinical team to understand functional goals, anatomy, and lifestyle requirements.',
+                    'Meet with the veteran and the clinical team to learn what the device needs to do, and take anatomical measurements.',
                 },
                 {
                   step: '02',
                   title: '3D Modeling',
                   description:
-                    'Design the device in Autodesk Fusion 360, iterating through parametric models informed by anatomical measurements and biomechanical analysis.',
+                    'Model the device parametrically in Autodesk Fusion 360 from the anatomical measurements, revising as needed.',
                 },
                 {
                   step: '03',
                   title: 'Fabrication',
                   description:
-                    'Print using FlowIt adaptive manufacturing (FDM/SLA), selecting materials for strength, flexibility, and biocompatibility.',
+                    'Slice in FlowIt and print (FDM/SLA), choosing a material for the strength or flexibility the part needs.',
                 },
                 {
                   step: '04',
                   title: 'Fitting & Refinement',
                   description:
-                    'Fit the printed device to the veteran, test functionality, and refine through iterative adjustments until it meets their daily needs.',
+                    'Fit the device on the veteran, test it, and adjust until it works for daily use.',
                 },
               ].map((phase, i) => (
                 <motion.div

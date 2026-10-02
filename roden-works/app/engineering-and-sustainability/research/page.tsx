@@ -12,7 +12,7 @@ const researchProjects = [
     slug: 'va-prosthetics',
     title: 'VA Prosthetics',
     description:
-      'Custom 3D-printed prosthetic devices for American veterans, designed in Autodesk Fusion 360 and fabricated using FlowIt adaptive manufacturing. A partnership between Tulane University and the U.S. Department of Veterans Affairs restoring autonomy through engineering.',
+      'Custom 3D-printed prosthetic devices for American veterans, designed in Autodesk Fusion 360 and printed with FlowIt. A partnership between Tulane University and the U.S. Department of Veterans Affairs.',
     label: 'Biomedical Engineering',
   },
   {
@@ -28,13 +28,13 @@ const researchProjects = [
     slug: 'swis',
     title: 'Saltwater Intrusion Study',
     description:
-      'First-of-kind longitudinal study proposal on saltwater intrusion into the Greater New Orleans water supply, prompted by the 2023 Mississippi River crisis that threatened drinking water for 1.2 million residents.',
+      'A longitudinal study proposal on saltwater intrusion into the Greater New Orleans water supply, prompted by the 2023 Mississippi River crisis that threatened drinking water for 1.2 million residents.',
     label: 'Water Resources',
   },
   {
     href: '/engineering-and-sustainability/research/wimley-lab',
     slug: 'wimley-lab',
-    title: 'Wimley Lab — Membrane Proteins',
+    title: 'Wimley Lab: Membrane Proteins',
     description:
       'Peptide assemblies interacting with lipid bilayer membranes at Tulane School of Medicine. Applications in antibiotic-resistant drug design, pH-responsive drug delivery, and biosensor engineering.',
     label: 'Molecular Biology',
@@ -124,9 +124,10 @@ export default function ResearchPage() {
             transition={{ duration: 0.7, delay: 0.5 }}
             className="mt-6 text-lg md:text-xl text-titanium max-w-2xl leading-relaxed"
           >
-            Four years of biomedical engineering and environmental health
-            research at Tulane University — from prosthetic devices for veterans
-            to the molecular mechanics of membrane proteins.
+            I spent four years doing biomedical engineering and environmental
+            health research at Tulane University. The projects covered
+            prosthetic devices for veterans, indoor air and drinking water, and
+            membrane proteins.
           </motion.p>
         </div>
       </section>
@@ -147,12 +148,11 @@ export default function ResearchPage() {
               Projects
             </span>
             <h2 className="font-serif text-heading text-white mt-3">
-              From bench to bedside.
+              Four projects.
             </h2>
             <p className="mt-4 text-titanium max-w-2xl">
-              Each project represents a different dimension of biomedical
-              engineering — human-centered design, environmental epidemiology,
-              water systems resilience, and molecular biophysics.
+              The work spans device design, environmental epidemiology, water
+              supply research, and molecular biophysics.
             </p>
           </motion.div>
 
@@ -181,7 +181,7 @@ export default function ResearchPage() {
               Context
             </span>
             <h2 className="font-serif text-heading text-white mt-3">
-              Three labs, one university.
+              Where I did the work.
             </h2>
           </motion.div>
 
@@ -199,10 +199,10 @@ export default function ResearchPage() {
                 pi: 'Dr. Felicia Rabito',
                 years: '2023 - 2025',
                 focus:
-                  'Environmental health epidemiology — indoor air quality monitoring and longitudinal water quality research.',
+                  'Environmental health epidemiology: indoor air quality monitoring and longitudinal water quality research.',
               },
               {
-                lab: 'Wimley Lab — Dept. of Biochemistry',
+                lab: 'Wimley Lab, Dept. of Biochemistry',
                 pi: 'Dr. William Wimley',
                 years: '2022 - 2023',
                 focus:

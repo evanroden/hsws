@@ -18,7 +18,7 @@ export default function YcodHero() {
             The Youth Coalition For Organ Donation
           </h1>
           <p className="mt-4 text-titanium text-lg max-w-2xl">
-            Founded in 2017, The YCOD is a youth-led organization advocating for presumed consent organ donation legislation — addressing the crisis that costs 17 lives every single day.
+            Founded in 2017, The YCOD is a youth-led organization that advocates for presumed consent organ donation laws. Seventeen people die every day waiting for a transplant.
           </p>
         </motion.div>
       </div>

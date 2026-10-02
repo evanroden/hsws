@@ -36,7 +36,7 @@ const groups: { name: string; skills: Skill[] }[] = [
       },
       {
         name: 'R',
-        context: 'Statistical analysis — the primary tool for biomedical and environmental research.',
+        context: 'Statistical analysis. My main tool for biomedical and environmental research.',
         project: { label: 'Research', href: '/engineering-and-sustainability/research' },
       },
       {
@@ -86,9 +86,9 @@ export default function SkillsRadar() {
           className="mb-12 max-w-2xl"
         >
           <span className="font-mono text-xs tracking-widest uppercase text-copper">Technical Skills</span>
-          <h2 className="font-serif text-heading text-white mt-3">Interdisciplinary toolkit.</h2>
+          <h2 className="font-serif text-heading text-white mt-3">Tools I use.</h2>
           <p className="mt-4 text-titanium leading-relaxed">
-            The tools behind the work — each tied to where it was put to use.
+            Where a tool has a project link, that is where I used it.
           </p>
         </motion.div>
 

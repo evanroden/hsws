@@ -23,7 +23,7 @@ const caseStudies = [
     href: '/engineering-and-sustainability/enfra',
     slug: 'enfra',
     title: 'ENFRA × Rochester Regional Health',
-    description: '$143.8 million, 30-year Energy-as-a-Service partnership. Managing Central Energy Plants at UMMC and St. Mary\'s Medical Center.',
+    description: '$143.8 million, 30-year Energy-as-a-Service partnership. I manage the Central Energy Plants at UMMC and St. Mary\'s Medical Center.',
     label: 'EaaS',
   },
   {
@@ -58,13 +58,13 @@ const caseStudies = [
     href: '/engineering-and-sustainability/research/swis',
     slug: 'swis',
     title: 'Saltwater Intrusion Study',
-    description: 'First-of-kind longitudinal study proposal on saltwater intrusion into the Greater New Orleans water supply.',
+    description: 'Longitudinal study proposal on saltwater intrusion into the Greater New Orleans water supply.',
     label: 'Research',
   },
   {
     href: '/engineering-and-sustainability/research/wimley-lab',
     slug: 'wimley-lab',
-    title: 'Wimley Lab — Membrane Proteins',
+    title: 'Wimley Lab: Membrane Proteins',
     description: 'Peptide assemblies interacting with membrane proteins. Applications in antibiotic-resistant drug design.',
     label: 'Molecular Biology',
   },
@@ -86,7 +86,7 @@ export default function CaseStudyGrid() {
             Case Studies
           </span>
           <h2 className="font-serif text-heading text-white mt-3">
-            Deep dives.
+            Selected work.
           </h2>
         </div>
 

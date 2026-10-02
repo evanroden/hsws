@@ -56,7 +56,7 @@ export default function CinematographyPage() {
 
       <PageHero
         title="Cinematography"
-        subtitle="Over two decades of visual storytelling through narrative film, documentary work, and institutional content creation under the mentorship of industry professionals."
+        subtitle="Narrative film, documentary, and institutional video. I learned the work as a camera operator and editor under industry professionals in New Orleans."
         label="Motion Pictures"
         variant="warm"
       />
