@@ -29,21 +29,21 @@ export const MODULES: ErpModule[] = [
     label: 'Sales',
     role: 'CRM & quotations',
     description:
-      'Full CRM and pipeline management, configurable quotation templates, subscription management, and e-commerce integration. The Sales module drives upstream demand signals to Inventory and MRP while Accounting auto-generates invoices on delivery confirmation.',
+      'CRM and pipeline management, configurable quotation templates, subscription management, and e-commerce integration. Confirmed sales orders send demand to Inventory and MRP, and Accounting generates the invoice when delivery is confirmed.',
   },
   {
     id: 'inventory',
     label: 'Inventory',
     role: 'Stock & deliveries',
     description:
-      'Real-time warehouse management with barcode scanning, automated replenishment rules, multi-location tracking, lot/serial traceability, and putaway strategies. Inventory connects directly to MRP for demand-driven procurement and to Sales for accurate delivery promises.',
+      'Real-time warehouse management with barcode scanning, automated replenishment rules, multi-location tracking, lot/serial traceability, and putaway strategies. Inventory feeds MRP for demand-driven procurement and gives Sales accurate delivery dates.',
   },
   {
     id: 'mrp',
     label: 'MRP',
     role: 'Manufacturing',
     description:
-      'Manufacturing Resource Planning — multi-level bills of materials, work center routing, Master Production Schedule, finite capacity planning, and OEE analysis. Evan implemented MRP for discrete manufacturers transitioning from spreadsheet-based production tracking to integrated workflows with real-time shop floor visibility.',
+      'Manufacturing Resource Planning: multi-level bills of materials, work center routing, Master Production Schedule, finite capacity planning, and OEE analysis. I implemented MRP for discrete manufacturers moving off spreadsheet-based production tracking, so they could see shop floor status in real time.',
   },
   {
     id: 'purchase',
@@ -58,14 +58,14 @@ export const MODULES: ErpModule[] = [
     label: 'Accounting',
     role: 'Invoicing & ledgers',
     description:
-      'Analytic accounting with parallel ledger for internal cost tracking, percentage-based distribution across departments, automated bank reconciliation, and multi-currency support. Evan specialized in analytic accounting implementations that gave CFOs visibility into profitability by product line, project, or department.',
+      'Analytic accounting with parallel ledger for internal cost tracking, percentage-based distribution across departments, automated bank reconciliation, and multi-currency support. I specialized in analytic accounting implementations, which let CFOs see profitability by product line, project, or department.',
   },
   {
     id: 'portal',
     label: 'Customer Portal',
     role: 'Self-service',
     description:
-      'Self-service portal for order tracking, invoice payment, support ticket submission, and document sharing. Reduces operational overhead by empowering customers to manage their own accounts — a key expansion revenue driver in food & beverage and retail implementations.',
+      'Self-service portal for order tracking, invoice payment, support tickets, and document sharing. Customers manage their own accounts, which cuts staff workload. In food & beverage and retail implementations, the portal was a common add-on sale.',
   },
 ]
 

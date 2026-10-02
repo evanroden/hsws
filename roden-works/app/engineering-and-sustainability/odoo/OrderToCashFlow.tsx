@@ -404,15 +404,15 @@ export default function OrderToCashFlow() {
                   </>
                 ) : (
                   <>
-                    <span className="font-medium text-white">Order to cash.</span> One sales order, carried through every
-                    connected module from quotation to payment.
+                    <span className="font-medium text-white">Order to cash.</span> One sales order, followed through each
+                    module from quotation to payment.
                   </>
                 )}
               </p>
             </div>
           ) : (
             <p className="text-sm text-muted">
-              Select a module for Evan&apos;s implementation notes, or trace an order through the flow.
+              Select a module for my implementation notes, or trace an order through the flow.
             </p>
           )}
         </div>
@@ -482,7 +482,7 @@ export default function OrderToCashFlow() {
             >
               <span className="font-mono text-[11px] tracking-widest uppercase text-muted">Module detail</span>
               <p className="mt-3 text-white text-base leading-relaxed">
-                Choose a module to see how Evan implemented it for clients.
+                Choose a module to see how I implemented it for clients.
               </p>
               <ul className="mt-6 flex flex-wrap gap-2">
                 {MODULES.filter((m) => !m.generic).map((m) => (

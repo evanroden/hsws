@@ -19,7 +19,7 @@ const layers: Layer[] = [
     name: 'Disaster Planning',
     color: '#B87333',
     description:
-      'Comprehensive flood mitigation and hurricane resilience strategy for New Orleans East, one of the areas most devastated by Hurricane Katrina. Elevated building standards, improved drainage infrastructure, and community emergency preparedness programs.',
+      'Flood mitigation and hurricane resilience for New Orleans East, one of the areas hit hardest by Hurricane Katrina: higher building elevations, better drainage, and community emergency preparedness programs.',
     features: [
       { label: 'Elevated Construction', detail: 'All new builds 3+ ft above base flood elevation' },
       { label: 'Green Stormwater', detail: 'Bioswales, rain gardens, and permeable surfaces' },
@@ -32,7 +32,7 @@ const layers: Layer[] = [
     name: 'Solar Energy',
     color: '#D4A54A',
     description:
-      'Distributed solar generation across residential rooftops, commercial buildings, and community solar farms. Designed to lower energy costs for residents while building grid resilience against future storms.',
+      'Solar on residential rooftops, commercial buildings, and community solar farms, to lower residents\' energy bills and keep power on during storms.',
     features: [
       { label: 'Community Solar', detail: '5 MW community solar farm on vacant parcels' },
       { label: 'Rooftop Program', detail: 'Subsidized residential installations for 500+ homes' },
@@ -45,7 +45,7 @@ const layers: Layer[] = [
     name: 'Biogas',
     color: '#6B8F71',
     description:
-      'Waste-to-energy biogas generation from organic waste streams. Converts landfill-bound material into renewable energy while reducing methane emissions and creating local jobs in waste processing.',
+      'Biogas from organic waste that would otherwise go to landfill. It produces renewable energy, cuts methane emissions, and creates local jobs in waste processing.',
     features: [
       { label: 'Anaerobic Digester', detail: 'Processing 50 tons/day of organic waste' },
       { label: 'CNG Fleet', detail: 'Compressed natural gas fueling for municipal vehicles' },
@@ -58,7 +58,7 @@ const layers: Layer[] = [
     name: 'BRT Transit',
     color: '#4A90D9',
     description:
-      'Bus Rapid Transit corridor connecting New Orleans East to downtown and key employment centers. Dedicated lanes, signal priority, and level boarding to provide reliable, fast public transit.',
+      'A Bus Rapid Transit corridor connecting New Orleans East to downtown and major employment centers, with dedicated lanes, signal priority, and level boarding.',
     features: [
       { label: 'Dedicated Lanes', detail: '8.5-mile BRT corridor on Chef Menteur Highway' },
       { label: 'Station Design', detail: '12 stations with shelters, real-time info, and lighting' },
@@ -71,7 +71,7 @@ const layers: Layer[] = [
     name: 'Bike Infrastructure',
     color: '#7BC8A4',
     description:
-      'Protected bike lanes, multi-use paths, and bike share stations to provide safe, affordable transportation alternatives and connect neighborhoods to transit stations and commercial centers.',
+      'Protected bike lanes, multi-use paths, and bike share stations connecting neighborhoods to transit stations and commercial centers.',
     features: [
       { label: 'Protected Lanes', detail: '15 miles of protected bike lanes on arterials' },
       { label: 'Multi-Use Path', detail: 'Bayou Sauvage greenway trail system' },
@@ -84,7 +84,7 @@ const layers: Layer[] = [
     name: 'Community Development',
     color: '#C97B63',
     description:
-      'Neighborhood-scale investments in public spaces, community centers, small business incubators, and cultural programming. Designed to rebuild social infrastructure alongside physical infrastructure.',
+      'Neighborhood investments in public spaces, community centers, small business incubators, and cultural programming.',
     features: [
       { label: 'Community Centers', detail: '3 new multi-purpose neighborhood centers' },
       { label: 'Public Spaces', detail: 'Pocket parks, plazas, and community gardens' },
@@ -97,7 +97,7 @@ const layers: Layer[] = [
     name: 'Green Housing',
     color: '#2D5A45',
     description:
-      'Affordable, energy-efficient housing development using passive design principles, solar-ready construction, and resilient building materials. Targets 30% affordability set-aside in all new developments.',
+      'Affordable, energy-efficient housing with passive design, solar-ready construction, and flood-resistant materials. 30% of units in every new development would be set aside as affordable.',
     features: [
       { label: 'Passive Design', detail: 'Cross-ventilation, shading, and thermal mass' },
       { label: 'Affordable Units', detail: '30% of new units at or below 80% AMI' },
@@ -110,7 +110,7 @@ const layers: Layer[] = [
     name: 'Green Jobs',
     color: '#8A9BA8',
     description:
-      'Workforce development pipeline for construction, solar installation, transit operations, and urban agriculture. Prioritizes hiring from New Orleans East residents and returning citizens.',
+      'Job training for construction, solar installation, transit operations, and urban agriculture, with hiring priority for New Orleans East residents and returning citizens.',
     features: [
       { label: 'Training Center', detail: 'Solar installation and green construction certification' },
       { label: 'Local Hire', detail: '50% local hiring requirement on all funded projects' },
@@ -169,7 +169,7 @@ export default function NolaEastPage() {
               New Orleans East Revitalization
             </h1>
             <p className="mt-4 text-titanium text-lg max-w-2xl">
-              Winner of the C40 Reinventing Cities Award from the Mayor of New Orleans. A comprehensive urban revitalization plan integrating disaster resilience, renewable energy, transit, and equitable community development.
+              Winner of the C40 Reinventing Cities Award from the Mayor of New Orleans. A revitalization plan covering disaster resilience, renewable energy, transit, housing, and jobs.
             </p>
           </motion.div>
 
@@ -212,7 +212,7 @@ export default function NolaEastPage() {
                 The Context
               </span>
               <h2 className="font-serif text-heading text-white mb-8">
-                Rebuilding a community that was left behind.
+                Why New Orleans East.
               </h2>
             </motion.div>
 
@@ -222,7 +222,7 @@ export default function NolaEastPage() {
                 animate={heroView.isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
-                New Orleans East is one of the largest geographic areas within the city, home to a diverse population that includes one of the largest Vietnamese-American communities in the South. It was also one of the areas most devastated by Hurricane Katrina in 2005 — and, nearly two decades later, large portions of the district remain underdeveloped with vacant lots, limited transit, and aging infrastructure.
+                New Orleans East is one of the largest areas of the city by land, and home to one of the largest Vietnamese-American communities in the South. It was one of the areas hit hardest by Hurricane Katrina in 2005. Nearly two decades later, much of the district still has vacant lots, limited transit, and aging infrastructure.
               </motion.p>
 
               <motion.p
@@ -230,7 +230,7 @@ export default function NolaEastPage() {
                 animate={heroView.isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                The C40 Reinventing Cities competition challenged teams to propose transformative, carbon-neutral development for underutilized urban sites. The New Orleans East proposal took a holistic approach: rather than treating sustainability as a single-issue problem, it integrated eight interconnected layers — from disaster planning and solar energy to green jobs and community development — into a unified vision.
+                The C40 Reinventing Cities competition asks teams to propose carbon-neutral development for underused urban sites. The New Orleans East proposal has eight layers, including disaster planning, solar energy, transit, green jobs, and community development, planned together so each supports the others.
               </motion.p>
 
               <motion.p
@@ -238,7 +238,7 @@ export default function NolaEastPage() {
                 animate={heroView.isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                The proposal won the C40 Reinventing Cities Award from the Mayor of New Orleans, recognizing its ambition, feasibility, and commitment to equitable development. The plan was designed not just to build new infrastructure, but to create lasting economic opportunity for residents who have waited too long for reinvestment in their community.
+                The proposal won the C40 Reinventing Cities Award from the Mayor of New Orleans. Along with new infrastructure, the plan includes local hiring, job training, and affordable housing for current residents.
               </motion.p>
             </div>
           </div>
@@ -258,10 +258,10 @@ export default function NolaEastPage() {
               Interactive Plan
             </span>
             <h2 className="font-serif text-heading text-white mt-3">
-              Eight layers, one vision.
+              The eight plan layers.
             </h2>
             <p className="mt-4 text-titanium max-w-2xl">
-              Toggle layers on and off to explore how each element of the revitalization plan integrates into the overall vision for New Orleans East.
+              Turn layers on and off to see where each part of the plan sits in New Orleans East.
             </p>
           </motion.div>
 
@@ -665,7 +665,7 @@ export default function NolaEastPage() {
               Plan Components
             </span>
             <h2 className="font-serif text-heading text-white mt-3">
-              Every layer, connected.
+              All eight layers.
             </h2>
           </motion.div>
 
@@ -712,7 +712,7 @@ export default function NolaEastPage() {
               transition={{ duration: 0.6 }}
               className="text-white text-lg font-serif leading-relaxed"
             >
-              New Orleans East deserves more than recovery. It deserves transformation. This plan was designed to prove that sustainability, equity, and economic development are not competing priorities — they are the same priority, expressed through different layers of the same vision. The C40 Award recognized that ambition. The work continues.
+              The plan treats climate resilience, affordable housing, and local jobs as one project for New Orleans East instead of separate programs competing for the same funding.
             </motion.p>
           </div>
         </div>

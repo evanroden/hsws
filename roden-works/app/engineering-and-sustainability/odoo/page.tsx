@@ -18,8 +18,8 @@ export default function OdooPage() {
   return (
     <>
       <ArticleJsonLd
-        title="Odoo — ERP Implementation for Manufacturing"
-        description="ERP consulting and implementation for manufacturing and distribution companies — 160% of non-recurring revenue goal."
+        title="Odoo: ERP Implementation for Manufacturing"
+        description="My year selling and implementing Odoo ERP for manufacturing and distribution companies, including a month at 160% of my non-recurring revenue goal."
         path="/engineering-and-sustainability/odoo"
       />
       <BreadcrumbJsonLd
@@ -85,9 +85,9 @@ export default function OdooPage() {
               Odoo
             </h1>
             <p className="mt-4 text-titanium text-lg max-w-2xl">
-              The world&apos;s most installed open-source ERP with 13M+ users
-              worldwide. Backed by CapitalG, Sequoia, and BlackRock at a
-              valuation exceeding &euro;5 billion.
+              Open-source ERP software with 13M+ users worldwide, backed by
+              CapitalG, Sequoia, and BlackRock at a valuation above &euro;5
+              billion.
             </p>
           </motion.div>
 
@@ -117,31 +117,28 @@ export default function OdooPage() {
                 About Odoo
               </span>
               <h2 className="font-serif text-heading text-white mb-6">
-                Open-source ERP for the modern enterprise.
+                Modular, open-source ERP.
               </h2>
               <div className="space-y-4 text-titanium leading-relaxed">
                 <p>
-                  Odoo is the world&apos;s most installed open-source ERP
-                  platform, serving 13 million+ users across 180+ countries.
-                  Unlike monolithic ERPs like SAP or Oracle, Odoo&apos;s modular
-                  architecture allows businesses to start with a single
-                  application — CRM, Accounting, Inventory — and expand
-                  organically as needs evolve.
+                  Odoo is an open-source ERP platform with more than 13 million
+                  users in 180+ countries. Compared with SAP or Oracle, it is
+                  modular: a business can start with one application, such as
+                  CRM, Accounting, or Inventory, and add others later.
                 </p>
                 <p>
                   Founded in Belgium in 2005 by Fabien Pinckaers, Odoo has grown
                   to a &euro;5B+ valuation with backing from CapitalG
                   (Alphabet&apos;s investment arm), Sequoia Capital, and
                   BlackRock. The platform includes 82 official modules and
-                  50,000+ community apps, covering everything from manufacturing
-                  and accounting to point-of-sale and website building.
+                  50,000+ community apps for manufacturing, accounting,
+                  point-of-sale, website building, and more.
                 </p>
                 <p>
-                  Odoo&apos;s dual-licensing model — Community (open-source) and
-                  Enterprise (subscription) — creates a powerful land-and-expand
-                  motion. Clients begin with free tools, prove value, then
-                  upgrade for advanced features like analytic accounting, barcode
-                  scanning, and IoT integration.
+                  Odoo has two editions: Community (open-source) and Enterprise
+                  (subscription). Many clients start on the free tools and
+                  upgrade once they need features like analytic accounting,
+                  barcode scanning, or IoT integration.
                 </p>
               </div>
             </motion.div>
@@ -159,16 +156,16 @@ export default function OdooPage() {
               </h2>
               <div className="space-y-4 text-titanium leading-relaxed">
                 <p>
-                  Account Executive (February 2024 &ndash; February 2025)
-                  managing full software implementation cycles for Odoo&apos;s
-                  ERP platform. Specialized in MRP for discrete manufacturing,
+                  From February 2024 to February 2025 I was an Account
+                  Executive at Odoo, managing full implementation cycles for
+                  clients. Most of my work was MRP for discrete manufacturing,
                   analytic accounting, food &amp; beverage software, and
                   retail/customer-portal implementations.
                 </p>
                 <p>
-                  Hit 160% of his non-recurring revenue goal in a single month —
-                  driven by successful upsells and new module implementations
-                  across the existing client base.
+                  In one month I hit 160% of my non-recurring revenue goal,
+                  mostly from upsells and new module implementations with
+                  existing clients.
                 </p>
               </div>
 
@@ -225,9 +222,9 @@ export default function OdooPage() {
               160% of goal.
             </h2>
             <p className="mt-4 text-titanium max-w-2xl">
-              In his best month at Odoo, Evan hit 160% of his non-recurring
-              revenue target — driven by successful upsells and new module
-              implementations across his client base.
+              My best month at Odoo came in at 160% of my non-recurring
+              revenue target. Most of it came from upsells and new modules for
+              clients I already had.
             </p>
           </motion.div>
 
@@ -255,13 +252,13 @@ export default function OdooPage() {
               Architecture
             </span>
             <h2 className="font-serif text-heading text-white mt-3">
-              ERP module ecosystem.
+              How the modules connect.
             </h2>
             <p className="mt-4 text-titanium max-w-2xl">
-              Odoo&apos;s power lies in integration. Every module connects
-              natively — a sales order triggers inventory reservation, which
-              feeds MRP scheduling, which generates purchase orders, which flow
-              into accounting. Click each module to explore.
+              In Odoo, each module hands work to the next. A sales order reserves
+              inventory, a shortage becomes an MRP manufacturing order, MRP
+              generates purchase orders, and those flow into accounting. Click
+              a module for details.
             </p>
           </motion.div>
 
