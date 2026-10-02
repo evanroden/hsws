@@ -5,19 +5,32 @@ import { useState } from 'react'
 import { useInView } from '@/lib/hooks'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 
+// Fact-check 2026-10 sources:
+// - Fat City Leisure Park: ~$17M total, ~$11.7M federal CDBG + ~$5.4M state; A&E under a cooperative
+//   endeavor agreement with Jefferson Parish; target opening end of 2027. The earlier "$13M CDBG" figure
+//   could not be sourced. https://hoodline.com/2026/07/fat-city-scores-17-million-park-play-to-jump-start-metairie-nightlife/
+// - Clearview City Center: $100M conversion of the 700,000 sq ft Clearview Shopping Center, 260+ apartments,
+//   a hotel, ~100,000 sq ft of office, a 14,000 sq ft event green (announced Dec 2019).
+//   https://enr.com/articles/48361-100-million-project-will-repurpose-suburban-mall-as-open-air-city-center
+//   "Residential towers", a grocery anchor and structured parking were not in any source and were removed.
+// - Metairie: 143,507 residents (2020 Census), the largest unincorporated community in Louisiana and the
+//   fifth-largest CDP in the U.S. https://en.wikipedia.org/wiki/Metairie,_Louisiana
+// - Fat City sits off Veterans Memorial Blvd next to Lakeside Shopping Center: https://www.visitjeffersonparish.com/communities/metairie/
+//   (the earlier boundary list ending at "Metairie Country Club" was wrong and was removed)
+// - Clearview phase-one construction: https://bizneworleans.com/construction-of-first-phase-of-clearview-redevelopment-begins/
 const activeProjects = [
   {
-    title: 'Fat City Redevelopment',
-    funding: '$13M CDBG',
+    title: 'Fat City Leisure Park',
+    funding: '$17M',
     description:
-      'Community Development Block Grant-funded redevelopment of the Fat City entertainment district. The goal is to turn the aging nightlife strip into a walkable, mixed-use neighborhood with new streetscaping, public lighting, and facade improvements.',
-    status: 'Active',
+      'A park planned for the Fat City district, funded mostly with federal Community Development Block Grant money (about $11.7 million) plus about $5.4 million from the state. The district\'s backers see it as a catalyst for turning the aging nightlife strip into a walkable, mixed-use neighborhood.',
+    status: 'In design',
   },
   {
     title: 'Clearview City Center',
     funding: '$100M',
     description:
-      'Conversion of the former Clearview Mall site into a mixed-use town center with residential, retail, office, and civic space.',
+      'Conversion of the Clearview Shopping Center into a mixed-use town center with apartments, a hotel, retail, office space, and an event green.',
     status: 'Active',
   },
 ]
@@ -139,7 +152,7 @@ export default function MidtownMetairiePage() {
                 Full Proposal in Progress
               </h2>
               <p className="text-titanium text-sm leading-relaxed max-w-xl mx-auto">
-                I&apos;m still writing the full proposal. It builds on two active projects, the Fat City Redevelopment ($13M CDBG) and the Clearview City Center conversion ($100M), and lays out a walkable, mixed-use center for a community of over 140,000 residents.
+                I&apos;m still writing the full proposal. It builds on two projects in progress, the Fat City Leisure Park ($17M, mostly CDBG) and the Clearview City Center conversion ($100M), and lays out a walkable, mixed-use center for a community of over 140,000 residents.
               </p>
             </div>
           </motion.div>
@@ -185,7 +198,7 @@ export default function MidtownMetairiePage() {
                 animate={contextView.isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                Two projects now underway, the Fat City Redevelopment and the Clearview City Center conversion, give the parish a chance to change that. My proposal shows how those two investments could anchor a more walkable, better connected commercial core between them.
+                Two projects in progress, the Fat City Leisure Park and the Clearview City Center conversion, give the parish a chance to change that. My proposal shows how those two investments could anchor a more walkable, better connected commercial core between them.
               </motion.p>
             </div>
           </div>
@@ -200,7 +213,7 @@ export default function MidtownMetairiePage() {
             {[
               { value: '140K+', label: 'Residents' },
               { value: '#1', label: 'Largest Unincorporated in LA' },
-              { value: '$113M+', label: 'Active Investment' },
+              { value: '$117M', label: 'Planned Investment' },
               { value: '0', label: 'Incorporated Government' },
             ].map((stat, i) => (
               <motion.div
@@ -231,7 +244,7 @@ export default function MidtownMetairiePage() {
               Active Investments
             </span>
             <h2 className="font-serif text-heading text-white mt-3">
-              Two projects already underway.
+              Two projects already in progress.
             </h2>
           </motion.div>
 
@@ -268,8 +281,8 @@ export default function MidtownMetairiePage() {
                   >
                     <p className="text-muted text-xs leading-relaxed">
                       {i === 0
-                        ? 'The Fat City district, bounded roughly by Division Street, 18th Street, Severn Avenue, and the Metairie Country Club, was once a busy entertainment district. The CDBG-funded redevelopment focuses on streetscaping, drainage improvements, public art, and commercial facade grants to attract new tenants and foot traffic.'
-                        : 'The Clearview Mall site, anchored at the intersection of Veterans Memorial Blvd and Clearview Pkwy, is being converted into a mixed-use town center. The $100M project includes residential towers, a grocery anchor, retail, office space, and structured parking.'}
+                        ? 'Fat City, just off Veterans Memorial Boulevard near Lakeside Shopping Center, was once a busy entertainment district. The planned Leisure Park includes a stroll garden, an oak grove, a children\'s play area, bioswales, an event lawn, and a pocket park on the former Crazy Johnnie\'s site. Officials aim to open it by the end of 2027.'
+                        : 'The Clearview Shopping Center, at Veterans Memorial Blvd and Clearview Pkwy, is being converted into a mixed-use town center. The $100M plan includes more than 260 apartments, a hotel, about 100,000 square feet of office space, restaurants, and a 14,000-square-foot green for events.'}
                     </p>
                   </motion.div>
                 )}

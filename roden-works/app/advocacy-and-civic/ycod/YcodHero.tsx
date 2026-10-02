@@ -12,13 +12,14 @@ export default function YcodHero() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
           <span className="font-mono text-xs tracking-widest uppercase text-copper mb-4 block">
-            501(c)(4) Nonpartisan Advocacy
+            Youth-Led Advocacy
           </span>
           <h1 className="font-serif text-display text-white max-w-4xl">
             The Youth Coalition For Organ Donation
           </h1>
           <p className="mt-4 text-titanium text-lg max-w-2xl">
-            Co-founded in 2017, The YCOD is a youth-led organization that advocates for presumed consent organ donation laws. Seventeen people die every day waiting for a transplant.
+            Co-founded in 2017, The YCOD is a youth-led coalition that advocates for presumed consent organ donation laws. Seventeen people die every day waiting for a transplant.
+            {/* 17/day: HRSA, https://www.organdonor.gov/learn/organ-donation-statistics */}
           </p>
         </motion.div>
       </div>

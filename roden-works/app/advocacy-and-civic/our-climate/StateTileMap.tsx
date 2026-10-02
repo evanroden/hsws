@@ -27,13 +27,13 @@ export default function StateTileMap({ victories, animate }: { victories: Victor
 
   return (
     <ChartFrame
-      title="Legislative victories by state, 2019–20 fellowship cycle"
-      subtitle="Every state is drawn as an equal tile. Hover or select a highlighted state for what the cohort helped win."
+      title="State climate wins around the 2019–20 fellowship"
+      subtitle="Every state is drawn as an equal tile. Hover or select a highlighted state for what passed and when."
       legend={
         <ul className="flex flex-wrap items-center gap-x-5 gap-y-2">
           <li className="flex items-center gap-2 text-xs text-titanium">
             <span aria-hidden="true" className="inline-block h-3 w-3 rounded-[3px]" style={{ background: chart.verdigris }} />
-            Legislative victory
+            Climate win covered here
           </li>
           <li className="flex items-center gap-2 text-xs text-titanium">
             <span
@@ -47,8 +47,8 @@ export default function StateTileMap({ victories, animate }: { victories: Victor
       }
       note="Tile layout after NPR’s square tile grid map."
       table={{
-        caption: 'States where the Our Climate cohort won legislative victories, 2019–2020',
-        columns: ['State', 'Victory'],
+        caption: 'State climate wins around the 2019–2020 Our Climate fellowship, with dates',
+        columns: ['State', 'What passed'],
         rows: victories.map((v) => [v.state, v.title]),
       }}
     >
@@ -57,7 +57,7 @@ export default function StateTileMap({ victories, animate }: { victories: Victor
 
         <div>
           <p className="mb-3 font-mono text-[11px] uppercase tracking-widest text-muted">
-            {victories.length} victory states
+            {victories.length} states covered
           </p>
           <ul className="border-t border-white/[0.08]">
             {victories.map((v) => {
@@ -155,7 +155,7 @@ function TileMap({
           role="img"
           aria-label={`Tile grid map of the United States. ${victories
             .map((v) => v.state)
-            .join(', ')} are highlighted as legislative victory states; the other ${TILE_GRID.length - victories.length} states and DC are not.`}
+            .join(', ')} are highlighted as states with climate wins covered on this page; the other ${TILE_GRID.length - victories.length} states and DC are not.`}
           className="block"
         >
           {TILE_GRID.map((t) => {
@@ -233,7 +233,7 @@ function TileMap({
               <span className="leading-snug text-white">{hoveredVictory.title}</span>
             </div>
           ) : (
-            <div className="text-xs text-muted">Not among the cohort’s victory states</div>
+            <div className="text-xs text-muted">Not one of the states covered here</div>
           )}
         </ChartTooltip>
       )}

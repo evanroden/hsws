@@ -3,13 +3,16 @@
 import { motion } from 'framer-motion'
 import { useInView } from '@/lib/hooks'
 
+// Verified coverage only (fact-check 2026-10). WKBW story syndicated across Scripps stations:
+// https://www.wxyz.com/news/national/college-freshmen-in-new-york-develop-plan-to-encourage-more-organ-donors
+// Spectrum News: https://spectrumlocalnews.com/nys/buffalo/news/2021/01/13/college-students-push-for-more-organ-donations-in-ny-
+// WENY: https://weny.com/story/43131791/college-activists-pushing-for-change-to-organ-donor-registration-process-in-nys
+// CBC, Yahoo News and Business Insider could not be found and were removed; "Local Media Network" was a placeholder.
 const media = [
-  { name: 'CBC', type: 'Broadcast' },
-  { name: 'Yahoo News', type: 'Digital' },
-  { name: 'Business Insider', type: 'Digital' },
   { name: 'WKBW', type: 'Broadcast' },
   { name: 'Spectrum News', type: 'Broadcast' },
-  { name: 'Local Media Network', type: 'Regional' },
+  { name: 'WENY', type: 'Broadcast' },
+  { name: 'Scripps stations', type: 'Syndicated' },
 ]
 
 const partners = [

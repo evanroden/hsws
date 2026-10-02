@@ -22,19 +22,20 @@ const AXIS_BAND = 30
 export default function EngagementDumbbell({ data, animate }: { data: EngagementRow[]; animate: boolean }) {
   return (
     <ChartFrame
-      title="SAMHSA engagement scores, before and after the Partnership collaboration"
-      subtitle="Score out of 100 for each measured category. Every category improved."
+      title="SAMHSA Best Places to Work scores, 2020 and 2022"
+      subtitle="Score out of 100, rounded. Every category shown improved."
       legend={
         <Legend
           items={[
-            { label: 'Before Partnership engagement', color: chart.deemph, shape: 'dot' },
-            { label: 'After Partnership engagement', color: chart.verdigris, shape: 'dot' },
+            { label: '2020 (before the collaboration)', color: chart.deemph, shape: 'dot' },
+            { label: '2022 (after)', color: chart.verdigris, shape: 'dot' },
           ]}
         />
       }
-      note="Source: Best Places to Work in the Federal Government"
+      // https://bestplacestowork.org/rankings/detail/?c=HE32
+      note="Source: Partnership for Public Service, Best Places to Work in the Federal Government (SAMHSA, 2020 and 2022)."
       table={{
-        caption: 'SAMHSA engagement scores before and after, by category',
+        caption: 'SAMHSA Best Places to Work scores, 2020 and 2022, by category',
         columns: ['Category', 'Before', 'After', 'Change'],
         rows: data.map((d) => [d.category, d.before, d.after, `+${d.after - d.before}`]),
       }}

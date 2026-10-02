@@ -13,7 +13,8 @@ import MediaWall from './MediaWall'
 export const metadata: Metadata = {
   title: 'The YCOD: Opt-Out Organ Donation Advocacy',
   description:
-    'The Youth Coalition For Organ Donation is a 501(c)(4) organization working to pass presumed consent organ donation legislation.',
+    // No record of 501(c)(4) status was found, so the description no longer claims it (fact-check 2026-10)
+    'The Youth Coalition For Organ Donation is a youth-led coalition working to pass presumed consent organ donation legislation in New York.',
 }
 
 export default function YcodPage() {
@@ -21,7 +22,7 @@ export default function YcodPage() {
     <>
       <ArticleJsonLd
         title="The YCOD: Opt-Out Organ Donation Advocacy"
-        description="The Youth Coalition For Organ Donation is a 501(c)(4) organization working to pass presumed consent organ donation legislation."
+        description="The Youth Coalition For Organ Donation is a youth-led coalition working to pass presumed consent organ donation legislation in New York."
         path="/advocacy-and-civic/ycod"
       />
       <BreadcrumbJsonLd

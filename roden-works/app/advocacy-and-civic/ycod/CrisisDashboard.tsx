@@ -3,28 +3,22 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import type { ReactNode } from 'react'
 import { useInView, useCountUp } from '@/lib/hooks'
-import WaitTimeChart from './WaitTimeChart'
-import DonorRateChart from './DonorRateChart'
-
-const stateData = [
-  { state: 'NY', rate: 37, label: 'New York' },
-  { state: 'TX', rate: 52, label: 'Texas' },
-  { state: 'CA', rate: 49, label: 'California' },
-  { state: 'FL', rate: 56, label: 'Florida' },
-  { state: 'PA', rate: 61, label: 'Pennsylvania' },
-  { state: 'OH', rate: 64, label: 'Ohio' },
-  { state: 'MT', rate: 89, label: 'Montana' },
-  { state: 'AK', rate: 87, label: 'Alaska' },
-]
-
-const racialDisparity = [
-  { group: 'Black', waitDays: 1335, pctWaitlist: 27, pctDonors: 13 },
-  { group: 'White', waitDays: 734, pctWaitlist: 35, pctDonors: 60 },
-  { group: 'Hispanic', waitDays: 1050, pctWaitlist: 21, pctDonors: 17 },
-  { group: 'Asian', waitDays: 900, pctWaitlist: 8, pctDonors: 5 },
-]
-
-const NY_RATE = stateData.find((s) => s.state === 'NY')?.rate ?? 37
+// Sources for every figure on this section:
+// - Waiting list (100,000+), 17 deaths/day, a new person added every 8 minutes: HRSA,
+//   https://www.organdonor.gov/learn/organ-donation-statistics
+// - NY ~37% registered, then the lowest opt-in rate of any state: WKBW (Olivia Proia),
+//   https://www.wxyz.com/news/national/college-freshmen-in-new-york-develop-plan-to-encourage-more-organ-donors
+//   and Spectrum News, https://mynews13.com/fl/orlando/news/2021/09/24/wny-teens-nominated-for-american-red-cross-award-for-organ-donation-coalition
+// - NY passed 50% registered in 2024; national average 64%: City & State,
+//   https://cityandstateny.com/opinion/2025/03/opinion-new-york-reached-major-health-milestone-we-cannot-take-our-foot-gas/403592
+// - Black Americans ~27% of the waiting list, ~12% of organ donors: HHS Office of Minority Health,
+//   https://minorityhealth.hhs.gov/organ-transplants-and-blackafrican-americans
+// - People of color 40% of the U.S. population but 60% of the waiting list (OPTN, Sept 2023): HRSA,
+//   https://www.organdonor.gov/sites/default/files/organ-donor/professional/materials/lets-talk-donor-diversity-infographic-english.pdf
+// The earlier wait-time-by-race and state-rate charts were removed: their figures could not be traced
+// to a source (the 1,335 vs 734 day kidney wait is a 2009 University of Maryland figure comparing Black
+// patients with all other patients, not with white patients).
+const NY_RATE = 37
 
 export default function CrisisDashboard() {
   const { ref, isInView } = useInView(0.05)
@@ -59,15 +53,15 @@ export default function CrisisDashboard() {
           </motion.div>
 
           <motion.div {...reveal(0.2)} className="h-full">
-            <StatTile label="People die waiting every day" note="Approximately 7,500 organs are wasted annually">
+            <StatTile label="People die waiting every day" note="Another person is added to the national waiting list every 8 minutes">
               17
             </StatTile>
           </motion.div>
 
           <motion.div {...reveal(0.3)} className="h-full">
             <StatTile
-              label="NY donor designation rate"
-              note="The lowest in the country"
+              label="NY donor registration rate when we started"
+              note="Then the lowest in the country. New York passed 50% in 2024, still below the 64% national average."
               meter={
                 <div className="mt-5 h-1.5 w-full overflow-hidden rounded-full bg-copper/15" aria-hidden="true">
                   <motion.div
@@ -84,13 +78,25 @@ export default function CrisisDashboard() {
           </motion.div>
         </div>
 
-        {/* Charts */}
+        {/* Context (prose in place of the earlier unsourced charts) */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
           <motion.div {...reveal(0.4)} className="h-full">
-            <WaitTimeChart data={racialDisparity} highlight="Black" reference="White" animate={isInView} />
+            <div className="h-full rounded-2xl border border-white/[0.08] bg-surface p-6 md:p-7">
+              <h3 className="font-serif text-xl text-white">Who waits</h3>
+              <p className="mt-3 text-sm leading-relaxed text-titanium">
+                People of color are about 40% of the U.S. population but 60% of the transplant waiting list. Black Americans make up about 27% of the waiting list but only about 12% of organ donors.
+              </p>
+              <p className="mt-4 text-xs leading-relaxed text-muted">Sources: HRSA (OPTN data, Sept. 2023); HHS Office of Minority Health.</p>
+            </div>
           </motion.div>
           <motion.div {...reveal(0.5)} className="h-full">
-            <DonorRateChart data={stateData} highlight="NY" animate={isInView} />
+            <div className="h-full rounded-2xl border border-white/[0.08] bg-surface p-6 md:p-7">
+              <h3 className="font-serif text-xl text-white">New York&apos;s registry</h3>
+              <p className="mt-3 text-sm leading-relaxed text-titanium">
+                When we started, only about 37% of New Yorkers were registered donors, the lowest opt-in rate of any state. The rate has risen since: New York passed 50% in 2024, but it still trails the national average of 64%.
+              </p>
+              <p className="mt-4 text-xs leading-relaxed text-muted">Sources: WKBW and Spectrum News coverage of The YCOD; City &amp; State (2025).</p>
+            </div>
           </motion.div>
         </div>
       </div>

@@ -5,12 +5,16 @@ import { useInView } from '@/lib/hooks'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import EngagementDumbbell from './EngagementDumbbell'
 
+// SAMHSA scores from Best Places to Work in the Federal Government, 2020 (before) vs 2022 (after),
+// rounded to whole numbers. Raw: engagement 37.1 -> 74.2; senior leaders 29.2 -> 73.8;
+// supervisors 72.2 -> 85.0; pay & benefits 67.8 -> 73.1.
+// https://bestplacestowork.org/rankings/detail/?c=HE32
+// The earlier category rows (employee development, communication & trust, etc.) had no source and were replaced.
 const engagementData = [
   { category: 'Overall Engagement', before: 37, after: 74 },
-  { category: 'Effective Leadership', before: 28, after: 63 },
-  { category: 'Employee Development', before: 31, after: 58 },
-  { category: 'Communication & Trust', before: 33, after: 67 },
-  { category: 'Work-Life Balance', before: 45, after: 71 },
+  { category: 'Leadership: Senior Leaders', before: 29, after: 74 },
+  { category: 'Leadership: Supervisors', before: 72, after: 85 },
+  { category: 'Pay & Benefits', before: 68, after: 73 },
 ]
 
 const workstreams = [
@@ -25,14 +29,15 @@ const workstreams = [
       'Compared SAMHSA\'s Federal Employee Viewpoint Survey (FEVS) results against government-wide benchmarks. Broke out what raised and lowered engagement by division, leadership level, and demographic group so the team could decide where to start.',
   },
   {
-    title: 'Agency Leadership Program',
+    title: 'Agency Leadership Work',
     description:
-      'Worked within the Partnership\'s Agency Leadership Program, which places consultants inside federal agencies to find organizational problems and fix them with senior leaders.',
+      'Worked within the Partnership\'s work with agency leaders, in which its consultants help federal agencies find organizational problems and fix them with senior leaders.',
   },
   {
     title: 'Best Places to Work Rankings',
     description:
-      'The work fed into the Best Places to Work in the Federal Government rankings, which rank over 400 federal organizations by employee engagement data.',
+      // Attribution fix: the rankings come from OPM's FEVS data, not from this project. https://bestplacestowork.org/rankings/detail/?c=HE32
+      'The project used the same FEVS data behind the Partnership\'s Best Places to Work in the Federal Government rankings, which rank over 400 federal organizations by employee engagement.',
   },
 ]
 
@@ -40,7 +45,8 @@ const timeline = [
   {
     date: 'Sept 2021',
     title: 'Program Start',
-    description: 'Joined the Partnership\'s Federal Workforce team in Washington, D.C. through the Future Leaders program and was assigned to the SAMHSA engagement project.',
+    // SAMHSA partnered with the Partnership in August 2021: https://ourpublicservice.org/about/history-and-impact/samhsa-strong-teaming-up-to-transform-the-workplace
+    description: 'Joined the Partnership\'s Federal Workforce team in Washington, D.C. and was assigned to the SAMHSA engagement project, which had started in August 2021.',
   },
   {
     date: 'Oct 2021',
@@ -60,7 +66,7 @@ const timeline = [
   {
     date: 'Jan 2022',
     title: 'Program Conclusion',
-    description: 'Finished the program. Over the full Partnership collaboration, SAMHSA\'s engagement score rose from about 37 to 74.',
+    description: 'Finished the program. Over the full Partnership collaboration, SAMHSA\'s Best Places to Work score rose from about 37 in 2020 to 74 in 2022.',
   },
 ]
 
@@ -104,7 +110,7 @@ export default function PartnershipPage() {
               Partnership for Public Service
             </h1>
             <p className="mt-4 text-titanium text-lg max-w-2xl">
-              I was on the Federal Workforce team in Washington, D.C., working on SAMHSA&apos;s employee engagement project. I ran focus group research and analyzed engagement data.
+              I was on the Federal Workforce team in Washington, D.C., working on SAMHSA&apos;s employee engagement project. I worked on focus group research and analyzed engagement data.
             </p>
           </motion.div>
 
@@ -158,6 +164,7 @@ export default function PartnershipPage() {
                   animate={heroView.isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: 0.1 }}
                 >
+                  {/* Founding, $25M gift: https://en.wikipedia.org/wiki/Partnership_for_Public_Service */}
                   The Partnership for Public Service, founded in 2001 by Samuel J. Heyman with a $25 million endowment, is a nonpartisan nonprofit that works to make the federal government more effective. It produces the Best Places to Work in the Federal Government rankings, administers the Samuel J. Heyman Service to America Medals (the &ldquo;Sammies&rdquo;), and runs the Center for Presidential Transition.
                 </motion.p>
 
@@ -166,16 +173,10 @@ export default function PartnershipPage() {
                   animate={heroView.isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                  I joined the Federal Workforce team through the Future Leaders program and produced focus group transcripts and engagement analyses for a project with the Substance Abuse and Mental Health Services Administration (SAMHSA). The project was part of the Agency Leadership Program, which helps federal agencies find and fix organizational problems.
+                  {/* Future Leaders in Public Service launched with a summer 2022 cohort, after this role ended, so it is no longer named here: https://ourpublicservice.org/know-the-facts/blog/welcoming-the-future-leaders-in-public-service */}
+                  I joined the Federal Workforce team and produced focus group transcripts and engagement analyses for a project with the Substance Abuse and Mental Health Services Administration (SAMHSA). The project was part of the Partnership&apos;s work with agency leaders to find and fix organizational problems.
                 </motion.p>
 
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={heroView.isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                >
-                  The Future Leaders program offers 10-12 week paid internships (approximately $6,500 plus a $5,500 housing stipend) in federal agencies and partner organizations, giving students direct experience in federal policy and operations.
-                </motion.p>
               </div>
             </div>
 
@@ -192,15 +193,18 @@ export default function PartnershipPage() {
                 <h3 className="font-serif text-lg text-white mb-4">
                   Substance Abuse and Mental Health Services Administration
                 </h3>
+                {/* 988 rename took effect July 16, 2022: https://www.samhsa.gov/find-help/988 ; FindTreatment.gov is SAMHSA's treatment locator */}
                 <p className="text-titanium text-sm leading-relaxed mb-4">
-                  SAMHSA is a branch of the U.S. Department of Health and Human Services charged with reducing the impact of substance abuse and mental illness on American communities. The agency administers the National Suicide Prevention Lifeline, the Disaster Distress Helpline, and the SAMHSA Treatment Locator, among other national programs.
+                  SAMHSA is an agency within the U.S. Department of Health and Human Services charged with reducing the impact of substance abuse and mental illness on American communities. The agency administers the 988 Suicide &amp; Crisis Lifeline (the National Suicide Prevention Lifeline until July 2022), the Disaster Distress Helpline, and the FindTreatment.gov treatment locator, among other national programs.
                 </p>
                 <div className="grid grid-cols-2 gap-4 pt-4 border-t border-white/5">
                   <div>
+                    {/* FY2022 enacted: https://acmhai.org/news/key-spending-package-signed-into-law-includes-billions-for-mental-health-and-substance-use-services/ */}
                     <span className="font-sans font-semibold tracking-tight text-2xl text-white block">$6.5B</span>
-                    <span className="font-mono text-xs text-muted mt-1 block">Annual Budget</span>
+                    <span className="font-mono text-xs text-muted mt-1 block">FY 2022 Budget</span>
                   </div>
                   <div>
+                    {/* 527 federal employees (May 2026), about 603 in 2012: https://usafacts.org/explainers/what-does-the-us-government-do/subagency/substance-abuse-and-mental-health-services-administration/ */}
                     <span className="font-sans font-semibold tracking-tight text-2xl text-white block">500+</span>
                     <span className="font-mono text-xs text-muted mt-1 block">Employees</span>
                   </div>
@@ -236,7 +240,7 @@ export default function PartnershipPage() {
               Engagement scores doubled.
             </h2>
             <p className="mt-4 text-titanium max-w-2xl">
-              SAMHSA&apos;s employee engagement scores improved in every measured category during the Partnership&apos;s collaboration. The overall score rose from approximately 37 to 74.
+              SAMHSA&apos;s Best Places to Work scores rose in every category shown between 2020 and 2022, the period of the Partnership&apos;s collaboration. The overall score rose from about 37 to 74, above the 2022 government-wide average.
             </p>
           </motion.div>
 

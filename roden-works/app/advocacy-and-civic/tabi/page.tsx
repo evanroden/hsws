@@ -3,24 +3,17 @@
 import { motion } from 'framer-motion'
 import { useInView } from '@/lib/hooks'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
-import CoverageChart from './CoverageChart'
-import SpeedChart from './SpeedChart'
 
-const coverageData = [
-  { area: 'Town of Aurora (Overall)', connected: 62, underserved: 25, unserved: 13 },
-  { area: 'East Aurora Village', connected: 89, underserved: 8, unserved: 3 },
-  { area: 'Rural Aurora (South)', connected: 34, underserved: 38, unserved: 28 },
-  { area: 'Rural Aurora (North)', connected: 41, underserved: 32, unserved: 27 },
-  { area: 'Cayuga County Avg.', connected: 55, underserved: 28, unserved: 17 },
-]
-
-const speedTiers = [
-  { label: 'FCC "Broadband" Minimum', down: 25, up: 3, adequate: false },
-  { label: 'Rural Aurora Average', down: 12, up: 1.5, adequate: false },
-  { label: 'Urban National Average', down: 195, up: 24, adequate: true },
-  { label: 'TABI Target', down: 100, up: 100, adequate: true },
-]
-
+// Fact-check 2026-10: the coverage-by-area and speed charts were removed. Their figures had no source
+// (one row was labeled "Cayuga County Avg." although the Town of Aurora is in Erie County), and no
+// public dataset reporting those numbers for the town could be found. The prose below states only
+// verified facts:
+// - FCC 25/3 Mbps benchmark (2015) raised to 100/20 Mbps on March 14, 2024:
+//   https://broadbandbreakfast.com/fcc-increases-broadband-benchmark/
+// - IIJA (2021) definitions: unserved = no 25/3 access, underserved = no 100/20 access: https://benton.org/blog/how-fcc-got-10020
+// - ErieNet: Erie County's ~400-mile open-access fiber backbone, $36M in American Rescue Plan funds,
+//   for unserved and underserved areas: https://www.wkbw.com/news/local-news/buffalo/erienet-plans-taking-shape-400-miles-of-fiber-cable-to-be-installed-next-month
+//   and https://www3.erie.gov/economicdevelopment/press/erienet-broadband-services
 const pillars = [
   {
     title: 'Infrastructure Assessment',
@@ -111,7 +104,7 @@ export default function TabiPage() {
               Town of Aurora Broadband Initiative
             </h1>
             <p className="mt-4 text-titanium text-lg max-w-2xl">
-              A proposal to close the rural broadband gap in the Town of Aurora, New York, where nearly one in three households lack adequate internet access.
+              A proposal to close the rural broadband gap in the Town of Aurora, in Erie County, New York.
             </p>
           </motion.div>
         </div>
@@ -140,7 +133,7 @@ export default function TabiPage() {
                 animate={heroView.isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
-                The Town of Aurora is in Western New York. The village of East Aurora has reasonable broadband service, but the rural areas around it do not. Residents in southern and northern Aurora routinely get download speeds below the FCC&apos;s 25/3 Mbps broadband threshold, and many have no wired broadband option at all.
+                The Town of Aurora is in Erie County, in Western New York, and includes the village of East Aurora. Service in the village is better than in the rural parts of town, where fewer homes have a wired broadband option.
               </motion.p>
 
               <motion.p
@@ -163,7 +156,7 @@ export default function TabiPage() {
         </div>
       </section>
 
-      {/* Animated Coverage Gap Visualization */}
+      {/* Context (replaces the earlier unsourced coverage and speed charts) */}
       <section className="section-padding bg-slate-950" ref={gapView.ref}>
         <div className="content-width">
           <motion.div
@@ -173,27 +166,25 @@ export default function TabiPage() {
             className="mb-12"
           >
             <span className="font-mono text-xs tracking-widest uppercase text-copper">
-              Coverage Gap
+              What Counts as Broadband
             </span>
             <h2 className="font-serif text-heading text-white mt-3">
-              Coverage by area.
+              The bar has moved.
             </h2>
-            <p className="mt-4 text-titanium max-w-2xl">
-              Coverage is much better in the village than in the rural parts of town. The farther from East Aurora village, the worse it gets.
-            </p>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={gapView.isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.2 }}
-          >
-            <CoverageChart data={coverageData} animate={gapView.isInView} />
-          </motion.div>
+          <div className="max-w-3xl space-y-6 text-titanium leading-relaxed">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={gapView.isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              From 2015 until March 2024, the FCC defined broadband as 25 Mbps download and 3 Mbps upload. Under the 2021 federal infrastructure law, a home without access to 25/3 service counts as unserved, and one without access to 100/20 service counts as underserved. In March 2024 the FCC raised its own benchmark to 100/20 Mbps.
+            </motion.p>
+          </div>
         </div>
       </section>
 
-      {/* Speed Comparison */}
       <section className="section-padding bg-gradient-to-b from-slate-950 to-forest/5" ref={speedView.ref}>
         <div className="content-width">
           <motion.div
@@ -203,20 +194,22 @@ export default function TabiPage() {
             className="mb-12"
           >
             <span className="font-mono text-xs tracking-widest uppercase text-copper">
-              Speed Comparison
+              County Context
             </span>
             <h2 className="font-serif text-heading text-white mt-3">
-              Rural Aurora vs. the rest of the country.
+              Erie County is building fiber too.
             </h2>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={speedView.isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.2 }}
-          >
-            <SpeedChart data={speedTiers} highlight="Rural Aurora Average" animate={speedView.isInView} />
-          </motion.div>
+          <div className="max-w-3xl space-y-6 text-titanium leading-relaxed">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={speedView.isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              Erie County is building ErieNet, an open-access fiber backbone of roughly 400 miles funded with $36 million in American Rescue Plan money, to reach unserved and underserved parts of the county. A town-level plan like TABI would sit on top of that kind of county infrastructure.
+            </motion.p>
+          </div>
         </div>
       </section>
 

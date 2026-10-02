@@ -5,27 +5,37 @@ import { useInView } from '@/lib/hooks'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import StateTileMap from './StateTileMap'
 
+// Fact-check 2026-10: these are state climate wins around the fellowship year, with their real dates.
+// Only Oregon's executive order fell inside the fellowship (Nov 2019 to Oct 2020), so the page no longer
+// credits the cohort with all three.
+// - NY CLCPA signed July 18, 2019: https://www.aljazeera.com/amp/economy/2019/7/18/ny-governor-signs-into-law-most-ambitious-climate-plan-in-the-us and https://www.lw.com/admin/upload/SiteAttachments/Alert%202547v2.pdf
+//   (70% renewable electricity by 2030, net-zero economy-wide by 2050)
+// - OR Executive Order 20-04, March 10, 2020, after the SB 1530 walkout; 45% below 1990 by 2035, 80% by 2050:
+//   https://climate-xchange.org/2020/03/republican-walkout-halts-cap-and-invest-again-but-gov-brown-commits-to-climate/
+// - MA Next-Generation Roadmap climate law signed March 26, 2021 (from the 2019-20 session):
+//   https://daypitney.com/insights/publications/2021/03/30-massachusetts-enacts-major-climate-change-leg
+//   The earlier "~$500M for green retrofits" claim could not be sourced and was removed.
 const victories = [
   {
     state: 'New York',
     abbr: 'NY',
-    title: 'Climate Leadership & Community Protection Act (CLCPA)',
+    title: 'Climate Leadership & Community Protection Act (CLCPA), July 2019',
     description:
-      'Requires 70% renewable electricity by 2030 and net-zero emissions by 2050. Our Climate fellows organized constituent calls, joined lobby days in Albany, and built local support across Western New York.',
+      'Signed in July 2019, a few months before my fellowship began, so it is context rather than a fellowship win. It requires 70% renewable electricity by 2030 and net-zero emissions by 2050, and it shaped climate organizing in New York during my fellowship year.',
   },
   {
     state: 'Massachusetts',
     abbr: 'MA',
-    title: '~$500M for Green Energy Retrofits',
+    title: 'Next-Generation Climate Roadmap law, March 2021',
     description:
-      'About $500 million in state funding for green energy building retrofits. Fellows worked with local representatives and testified for retrofit programs aimed at low-income communities and environmental justice neighborhoods.',
+      'The roadmap bill came out of the 2019–2020 legislative session and was signed in March 2021, a few months after my fellowship ended. It sets a net-zero emissions target for 2050.',
   },
   {
     state: 'Oregon',
     abbr: 'OR',
-    title: "Governor's Executive Order on Climate",
+    title: "Governor's Executive Order 20-04, March 2020",
     description:
-      'After the state legislature failed to pass cap-and-trade, the governor issued an executive order setting emissions reduction targets. Portland-based fellows organized community pressure and worked with state advocacy groups.',
+      'After a Republican walkout blocked the cap-and-trade bill in the 2020 session, Governor Kate Brown signed an executive order in March 2020 directing state agencies to cut emissions 45% below 1990 levels by 2035 and 80% by 2050. This was the one win that fell inside the fellowship year. Portland-based fellows organized community pressure and worked with state advocacy groups.',
   },
 ]
 
@@ -46,14 +56,15 @@ const timelineEvents = [
     description: 'Went to Washington, D.C. and met with congressional offices about climate legislation and environmental justice funding.',
   },
   {
+    // https://climate-xchange.org/2020/03/republican-walkout-halts-cap-and-invest-again-but-gov-brown-commits-to-climate/
+    date: 'Mar 2020',
+    title: 'Oregon Executive Order',
+    description: 'After the cap-and-trade bill stalled in a Republican walkout, Governor Kate Brown signed Executive Order 20-04 setting statewide emissions reduction targets.',
+  },
+  {
     date: 'May 2020',
     title: 'Digital Organizing Pivot',
     description: 'Moved all organizing online during COVID-19. Led virtual town halls, Zoom lobby meetings, and social media campaigns.',
-  },
-  {
-    date: 'Jul 2020',
-    title: 'Legislative Wins',
-    description: 'The fellowship cohort contributed to climate policy wins in New York, Massachusetts, and Oregon.',
   },
   {
     date: 'Oct 2020',
@@ -101,7 +112,7 @@ export default function OurClimatePage() {
               Our Climate
             </h1>
             <p className="mt-4 text-titanium text-lg max-w-2xl">
-              A 12-month fellowship with a youth-led 501(c)(3) organization advocating for equitable climate policy at the state and federal level. Based in Portland, Oregon.
+              A 12-month fellowship with Our Climate, a nonprofit that trains young people to advocate for equitable climate policy at the state and federal level. I was based in Portland, Oregon.
             </p>
           </motion.div>
 
@@ -117,11 +128,11 @@ export default function OurClimatePage() {
             </div>
             <div className="text-center px-6 py-4">
               <span className="block font-sans font-semibold tracking-tight text-3xl md:text-4xl text-white">3</span>
-              <span className="block mt-2 font-mono text-xs tracking-wide text-titanium uppercase">State Victories</span>
+              <span className="block mt-2 font-mono text-xs tracking-wide text-titanium uppercase">States Covered</span>
             </div>
             <div className="text-center px-6 py-4">
-              <span className="block font-sans font-semibold tracking-tight text-3xl md:text-4xl text-white">~$500M</span>
-              <span className="block mt-2 font-mono text-xs tracking-wide text-titanium uppercase">Green Retrofits (MA)</span>
+              <span className="block font-sans font-semibold tracking-tight text-3xl md:text-4xl text-white">45%</span>
+              <span className="block mt-2 font-mono text-xs tracking-wide text-titanium uppercase">2035 Cut Target (OR)</span>
             </div>
             <div className="text-center px-6 py-4">
               <span className="block font-sans font-semibold tracking-tight text-3xl md:text-4xl text-white">2050</span>
@@ -154,7 +165,8 @@ export default function OurClimatePage() {
                 animate={heroView.isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
-                Our Climate is a 501(c)(3) nonprofit that trains young people to advocate for equitable climate policy. The fellowship teaches cohorts of young organizers legislative strategy, constituent communication, and campaign management, then places them in states with active climate legislation.
+                {/* Our Climate (EIN 46-4237362) and Our Climate Education Fund (EIN 26-3059927) are separate c4/c3 entities, HQ in Washington, DC: https://causeiq.com/organizations/our-climate,464237362 */}
+                Our Climate is a nonprofit that trains young people to advocate for equitable climate policy. The fellowship teaches cohorts of young organizers legislative strategy, constituent communication, and campaign management, then places them in states with active climate legislation.
               </motion.p>
 
               <motion.p
@@ -170,7 +182,7 @@ export default function OurClimatePage() {
                 animate={heroView.isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                Our cohort contributed to legislative wins in three states: New York, Massachusetts, and Oregon.
+                Oregon&apos;s governor signed a climate executive order during my fellowship year, after cap-and-trade stalled in the legislature. New York&apos;s CLCPA passed a few months before the fellowship began, and Massachusetts&apos;s climate roadmap law passed a few months after it ended.
               </motion.p>
             </div>
           </div>
@@ -190,10 +202,10 @@ export default function OurClimatePage() {
               Where We Worked
             </span>
             <h2 className="font-serif text-heading text-white mt-3">
-              States with legislative wins.
+              Climate wins around the fellowship year.
             </h2>
             <p className="mt-4 text-titanium text-lg max-w-2xl">
-              Our Climate fellows worked across the country. Highlighted states are where the cohort won policy changes during the 2019–2020 fellowship cycle.
+              Our Climate fellows worked across the country. Highlighted states are the three wins this page covers, each dated so it&apos;s clear which fell inside the November 2019 to October 2020 fellowship.
             </p>
           </motion.div>
 
@@ -220,7 +232,7 @@ export default function OurClimatePage() {
               Policy Wins
             </span>
             <h2 className="font-serif text-heading text-white mt-3">
-              What passed in each state.
+              What passed, and when.
             </h2>
           </motion.div>
 

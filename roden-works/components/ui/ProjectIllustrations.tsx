@@ -274,7 +274,7 @@ function VaProstheticsScene() {
       <text x="234" y="132" fill={C.titanium} fillOpacity="0.255" fontSize="3.5" fontFamily="monospace">PLA+ 1.75mm</text>
       <text x="234" y="140" fill={C.titanium} fillOpacity="0.204" fontSize="3" fontFamily="monospace">Infill: 25%</text>
       <text x="234" y="148" fill={C.titanium} fillOpacity="0.204" fontSize="3" fontFamily="monospace">Layer: 0.2mm</text>
-      <text x="234" y="156" fill={C.copper} fillOpacity="0.255" fontSize="3" fontFamily="monospace">FlowIt v3.2</text>
+      <text x="234" y="156" fill={C.copper} fillOpacity="0.255" fontSize="3" fontFamily="monospace">FlowIt</text>
       {/* Labels */}
       <text x="8" y="10" fill={C.titanium} fillOpacity="0.204" fontSize="4" fontFamily="monospace">VA PROSTHETICS — CAD/CAM</text>
       <text x="45" y="145" fill={C.titanium} fillOpacity="0.255" fontSize="3.5" fontFamily="monospace">LAYER 847</text>
@@ -662,7 +662,7 @@ function TabiIcon() {
         stroke={C.copper} strokeOpacity="0.3" strokeWidth="0.4" fill={C.copper} fillOpacity="0.051" />
       <text x="296" y="26" fill={C.copper} fillOpacity="0.34" fontSize="4" fontFamily="monospace" textAnchor="middle">1Gbps</text>
       {/* Coverage stat */}
-      <text x="280" y="42" fill={C.titanium} fillOpacity="0.17" fontSize="3" fontFamily="monospace">CAYUGA CO.</text>
+      <text x="280" y="42" fill={C.titanium} fillOpacity="0.17" fontSize="3" fontFamily="monospace">ERIE CO.</text>
       {/* Trees (rural landscape) */}
       {[90, 140, 185, 230, 270].map((x, i) => (
         <g key={i}>
@@ -751,7 +751,7 @@ function NolaEastIcon() {
       <rect x="20" y="48" width="28" height="14" rx="1"
         stroke={C.copper} strokeOpacity="0.3" strokeWidth="0.4" fill={C.copper} fillOpacity="0.051" />
       <text x="34" y="58" fill={C.copper} fillOpacity="0.34" fontSize="4" fontFamily="monospace" textAnchor="middle">C40</text>
-      <text x="20" y="72" fill={C.titanium} fillOpacity="0.17" fontSize="3.5" fontFamily="monospace">REINVENTING CITIES — AWARD</text>
+      <text x="20" y="72" fill={C.titanium} fillOpacity="0.17" fontSize="3.5" fontFamily="monospace">STUDENTS REINVENTING CITIES</text>
     </svg>
   )
 }
@@ -953,7 +953,7 @@ function VaProstheticsIcon() {
         stroke={C.titanium} strokeOpacity="0.24" strokeWidth="0.4" fill={C.titanium} fillOpacity="0.025" />
       <text x="215" y="24" fill={C.titanium} fillOpacity="0.238" fontSize="3.5" fontFamily="monospace">PLA+ 1.75mm</text>
       <text x="215" y="32" fill={C.titanium} fillOpacity="0.17" fontSize="3" fontFamily="monospace">Infill: 25%</text>
-      <text x="215" y="40" fill={C.copper} fillOpacity="0.204" fontSize="3" fontFamily="monospace">FlowIt v3.2</text>
+      <text x="215" y="40" fill={C.copper} fillOpacity="0.204" fontSize="3" fontFamily="monospace">FlowIt</text>
       <text x="20" y="72" fill={C.titanium} fillOpacity="0.17" fontSize="3.5" fontFamily="monospace">VA PROSTHETICS — CAD/CAM</text>
     </svg>
   )
@@ -1097,7 +1097,7 @@ function FracturedFutures() {
       <path d="M148 110 L90 90 L150 85Z" fill={C.copper} fillOpacity="0.051" />
       <path d="M110 148 L90 90 L145 140Z" fill={C.copper} fillOpacity="0.085" />
       {/* Kiln temperature */}
-      <text x="36" y="165" fill={C.copper} fillOpacity="0.255" fontSize="4" fontFamily="monospace">1475°F KILN</text>
+      <text x="36" y="165" fill={C.copper} fillOpacity="0.255" fontSize="4" fontFamily="monospace">1490°F KILN</text>
     </svg>
   )
 }

@@ -27,7 +27,8 @@ export default function VideoFeature() {
           <div className="max-w-4xl">
             <CinemaEmbed
               source={{ type: 'youtube', id: 'Bq3Swc8q0CY' }}
-              title="TEDxTulane: Youth Political Participation"
+              // Official title per YouTube oEmbed for Bq3Swc8q0CY (TEDx Talks channel)
+              title="The Myth of the Apolitical Youth | TEDxTulane"
               subtitle="Organ Donation Advocacy"
               aspect="16:9"
             />

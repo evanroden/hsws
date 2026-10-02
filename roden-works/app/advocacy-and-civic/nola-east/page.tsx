@@ -13,6 +13,16 @@ interface Layer {
   features: { label: string; detail: string }[]
 }
 
+// Fact-check 2026-10: the award was an Honourable Mention in C40's Students Reinventing Cities competition
+// (2023, Read & Lake Forest Corridors site), for the student team "People First". The site winner was
+// Imperial College London's "ReNew Orleans". Mayor LaToya Cantrell honored the team on Sept 25, 2023 and
+// asked for a presentation; the award itself was not given by the Mayor.
+// https://www.c40reinventingcities.org/en/events/mayor-of-new-orleans-meets-honourable-mention-team-people-first-new-orleans-students-reinventing-cities-1820.html
+// https://css.loyno.edu/news/sep-14-2023_loyola-team-wins-honorable-mention-global-students-reinventing-cities-competition
+// https://www.imperial.ac.uk/news/248416/global-success-imperial-engineering-students-c40/
+// https://www.c40reinventingcities.org/en/events/new-orleans-winning-team-present-their-project-to-mayor-latoya-cantrell-1828.html
+// Plan figures below (5 MW, 1,200+ jobs, 12,000 tCO2e, 50 tons/day, 8.5 miles, etc.) are the team's own
+// proposal estimates, not public statistics; pending owner confirmation.
 const layers: Layer[] = [
   {
     id: 'disaster',
@@ -163,13 +173,13 @@ export default function NolaEastPage() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="font-mono text-xs tracking-widest uppercase text-verdigris mb-4 block">
-              C40 Reinventing Cities Award
+              C40 Students Reinventing Cities · Honorable Mention
             </span>
             <h1 className="font-serif text-display text-white max-w-4xl">
               New Orleans East Revitalization
             </h1>
             <p className="mt-4 text-titanium text-lg max-w-2xl">
-              Winner of the C40 Reinventing Cities Award from the Mayor of New Orleans. A revitalization plan covering disaster resilience, renewable energy, transit, housing, and jobs.
+              Honorable Mention in C40&apos;s 2023 Students Reinventing Cities competition, recognized by Mayor LaToya Cantrell. A student team&apos;s revitalization plan covering disaster resilience, renewable energy, transit, housing, and jobs.
             </p>
           </motion.div>
 
@@ -185,7 +195,7 @@ export default function NolaEastPage() {
             </div>
             <div className="text-center px-6 py-4">
               <span className="block font-serif text-3xl md:text-4xl text-white">C40</span>
-              <span className="block mt-2 font-mono text-xs tracking-wide text-titanium uppercase">Award Winner</span>
+              <span className="block mt-2 font-mono text-xs tracking-wide text-titanium uppercase">Honorable Mention</span>
             </div>
             <div className="text-center px-6 py-4">
               <span className="block font-serif text-3xl md:text-4xl text-white">1,200+</span>
@@ -222,7 +232,7 @@ export default function NolaEastPage() {
                 animate={heroView.isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
-                New Orleans East is one of the largest areas of the city by land, and home to one of the largest Vietnamese-American communities in the South. It was one of the areas hit hardest by Hurricane Katrina in 2005. Nearly two decades later, much of the district still has vacant lots, limited transit, and aging infrastructure.
+                New Orleans East is one of the largest areas of the city by land, and home to one of the largest Vietnamese-American communities in the South. It was one of the areas hit hardest by Hurricane Katrina in 2005. Years later, much of the district still has vacant lots, limited transit, and aging infrastructure.
               </motion.p>
 
               <motion.p
@@ -230,7 +240,7 @@ export default function NolaEastPage() {
                 animate={heroView.isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                The C40 Reinventing Cities competition asks teams to propose carbon-neutral development for underused urban sites. The New Orleans East proposal has eight layers, including disaster planning, solar energy, transit, green jobs, and community development, planned together so each supports the others.
+                C40&apos;s Students Reinventing Cities competition asks university teams to reimagine real urban sites as green, inclusive, climate-resilient neighborhoods. The New Orleans site was the Read and Lake Forest corridors in New Orleans East. Our team&apos;s proposal has eight layers, including disaster planning, solar energy, transit, green jobs, and community development, planned together so each supports the others.
               </motion.p>
 
               <motion.p
@@ -238,7 +248,7 @@ export default function NolaEastPage() {
                 animate={heroView.isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                The proposal won the C40 Reinventing Cities Award from the Mayor of New Orleans. Along with new infrastructure, the plan includes local hiring, job training, and affordable housing for current residents.
+                Our team, People First, received an Honorable Mention (the site&apos;s winning entry was Imperial College London&apos;s ReNew Orleans). Mayor LaToya Cantrell honored the team in September 2023 and asked us to present the plan. Along with new infrastructure, the plan includes local hiring, job training, and affordable housing for current residents.
               </motion.p>
             </div>
           </div>
