@@ -128,10 +128,14 @@ export default function VAProstheticsPage() {
                     Fusion 360, printed it, and adjusted the fit until it worked
                     for daily use.
                   </p>
+                  {/* Softened: generalized from "veterans dealing with limb
+                      loss and limited mobility" to match the devices actually
+                      shown here, which are dental/maxillofacial prosthetics.
+                      OWNER-CONFIRM the device types made in this program. */}
                   <p>
                     The job was part engineering and part patient care. I had to
                     know additive manufacturing well, and I had to work directly
-                    with veterans dealing with limb loss and limited mobility.
+                    with veterans and their clinical teams.
                   </p>
                 </div>
 
@@ -142,10 +146,11 @@ export default function VAProstheticsPage() {
                   transition={{ duration: 0.8, delay: 0.4 }}
                   className="mt-8 glass rounded-xl p-6 border-l-2 border-copper/40"
                 >
+                  {/* Softened: removed upper-limb examples that conflict with the
+                      dental/maxillofacial devices shown in the viewer. */}
                   <p className="text-white italic font-serif text-lg leading-relaxed">
-                    Each device was meant to give back an everyday task, like
-                    gripping a coffee cup or reaching a shelf, so the veteran
-                    could do it without help.
+                    Each device was meant to give back an everyday ability, so the
+                    veteran could do more without help.
                   </p>
                 </motion.div>
               </motion.div>

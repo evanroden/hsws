@@ -8,7 +8,7 @@ const timelineData = [
     year: '2026–',
     title: 'ENFRA',
     role: 'Sustainability Engineer II / Asset Manager',
-    description: 'Asset manager for the Central Energy Plants at Rochester Regional Health under a $143.8M EaaS partnership.',
+    description: 'Asset manager for the Central Energy Plants at two Rochester Regional Health hospitals under a $143.8M EaaS partnership.',
     color: 'bg-forest-light',
   },
   {

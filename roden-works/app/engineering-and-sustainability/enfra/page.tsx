@@ -11,8 +11,9 @@ import FacilityMap from './FacilityMap'
 
 export const metadata: Metadata = {
   title: 'ENFRA × Rochester Regional Health — $143.8M EaaS Partnership',
+  // Source: https://enfrasolutions.com/enfra-and-rochester-regional-health-launch-30-year-energy-as-a-service-partnership-to-modernize-system-wide-infrastructure-and-advance-sustainability
   description:
-    '$143.8 million, 30-year Energy-as-a-Service partnership delivering $354.6M in guaranteed savings.',
+    '$143.8 million, 30-year Energy-as-a-Service partnership with 34.4% guaranteed savings, equal to more than $354.6M in avoided costs.',
 }
 
 export default function EnfraPage() {
@@ -20,7 +21,7 @@ export default function EnfraPage() {
     <>
       <ArticleJsonLd
         title="ENFRA × Rochester Regional Health — $143.8M EaaS Partnership"
-        description="$143.8 million, 30-year Energy-as-a-Service partnership delivering $354.6M in guaranteed savings."
+        description="$143.8 million, 30-year Energy-as-a-Service partnership with 34.4% guaranteed savings, equal to more than $354.6M in avoided costs."
         path="/engineering-and-sustainability/enfra"
       />
       <BreadcrumbJsonLd

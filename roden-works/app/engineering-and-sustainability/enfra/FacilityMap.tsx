@@ -26,6 +26,16 @@ interface Facility {
   description: string
 }
 
+/* Facility facts:
+ * UMMC: 131 beds, 900+ employees per https://rochesterregional.org/locations/hospitals/batavia;
+ *   largest private employer in Genesee County and sole maternity provider for Genesee and Orleans
+ *   counties per https://en.wikipedia.org/wiki/United_Memorial_Medical_Center (citing RRH and City of Batavia).
+ *   The previous "785+ employees" figure was Wikipedia's older count; RRH's current page says 900+.
+ * St. Mary's: founded 1857 by the Daughters of Charity, per
+ *   https://rbj.net/2007/09/13/hospital-to-mark-sesquicentennial/
+ *   13,000+ annual dialysis treatments, behavioral health, homeless healthcare, senior housing per
+ *   https://rochesterregional.org/locations/medical-campuses/st-marys
+ */
 const facilities: Facility[] = [
   {
     id: 'ummc',
@@ -34,7 +44,7 @@ const facilities: Facility[] = [
     city: 'Batavia',
     county: 'Genesee County',
     description:
-      '131 beds, 785+ employees. Largest private employer in Genesee County. Sole maternity provider for two counties.',
+      '131 beds, 900+ employees. Largest private employer in Genesee County. Sole maternity provider for Genesee and Orleans counties.',
   },
   {
     id: 'stmarys',

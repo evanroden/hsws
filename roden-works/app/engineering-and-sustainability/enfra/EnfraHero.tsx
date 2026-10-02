@@ -53,8 +53,12 @@ export default function EnfraHero() {
           <h1 className="font-serif text-display text-white max-w-3xl">
             ENFRA × Rochester Regional Health
           </h1>
+          {/* Scope and figures per ENFRA's Jan 20, 2026 announcement:
+              https://enfrasolutions.com/enfra-and-rochester-regional-health-launch-30-year-energy-as-a-service-partnership-to-modernize-system-wide-infrastructure-and-advance-sustainability
+              ($143.8M value; $6.9M projected first-year savings; 34.4% guaranteed savings over 30 years,
+              "equivalent to more than $354.6 million in total avoided costs"; 52.5% expected cut in purchased electricity) */}
           <p className="mt-4 text-titanium text-lg max-w-2xl">
-            A $143.8 million, 30-year partnership to improve and operate the hospital energy plants that produce steam, chilled water, and electricity.
+            A $143.8 million, 30-year partnership to modernize and operate energy infrastructure across the health system&apos;s nine hospital locations, from heating and cooling plants to solar and EV charging.
           </p>
         </motion.div>
 
@@ -65,9 +69,9 @@ export default function EnfraHero() {
           className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-0 md:divide-x divide-white/10"
         >
           <StatCounter value={143.8} prefix="$" suffix="M" label="Partnership Value" />
-          <StatCounter value={354.6} prefix="$" suffix="M" label="30-Year Savings" />
-          <StatCounter value={52.5} suffix="%" label="Electricity Reduction" />
-          <StatCounter value={6.9} prefix="$" suffix="M" label="Year 1 Savings" />
+          <StatCounter value={354.6} prefix="$" suffix="M" label="30-Year Avoided Costs" />
+          <StatCounter value={52.5} suffix="%" label="Purchased Electricity Cut (Expected)" />
+          <StatCounter value={6.9} prefix="$" suffix="M" label="Year 1 Savings (Projected)" />
         </motion.div>
       </div>
     </section>

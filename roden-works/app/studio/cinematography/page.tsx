@@ -13,10 +13,15 @@ const equipment = [
     category: 'Camera Systems',
     items: [
       {
-        name: 'BlackMagic Cinema Camera 6K',
+        // The listed specs (Super 35, 13 stops, BRAW) are the Pocket Cinema Camera 6K (2019). The
+        // full-frame "Blackmagic Cinema Camera 6K" was announced Sept 2023, after the 2020 films below.
+        // https://www.cined.com/blackmagic-pocket-cinema-camera-6k-announced-super-35-sensor-and-ef-mount/
+        // https://ymcinema.com/2023/09/14/blackmagic-announces-the-full-frame-cinema-camera-6k
+        name: 'Blackmagic Pocket Cinema Camera 6K',
         detail: '6K Super 35 sensor, 13 stops of dynamic range, Blackmagic RAW',
       },
       {
+        // https://www.bhphotovideo.com/c/product/1255307-REG/sony_alpha_a7s_ii_mirrorless.html
         name: 'Sony a7s II',
         detail: 'Full-frame mirrorless, strong low-light performance, S-Log2/S-Log3',
       },
@@ -28,7 +33,8 @@ const equipment = [
       { name: 'Adobe Premiere Pro', detail: 'Primary NLE for editorial assembly and delivery' },
       { name: 'Adobe After Effects', detail: 'Motion graphics, compositing, and visual effects' },
       { name: 'DaVinci Resolve', detail: 'Color grading, color science management, and finishing' },
-      { name: 'Cinema Grade', detail: 'Real-time color grading directly on the footage plane' },
+      // https://www.provideocoalition.com/cinema-grade-a-new-way-to-color-grade-footage-inside-of-your-nle/
+      { name: 'Cinema Grade', detail: 'Color grading plug-in that works directly on the image in the viewer' },
     ],
   },
 ]
@@ -56,7 +62,7 @@ export default function CinematographyPage() {
 
       <PageHero
         title="Cinematography"
-        subtitle="Narrative film, documentary, and institutional video. I learned the work as a camera operator and editor under industry professionals in New Orleans."
+        subtitle="Short film, promotional, and institutional video. I learned the work as a camera operator and editor under industry professionals in New Orleans."
         label="Motion Pictures"
         variant="warm"
       />
@@ -76,10 +82,16 @@ export default function CinematographyPage() {
               <h2 className="font-serif text-heading text-white">
                 Claiborne Avenue Productions
               </h2>
+              {/* Moten's credits on these films are in the locations department, not as a
+                  producer/director. 12 Years a Slave: "Albert Moten, Jr., Loc asst"
+                  https://catalog.afi.com/Catalog/moviedetails/69781
+                  Now You See Me listed among his credits: https://www.imdb.com/name/nm4328198/
+                  "Over 20 years" removed: no public source found. */}
               <p className="mt-6 text-titanium leading-relaxed">
-                Albert J. Moten, Jr. has run Claiborne Avenue Productions in New Orleans for over 20
-                years. His credits include Hollywood productions such as{' '}
-                <span className="text-white font-medium">12 Years a Slave</span> (2013) and{' '}
+                Albert J. Moten, Jr. is a New Orleans producer and director who runs Claiborne Avenue
+                Productions. He has also worked on Hollywood productions shot in Louisiana, including{' '}
+                <span className="text-white font-medium">12 Years a Slave</span> (2013), where he was
+                a location assistant, and{' '}
                 <span className="text-white font-medium">Now You See Me</span> (2013).
               </p>
               <p className="mt-4 text-titanium leading-relaxed">
@@ -162,7 +174,7 @@ export default function CinematographyPage() {
             </span>
             <h2 className="font-serif text-heading text-white">Short Films</h2>
             <p className="mt-4 text-titanium max-w-2xl leading-relaxed">
-              Two short films: one poetic, one narrative.
+              Two short films: a poetic story and a narrated piece.
             </p>
           </motion.div>
 
@@ -183,10 +195,12 @@ export default function CinematographyPage() {
                 <span className="font-mono text-xs text-copper tracking-widest uppercase">
                   Camera Operator / Editor
                 </span>
+                {/* Vimeo description: "A short story written by and starring Henry Mclaughlin,
+                    shot and edited by Evan Roden." https://vimeo.com/491626637
+                    "Sound design in After Effects" removed (After Effects is not an audio tool). */}
                 <p className="text-titanium text-sm mt-2 leading-relaxed">
-                  A poetic short about communities separated by infrastructure. Shot handheld in a
-                  verite style on the Sony a7s II, edited in Premiere Pro
-                  with sound design in After Effects.
+                  A poetic short story written by and starring Henry McLaughlin. I shot it handheld
+                  on the Sony a7s II and edited it in Premiere Pro.
                 </p>
               </div>
             </motion.div>
@@ -197,20 +211,22 @@ export default function CinematographyPage() {
               animate={narrativeRef.isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
+              {/* Vimeo title "Plato's Cave (professional narration)", delivered 16:9 (426x240 oEmbed).
+                  https://vimeo.com/api/oembed.json?url=https://vimeo.com/492941431 */}
               <CinemaEmbed
                 source={{ type: 'vimeo', id: '492941431' }}
                 title="Plato's Cave"
-                subtitle="Poetic Short Film"
-                aspect="2.35:1"
+                subtitle="Narrated Short Film"
+                aspect="16:9"
               />
               <div className="mt-4 pl-1">
                 <span className="font-mono text-xs text-copper tracking-widest uppercase">
                   Director of Photography
                 </span>
                 <p className="text-titanium text-sm mt-2 leading-relaxed">
-                  A short narrative built on Plato&apos;s allegory of the cave. Shot on the BlackMagic
-                  Cinema Camera 6K with anamorphic lenses and graded in DaVinci Resolve to a
-                  desaturated palette.
+                  A short narrated piece built on Plato&apos;s allegory of the cave. Shot on the
+                  Blackmagic Pocket Cinema Camera 6K and graded in DaVinci Resolve to a desaturated
+                  palette.
                 </p>
               </div>
             </motion.div>
@@ -238,9 +254,11 @@ export default function CinematographyPage() {
             <h2 className="font-serif text-heading text-white">
               Institutional &amp; Promotional
             </h2>
+            {/* Was "museums, universities, and cultural institutions across Louisiana": the page
+                documents one museum and one university, both in New Orleans. */}
             <p className="mt-4 text-titanium max-w-2xl leading-relaxed">
-              Client-facing video production for museums, universities, and cultural institutions
-              across Louisiana.
+              Client video in New Orleans, including marketing work for Tulane&apos;s Freeman School
+              and a promotional ad for the Louisiana Children&apos;s Museum.
             </p>
           </motion.div>
 
@@ -250,19 +268,25 @@ export default function CinematographyPage() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="max-w-3xl"
           >
+            {/* This embed was labeled as the Louisiana Children's Museum ad, but YouTube 7ya0DAUe5FU is
+                "Evening Cozy Background Piano Jazz to Relax or Study" (Evan Roden channel), per
+                https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=7ya0DAUe5FU&format=json
+                Relabeled to match the actual video until the museum spot's link is supplied.
+                Museum's play-based mission: https://lcm.org/about/ */}
             <CinemaEmbed
               source={{ type: 'youtube', id: '7ya0DAUe5FU' }}
-              title="Louisiana Children's Museum"
-              subtitle="Promotional Ad"
+              title="Evening Cozy Background Piano Jazz"
+              subtitle="Background Video"
               aspect="16:9"
             />
             <div className="mt-4 pl-1">
               <span className="font-mono text-xs text-copper tracking-widest uppercase">
-                Director / Editor
+                From My Channel
               </span>
               <p className="text-titanium text-sm mt-2 leading-relaxed">
-                A promotional ad for the Louisiana Children&apos;s Museum in New Orleans, a museum
-                built around play-based learning.
+                The Louisiana Children&apos;s Museum ad, made for a New Orleans museum built around
+                play-based learning, isn&apos;t posted publicly, so this slot shows a background
+                jazz video from my YouTube channel.
               </p>
             </div>
           </motion.div>
@@ -289,6 +313,8 @@ export default function CinematographyPage() {
             <h2 className="font-serif text-heading text-white">
               4K Ambient &amp; Atmospheric
             </h2>
+            {/* YouTube title: "Afternoon Upstate NY Snowy Fire Living Room with Jazz for Background
+                Studying (4K, 60 FPS, HDR)". Length ("4 Hours") not publicly checkable: OWNER-CONFIRM. */}
             <p className="mt-4 text-titanium max-w-2xl leading-relaxed">
               Long-form background video, shot in 4K at 60fps and graded in HDR.
             </p>
@@ -340,6 +366,8 @@ export default function CinematographyPage() {
             <h2 className="font-serif text-heading text-white">
               WWNO Classical Radio
             </h2>
+            {/* WWNO is the NPR member station for New Orleans: https://en.wikipedia.org/wiki/WWNO
+                YouTube title of the embed: "WWNO Sample Show". */}
             <p className="mt-4 text-titanium max-w-2xl leading-relaxed">
               A sample program I produced for WWNO, New Orleans&apos; NPR affiliate: an hour of
               classical music with narration between pieces.
@@ -392,6 +420,8 @@ export default function CinematographyPage() {
             </p>
           </motion.div>
 
+          {/* Subtitles are the videos' actual YouTube titles (oEmbed for _6mzmQtPKyQ, TV9xw4Q0eek,
+              4NqWubbW5g4). The 1:00 durations could not be checked publicly: OWNER-CONFIRM. */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -401,7 +431,7 @@ export default function CinematographyPage() {
               <CinemaEmbedCompact
                 source={{ type: 'youtube', id: '_6mzmQtPKyQ' }}
                 title="Elevator Review #1"
-                subtitle="The Series Begins"
+                subtitle="The Ideal Elevator"
                 duration="1:00"
               />
             </motion.div>
@@ -413,7 +443,7 @@ export default function CinematographyPage() {
               <CinemaEmbedCompact
                 source={{ type: 'youtube', id: 'TV9xw4Q0eek' }}
                 title="Elevator Review #2"
-                subtitle="The Sequel"
+                subtitle="A Step Down"
                 duration="1:00"
               />
             </motion.div>
@@ -425,7 +455,7 @@ export default function CinematographyPage() {
               <CinemaEmbedCompact
                 source={{ type: 'youtube', id: '4NqWubbW5g4' }}
                 title="Elevator Review #3"
-                subtitle="The Trilogy Completes"
+                subtitle="Return to Normalcy"
                 duration="1:00"
               />
             </motion.div>

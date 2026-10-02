@@ -192,12 +192,18 @@ export function Evidence() {
           transition={{ duration: 0.6, delay: 0.15 }}
           className="grid grid-cols-1 overflow-hidden rounded-2xl border border-white/[0.08] bg-surface lg:grid-cols-[1.1fr_1fr]"
         >
+          {/* Published finding: Rabito FA, et al. "The association between
+              short-term residential black carbon concentration on blood
+              pressure in a general population sample" (2021), PMC7985991 —
+              a 1 µg/m³ increase in black carbon was associated with a 7.55 mmHg
+              rise in systolic BP (P = .02).
+              https://pmc.ncbi.nlm.nih.gov/articles/PMC7985991/ */}
           <div className="p-6 md:p-10">
             <p className="font-mono text-[11px] uppercase tracking-wider text-muted">
-              Highest quartile of black carbon exposure
+              Per 1 µg/m³ of residential black carbon
             </p>
             <p className="mt-3 font-sans font-semibold tracking-tight text-white leading-none text-[56px] md:text-[80px]">
-              +2
+              +7.55
               <span className="ml-2 align-baseline text-2xl md:text-3xl font-medium text-titanium">mmHg</span>
             </p>
             <p className="mt-4 flex items-start gap-2 text-lg text-white">
@@ -205,8 +211,8 @@ export function Evidence() {
               Systolic blood pressure increase
             </p>
             <p className="mt-3 max-w-lg text-sm leading-relaxed text-titanium">
-              Participants in the highest quartile of black carbon exposure had systolic blood pressure
-              2 mmHg higher. Across a whole population, a shift that size matters, especially in
+              Each 1 µg/m³ increase in residential black carbon was associated with a 7.55 mmHg rise in
+              systolic blood pressure. Across a whole population, a shift like this matters, especially in
               communities that already have high rates of cardiovascular disease.
             </p>
           </div>

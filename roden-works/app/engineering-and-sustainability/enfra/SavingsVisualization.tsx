@@ -12,16 +12,23 @@ import { formatMillions, linearScale, niceTicks } from '@/components/charts/scal
 import { useElementSize } from '@/components/charts/useElementSize'
 
 /* ─── Modeled series ────────────────────────────────────────────────────────
- * Calibrated to the announced partnership figures: $6.9M first-year savings
- * (a $14.2M baseline vs $7.3M optimized) and $354.6M over the 30-year term.
- * The optimized plant escalates at 1.6%/yr; the baseline escalation rate is
- * solved so the 30-year savings total lands exactly on $354.6M.
+ * Calibrated only to the three figures in ENFRA's Jan 20, 2026 announcement
+ * (system-wide, all nine RRH hospital locations):
+ *   • $6.9M projected utility savings in year one
+ *   • 34.4% guaranteed savings over the 30-year term
+ *   • "more than $354.6 million in total avoided costs" over the term
+ * https://enfrasolutions.com/enfra-and-rochester-regional-health-launch-30-year-energy-as-a-service-partnership-to-modernize-system-wide-infrastructure-and-advance-sustainability
+ * Assumption (ours, not ENFRA's): savings hold at 34.4% every year and both
+ * curves escalate at one shared rate, solved so 30 years of savings sum to
+ * $354.6M. That makes the year-one baseline $6.9M / 0.344 ≈ $20.1M. An earlier
+ * version used an unsourced $14.2M baseline; RRH's actual utility spend is not public.
  */
 const TERM = 30
-const BASELINE_Y1 = 14.2
-const OPTIMIZED_Y1 = 7.3
-const OPTIMIZED_ESCALATION = 0.016
+const Y1_SAVINGS = 6.9
+const SAVINGS_SHARE = 0.344
 const TERM_SAVINGS = 354.6
+const BASELINE_Y1 = Y1_SAVINGS / SAVINGS_SHARE
+const OPTIMIZED_Y1 = BASELINE_Y1 - Y1_SAVINGS
 
 function seriesSum(first: number, rate: number) {
   let sum = 0
@@ -29,19 +36,19 @@ function seriesSum(first: number, rate: number) {
   return sum
 }
 
-function solveBaselineEscalation() {
-  const optimizedTotal = seriesSum(OPTIMIZED_Y1, OPTIMIZED_ESCALATION)
+function solveEscalation() {
   let lo = 0
   let hi = 0.1
   for (let i = 0; i < 60; i++) {
     const mid = (lo + hi) / 2
-    if (seriesSum(BASELINE_Y1, mid) - optimizedTotal > TERM_SAVINGS) hi = mid
+    if (seriesSum(Y1_SAVINGS, mid) > TERM_SAVINGS) hi = mid
     else lo = mid
   }
   return (lo + hi) / 2
 }
 
-const BASELINE_ESCALATION = solveBaselineEscalation()
+const BASELINE_ESCALATION = solveEscalation()
+const OPTIMIZED_ESCALATION = BASELINE_ESCALATION
 
 interface YearRow {
   year: number
@@ -83,9 +90,10 @@ export default function SavingsVisualization() {
           <span className="font-mono text-xs tracking-widest uppercase text-copper">Energy Savings</span>
           <h2 className="font-serif text-heading text-white mt-3">Savings over the 30-year term.</h2>
           <p className="mt-4 text-titanium leading-relaxed">
-            Without the project, the hospitals&apos; energy costs keep rising from today&apos;s baseline. The gap
-            between the two curves is the guaranteed savings: $6.9 million in the first year and $354.6 million
-            over the full term.
+            Without the project, the health system&apos;s energy costs keep rising from today&apos;s baseline. The gap
+            between the two curves is the savings: ENFRA projects $6.9 million in the first year and guarantees 34.4%
+            savings over the term, which it puts at more than $354.6 million in avoided costs across all nine
+            hospital locations.
           </p>
         </motion.div>
 
@@ -102,7 +110,7 @@ export default function SavingsVisualization() {
             }
             subtitle={
               view === 'annual'
-                ? 'Millions of dollars per year, both hospitals combined'
+                ? 'Millions of dollars per year, all nine RRH hospital locations'
                 : 'Running total of annual savings, millions of dollars'
             }
             actions={
@@ -129,9 +137,10 @@ export default function SavingsVisualization() {
             }
             note={
               <>
-                Modeled illustration calibrated to announced figures ($6.9M first-year and $354.6M term savings),
-                assuming {(BASELINE_ESCALATION * 100).toFixed(1)}%/yr baseline and{' '}
-                {(OPTIMIZED_ESCALATION * 100).toFixed(1)}%/yr optimized cost escalation. Not billing data.
+                Modeled illustration calibrated to ENFRA&apos;s announced figures ($6.9M projected first-year savings,
+                34.4% guaranteed savings, $354.6M avoided costs over 30 years), assuming a constant 34.4% saving and{' '}
+                {(BASELINE_ESCALATION * 100).toFixed(1)}%/yr cost escalation on both curves. Not billing data. Source:
+                ENFRA press release, Jan 20, 2026.
               </>
             }
             table={{
@@ -321,7 +330,7 @@ function SavingsChart({ view, animate }: { view: View; animate: boolean }) {
                           fontSize={11}
                           fill={chart.text.muted}
                         >
-                          {d.year === TERM ? 'Guaranteed over the term' : 'Year one'}
+                          {d.year === TERM ? 'Avoided costs over the term' : 'Year one (projected)'}
                         </text>
                       </>
                     )}
