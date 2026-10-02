@@ -23,11 +23,11 @@ export default function StatCounter({
   const { count, ref } = useCountUp(value, duration)
 
   const displayValue = Number.isInteger(value)
-    ? Math.round(count)
+    ? Math.round(count).toLocaleString('en-US')
     : count.toFixed(1)
 
   // Build the full accessible value string (e.g. "$143.8M")
-  const fullValue = `${prefix}${Number.isInteger(value) ? value : value.toFixed(1)}${suffix}`
+  const fullValue = `${prefix}${Number.isInteger(value) ? value.toLocaleString('en-US') : value.toFixed(1)}${suffix}`
 
   return (
     <div className="text-center px-6 py-4" role="group" aria-label={label}>

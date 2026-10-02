@@ -76,7 +76,7 @@ export default function YcodStory() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              Over more than seven years I ran our media outreach (coverage included WKBW,<Cite sources={S} id="wkbw" /> Spectrum News,<Cite sources={S} id="spectrum-jan2021" /> WENY,<Cite sources={S} id="weny" /> and CBC Radio&apos;s Information Morning (Nova Scotia)), built partnerships with WaitList Zero, ONE8FIFTY, and the Chris Klug Foundation, managed our social media in Hootsuite and Trello, and designed the brand identity. The work earned a nomination for the 2021 American Red Cross Real Heroes Education Award.<Cite sources={S} id="spectrum-redcross" />
+              Over more than seven years I ran our media outreach (coverage included WKBW,<Cite sources={S} id="wkbw" /> Spectrum News,<Cite sources={S} id="spectrum-jan2021" /> WENY,<Cite sources={S} id="weny" /> and CBC Radio&apos;s Information Morning in Nova Scotia), built partnerships with WaitList Zero, ONE8FIFTY, and the Chris Klug Foundation, managed our social media in Hootsuite and Trello, and designed the brand identity. The work earned a nomination for the 2021 American Red Cross Real Heroes Education Award.<Cite sources={S} id="spectrum-redcross" />
             </motion.p>
 
             <motion.p
