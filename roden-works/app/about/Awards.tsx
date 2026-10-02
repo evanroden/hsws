@@ -3,36 +3,33 @@
 import { motion } from 'framer-motion'
 import { useInView } from '@/lib/hooks'
 
+// "Best Debater & Speaker" and "Best Student of 2022" were removed: no named issuer or event
+// (org fields were placeholders). Re-add with the real issuer if they're confirmed.
 const awards = [
   {
-    title: 'American Real Heroes Award',
+    // https://mynews13.com/fl/orlando/news/2021/09/24/wny-teens-nominated-for-american-red-cross-award-for-organ-donation-coalition
+    title: 'Real Heroes Education Award Nominee, 2021',
     org: 'American Red Cross',
-    description: 'Nominated for education leadership and for co-founding The YCOD, an organ donation advocacy organization.',
+    description: 'Nominated with three fellow co-founders for starting The YCOD, an organ donation advocacy organization.',
   },
   {
-    title: 'C40 Reinventing Cities Award',
-    org: 'Mayor of New Orleans',
-    description: 'Urban revitalization plan for New Orleans East covering disaster planning, solar energy, transit, and green housing.',
+    // Honorable mention (team "People First", six Loyola students and one Tulane student), not the C40 winner.
+    // The New Orleans winner was Imperial College London's "ReNew Orleans".
+    // https://css.loyno.edu/news/sep-14-2023_loyola-team-wins-honorable-mention-global-students-reinventing-cities-competition
+    // https://www.c40reinventingcities.org/en/events/new-orleans-winning-team-present-their-project-to-mayor-latoya-cantrell-1828.html
+    title: 'Students Reinventing Cities, Honorable Mention',
+    org: 'C40 Cities · 2023',
+    description: 'Team plan for New Orleans East covering disaster planning, energy, transit, and housing. Mayor LaToya Cantrell honored the team and asked the team to present it.',
   },
   {
     title: 'Boy of the Year',
-    org: 'Boys & Girls Club of America',
-    description: 'National youth award from the Boys & Girls Club.',
-  },
-  {
-    title: 'Best Debater & Speaker',
-    org: 'Academic Competition',
-    description: 'Debate and public speaking award.',
-  },
-  {
-    title: 'Best Student of 2022',
-    org: 'Academic Achievement',
-    description: 'Awarded during undergraduate studies.',
+    org: 'Boys & Girls Club',
+    description: 'Youth recognition from the Boys & Girls Club.',
   },
   {
     title: 'National Latin Honor Society Honoree',
     org: 'National Latin Honor Society',
-    description: 'Honored for work in Classical and Ecclesiastical Latin.',
+    description: 'Honored for achievement in Latin.',
   },
 ]
 

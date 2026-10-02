@@ -17,7 +17,7 @@ const quotes = [
     context: 'Who gets to participate',
   },
   {
-    text: 'I used the Youth Coalition For Organ Donation as my main example: a group of young people who influenced legislation in two states without waiting their turn.',
+    text: 'I used the Youth Coalition For Organ Donation as my main example: a group of young people who got an opt-out organ donation bill introduced in New York without waiting their turn.',
     context: 'The Youth Coalition For Organ Donation',
   },
   {
@@ -26,27 +26,31 @@ const quotes = [
   },
 ]
 
+// Sources: half the world under 30, 2.8% of MPs aged 30 or under (IPU, 2026):
+// https://www.ipu.org/news/press-releases/2026-04/youth-representation-in-parliament-flatlines-first-time-in-12-years
+// YCOD 3,000+ members and pending NY bill (Sept 2021):
+// https://mynews13.com/fl/orlando/news/2021/09/24/wny-teens-nominated-for-american-red-cross-award-for-organ-donation-coalition
 const keyTakeaways = [
   {
     stat: 50,
     suffix: '%',
     label: 'Of global population under 30',
     description:
-      'Half the world is under 30, yet people under 30 hold less than 2% of seats in legislatures worldwide. I see that as structural exclusion.',
+      'Half the world is under 30, yet people 30 or under hold fewer than 3% of seats in parliaments worldwide, according to the Inter-Parliamentary Union. I see that as structural exclusion.',
   },
   {
     stat: 7,
     suffix: '+ Years',
     label: 'Leading the YCOD',
     description:
-      'I co-founded the Youth Coalition For Organ Donation at 17 and led it for more than seven years. Its legislative work in two states was done by young people, which cuts against the idea that political influence depends on being able to vote.',
+      'I co-founded the Youth Coalition For Organ Donation in high school and led it for more than seven years. Its legislative work in New York was done by young people, which cuts against the idea that political influence depends on being able to vote.',
   },
   {
-    stat: 2,
-    suffix: ' States',
-    label: 'Legislation influenced by youth advocacy',
+    stat: 3000,
+    suffix: '+',
+    label: 'Coalition members by 2021',
     description:
-      'We advanced presumed consent organ donation legislation in two states through direct advocacy, coalition building, and testimony. Young people planned and carried out all of it, outside the usual political channels.',
+      'Our coalition grew to more than 3,000 members across the US and abroad, and our opt-out proposal became a bill in the New York State Assembly. Young people planned and carried out all of it, outside the usual political channels.',
   },
   {
     stat: 18,
@@ -201,7 +205,7 @@ export default function TedPage() {
                 The Talk
               </span>
               <h2 className="font-serif text-heading text-white">
-                Youth Political Participation
+                The Myth of the Apolitical Youth
               </h2>
 
               {/* TEDx badge */}
@@ -220,10 +224,11 @@ export default function TedPage() {
               transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             >
               <p className="text-lg text-titanium leading-relaxed">
-                At TEDxTulane, I gave a talk on how political systems shut young people out. I drew
-                on my experience co-founding and leading the Youth Coalition For Organ Donation,
-                which influenced legislation in two states, to challenge the idea that political
-                influence depends on age.
+                {/* Talk title and date: https://www.ted.com/talks/evan_roden_the_myth_of_the_apolitical_youth (TEDxTulane, March 2022) */}
+                In March 2022 I gave a TEDxTulane talk, The Myth of the Apolitical Youth, on how
+                political systems shut young people out. I drew on my experience co-founding and
+                leading the Youth Coalition For Organ Donation, whose opt-out proposal became a bill
+                in New York, to challenge the idea that political influence depends on age.
               </p>
               <p className="mt-6 text-titanium leading-relaxed">
                 My argument was that young people are already stakeholders. Decisions about their
@@ -260,7 +265,7 @@ export default function TedPage() {
               <CinemaEmbed
                 source={{ type: 'youtube', id: 'Bq3Swc8q0CY' }}
                 title="TEDxTulane"
-                subtitle="Youth Political Participation"
+                subtitle="The Myth of the Apolitical Youth"
                 aspect="16:9"
               />
             </div>

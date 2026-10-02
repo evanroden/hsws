@@ -25,7 +25,10 @@ export default function Bio() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              At seventeen, Evan Roden co-founded the Youth Coalition For Organ Donation in East Aurora, New York. The coalition is a 501(c)(4) nonpartisan lobbying organization, and it went on to shape legislation addressing New York&apos;s donor registration rate, the lowest in the nation.
+              {/* Fact-check: co-founded with East Aurora High School classmates; proposal presented to Assemblyman DiPietro Sept 2018, who then sponsored an opt-out bill.
+                  Source: https://www.tmj4.com/news/national/college-freshmen-in-new-york-develop-plan-to-encourage-more-organ-donors
+                  NY lowest donor registration rate (30% vs 55% national, Dec 2018): https://nyulangone.org/news/transplant-institute-study-aims-boost-organ-donation */}
+              In high school, Evan Roden co-founded the Youth Coalition For Organ Donation in East Aurora, New York. The coalition is a nonpartisan advocacy group, and its opt-out proposal became a bill in the New York State Assembly aimed at New York&apos;s donor registration rate, then the lowest in the nation.
             </motion.p>
 
             <motion.p
@@ -33,7 +36,10 @@ export default function Bio() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              At Tulane University, Evan earned a Bachelor of Engineering in Biomedical/Medical Engineering and worked in three research labs. He designed 3D-printed prosthetic devices for veterans at the VA, studied membrane protein structures for drug delivery in the Wimley Lab at Tulane School of Medicine, and investigated the cardiovascular effects of indoor air pollution in New Orleans. The air pollution work contributed to published findings linking black carbon exposure to elevated blood pressure.
+              {/* Fact-check: Tulane awards the B.S.E. in Biomedical Engineering: https://catalog.tulane.edu/science-engineering/biomedical-engineering/biomedical-engineering-major/
+                  The black carbon / blood pressure paper (Rabito et al., Indoor Air 2020; data collected 2016) predates Evan's time at Tulane and does not list him:
+                  https://pmc.ncbi.nlm.nih.gov/articles/PMC7985991/ */}
+              At Tulane University, Evan earned a Bachelor of Science in Engineering in Biomedical Engineering and worked in three research labs. He designed 3D-printed prosthetic devices for veterans at the VA, studied membrane protein structures for drug delivery in the Wimley Lab at Tulane School of Medicine, and investigated the cardiovascular effects of indoor air pollution in New Orleans. That work built on an earlier Tulane study linking residential black carbon exposure to higher systolic blood pressure.
             </motion.p>
 
             <motion.p
@@ -49,7 +55,9 @@ export default function Bio() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              Since graduating, Evan has worked in three industries. At Odoo, he was an account executive implementing ERP systems for manufacturing, food and beverage, and retail clients, and in one month he hit 160% of his non-recurring revenue goal. At Convergint in San Francisco, he consulted on fire and life safety systems as a systems integration specialist. He now works at ENFRA, where he manages the central energy plants for Rochester Regional Health under a $143.8 million, 30-year Energy-as-a-Service partnership. Those plants produce the steam, chilled water, and electricity the hospitals run on.
+              {/* Fact-check: $143.8M, 30-year EaaS partnership: https://enfrasolutions.com/enfra-and-rochester-regional-health-launch-30-year-energy-as-a-service-partnership-to-modernize-system-wide-infrastructure-and-advance-sustainability
+                  Convergint title matches the Convergint page (Account Executive, San Francisco). */}
+              Since graduating, Evan has worked in three industries. At Odoo, he was an account executive implementing ERP systems for manufacturing, food and beverage, and retail clients, and in one month he hit 160% of his non-recurring revenue goal. At Convergint in San Francisco, he worked on fire and life safety systems as an account executive. He now works at ENFRA, where he manages the central energy plants at two Rochester Regional Health hospitals under a $143.8 million, 30-year Energy-as-a-Service partnership. Those plants produce the steam, chilled water, and electricity the hospitals run on.
             </motion.p>
           </div>
         </div>

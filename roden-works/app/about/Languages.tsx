@@ -26,7 +26,8 @@ const languages: { name: string; level: Level; type: 'natural' | 'technical'; de
     name: 'Interlingua',
     level: 'Professional Working',
     type: 'natural',
-    description: 'The most widely used naturalistic international auxiliary language, developed by IALA. Speakers of Romance languages can read it without prior study.',
+    // https://en.wikipedia.org/wiki/Interlingua ("most widely used" superlative removed: unsourced)
+    description: 'A naturalistic international auxiliary language developed between 1937 and 1951 by IALA. People who know a Romance language can usually read it without prior study.',
   },
   { name: 'Chinese (Mandarin)', level: 'Limited Working', type: 'natural', description: 'Currently studying.' },
   {

@@ -34,7 +34,8 @@ export default function Education() {
                 <div>
                   <h3 className="font-serif text-xl text-white">Tulane University</h3>
                   <p className="text-titanium mt-1">
-                    Bachelor of Engineering, Biomedical/Medical Engineering
+                    {/* Tulane's BME degree is the B.S.E.: https://catalog.tulane.edu/science-engineering/biomedical-engineering/biomedical-engineering-major/ */}
+                    Bachelor of Science in Engineering, Biomedical Engineering
                   </p>
                   <p className="text-muted text-sm mt-1">2020 – 2024</p>
                 </div>

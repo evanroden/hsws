@@ -8,7 +8,7 @@ const skillCategories = [
     name: 'Engineering',
     skills: [
       { name: 'Python', context: 'Data pipelines & automation scripts' },
-      { name: 'R', context: 'Statistical analysis across 3 research labs' },
+      { name: 'R', context: 'Statistical analysis for research projects' },
       { name: 'TRIZ', context: 'Systematic innovation methodology' },
       { name: 'Autodesk Fusion 360', context: 'Prosthetic device modeling for the VA' },
       { name: 'FlowIt (3D Printing)', context: 'Custom prosthetic fabrication' },
