@@ -4,6 +4,8 @@ import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { useInView } from '@/lib/hooks'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
+import { Cite, SourceList } from '@/components/ui/Sources'
+import { NOLA_EAST_SOURCES as S } from './sources'
 
 interface Layer {
   id: string
@@ -11,6 +13,7 @@ interface Layer {
   color: string
   description: string
   features: { label: string; detail: string }[]
+  sources?: string[]
 }
 
 // Fact-check 2026-10: the award was an Honourable Mention in C40's Students Reinventing Cities competition
@@ -24,6 +27,9 @@ interface Layer {
 // Evan does not recognize the specific plan figures earlier drafts listed here (5 MW solar, 1,200+ jobs,
 // 12,000 tCO2e, 50 tons/day, an 8.5-mile BRT, 30% affordable, etc.), so all of them were removed (Oct 2026).
 // The layer details below are qualitative only.
+// Context facts: https://en.wikipedia.org/wiki/New_Orleans_East (65% of city land area; Katrina flooding).
+// "One of the largest Vietnamese-American communities in the South" could not be sourced; softened (Oct 2026) to
+// Versailles being the largest Vietnamese enclave in Louisiana: https://64parishes.org/entry/vietnamese-in-louisiana
 const layers: Layer[] = [
   {
     id: 'disaster',
@@ -31,6 +37,7 @@ const layers: Layer[] = [
     color: '#B87333',
     description:
       'Flood mitigation and hurricane resilience for New Orleans East, one of the areas hit hardest by Hurricane Katrina: higher building elevations, better drainage, and community emergency preparedness programs.',
+    sources: ['noe-wiki'],
     features: [
       { label: 'Elevated Construction', detail: 'New construction raised above base flood elevation' },
       { label: 'Green Stormwater', detail: 'Bioswales, rain gardens, and permeable surfaces' },
@@ -180,7 +187,7 @@ export default function NolaEastPage() {
               New Orleans East Revitalization
             </h1>
             <p className="mt-4 text-titanium text-lg max-w-2xl">
-              Honorable Mention in C40&apos;s 2023 Students Reinventing Cities competition, recognized by Mayor LaToya Cantrell. A student team&apos;s revitalization plan covering disaster resilience, renewable energy, transit, housing, and jobs.
+              Honorable Mention in C40&apos;s 2023 Students Reinventing Cities competition, recognized by Mayor LaToya Cantrell.<Cite sources={S} id={['c40-mayor', 'loyola']} /> A student team&apos;s revitalization plan covering disaster resilience, renewable energy, transit, housing, and jobs.
             </p>
           </motion.div>
 
@@ -195,11 +202,11 @@ export default function NolaEastPage() {
               <span className="block mt-2 font-mono text-xs tracking-wide text-titanium uppercase">Plan Layers</span>
             </div>
             <div className="text-center px-6 py-4">
-              <span className="block font-serif text-3xl md:text-4xl text-white">C40</span>
+              <span className="block font-serif text-3xl md:text-4xl text-white">C40<Cite sources={S} id="c40-mayor" /></span>
               <span className="block mt-2 font-mono text-xs tracking-wide text-titanium uppercase">Honorable Mention</span>
             </div>
             <div className="text-center px-6 py-4">
-              <span className="block font-serif text-3xl md:text-4xl text-white">2023</span>
+              <span className="block font-serif text-3xl md:text-4xl text-white">2023<Cite sources={S} id="loyola" /></span>
               <span className="block mt-2 font-mono text-xs tracking-wide text-titanium uppercase">Competition Year</span>
             </div>
             <div className="text-center px-6 py-4">
@@ -233,7 +240,7 @@ export default function NolaEastPage() {
                 animate={heroView.isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
-                New Orleans East is one of the largest areas of the city by land, and home to one of the largest Vietnamese-American communities in the South. It was one of the areas hit hardest by Hurricane Katrina in 2005. Years later, much of the district still has vacant lots, limited transit, and aging infrastructure.
+                New Orleans East is one of the largest areas of the city by land,<Cite sources={S} id="noe-wiki" /> and home to Versailles, the largest Vietnamese-American enclave in Louisiana.<Cite sources={S} id="64parishes" /> It was one of the areas hit hardest by Hurricane Katrina in 2005.<Cite sources={S} id="noe-wiki" /> Years later, much of the district still has vacant lots, limited transit, and aging infrastructure.
               </motion.p>
 
               <motion.p
@@ -241,7 +248,7 @@ export default function NolaEastPage() {
                 animate={heroView.isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                C40&apos;s Students Reinventing Cities competition asks university teams to reimagine real urban sites as green, inclusive, climate-resilient neighborhoods. The New Orleans site was the Read and Lake Forest corridors in New Orleans East. Our team&apos;s proposal has eight layers, including disaster planning, solar energy, transit, green jobs, and community development, planned together so each supports the others.
+                C40&apos;s Students Reinventing Cities competition asks university teams to reimagine real urban sites as green, inclusive, climate-resilient neighborhoods.<Cite sources={S} id="loyola" /> The New Orleans site was the Read and Lake Forest corridors in New Orleans East.<Cite sources={S} id="c40-mayor" /> Our team&apos;s proposal has eight layers, including disaster planning, solar energy, transit, green jobs, and community development, planned together so each supports the others.
               </motion.p>
 
               <motion.p
@@ -249,7 +256,7 @@ export default function NolaEastPage() {
                 animate={heroView.isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                Our team, People First, was mostly Loyola University New Orleans students; I took part as a Tulane student. We received an Honorable Mention (the site&apos;s winning entry was Imperial College London&apos;s ReNew Orleans). Mayor LaToya Cantrell honored the team in September 2023 and asked us to present the plan. Along with new infrastructure, the plan includes local hiring, job training, and affordable housing for current residents.
+                Our team, People First, was mostly Loyola University New Orleans students; I took part as a Tulane student. We received an Honorable Mention<Cite sources={S} id="loyola" /> (the site&apos;s winning entry was Imperial College London&apos;s ReNew Orleans).<Cite sources={S} id="c40-winner" /> Mayor LaToya Cantrell honored the team in September 2023 and asked us to present the plan.<Cite sources={S} id="c40-mayor" /> Along with new infrastructure, the plan includes local hiring, job training, and affordable housing for current residents.
               </motion.p>
             </div>
           </div>
@@ -643,7 +650,10 @@ export default function NolaEastPage() {
                   close
                 </button>
               </div>
-              <p className="text-titanium text-sm leading-relaxed mb-6">{selectedLayerData.description}</p>
+              <p className="text-titanium text-sm leading-relaxed mb-6">
+                {selectedLayerData.description}
+                {selectedLayerData.sources && <Cite sources={S} id={selectedLayerData.sources} />}
+              </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {selectedLayerData.features.map((feature, i) => (
                   <motion.div
@@ -728,6 +738,8 @@ export default function NolaEastPage() {
           </div>
         </div>
       </section>
+
+      <SourceList sources={S} />
     </>
   )
 }
