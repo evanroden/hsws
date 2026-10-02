@@ -42,14 +42,20 @@ export default function AboutTeaser() {
             </h2>
             <div className="space-y-4 text-titanium leading-relaxed">
               <p>
-                Evan Roden co-founded The Youth Coalition For Organ Donation at seventeen
-                and led it for seven years. He now manages central energy plants for
-                Rochester Regional Health under ENFRA&apos;s $143.8 million
+                {/* "At seventeen" softened: news coverage describes the founders as East Aurora High
+                    School students, and as college freshmen in 2020-21.
+                    https://mynews13.com/fl/orlando/news/2021/09/24/wny-teens-nominated-for-american-red-cross-award-for-organ-donation-coalition
+                    Two hospitals (UMMC, St. Mary's) per enfra/EnfraOverview.tsx; the partnership covers nine. */}
+                Evan Roden co-founded The Youth Coalition For Organ Donation in high school
+                and led it for seven years. He now manages the central energy plants at two
+                Rochester Regional Health hospitals under ENFRA&apos;s $143.8 million
                 Energy-as-a-Service partnership.
               </p>
               <p>
                 He studied biomedical engineering at Tulane, worked in three research
-                labs there, and gave a TEDxTulane talk on youth political participation.
+                labs there, and gave a TEDxTulane talk on youth political participation,
+                {/* https://www.ted.com/talks/evan_roden_the_myth_of_the_apolitical_youth (March 2022) */}
+                {' '}&ldquo;The Myth of the Apolitical Youth.&rdquo;
                 He has also shot and edited films as a cinematographer in New Orleans.
               </p>
             </div>

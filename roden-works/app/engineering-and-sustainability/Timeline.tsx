@@ -15,7 +15,11 @@ const timelineData = [
     year: '2025',
     title: 'Convergint',
     role: 'Account Executive',
-    description: 'Fire and life safety systems integration in San Francisco. Started in the Career Development Program in Chicago.',
+    // HQ was in Schaumburg, IL (moved there from Buffalo Grove:
+    // https://www.securitysystemsnews.com/article/convergint-moves-chicago-area-operations-new-facility)
+    // until the Oct 2025 move to Bell Works, Hoffman Estates ("previously located in neighboring
+    // Schaumburg"): https://dailyherald.com/?p=1301823
+    description: 'Fire and life safety systems integration in San Francisco. Started in the Career Development Program at headquarters in Schaumburg, IL.',
     color: 'bg-titanium',
   },
   {
@@ -49,7 +53,7 @@ const timelineData = [
   {
     year: '2020–2024',
     title: 'Tulane University',
-    role: 'B.E. Biomedical/Medical Engineering',
+    role: 'B.S.E. in Biomedical Engineering',
     description: 'Three research labs. TEDx speaker.',
     color: 'bg-forest-light',
   },

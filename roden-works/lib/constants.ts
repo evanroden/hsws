@@ -19,12 +19,15 @@ export const NAV_ITEMS = [
   { label: 'About', href: '/about' },
 ] as const
 
+// $143.8M / 30-year term / "more than $354.6 million in total avoided costs" are the partnership's
+// figures, not Evan's personal results; labels say so. Source:
+// https://enfrasolutions.com/enfra-and-rochester-regional-health-launch-30-year-energy-as-a-service-partnership-to-modernize-system-wide-infrastructure-and-advance-sustainability
 export const IMPACT_STATS = [
   { value: 160, suffix: '%', label: 'Non-Recurring Revenue Goal (Monthly Best)', prefix: '' },
-  { value: 143.8, suffix: 'M', label: 'EaaS Partnership Value', prefix: '$' },
+  { value: 143.8, suffix: 'M', label: 'EaaS Partnership I Work Under', prefix: '$' },
   { value: 7, suffix: '+ Years', label: 'Leading The YCOD', prefix: '' },
   { value: 3, suffix: '', label: 'Research Labs at Tulane', prefix: '' },
-  { value: 354.6, suffix: 'M', label: '30-Year Guaranteed Savings', prefix: '$' },
+  { value: 354.6, suffix: 'M', label: '30-Year Avoided Costs (Partnership)', prefix: '$' },
 ] as const
 
 export const COLORS = {
