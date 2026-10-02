@@ -11,21 +11,21 @@ const victories = [
     abbr: 'NY',
     title: 'Climate Leadership & Community Protection Act (CLCPA)',
     description:
-      'The most ambitious climate legislation in the country at the time of passage. Mandates 70% renewable electricity by 2030 and net-zero emissions by 2050. Our Climate fellows organized constituent calls, participated in lobby days in Albany, and built grassroots support across Western New York.',
+      'Requires 70% renewable electricity by 2030 and net-zero emissions by 2050. Our Climate fellows organized constituent calls, joined lobby days in Albany, and built local support across Western New York.',
   },
   {
     state: 'Massachusetts',
     abbr: 'MA',
     title: '~$500M for Green Energy Retrofits',
     description:
-      'Secured approximately $500 million in funding for green energy building retrofits across the state. Fellows coordinated with local representatives and testified in support of equitable retrofit programs targeting low-income communities and environmental justice neighborhoods.',
+      'About $500 million in state funding for green energy building retrofits. Fellows worked with local representatives and testified for retrofit programs aimed at low-income communities and environmental justice neighborhoods.',
   },
   {
     state: 'Oregon',
     abbr: 'OR',
     title: "Governor's Executive Order on Climate",
     description:
-      'Supported passage of an executive order establishing emissions reduction targets after the state legislature failed to pass cap-and-trade legislation. Portland-based fellows organized community pressure campaigns and coordinated with state advocacy groups.',
+      'After the state legislature failed to pass cap-and-trade, the governor issued an executive order setting emissions reduction targets. Portland-based fellows organized community pressure and worked with state advocacy groups.',
   },
 ]
 
@@ -33,32 +33,32 @@ const timelineEvents = [
   {
     date: 'Nov 2019',
     title: 'Fellowship Begins',
-    description: 'Selected as an Our Climate Fellow. Began training in Portland, Oregon on climate policy communication, legislative strategy, and community organizing.',
+    description: 'Selected as an Our Climate Fellow. Started training in Portland, Oregon on climate policy communication, legislative strategy, and community organizing.',
   },
   {
     date: 'Dec 2019',
     title: 'State-Level Advocacy Campaigns',
-    description: 'Launched coordinated advocacy campaigns across active states. Conducted representative meetings, phone banks, and community outreach events.',
+    description: 'Started advocacy campaigns in states with active climate bills: meetings with representatives, phone banks, and community outreach events.',
   },
   {
     date: 'Feb 2020',
     title: 'Federal Lobby Day',
-    description: 'Traveled to Washington, D.C. for federal-level advocacy. Met with congressional offices to advocate for climate legislation and environmental justice funding.',
+    description: 'Went to Washington, D.C. and met with congressional offices about climate legislation and environmental justice funding.',
   },
   {
     date: 'May 2020',
     title: 'Digital Organizing Pivot',
-    description: 'Transitioned all organizing to digital platforms during COVID-19. Led virtual town halls, Zoom lobby meetings, and social media campaigns to sustain momentum.',
+    description: 'Moved all organizing online during COVID-19. Led virtual town halls, Zoom lobby meetings, and social media campaigns.',
   },
   {
     date: 'Jul 2020',
     title: 'Legislative Wins',
-    description: 'Celebrated passage of key climate policies across multiple states. The fellowship cohort contributed to victories in New York, Massachusetts, and Oregon.',
+    description: 'The fellowship cohort contributed to climate policy wins in New York, Massachusetts, and Oregon.',
   },
   {
     date: 'Oct 2020',
     title: 'Fellowship Concludes',
-    description: 'Completed the 12-month fellowship. Continued climate advocacy work through other channels and applied fellowship skills to subsequent civic engagement projects.',
+    description: 'Finished the 12-month fellowship. I kept doing climate advocacy and used what I learned in later civic projects.',
   },
 ]
 
@@ -95,7 +95,7 @@ export default function OurClimatePage() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="font-mono text-xs tracking-widest uppercase text-verdigris mb-4 block">
-              Fellowship -- Nov 2019 to Oct 2020
+              Fellowship · Nov 2019 to Oct 2020
             </span>
             <h1 className="font-serif text-display text-white max-w-4xl">
               Our Climate
@@ -144,7 +144,7 @@ export default function OurClimatePage() {
                 About the Fellowship
               </span>
               <h2 className="font-serif text-heading text-white mb-8">
-                Youth-led advocacy for climate justice.
+                Youth-led climate policy advocacy.
               </h2>
             </motion.div>
 
@@ -154,7 +154,7 @@ export default function OurClimatePage() {
                 animate={heroView.isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
-                Our Climate is a 501(c)(3) nonprofit that empowers young people to advocate for equitable climate policy. The fellowship program trains cohorts of young organizers in legislative strategy, constituent communication, and grassroots campaign management — then deploys them across states with active climate legislation.
+                Our Climate is a 501(c)(3) nonprofit that trains young people to advocate for equitable climate policy. The fellowship teaches cohorts of young organizers legislative strategy, constituent communication, and campaign management, then places them in states with active climate legislation.
               </motion.p>
 
               <motion.p
@@ -162,7 +162,7 @@ export default function OurClimatePage() {
                 animate={heroView.isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                As a fellow from November 2019 through October 2020, Evan was based in Portland, Oregon and worked on coordinated advocacy campaigns across multiple states. The work included direct lobbying — meeting with state and federal representatives — as well as community outreach, phone banking, digital organizing, and coalition building with environmental justice organizations.
+                I was a fellow from November 2019 through October 2020, based in Portland, Oregon, working on advocacy campaigns in several states. I met with state and federal representatives, did community outreach and phone banking, organized online, and worked with environmental justice organizations.
               </motion.p>
 
               <motion.p
@@ -170,7 +170,7 @@ export default function OurClimatePage() {
                 animate={heroView.isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                The fellowship cohort contributed to significant legislative victories in three states: New York, Massachusetts, and Oregon. These wins collectively represented some of the most ambitious climate policy commitments in the United States at the time.
+                Our cohort contributed to legislative wins in three states: New York, Massachusetts, and Oregon.
               </motion.p>
             </div>
           </div>
@@ -187,13 +187,13 @@ export default function OurClimatePage() {
             className="mb-12"
           >
             <span className="font-mono text-xs tracking-widest uppercase text-copper">
-              Geographic Impact
+              Where We Worked
             </span>
             <h2 className="font-serif text-heading text-white mt-3">
-              Active states with legislative victories.
+              States with legislative wins.
             </h2>
             <p className="mt-4 text-titanium text-lg max-w-2xl">
-              Our Climate fellows worked across the country. Highlighted states represent where the cohort achieved measurable policy wins during the 2019-2020 fellowship cycle.
+              Our Climate fellows worked across the country. Highlighted states are where the cohort won policy changes during the 2019–2020 fellowship cycle.
             </p>
           </motion.div>
 
@@ -217,10 +217,10 @@ export default function OurClimatePage() {
             className="mb-12"
           >
             <span className="font-mono text-xs tracking-widest uppercase text-copper">
-              Policy Impact
+              Policy Wins
             </span>
             <h2 className="font-serif text-heading text-white mt-3">
-              Three states, three victories.
+              What passed in each state.
             </h2>
           </motion.div>
 
@@ -266,7 +266,7 @@ export default function OurClimatePage() {
               Fellowship Timeline
             </span>
             <h2 className="font-serif text-heading text-white mt-3">
-              Twelve months of organizing.
+              November 2019 to October 2020.
             </h2>
           </motion.div>
 
@@ -303,7 +303,7 @@ export default function OurClimatePage() {
               transition={{ duration: 0.6 }}
               className="text-white text-lg font-serif leading-relaxed"
             >
-              The fellowship ended in October 2020, but the policies it helped pass continue to shape how states approach climate action. The CLCPA remains one of the most comprehensive climate laws in the country. The retrofits funded in Massachusetts are still being deployed. And the organizing skills Evan built during these twelve months informed every civic project that followed.
+              The fellowship ended in October 2020. I have used the organizing skills from that year in my civic work since, including The YCOD and local campaigns in New Orleans.
             </motion.p>
           </div>
         </div>

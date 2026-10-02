@@ -81,7 +81,7 @@ export async function GET() {
             display: 'flex',
           }}
         >
-          Optimizing complex systems to improve human quality of life
+          Sustainability engineer at ENFRA managing hospital energy plants, with a background in biomedical research, organ donation advocacy, and film.
         </div>
       </div>
     ),

@@ -20,17 +20,17 @@ export default function EnfraOverview() {
               About ENFRA
             </span>
             <h2 className="font-serif text-heading text-white mb-6">
-              The largest privately-owned EaaS company in the United States.
+              An energy services company built around EaaS.
             </h2>
             <div className="space-y-4 text-titanium leading-relaxed">
               <p>
-                Founded in 1919 as Bernhard and rebranded in May 2025, ENFRA is a vertically integrated energy services company with 2,600+ employees across 25+ offices in 24 states. Their portfolio exceeds $2 billion in financed projects delivering $87 million in guaranteed annual utility savings.
+                Founded in 1919 as Bernhard and rebranded in May 2025, ENFRA is a vertically integrated energy services company with 2,600+ employees across 25+ offices in 24 states. Its portfolio includes more than $2 billion in financed projects with $87 million in guaranteed annual utility savings.
               </p>
               <p>
-                ENFRA&apos;s Energy-as-a-Service model converts hospital capital expenditure into predictable operating expense. They design, build, finance, operate, and maintain energy systems under long-term agreements — typically 30 years — using proprietary software called ENFRA Connect® for real-time monitoring and fault detection.
+                Under ENFRA&apos;s Energy-as-a-Service model, a hospital pays a predictable operating expense instead of funding plant upgrades as capital. ENFRA designs, builds, finances, operates, and maintains the energy systems under long-term agreements, typically 30 years, and monitors them with its own software, ENFRA Connect®, for real-time data and fault detection.
               </p>
               <p>
-                Key partnerships include Ochsner Health (the first-ever not-for-profit EaaS in 2017), Hackensack Meridian ($134M), Beacon Health ($54.2M), and Novant Health ($855M — the largest healthcare EaaS transaction ever). The EaaS business has grown at 35%+ CAGR since 2017.
+                Clients include Ochsner Health (the first not-for-profit EaaS deal, in 2017), Hackensack Meridian ($134M), Beacon Health ($54.2M), and Novant Health ($855M, the largest healthcare EaaS transaction to date). The EaaS business has grown at more than 35% CAGR since 2017.
               </p>
             </div>
           </motion.div>
@@ -49,10 +49,10 @@ export default function EnfraOverview() {
             </h2>
             <div className="space-y-4 text-titanium leading-relaxed">
               <p>
-                Evan manages Central Energy Plants at two Rochester Regional Health facilities: United Memorial Medical Center (UMMC) in Batavia, NY and St. Mary&apos;s Medical Center in Rochester, NY — as part of a $143.8 million, 30-year EaaS partnership announced January 20, 2026.
+                I manage the Central Energy Plants at two Rochester Regional Health facilities: United Memorial Medical Center (UMMC) in Batavia, NY and St. Mary&apos;s Medical Center in Rochester, NY. The work falls under a $143.8 million, 30-year EaaS partnership announced January 20, 2026.
               </p>
               <p>
-                His responsibilities include overseeing subcontractors, managing maintenance budgets, performing energy data analysis for optimization, and ensuring the continuous operation of the infrastructure that hospitals depend on for heating, cooling, sterilization, and power.
+                I oversee subcontractors, manage maintenance budgets, and analyze energy data to find savings. My main job is keeping the plants running, since the hospitals depend on them for heating, cooling, sterilization, and power.
               </p>
             </div>
 
@@ -70,7 +70,7 @@ export default function EnfraOverview() {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-verdigris mt-1">•</span>
-                  Goal: 100% renewable electricity — one of healthcare&apos;s most aggressive sustainability targets
+                  Goal: 100% renewable electricity
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-verdigris mt-1">•</span>

@@ -54,7 +54,7 @@ export default function EnfraHero() {
             ENFRA × Rochester Regional Health
           </h1>
           <p className="mt-4 text-titanium text-lg max-w-2xl">
-            A $143.8 million, 30-year partnership to optimize hospital energy infrastructure — the systems that produce the steam, chilled water, and electricity hospitals need to function.
+            A $143.8 million, 30-year partnership to improve and operate the hospital energy plants that produce steam, chilled water, and electricity.
           </p>
         </motion.div>
 

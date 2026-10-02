@@ -6,7 +6,7 @@ import { ProjectIllustration } from '@/components/ui/ProjectIllustrations'
 export const metadata: Metadata = {
   title: 'Advocacy & Civic Impact — Organ Donation, Climate & Urban Policy',
   description:
-    'From organ donation policy to broadband access — building systems that serve everyone.',
+    'Organ donation law, climate policy, rural broadband, and urban planning.',
 }
 
 const projects = [
@@ -14,28 +14,28 @@ const projects = [
     href: '/advocacy-and-civic/ycod',
     slug: 'ycod',
     title: 'The Youth Coalition For Organ Donation',
-    description: 'Founded at age 17. Seven years of advocacy to reform New York\'s organ donor designation system through presumed consent legislation.',
+    description: 'Co-founded at 17. Seven years of advocacy for presumed consent organ donation legislation in New York.',
     label: 'Founded 2017',
   },
   {
     href: '/advocacy-and-civic/our-climate',
     slug: 'our-climate',
     title: 'Our Climate Fellowship',
-    description: 'Youth-led climate policy advocacy at state and federal level. Campaign organizing, representative meetings, and community outreach.',
+    description: 'Youth-led climate policy advocacy at the state and federal level, including campaign organizing and meetings with representatives.',
     label: 'Fellowship',
   },
   {
     href: '/advocacy-and-civic/tabi',
     slug: 'tabi',
     title: 'Aurora Broadband Initiative',
-    description: 'Broadband access proposal for rural Western New York, addressing the digital divide in Cayuga County.',
+    description: 'Broadband access proposal for underserved rural households in Western New York.',
     label: 'Digital Equity',
   },
   {
     href: '/advocacy-and-civic/nola-east',
     slug: 'nola-east',
     title: 'New Orleans East Revitalization',
-    description: 'C40 Reinventing Cities Award winner. Urban revitalization plan covering solar energy, transit, green housing, and disaster planning.',
+    description: 'Revitalization plan covering solar energy, transit, green housing, and disaster planning. Won the C40 Reinventing Cities Award.',
     label: 'C40 Award',
   },
   {
@@ -49,7 +49,7 @@ const projects = [
     href: '/advocacy-and-civic/partnership',
     slug: 'partnership',
     title: 'Partnership for Public Service',
-    description: 'Federal workforce team supporting SAMHSA improvement. Engagement scores doubled from 37 to 74 during collaboration.',
+    description: 'Federal workforce project with SAMHSA. Employee engagement scores rose from about 37 to 74 over the broader collaboration.',
     label: 'Federal Service',
   },
 ]
@@ -59,7 +59,7 @@ export default function AdvocacyPage() {
     <>
       <PageHero
         title="Advocacy & Civic Impact"
-        subtitle="From organ donation policy to broadband access — building systems that serve everyone."
+        subtitle="Organ donation law, climate policy, rural broadband, and urban planning."
         label="Public Service"
         variant="forest"
       />

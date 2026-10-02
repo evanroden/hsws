@@ -76,8 +76,8 @@ export default function SWISPage() {
               Saltwater Intrusion Study
             </h1>
             <p className="mt-4 text-titanium text-lg max-w-2xl">
-              A first-of-kind longitudinal study proposal on saltwater intrusion
-              into the Greater New Orleans water supply and its health impacts on
+              A proposed longitudinal study of saltwater intrusion into the
+              Greater New Orleans water supply and its effects on the health of
               1.2 million residents.
             </p>
           </motion.div>
@@ -97,33 +97,29 @@ export default function SWISPage() {
                 The Crisis
               </span>
               <h2 className="font-serif text-heading text-white mb-6">
-                When the river could not push back.
+                The 2023 low-water event.
               </h2>
               <div className="space-y-4 text-titanium leading-relaxed">
                 <p>
-                  In the fall of 2023, the Mississippi River&apos;s flow dropped
-                  to dangerously low levels — reaching 130,000 to 150,000 cubic
-                  feet per second when the safe threshold is approximately
-                  300,000 cfs. As the river&apos;s freshwater flow weakened, a
-                  saltwater wedge from the Gulf of Mexico advanced upstream along
-                  the riverbed, threatening to reach the drinking water intake
+                  In the fall of 2023, the Mississippi River&apos;s flow fell to
+                  130,000 to 150,000 cubic feet per second, against a safe
+                  threshold of roughly 300,000 cfs. With less freshwater pushing
+                  downstream, a saltwater wedge from the Gulf of Mexico moved
+                  upstream along the riverbed toward the drinking water intakes
                   for the Greater New Orleans metropolitan area.
                 </p>
                 <p>
-                  The U.S. Army Corps of Engineers constructed an emergency
-                  underwater sill — a physical barrier on the riverbed — to slow
-                  the saltwater&apos;s advance. Water utilities issued
-                  advisories. The crisis raised existential questions about the
-                  long-term viability of New Orleans&apos;s water supply as
-                  climate change intensifies drought conditions along the
-                  Mississippi.
+                  The U.S. Army Corps of Engineers built an emergency underwater
+                  sill (a barrier on the riverbed) to slow the saltwater, and
+                  water utilities issued advisories. The event raised hard
+                  questions about the long-term reliability of New
+                  Orleans&apos;s water supply if drought on the Mississippi
+                  becomes more common.
                 </p>
                 <p>
-                  This was not a hypothetical scenario. For weeks, salinity
-                  levels crept toward the intake point. If the wedge had
-                  reached the treatment plant at Carrollton, the city would
-                  have faced a drinking water emergency for 1.2 million
-                  people.
+                  For weeks, salinity crept toward the intake. If the wedge had
+                  reached the treatment plant at Carrollton, 1.2 million people
+                  would have faced a drinking water emergency.
                 </p>
               </div>
             </motion.div>
@@ -137,23 +133,22 @@ export default function SWISPage() {
                 The Proposal
               </span>
               <h2 className="font-serif text-heading text-white mb-6">
-                First-of-kind longitudinal study.
+                A longitudinal health study.
               </h2>
               <div className="space-y-4 text-titanium leading-relaxed">
                 <p>
-                  The Saltwater Intrusion Study (SWIS) proposes a longitudinal
-                  research framework to examine the health impacts of saltwater
-                  intrusion events on municipal water systems — an increasingly
-                  urgent research need as climate change alters hydrology
-                  patterns across the Mississippi River basin.
+                  The Saltwater Intrusion Study (SWIS) proposes following a
+                  population over time to measure how saltwater intrusion into a
+                  municipal water system affects health. Climate change is
+                  shifting river flows across the Mississippi basin, so these
+                  events are worth studying now.
                 </p>
                 <p>
-                  The study would track salinity levels, chloride
-                  concentrations, and disinfection byproduct formation in
-                  treated water during and after intrusion events, correlating
-                  these measurements with health outcomes in the exposed
-                  population — including hypertension, kidney function, and
-                  cardiovascular endpoints.
+                  The study would track salinity, chloride, and disinfection
+                  byproducts in treated water during and after intrusion events,
+                  and compare those measurements with health outcomes in the
+                  exposed population, including hypertension, kidney function,
+                  and other cardiovascular endpoints.
                 </p>
               </div>
 
@@ -208,10 +203,9 @@ export default function SWISPage() {
               Saltwater wedge dynamics.
             </h2>
             <p className="text-titanium mt-2 max-w-2xl">
-              As river flow decreases, the denser saltwater from the Gulf of
-              Mexico pushes upstream along the riverbed. Drag the slider to
-              simulate different flow rates and observe the wedge advancing
-              toward New Orleans.
+              As river flow drops, denser saltwater from the Gulf of Mexico
+              pushes upstream along the riverbed. Drag the slider to change the
+              flow rate and watch the wedge move toward New Orleans.
             </p>
           </motion.div>
 
@@ -238,7 +232,7 @@ export default function SWISPage() {
               Why This Matters
             </span>
             <h2 className="font-serif text-heading text-white mt-3">
-              A preview of the future.
+              The case for a long-term study.
             </h2>
           </motion.div>
 
@@ -254,7 +248,7 @@ export default function SWISPage() {
                 stat: '2x',
                 label: 'in 12 years',
                 description:
-                  'Similar low-flow conditions occurred in 2012 and 2023, suggesting increasing frequency as drought patterns intensify.',
+                  'Similar low-flow conditions occurred in 2012 and 2023, which may mean they are becoming more frequent.',
               },
               {
                 stat: '0',

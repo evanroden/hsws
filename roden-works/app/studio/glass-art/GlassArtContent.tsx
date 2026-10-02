@@ -16,42 +16,42 @@ const technicalDetails = [
     temperature: 'Room Temperature',
     duration: '2-4 hours',
     description:
-      'Glass sheets are selected for color, opacity, and coefficient of expansion compatibility. Pieces are cut, ground, and arranged on a prepared kiln shelf with kiln wash separator. The design phase demands an understanding of how glass behaves under heat — colors shift, textures emerge, and adjacent pieces interact in ways that must be anticipated.',
+      'I choose glass sheets for color, opacity, and a compatible coefficient of expansion, then cut, grind, and arrange the pieces on a kiln shelf coated with kiln wash. The layout has to account for what heat will do: colors shift, textures change, and neighboring pieces flow into each other.',
   },
   {
     stage: 'Initial Ramp',
     temperature: '70°F to 1000°F',
     duration: '2-3 hours',
     description:
-      'A controlled ramp rate of approximately 300°F per hour brings the glass slowly through the strain point. Heating too quickly risks thermal shock — the glass will crack before it ever reaches fusing temperature. Patience in this phase is structural, not optional.',
+      'A ramp of about 300°F per hour brings the glass slowly through the strain point. Heat it faster and thermal shock can crack the glass before it reaches fusing temperature.',
   },
   {
     stage: 'Rapid Heat',
     temperature: '1000°F to 1480°F',
     duration: '1-2 hours',
     description:
-      'Once past the strain point, the ramp rate can increase. The glass transitions from rigid to plastic, softening as it approaches the fusing threshold. At 1300°F, edges begin to round. By 1480°F, separate pieces have fully merged into a single unified surface.',
+      'Past the strain point, the ramp rate can increase. The glass softens as it nears fusing temperature. Edges start to round at 1300°F, and by 1480°F the separate pieces have merged into one surface.',
   },
   {
     stage: 'Full Fuse & Soak',
     temperature: '1480°F to 1500°F',
     duration: '10-30 minutes',
     description:
-      'The peak temperature determines the final texture. A tack fuse at 1380°F preserves surface texture and dimensionality. A full fuse at 1480-1500°F creates a smooth, flat surface where individual pieces become indistinguishable. A controlled soak at peak temperature ensures uniform heat distribution.',
+      'The peak temperature determines the final texture. A tack fuse at 1380°F preserves surface texture and dimensionality. A full fuse at 1480-1500°F creates a smooth, flat surface where individual pieces become indistinguishable. A soak at peak temperature lets the heat even out across the piece.',
   },
   {
     stage: 'Anneal & Cool',
     temperature: '1500°F to 960°F',
     duration: '1-2 hours',
     description:
-      'The kiln crashes to the annealing point — the critical temperature where internal stress is relieved. At 960°F, the glass is held for a soak period that allows the entire piece to equalize. This is where structural integrity is determined.',
+      'The kiln drops quickly to the annealing point, the temperature where internal stress is relieved. The glass is held at 960°F long enough for the whole piece to reach the same temperature. A piece that is annealed poorly will crack later.',
   },
   {
     stage: 'Controlled Cool-Down',
     temperature: '960°F to Room Temperature',
     duration: '8-12 hours',
     description:
-      'A slow, programmed descent prevents the formation of internal stress that would cause cracking days, weeks, or months later. The kiln cools at no more than 50°F per hour through the critical strain range, then can be allowed to cool naturally to room temperature.',
+      'A slow, programmed cool prevents internal stress that could crack the piece weeks or months later. The kiln cools at no more than 50°F per hour through the strain range, then cools naturally to room temperature.',
   },
 ]
 
@@ -120,7 +120,7 @@ export default function GlassArtContent({ images }: { images: GalleryImage[] }) 
 
       <PageHero
         title="Fractured Futures"
-        subtitle="Kiln forming and glass fusing — exploring how fractured forms hold light, color, and meaning within a single unified surface."
+        subtitle="Kiln-formed, fused glass: separate sheets of color fired together into a single surface."
         label="Glass Art"
         variant="warm"
       />
@@ -159,33 +159,22 @@ export default function GlassArtContent({ images }: { images: GalleryImage[] }) 
               transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             >
               <p className="text-lg text-titanium leading-relaxed">
-                Glass is a material defined by contradiction. It is rigid yet fragile, transparent
-                yet capable of holding color with an intensity that opaque materials cannot match.
-                When fractured, glass does not degrade — it multiplies its surfaces, catches light
-                from new angles, and reveals internal structures that were invisible when whole.
+                Glass holds color with an intensity opaque materials can&apos;t match. When it
+                fractures, it gains new surfaces that catch light from different angles and show
+                internal structure that was hidden while the sheet was whole.
               </p>
               <p className="mt-6 text-titanium leading-relaxed">
-                The &ldquo;Fractured Futures&rdquo; series explores this paradox as metaphor. Each piece begins
-                as separate sheets of glass — distinct colors, textures, and opacities — that are
-                arranged, stacked, and fired in a kiln until they fuse into a single unified form.
-                The fracture lines that remain are not damage; they are the visible record of
-                separate origins becoming something new. They are the seams where difference was
-                not erased but integrated.
+                Each piece in the Fractured Futures series starts as separate sheets of glass in
+                different colors, textures, and opacities. I arrange and stack them, then fire them
+                in a kiln until they fuse into one form. The fracture lines that remain show where
+                the separate sheets met.
               </p>
               <p className="mt-6 text-titanium leading-relaxed">
-                This work is informed by the same systems thinking that drives my engineering
-                practice. Just as complex systems emerge from the interaction of simpler
-                components, these glass pieces derive their visual power from the relationships
-                between their constituent materials — relationships that only become visible
-                through the transformative application of heat, time, and pressure.
+                I think about these pieces the way I think about systems in my engineering work. A
+                complex system behaves the way it does because of how its parts interact, and these
+                pieces get their look from how different glasses react to each other under heat
+                over time.
               </p>
-
-              {/* Pull quote */}
-              <div className="mt-10 pl-6 border-l-2 border-copper/50">
-                <p className="font-serif text-xl md:text-2xl text-white/90 italic leading-relaxed">
-                  &ldquo;The fracture is not where the piece failed. It is where the piece began.&rdquo;
-                </p>
-              </div>
             </motion.div>
           </div>
         </div>
@@ -211,17 +200,17 @@ export default function GlassArtContent({ images }: { images: GalleryImage[] }) 
               {
                 title: 'Bullseye Glass',
                 detail:
-                  'COE 90 compatible glass sheets in a range of transparent, opalescent, and iridescent finishes. Bullseye\'s tested compatibility system ensures that different colors and textures can be fused together without cracking from differential expansion.',
+                  'COE 90 compatible glass sheets in transparent, opalescent, and iridescent finishes. Bullseye tests its glass for compatibility, so different colors and textures can be fused without cracking from uneven expansion.',
               },
               {
                 title: 'Kiln Forming',
                 detail:
-                  'A programmable glass kiln with precise digital temperature control. Multi-segment firing schedules allow for controlled ramp rates, peak temperature holds, and annealing cycles that prevent internal stress and ensure structural longevity.',
+                  'A programmable glass kiln with digital temperature control. Multi-segment schedules set the ramp rates, the hold at peak temperature, and the annealing cycle that keeps internal stress out of the finished piece.',
               },
               {
                 title: 'Cold Working',
                 detail:
-                  'After firing, pieces undergo cold working — grinding, polishing, and in some cases, sandblasting — to refine edges, adjust surface texture, and reveal internal layers. A diamond lap grinder and wet belt sander are the primary tools for this finishing stage.',
+                  'After firing, I grind, polish, and sometimes sandblast each piece to finish the edges, adjust the surface texture, and expose internal layers. Most of this is done on a diamond lap grinder and a wet belt sander.',
               },
             ].map((material, i) => (
               <motion.div
@@ -255,9 +244,8 @@ export default function GlassArtContent({ images }: { images: GalleryImage[] }) 
             </span>
             <h2 className="font-serif text-heading text-white">The Firing Schedule</h2>
             <p className="mt-4 text-lg text-titanium max-w-2xl leading-relaxed">
-              A kiln firing schedule is a precise sequence of temperature ramps, holds, and cooling
-              stages that transforms raw glass into a fused artwork. Total cycle time: 16 to 24
-              hours.
+              A firing schedule is the programmed sequence of temperature ramps, holds, and cooling
+              stages that fuses the glass. One full cycle takes 16 to 24 hours.
             </p>
           </motion.div>
 
@@ -280,7 +268,7 @@ export default function GlassArtContent({ images }: { images: GalleryImage[] }) 
             <GalleryPending
               title="The Fractured Futures pieces"
               body="Photography of the finished pieces is being prepared for the web. Images of the series are available on request."
-              requestSubject="Fractured Futures — images request"
+              requestSubject="Fractured Futures images request"
               secondary={{ label: 'Back to the Studio', href: '/studio' }}
             />
           ) : null}

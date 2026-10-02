@@ -25,22 +25,22 @@ const pillars = [
   {
     title: 'Infrastructure Assessment',
     description:
-      'Comprehensive mapping of existing broadband infrastructure across the Town of Aurora. Identified gaps in fiber, cable, and fixed wireless coverage using FCC Form 477 data cross-referenced with resident surveys.',
+      'Mapped existing broadband infrastructure across the Town of Aurora. Found gaps in fiber, cable, and fixed wireless coverage by checking FCC Form 477 data against resident surveys.',
   },
   {
     title: 'Municipal Broadband Model',
     description:
-      'Developed a proposal for a publicly-owned fiber-to-the-premises (FTTP) network modeled on successful municipal broadband deployments in Chattanooga, TN and Wilson, NC. Projected cost-per-household and revenue sustainability over a 20-year horizon.',
+      'Proposed a publicly owned fiber-to-the-premises (FTTP) network modeled on municipal broadband in Chattanooga, TN and Wilson, NC. Projected cost per household and revenue over 20 years.',
   },
   {
     title: 'Digital Equity Framework',
     description:
-      'Proposed subsidized connectivity tiers for low-income households, a public Wi-Fi program for community centers and libraries, and device lending programs to address the hardware gap alongside the connectivity gap.',
+      'Proposed subsidized service tiers for low-income households, public Wi-Fi at community centers and libraries, and device lending for households without a computer.',
   },
   {
     title: 'Economic Impact Analysis',
     description:
-      'Estimated that closing the broadband gap could increase property values by 3-6%, enable remote work opportunities for 200+ households, and support small business growth in agriculture, tourism, and home-based enterprises.',
+      'Estimated that closing the broadband gap could raise property values by 3-6%, make remote work possible for 200+ households, and help small businesses in agriculture, tourism, and home-based work.',
   },
 ]
 
@@ -111,7 +111,7 @@ export default function TabiPage() {
               Town of Aurora Broadband Initiative
             </h1>
             <p className="mt-4 text-titanium text-lg max-w-2xl">
-              Closing the rural broadband gap in Western New York. A digital equity proposal for Cayuga County&apos;s underserved communities where nearly one in three households lack adequate internet access.
+              A proposal to close the rural broadband gap in the Town of Aurora, New York, where nearly one in three households lack adequate internet access.
             </p>
           </motion.div>
         </div>
@@ -130,7 +130,7 @@ export default function TabiPage() {
                 The Digital Divide
               </span>
               <h2 className="font-serif text-heading text-white mb-8">
-                Rural broadband is infrastructure, not a luxury.
+                Rural Aurora is underserved.
               </h2>
             </motion.div>
 
@@ -140,7 +140,7 @@ export default function TabiPage() {
                 animate={heroView.isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
-                The Town of Aurora sits in Western New York, straddling Erie and Cayuga Counties. While the village center of East Aurora has reasonable broadband service, the surrounding rural areas face a stark connectivity gap. Residents in southern and northern Aurora routinely experience download speeds below the FCC&apos;s 25/3 Mbps broadband threshold — and many have no wired broadband option at all.
+                The Town of Aurora is in Western New York. The village of East Aurora has reasonable broadband service, but the rural areas around it do not. Residents in southern and northern Aurora routinely get download speeds below the FCC&apos;s 25/3 Mbps broadband threshold, and many have no wired broadband option at all.
               </motion.p>
 
               <motion.p
@@ -148,7 +148,7 @@ export default function TabiPage() {
                 animate={heroView.isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                This gap is not just an inconvenience. It affects students who cannot complete homework assignments. It affects farmers who cannot access precision agriculture tools or commodity markets. It affects elderly residents who cannot access telehealth services. It affects home-based businesses that cannot compete in an increasingly digital economy.
+                Students can&apos;t finish homework. Farmers can&apos;t use precision agriculture tools or reach commodity markets online. Elderly residents can&apos;t use telehealth, and home-based businesses have trouble competing.
               </motion.p>
 
               <motion.p
@@ -156,7 +156,7 @@ export default function TabiPage() {
                 animate={heroView.isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                The Town of Aurora Broadband Initiative (TABI) is a proposal to close this gap through a combination of municipal fiber infrastructure, digital equity programs, and community partnerships. The initiative draws on successful models from across the country and adapts them to the specific needs of rural Western New York.
+                I wrote the Town of Aurora Broadband Initiative (TABI) as a proposal to close this gap with municipal fiber, digital equity programs, and community partnerships. It adapts municipal broadband models from other parts of the country to rural Western New York.
               </motion.p>
             </div>
           </div>
@@ -176,10 +176,10 @@ export default function TabiPage() {
               Coverage Gap
             </span>
             <h2 className="font-serif text-heading text-white mt-3">
-              Where connectivity falls short.
+              Coverage by area.
             </h2>
             <p className="mt-4 text-titanium max-w-2xl">
-              Broadband coverage across the Town of Aurora varies dramatically between the village center and surrounding rural areas. The further from East Aurora village, the worse the connectivity.
+              Coverage is much better in the village than in the rural parts of town. The farther from East Aurora village, the worse it gets.
             </p>
           </motion.div>
 
@@ -233,7 +233,7 @@ export default function TabiPage() {
               The Proposal
             </span>
             <h2 className="font-serif text-heading text-white mt-3">
-              Four pillars of digital equity.
+              Four parts of the proposal.
             </h2>
           </motion.div>
 
@@ -272,7 +272,7 @@ export default function TabiPage() {
               transition={{ duration: 0.6 }}
               className="text-white text-lg font-serif leading-relaxed"
             >
-              Broadband is the infrastructure of the 21st century. Without it, rural communities like Aurora are locked out of education, healthcare, economic opportunity, and civic participation. The Town of Aurora Broadband Initiative is a proposal to ensure that geography does not determine who gets to participate in the digital economy.
+              Without reliable broadband, rural households in Aurora have a harder time with school, healthcare, and work. TABI proposes a way for the town to fix that with public fiber and targeted support for low-income households.
             </motion.p>
           </div>
         </div>

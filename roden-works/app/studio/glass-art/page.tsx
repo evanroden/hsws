@@ -5,7 +5,7 @@ import GlassArtContent from './GlassArtContent'
 export const metadata: Metadata = {
   title: 'Glass Art — Fractured Futures',
   description:
-    'Kiln forming and glass fusing — exploring how fractured forms hold light, color, and meaning within a single unified surface.',
+    'Kiln-formed, fused glass: separate sheets of color fired together into a single surface.',
 }
 
 export default function GlassArtPage() {

@@ -12,19 +12,19 @@ const applications = [
   {
     title: 'Antibiotic-Resistant Drug Design',
     description:
-      'Peptide assemblies that bypass conventional resistance mechanisms by disrupting bacterial membranes through physical pore formation rather than metabolic inhibition. These peptides remain effective even in whole blood environments — a critical benchmark that most antimicrobial peptides fail.',
+      'These peptides kill bacteria by punching pores in their membranes, so they sidestep the resistance mechanisms that target metabolic drugs. They stay active in whole blood, a test most antimicrobial peptides fail.',
     color: '#B87333',
   },
   {
     title: 'pH-Responsive Drug Delivery',
     description:
-      'The pHD peptide family (pH-dependent) forms nanopores that activate specifically at pH < 6, enabling targeted drug release in acidic tumor microenvironments. This selectivity means the delivery vehicle is inert in healthy tissue and activates only at the disease site.',
+      'The pHD (pH-dependent) peptides form nanopores only at pH < 6. Tumor microenvironments are acidic, so a carrier built on them could stay inactive in healthy tissue and release its drug at the tumor.',
     color: '#2D5A45',
   },
   {
     title: 'Biosensor Engineering',
     description:
-      'Self-assembling nanopore structures that can be engineered to detect specific molecular signatures. The controlled geometry of peptide pores enables single-molecule detection capabilities for diagnostic applications in infectious disease and cancer biomarkers.',
+      'Self-assembling nanopores can be engineered to detect specific molecules. Because the pore geometry is controlled, they could support single-molecule detection of infectious disease and cancer biomarkers.',
     color: '#8A9BA8',
   },
 ]
@@ -34,19 +34,19 @@ const keyPeptides = [
     name: 'Macrolittins',
     origin: 'Evolved from melittin (bee venom)',
     mechanism:
-      'Form large, stable pores in lipid membranes at nanomolar concentrations. Potent antibacterial activity maintained in physiological conditions.',
+      'Form large, stable pores in lipid membranes at nanomolar concentrations and stay antibacterial under physiological conditions.',
   },
   {
     name: 'pHD Peptides',
     origin: 'Synthetic molecular evolution',
     mechanism:
-      'pH-dependent nanopores that remain inactive at physiological pH (7.4) and activate at acidic pH (< 6). Ideal for tumor-targeted delivery.',
+      'pH-dependent nanopores that stay inactive at physiological pH (7.4) and open at acidic pH (< 6), which makes them candidates for tumor-targeted delivery.',
   },
   {
     name: 'ATRAM',
     origin: 'Acidity-Triggered Rational Membrane insertion',
     mechanism:
-      'Peptide that inserts into membranes only under acidic conditions, serving as a molecular switch for controlled membrane disruption.',
+      'Inserts into membranes only under acidic conditions, so it works as a switch for controlled membrane disruption.',
   },
 ]
 
@@ -154,9 +154,9 @@ export default function WimleyLabPage() {
               Wimley Lab
             </h1>
             <p className="mt-4 text-titanium text-lg max-w-2xl">
-              Membrane protein models and combinatorial chemistry — designing
-              peptide assemblies that interact with lipid bilayer membranes for
-              applications in drug design, delivery, and diagnostics.
+              I used membrane protein models and combinatorial chemistry to
+              design peptide assemblies that interact with lipid bilayers, for
+              use in drug design, drug delivery, and diagnostics.
             </p>
           </motion.div>
         </div>
@@ -181,25 +181,24 @@ export default function WimleyLabPage() {
                 <div className="space-y-4 text-titanium leading-relaxed">
                   <p>
                     In Dr. William Wimley&apos;s lab (George A. Adrouny
-                    Professor of Biochemistry at Tulane School of Medicine), Evan
-                    used PDB membrane protein models with combinatorial chemistry
+                    Professor of Biochemistry at Tulane School of Medicine), I
+                    used PDB membrane protein models and combinatorial chemistry
                     to design peptide assemblies that interact with membrane
                     proteins and lipid bilayers.
                   </p>
                   <p>
-                    The work involved identifying membrane-spanning peptide pore
-                    structures using high-throughput screening — including the
-                    pHD peptide family (nanopores activated at pH &lt; 6) and
-                    macrolittins (evolved from melittin, the primary cytolytic
-                    component of bee venom).
+                    I used high-throughput screening to identify peptides that
+                    form pores across the membrane. These included the pHD
+                    peptide family (nanopores activated at pH &lt; 6) and
+                    macrolittins, which were evolved from melittin, the main
+                    cytolytic component of bee venom.
                   </p>
                   <p>
-                    The lab&apos;s approach — synthetic molecular evolution —
-                    uses iterative rounds of peptide library design, synthesis,
-                    and functional screening to evolve peptides with specific
-                    membrane-interacting properties. This has produced peptides
-                    effective as antibacterial agents in whole blood,
-                    pH-responsive drug delivery vehicles, and self-assembling
+                    The lab&apos;s method, synthetic molecular evolution, runs
+                    repeated rounds of library design, synthesis, and screening
+                    to select peptides with specific membrane activity. It has
+                    produced antibacterial peptides that work in whole blood,
+                    pH-responsive delivery vehicles, and self-assembling
                     biosensor components.
                   </p>
                 </div>
@@ -263,12 +262,12 @@ export default function WimleyLabPage() {
               Peptide Families
             </span>
             <h2 className="font-serif text-heading text-white mt-3">
-              Evolved molecules.
+              Peptide families from the lab.
             </h2>
             <p className="mt-4 text-titanium max-w-2xl">
-              Through synthetic molecular evolution, the Wimley Lab has
-              developed peptide families with distinct membrane-interacting
-              properties — each designed for a specific biomedical application.
+              The Wimley Lab has used synthetic molecular evolution to develop
+              several peptide families, each with different membrane activity
+              and a different intended use.
             </p>
           </motion.div>
 
@@ -309,7 +308,7 @@ export default function WimleyLabPage() {
               Applications
             </span>
             <h2 className="font-serif text-heading text-white mt-3">
-              From membrane to medicine.
+              Potential applications.
             </h2>
           </motion.div>
 

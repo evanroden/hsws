@@ -2,7 +2,7 @@ export const SITE_CONFIG = {
   name: 'Evan Roden',
   title: 'Evan Roden — Engineering, Advocacy, Creative',
   description:
-    'Optimizing complex systems to improve human quality of life at the intersection of engineering, sustainability, and public advocacy.',
+    'Sustainability engineer at ENFRA managing hospital energy plants, with a background in biomedical research, organ donation advocacy, and film.',
   url: 'https://roden.works',
   email: 'evanjroden@gmail.com',
   phone: '(716) 418-4157',

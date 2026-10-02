@@ -123,10 +123,10 @@ export const STATUS_TEXT: Record<IntakeStatus, { label: string; detail: string }
 }
 
 export const SILL_TEXT: Record<SillState, string> = {
-  none: 'Not needed — the wedge is well below Myrtle Grove',
-  approaching: 'Built — the wedge is approaching from downstream',
-  holding: 'Holding — the toe is stopped at the sill',
-  overtopped: 'Overtopped — salt is spilling past the crest',
+  none: 'Not needed: the wedge is well below Myrtle Grove',
+  approaching: 'Built: the wedge is approaching from downstream',
+  holding: 'Holding: the toe is stopped at the sill',
+  overtopped: 'Overtopped: salt is spilling past the crest',
 }
 
 /* ─── Landmarks ──────────────────────────────────────────────────────────── */
@@ -184,7 +184,7 @@ export const LANDMARKS: Landmark[] = [
     rm: 75.5,
     kind: 'intake',
     priority: 1,
-    note: 'Plaquemines Parish intake — the next plant upriver when the 2023 toe peaked at RM 69.4.',
+    note: 'Plaquemines Parish intake, the next plant upriver when the 2023 toe peaked at RM 69.4.',
     source: 'dvids',
   },
   {

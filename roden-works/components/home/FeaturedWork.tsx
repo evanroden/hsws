@@ -12,7 +12,7 @@ const featured = [
     category: 'Energy-as-a-Service',
     slug: 'enfra',
     description:
-      '$143.8 million, 30-year EaaS partnership delivering $354.6M in guaranteed savings and 52.5% reduction in purchased electricity.',
+      '$143.8 million, 30-year EaaS partnership with $354.6M in guaranteed savings and a 52.5% cut in purchased electricity.',
     href: '/engineering-and-sustainability/enfra',
     tag: 'Engineering',
     color: 'bg-forest/20 text-verdigris border-forest-light/20',
@@ -23,7 +23,7 @@ const featured = [
     category: 'Legislative Advocacy',
     slug: 'ycod',
     description:
-      'Founded at age 17. Seven years of advocacy to change New York\'s organ donor designation system, addressing the state\'s lowest-in-nation registration rate.',
+      'Co-founded at 17. Seven years of advocacy to change how New York designates organ donors, in a state with the lowest registration rate in the country.',
     href: '/advocacy-and-civic/ycod',
     tag: 'Advocacy',
     color: 'bg-copper/20 text-copper border-copper/20',
@@ -34,7 +34,7 @@ const featured = [
     category: 'Biomedical Engineering',
     slug: 'va-prosthetics',
     description:
-      'Designed and modeled custom prosthetic devices in Fusion 360 for 3D printing, restoring autonomy to American veterans in the Southern Louisiana region.',
+      'Designed custom prosthetic devices in Fusion 360 and 3D-printed them for veterans in southern Louisiana.',
     href: '/engineering-and-sustainability/research/va-prosthetics',
     tag: 'Research',
     color: 'bg-clinical/20 text-titanium border-titanium/20',

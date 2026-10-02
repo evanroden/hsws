@@ -94,9 +94,9 @@ export default function HAPSPage() {
               Household Air Pollution Study
             </h1>
             <p className="mt-4 text-titanium text-lg max-w-2xl">
-              Investigating indoor exposure to PM2.5, black carbon, and NO
-              <sub>2</sub> in New Orleans homes — and their cardiovascular
-              consequences.
+              Indoor exposure to PM2.5, black carbon, and NO
+              <sub>2</sub> in New Orleans homes, and its effect on
+              cardiovascular health.
             </p>
           </motion.div>
         </div>
@@ -122,22 +122,19 @@ export default function HAPSPage() {
                   The Household Air Pollution Study (HAPS) at Tulane
                   University&apos;s Weatherhead School of Public Health measured
                   indoor concentrations of PM2.5, black carbon, and nitrogen
-                  dioxide across homes in New Orleans — a city where
-                  environmental justice and health disparities intersect with
-                  particular urgency.
+                  dioxide in homes across New Orleans.
                 </p>
                 <p>
-                  Led by Dr. Felicia Rabito, the study deployed environmental
-                  monitors in participant homes to capture continuous exposure
-                  data, correlating pollutant concentrations with biologic
-                  assessments including ambulatory blood pressure monitoring,
-                  respiratory function tests, and inflammatory biomarker analysis.
+                  Dr. Felicia Rabito&apos;s team placed monitors in participant
+                  homes to record exposure continuously, then compared pollutant
+                  levels with each participant&apos;s ambulatory blood pressure,
+                  respiratory function tests, and inflammatory biomarkers.
                 </p>
                 <p>
-                  New Orleans presents a uniquely important study environment:
-                  aging housing stock, high rates of gas stove usage, subtropical
-                  humidity affecting ventilation patterns, and communities
-                  already facing disproportionate cardiovascular disease burden.
+                  New Orleans is a useful place to study this. The housing is
+                  old, many homes cook with gas, the humid climate shapes how
+                  people ventilate, and several communities already carry a
+                  higher burden of cardiovascular disease.
                 </p>
               </div>
             </motion.div>
@@ -155,18 +152,15 @@ export default function HAPSPage() {
               </h2>
               <div className="space-y-4 text-titanium leading-relaxed">
                 <p>
-                  Evan supported the study through environmental data collection,
-                  monitor deployment and retrieval, participant coordination, and
-                  data processing. Work included deploying PM2.5 and NO
-                  <sub>2</sub> monitors in homes, maintaining quality assurance
-                  protocols, and assisting with the data pipeline from raw sensor
-                  output to analyzable datasets.
+                  I deployed and retrieved the PM2.5 and NO
+                  <sub>2</sub> monitors in participant homes, coordinated with
+                  participants, followed the study&apos;s quality assurance
+                  protocols, and helped turn raw sensor output into datasets
+                  ready for analysis.
                 </p>
                 <p>
-                  This research provided direct exposure to the intersection of
-                  engineering measurement and public health — understanding that
-                  the sensors and data systems are only meaningful when they
-                  connect to human outcomes.
+                  The work taught me how environmental measurements get tied to
+                  health outcomes in a real study.
                 </p>
               </div>
 

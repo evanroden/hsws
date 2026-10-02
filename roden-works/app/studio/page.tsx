@@ -5,7 +5,7 @@ import StudioGallery from './StudioGallery'
 export const metadata: Metadata = {
   title: 'Creative Studio — Cinematography, Glass Art & Photography',
   description:
-    'Cinematography, photography, glass art, and editorial modeling — the creative portfolio of Evan Roden.',
+    'Cinematography, photography, glass art, and modeling by Evan Roden.',
 }
 
 export default function StudioPage() {
@@ -13,7 +13,7 @@ export default function StudioPage() {
     <>
       <PageHero
         title="The Studio"
-        subtitle="Cinematography, photography, kiln-formed glass art, and editorial modeling — visual storytelling across every medium."
+        subtitle="Cinematography, photography, kiln-formed glass, and runway modeling."
         label="Creative Portfolio"
         variant="warm"
       />

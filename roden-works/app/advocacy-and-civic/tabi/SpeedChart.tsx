@@ -32,7 +32,7 @@ export default function SpeedChart({ data, highlight, animate }: { data: SpeedTi
       title={metric === 'down' ? 'Download speed, Mbps' : 'Upload speed, Mbps'}
       subtitle={
         hi && fcc
-          ? `Rural Aurora averages ${hi.down}/${hi.up} Mbps — below the FCC's ${fcc.down}/${fcc.up} Mbps broadband minimum on both download and upload.`
+          ? `Rural Aurora averages ${hi.down}/${hi.up} Mbps, below the FCC's ${fcc.down}/${fcc.up} Mbps broadband minimum on both download and upload.`
           : undefined
       }
       actions={

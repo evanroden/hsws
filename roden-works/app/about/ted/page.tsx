@@ -9,20 +9,20 @@ import { useInView, useCountUp } from '@/lib/hooks'
 
 const quotes = [
   {
-    text: 'Young people are not the leaders of tomorrow. They are the leaders of right now — and the systems that exclude them are weaker for it.',
-    context: 'On youth political agency',
+    text: 'Young people already have a stake in the decisions made about them, and the systems that leave them out are weaker for it.',
+    context: 'Youth political agency',
   },
   {
-    text: 'Civic participation is not a privilege extended to those old enough to vote. It is a fundamental right that begins the moment a person is affected by policy — which is to say, from birth.',
-    context: 'On expanding the definition of participation',
+    text: 'Policy affects people from birth, so the right to take part in civic life should start well before the voting age.',
+    context: 'Who gets to participate',
   },
   {
-    text: 'We built an organization that changed legislation in two states before any of us could legally vote. That is not an anomaly. That is what happens when you stop asking young people to wait their turn.',
-    context: 'On the Youth Coalition For Organ Donation',
+    text: 'I used the Youth Coalition For Organ Donation as my main example: a group of young people who influenced legislation in two states without waiting their turn.',
+    context: 'The Youth Coalition For Organ Donation',
   },
   {
-    text: 'The question is never whether young people are capable of political leadership. The question is whether existing institutions are capable of making room for them.',
-    context: 'On institutional barriers',
+    text: 'Young people have shown they can lead politically. I asked whether existing institutions are able to make room for them.',
+    context: 'Institutional barriers',
   },
 ]
 
@@ -32,28 +32,28 @@ const keyTakeaways = [
     suffix: '%',
     label: 'Of global population under 30',
     description:
-      'Half the world is under 30, yet youth representation in legislative bodies globally averages less than 2%. This disconnect between demographic reality and political representation is not a gap — it is a structural exclusion.',
+      'Half the world is under 30, yet people under 30 hold less than 2% of seats in legislatures worldwide. I see that as structural exclusion.',
   },
   {
     stat: 7,
     suffix: '+ Years',
-    label: 'Leading the YCOD before voting age',
+    label: 'Leading the YCOD',
     description:
-      'The Youth Coalition For Organ Donation was founded and led for over seven years, achieving legislative change in multiple states, all before its leadership could legally cast a ballot. This trajectory challenges the assumption that political efficacy requires formal enfranchisement.',
+      'I co-founded the Youth Coalition For Organ Donation at 17 and led it for more than seven years. Its legislative work in two states was done by young people, which cuts against the idea that political influence depends on being able to vote.',
   },
   {
     stat: 2,
     suffix: ' States',
     label: 'Legislation influenced by youth advocacy',
     description:
-      'Presumed consent organ donation legislation was advanced in two states through direct advocacy, coalition building, and testimony — work entirely conceived and executed by young people operating outside the traditional political apparatus.',
+      'We advanced presumed consent organ donation legislation in two states through direct advocacy, coalition building, and testimony. Young people planned and carried out all of it, outside the usual political channels.',
   },
   {
     stat: 18,
     suffix: '',
     label: 'Arbitrary age threshold for political voice',
     description:
-      'The voting age of 18 is treated as a natural boundary for political participation, but it is an arbitrary convention. Young people are affected by tax policy, education policy, environmental policy, and healthcare policy long before they can vote on any of it.',
+      'The voting age of 18 is treated as the natural start of political participation, but it is a convention. Tax, education, environmental, and healthcare policy affect people long before they can vote on any of it.',
   },
 ]
 
@@ -86,7 +86,6 @@ function AnimatedQuote({
 
       <div className="pl-6 md:pl-8">
         <p className="font-serif text-xl md:text-2xl lg:text-3xl text-white/90 leading-relaxed">
-          &ldquo;
           {words.map((word, i) => (
             <motion.span
               key={i}
@@ -102,7 +101,6 @@ function AnimatedQuote({
               {word}
             </motion.span>
           ))}
-          &rdquo;
         </p>
         <motion.span
           initial={{ opacity: 0, y: 10 }}
@@ -184,7 +182,7 @@ export default function TedPage() {
 
       <PageHero
         title="TEDxTulane"
-        subtitle="A talk on youth political participation and the structural barriers that exclude young people from the systems that govern their lives."
+        subtitle="My talk on youth political participation and the barriers that keep young people out of the systems that govern them."
         label="TEDx Talk"
         variant="dark"
       />
@@ -222,24 +220,21 @@ export default function TedPage() {
               transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             >
               <p className="text-lg text-titanium leading-relaxed">
-                At TEDxTulane, I delivered a talk on the structural exclusion of young people from
-                political systems. Drawing on direct experience founding and leading the Youth
-                Coalition For Organ Donation — an organization that changed legislation in
-                multiple states before any of its leadership could legally vote — the talk
-                challenged the assumption that political efficacy is a function of age.
+                At TEDxTulane, I gave a talk on how political systems shut young people out. I drew
+                on my experience co-founding and leading the Youth Coalition For Organ Donation,
+                which influenced legislation in two states, to challenge the idea that political
+                influence depends on age.
               </p>
               <p className="mt-6 text-titanium leading-relaxed">
-                The central argument is straightforward: young people are not future stakeholders.
-                They are current stakeholders who are systematically denied access to the
-                decision-making processes that shape their education, environment, healthcare, and
-                economic futures. The talk examines why this exclusion persists, what it costs
-                democratic systems, and what changes when young people stop asking for permission
-                and start building their own platforms for influence.
+                My argument was that young people are already stakeholders. Decisions about their
+                education, environment, healthcare, and economic futures are made without them. In
+                the talk I looked at why that exclusion persists, what it costs democracies, and
+                what happens when young people stop asking permission and build their own platforms
+                for influence.
               </p>
               <p className="mt-6 text-titanium leading-relaxed">
-                This is not a talk about potential. It is a talk about performance — about what
-                young people have already accomplished when institutional barriers are
-                circumvented rather than waited upon.
+                My examples were things young people have already done by working around
+                institutional barriers.
               </p>
             </motion.div>
           </div>
@@ -286,9 +281,9 @@ export default function TedPage() {
             className="mb-8"
           >
             <span className="font-mono text-xs tracking-widest uppercase text-copper mb-4 block">
-              Highlights
+              Main Points
             </span>
-            <h2 className="font-serif text-heading text-white">From the Stage</h2>
+            <h2 className="font-serif text-heading text-white">The Argument</h2>
           </motion.div>
 
           <div className="max-w-4xl">
@@ -313,8 +308,7 @@ export default function TedPage() {
             </span>
             <h2 className="font-serif text-heading text-white">Key Takeaways</h2>
             <p className="mt-4 text-lg text-titanium max-w-2xl leading-relaxed">
-              The data behind the argument — quantifying the gap between youth capability and
-              institutional inclusion.
+              The numbers behind the argument.
             </p>
           </motion.div>
 
@@ -343,9 +337,8 @@ export default function TedPage() {
             </div>
 
             <p className="font-serif text-xl md:text-2xl text-white/90 italic leading-relaxed">
-              &ldquo;The measure of a democratic system is not how well it serves those who already have
-              power. It is how effectively it incorporates the voices of those it has not yet
-              learned to hear.&rdquo;
+              I argued that a democracy should be judged by how well it includes the people it has
+              left out, young people among them.
             </p>
 
             <div className="mt-8 flex items-center justify-center gap-3">

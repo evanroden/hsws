@@ -276,9 +276,10 @@ export default function Hero() {
           className="max-w-3xl mx-auto"
         >
           <p className="text-lg md:text-xl text-titanium leading-relaxed">
-            Optimizing complex systems to improve human quality of life
+            Sustainability engineer at ENFRA managing hospital energy plants,
+            with a background in biomedical research, organ donation advocacy, and film.
             <br className="hidden md:block" />
-            {' '}at the intersection of{' '}
+            {' '}Selected work in{' '}
             {/* Own centered line on mobile; inline slot on desktop. Words cross-slide so it's never blank. */}
             <span
               className="relative block md:inline-block md:min-w-[210px] text-center md:text-left overflow-hidden align-bottom mt-1 md:mt-0"

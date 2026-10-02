@@ -9,7 +9,7 @@ const pillars = [
   {
     title: 'Energy & Infrastructure',
     description:
-      'From hospital central energy plants to ERP systems — designing, managing, and optimizing the critical infrastructure that keeps organizations running.',
+      'Currently managing central energy plants for Rochester Regional Health at ENFRA. Earlier work covered fire and life safety integration at Convergint and ERP implementations at Odoo.',
     href: '/engineering-and-sustainability',
     stat: '$143.8M',
     statLabel: 'EaaS Partnership',
@@ -28,7 +28,7 @@ const pillars = [
   {
     title: 'Civic Advocacy',
     description:
-      'Seven years leading organ donation reform. Climate policy fellowship. Award-winning urban revitalization. Building systems that serve everyone.',
+      'Seven years of work on opt-out organ donation law in New York, plus a climate policy fellowship and a New Orleans East plan that won a C40 Reinventing Cities Award.',
     href: '/advocacy-and-civic',
     stat: '100K+',
     statLabel: 'On the waiting list',
@@ -45,7 +45,7 @@ const pillars = [
   {
     title: 'Visual Arts',
     description:
-      'Cinematography with Claiborne Avenue Productions. Digital marketing for Tulane. Kiln-formed glass art. Vogue Italy editorial modeling.',
+      'Camera work for Claiborne Avenue Productions, marketing video for Tulane\'s Freeman School, kiln-formed glass, and runway modeling for Vogue Italy.',
     href: '/studio',
     stat: '4',
     statLabel: 'Creative Disciplines',
@@ -82,7 +82,7 @@ export default function BentoGrid() {
             </span>
           </div>
           <h2 className="font-serif text-heading text-white">
-            Where disciplines converge.
+            Three areas of work.
           </h2>
         </motion.div>
 

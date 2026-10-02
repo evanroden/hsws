@@ -81,11 +81,11 @@ export default function SavingsVisualization() {
           className="mb-10 md:mb-12 max-w-3xl"
         >
           <span className="font-mono text-xs tracking-widest uppercase text-copper">Energy Savings</span>
-          <h2 className="font-serif text-heading text-white mt-3">What optimization is worth over 30 years.</h2>
+          <h2 className="font-serif text-heading text-white mt-3">Savings over the 30-year term.</h2>
           <p className="mt-4 text-titanium leading-relaxed">
-            The partnership replaces a rising utility bill with a plant engineered for efficiency. The gap between
-            the two curves is the guaranteed savings — $6.9 million in the first year, compounding to $354.6 million
-            over the term.
+            Without the project, the hospitals&apos; energy costs keep rising from today&apos;s baseline. The gap
+            between the two curves is the guaranteed savings: $6.9 million in the first year and $354.6 million
+            over the full term.
           </p>
         </motion.div>
 

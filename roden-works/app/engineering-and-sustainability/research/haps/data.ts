@@ -25,7 +25,7 @@ export const POLLUTANTS: Record<PollutantId, Pollutant> = {
     color: chart.copper,
     kind: 'particles',
     description:
-      'Fine particulate matter smaller than 2.5 micrometers in diameter. These particles penetrate deep into lung alveoli and cross into the bloodstream, triggering systemic inflammatory responses. Sources include cooking, candles, incense, and tobacco smoke.',
+      'Fine particulate matter smaller than 2.5 micrometers in diameter. The particles reach deep into the lung alveoli and can enter the bloodstream, causing inflammation throughout the body. Indoor sources include cooking, candles, incense, and tobacco smoke.',
   },
   bc: {
     id: 'bc',
@@ -33,7 +33,7 @@ export const POLLUTANTS: Record<PollutantId, Pollutant> = {
     color: chart.verdigris,
     kind: 'particles',
     description:
-      'A component of soot produced by incomplete combustion of fossil fuels, biomass, and cooking fuels. The study found that participants in the highest quartile of black carbon exposure had a clinically significant +2 mmHg increase in systolic blood pressure.',
+      'A component of soot from incomplete combustion of fossil fuels, biomass, and cooking fuels. In the study, participants in the highest quartile of black carbon exposure had systolic blood pressure about 2 mmHg higher.',
   },
   no2: {
     id: 'no2',
@@ -41,7 +41,7 @@ export const POLLUTANTS: Record<PollutantId, Pollutant> = {
     color: chart.steel,
     kind: 'gas',
     description:
-      'Nitrogen dioxide generated primarily by gas stoves and space heaters in indoor environments. NO₂ irritates the airways, exacerbates asthma, and contributes to chronic respiratory disease — particularly dangerous in poorly ventilated homes.',
+      'Indoors, nitrogen dioxide comes mostly from gas stoves and space heaters. NO₂ irritates the airways, worsens asthma, and contributes to chronic respiratory disease. Poorly ventilated homes are hit hardest.',
   },
 }
 

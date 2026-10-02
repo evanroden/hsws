@@ -10,14 +10,14 @@ const activeProjects = [
     title: 'Fat City Redevelopment',
     funding: '$13M CDBG',
     description:
-      'Community Development Block Grant-funded redevelopment of the Fat City entertainment district. The project aims to transform the aging nightlife strip into a mixed-use, walkable neighborhood with improved streetscaping, public lighting, and commercial facade improvements.',
+      'Community Development Block Grant-funded redevelopment of the Fat City entertainment district. The goal is to turn the aging nightlife strip into a walkable, mixed-use neighborhood with new streetscaping, public lighting, and facade improvements.',
     status: 'Active',
   },
   {
     title: 'Clearview City Center',
     funding: '$100M',
     description:
-      'Major conversion of the former Clearview Mall site into a mixed-use town center with residential, retail, office, and civic components. The project represents the largest single investment in Metairie\'s urban core in decades.',
+      'Conversion of the former Clearview Mall site into a mixed-use town center with residential, retail, office, and civic space.',
     status: 'Active',
   },
 ]
@@ -101,7 +101,7 @@ export default function MidtownMetairiePage() {
               Midtown Metairie
             </h1>
             <p className="mt-6 text-titanium text-lg leading-relaxed max-w-2xl mx-auto">
-              An urban planning proposal for Louisiana&apos;s most populous unincorporated community — reimagining the commercial and civic core of Jefferson Parish&apos;s largest neighborhood.
+              My urban planning proposal for the commercial core of Metairie, Louisiana&apos;s most populous unincorporated community.
             </p>
           </motion.div>
 
@@ -136,10 +136,10 @@ export default function MidtownMetairiePage() {
                 </svg>
               </div>
               <h2 className="font-serif text-2xl text-white mb-4">
-                Coming Soon — Full Proposal
+                Full Proposal in Progress
               </h2>
               <p className="text-titanium text-sm leading-relaxed max-w-xl mx-auto">
-                The full Midtown Metairie proposal is currently in development. It builds on two major active planning initiatives — the Fat City Redevelopment ($13M CDBG) and the Clearview City Center conversion ($100M) — to envision a walkable, mixed-use urban center for an unincorporated community of over 140,000 residents.
+                I&apos;m still writing the full proposal. It builds on two active projects, the Fat City Redevelopment ($13M CDBG) and the Clearview City Center conversion ($100M), and lays out a walkable, mixed-use center for a community of over 140,000 residents.
               </p>
             </div>
           </motion.div>
@@ -169,7 +169,7 @@ export default function MidtownMetairiePage() {
                 animate={contextView.isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
-                Metairie is the most populous unincorporated community in Louisiana and one of the largest in the United States. With over 140,000 residents, it would be the third-largest city in the state if incorporated — yet it has no mayor, no city council, and no independent planning authority. It is governed as part of Jefferson Parish, which makes coordinated urban planning uniquely challenging.
+                Metairie is the most populous unincorporated community in Louisiana and one of the largest in the United States. It has over 140,000 residents but no mayor, no city council, and no planning authority of its own. Jefferson Parish governs it, which makes coordinated planning hard.
               </motion.p>
 
               <motion.p
@@ -177,7 +177,7 @@ export default function MidtownMetairiePage() {
                 animate={contextView.isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                The built environment reflects this governance gap. Metairie is defined by auto-oriented commercial strips, surface parking lots, and single-use zoning — the hallmarks of mid-century suburban development. Veterans Memorial Boulevard, the community&apos;s central artery, is a six-lane arterial lined with strip malls, fast food restaurants, and office parks. There is almost no protected bike infrastructure, limited transit, and minimal public space.
+                Most of Metairie was built around the car: commercial strips, surface parking, and single-use zoning typical of mid-century suburbs. Veterans Memorial Boulevard, the main corridor, is six lanes lined with strip malls, fast food restaurants, and office parks. There is almost no protected bike infrastructure, limited transit, and little public space.
               </motion.p>
 
               <motion.p
@@ -185,7 +185,7 @@ export default function MidtownMetairiePage() {
                 animate={contextView.isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                But that is beginning to change. Two major projects — the Fat City Redevelopment and the Clearview City Center conversion — represent a once-in-a-generation opportunity to rethink what Midtown Metairie can become. This proposal aims to connect those dots: to show how these two catalytic investments can anchor a broader transformation of Metairie&apos;s commercial core into something more walkable, more connected, and more resilient.
+                Two projects now underway, the Fat City Redevelopment and the Clearview City Center conversion, give the parish a chance to change that. My proposal shows how those two investments could anchor a more walkable, better connected commercial core between them.
               </motion.p>
             </div>
           </div>
@@ -228,10 +228,10 @@ export default function MidtownMetairiePage() {
             className="mb-12"
           >
             <span className="font-mono text-xs tracking-widest uppercase text-copper">
-              Catalytic Investments
+              Active Investments
             </span>
             <h2 className="font-serif text-heading text-white mt-3">
-              Two projects reshaping the core.
+              Two projects already underway.
             </h2>
           </motion.div>
 
@@ -268,8 +268,8 @@ export default function MidtownMetairiePage() {
                   >
                     <p className="text-muted text-xs leading-relaxed">
                       {i === 0
-                        ? 'The Fat City district, bounded roughly by Division Street, 18th Street, Severn Avenue, and the Metairie Country Club, was once a thriving entertainment destination. The CDBG-funded redevelopment focuses on streetscaping, drainage improvements, public art, and commercial facade grants to attract new tenants and foot traffic.'
-                        : 'The Clearview Mall site, anchored at the intersection of Veterans Memorial Blvd and Clearview Pkwy, is being reimagined as a mixed-use town center. The $100M project includes residential towers, a grocery anchor, retail, office space, and structured parking — a radical departure from the enclosed mall format.'}
+                        ? 'The Fat City district, bounded roughly by Division Street, 18th Street, Severn Avenue, and the Metairie Country Club, was once a busy entertainment district. The CDBG-funded redevelopment focuses on streetscaping, drainage improvements, public art, and commercial facade grants to attract new tenants and foot traffic.'
+                        : 'The Clearview Mall site, anchored at the intersection of Veterans Memorial Blvd and Clearview Pkwy, is being converted into a mixed-use town center. The $100M project includes residential towers, a grocery anchor, retail, office space, and structured parking.'}
                     </p>
                   </motion.div>
                 )}
@@ -295,7 +295,7 @@ export default function MidtownMetairiePage() {
               What the full proposal will cover.
             </h2>
             <p className="mt-4 text-titanium max-w-2xl">
-              The Midtown Metairie proposal is organized around four interconnected categories. Below is a preview of the topics and recommendations under development.
+              The proposal has four sections. These are the topics and recommendations I&apos;m working on.
             </p>
           </motion.div>
 
@@ -356,7 +356,7 @@ export default function MidtownMetairiePage() {
                   In Development
                 </span>
                 <p className="text-white font-serif text-lg leading-relaxed">
-                  The full Midtown Metairie proposal is being developed with detailed mapping, policy recommendations, and design guidelines. Check back for the complete plan.
+                  I&apos;m still working on the full proposal, including maps, policy recommendations, and design guidelines. I&apos;ll post it here when it&apos;s done.
                 </p>
               </div>
             </div>

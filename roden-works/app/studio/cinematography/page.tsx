@@ -18,7 +18,7 @@ const equipment = [
       },
       {
         name: 'Sony a7s II',
-        detail: 'Full-frame mirrorless, exceptional low-light performance, S-Log2/S-Log3',
+        detail: 'Full-frame mirrorless, strong low-light performance, S-Log2/S-Log3',
       },
     ],
   },
@@ -77,19 +77,16 @@ export default function CinematographyPage() {
                 Claiborne Avenue Productions
               </h2>
               <p className="mt-6 text-titanium leading-relaxed">
-                Under the direction of Albert J. Moten, Jr., Claiborne Avenue Productions has been a
-                cornerstone of professional filmmaking in New Orleans for over 20 years. Moten&apos;s credits
-                span Hollywood productions including{' '}
+                Albert J. Moten, Jr. has run Claiborne Avenue Productions in New Orleans for over 20
+                years. His credits include Hollywood productions such as{' '}
                 <span className="text-white font-medium">12 Years a Slave</span> (2013) and{' '}
-                <span className="text-white font-medium">Now You See Me</span> (2013), bringing a
-                level of craft and discipline that has defined the production house&apos;s approach to every
-                project.
+                <span className="text-white font-medium">Now You See Me</span> (2013).
               </p>
               <p className="mt-4 text-titanium leading-relaxed">
-                Working as camera operator and editor at Claiborne Avenue, I gained hands-on
-                experience with professional cinema workflows &mdash; from blocking and lighting through
-                to color grading and delivery. This mentorship under Moten has shaped a disciplined,
-                narrative-first approach to visual storytelling that carries through every frame.
+                I worked at Claiborne Avenue as a camera operator and editor, which put me on
+                professional sets for every stage of a production, from blocking and lighting on the
+                day to color grading and delivery afterward. Most of how I approach a shoot, I
+                learned from Moten.
               </p>
             </motion.div>
 
@@ -106,16 +103,13 @@ export default function CinematographyPage() {
               </h2>
               <p className="mt-6 text-titanium leading-relaxed">
                 As a videographer for the A.B. Freeman School of Business at Tulane University, I
-                produced digital marketing content that served one of the top-ranked business schools
-                in the South. This work included short-form promotional videos, faculty interviews,
-                event coverage, and social media content designed for engagement across multiple
-                platforms.
+                produced digital marketing content: short promotional videos, faculty interviews,
+                event coverage, and clips for the school&apos;s social media channels.
               </p>
               <p className="mt-4 text-titanium leading-relaxed">
-                The institutional environment demanded a different kind of discipline: tight
-                turnaround times, brand consistency, and the ability to tell compelling stories within
-                strict creative guidelines. Every deliverable balanced the school&apos;s premium
-                positioning with authentic student and faculty narratives.
+                The work ran on short turnarounds and the school&apos;s brand guidelines, so each
+                piece had to tell a student or faculty member&apos;s story within a fixed visual
+                style.
               </p>
             </motion.div>
           </div>
@@ -168,8 +162,7 @@ export default function CinematographyPage() {
             </span>
             <h2 className="font-serif text-heading text-white">Short Films</h2>
             <p className="mt-4 text-titanium max-w-2xl leading-relaxed">
-              Poetic and narrative short films exploring perception, connection, and the human
-              condition through cinematic language.
+              Two short films: one poetic, one narrative.
             </p>
           </motion.div>
 
@@ -191,8 +184,8 @@ export default function CinematographyPage() {
                   Camera Operator / Editor
                 </span>
                 <p className="text-titanium text-sm mt-2 leading-relaxed">
-                  A poetic short story exploring connections between communities separated by
-                  infrastructure. Handheld verite style on the Sony a7s II, edited in Premiere Pro
+                  A poetic short about communities separated by infrastructure. Shot handheld in a
+                  verite style on the Sony a7s II, edited in Premiere Pro
                   with sound design in After Effects.
                 </p>
               </div>
@@ -215,9 +208,9 @@ export default function CinematographyPage() {
                   Director of Photography
                 </span>
                 <p className="text-titanium text-sm mt-2 leading-relaxed">
-                  A short narrative exploring perception and reality through the lens of Plato&apos;s
-                  allegory. Shot on BlackMagic Cinema Camera 6K with anamorphic glass, graded in
-                  DaVinci Resolve for a rich, desaturated palette.
+                  A short narrative built on Plato&apos;s allegory of the cave. Shot on the BlackMagic
+                  Cinema Camera 6K with anamorphic lenses and graded in DaVinci Resolve to a
+                  desaturated palette.
                 </p>
               </div>
             </motion.div>
@@ -268,8 +261,8 @@ export default function CinematographyPage() {
                 Director / Editor
               </span>
               <p className="text-titanium text-sm mt-2 leading-relaxed">
-                Promotional content for the Louisiana Children&apos;s Museum, capturing the spirit
-                of play-based learning and community engagement in New Orleans.
+                A promotional ad for the Louisiana Children&apos;s Museum in New Orleans, a museum
+                built around play-based learning.
               </p>
             </div>
           </motion.div>
@@ -297,8 +290,7 @@ export default function CinematographyPage() {
               4K Ambient &amp; Atmospheric
             </h2>
             <p className="mt-4 text-titanium max-w-2xl leading-relaxed">
-              Long-form atmospheric video designed for immersive viewing. Shot in 4K at 60fps with
-              HDR grading for natural, cinema-quality ambiance.
+              Long-form background video, shot in 4K at 60fps and graded in HDR.
             </p>
           </motion.div>
 
@@ -319,9 +311,9 @@ export default function CinematographyPage() {
                 Cinematographer / Colorist
               </span>
               <p className="text-titanium text-sm mt-2 leading-relaxed">
-                A snowy afternoon fireplace scene with jazz — designed as a living background for
-                studying, working, or unwinding. Shot on location in upstate New York, graded for
-                natural warmth and HDR detail.
+                Four hours of a fireplace on a snowy afternoon, with jazz, made to play in the
+                background while you study or work. I shot it on location in upstate New York and
+                graded it to keep the warm firelight natural.
               </p>
             </div>
           </motion.div>
@@ -349,8 +341,8 @@ export default function CinematographyPage() {
               WWNO Classical Radio
             </h2>
             <p className="mt-4 text-titanium max-w-2xl leading-relaxed">
-              Sample programming produced for WWNO, New Orleans&apos; NPR affiliate. A curated
-              hour of classical music with contextual narration and seamless transitions.
+              A sample program I produced for WWNO, New Orleans&apos; NPR affiliate: an hour of
+              classical music with narration between pieces.
             </p>
           </motion.div>
 
@@ -394,9 +386,9 @@ export default function CinematographyPage() {
               The Elevator Review Series
             </h2>
             <p className="mt-4 text-titanium max-w-2xl leading-relaxed">
-              Because sometimes you just need to review an elevator. A micro-series applying
-              cinema-grade production values to the world&apos;s most mundane vertical
-              transportation systems.
+              Because sometimes you just need to review an elevator. A micro-series that brings
+              cinema production values to the world&apos;s most mundane vertical transportation
+              systems.
             </p>
           </motion.div>
 

@@ -7,7 +7,7 @@ import SkillsRadar from './SkillsRadar'
 export const metadata: Metadata = {
   title: 'Engineering & Sustainability — EaaS, Biomedical Research & Systems',
   description:
-    'From biomedical research labs to hospital energy plants — designing systems that keep people alive.',
+    'Hospital energy plants, building safety systems, ERP software, and biomedical research at Tulane.',
 }
 
 export default function EngineeringPage() {
@@ -15,7 +15,7 @@ export default function EngineeringPage() {
     <>
       <PageHero
         title="Engineering & Sustainability"
-        subtitle="From biomedical research labs to hospital energy plants — designing systems that keep people alive."
+        subtitle="Hospital energy plants, building safety systems, ERP software, and biomedical research at Tulane."
         label="Technical Portfolio"
         variant="dark"
       />

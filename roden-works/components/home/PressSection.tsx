@@ -11,19 +11,19 @@ const recognition = [
   {
     title: 'C40 Reinventing Cities Award',
     issuer: 'Mayor of New Orleans',
-    detail: 'For a comprehensive revitalization plan for New Orleans East — disaster planning, solar, transit, and green housing.',
+    detail: 'For a revitalization plan for New Orleans East covering disaster planning, solar, transit, and green housing.',
     href: '/advocacy-and-civic/nola-east',
   },
   {
     title: 'TEDxTulane speaker',
     issuer: 'Youth political participation',
-    detail: 'A talk on the structural barriers that exclude young people from the systems that govern their lives.',
+    detail: 'A talk on how young people are structurally shut out of politics.',
     href: '/about/ted',
   },
   {
     title: 'Real Heroes nominee',
     issuer: 'American Red Cross · 2021',
-    detail: 'Nominated for the Real Heroes Education Award for founding The YCOD and leading its advocacy.',
+    detail: 'Nominated for the Real Heroes Education Award for co-founding and leading The YCOD.',
     href: '/advocacy-and-civic/ycod',
   },
   {

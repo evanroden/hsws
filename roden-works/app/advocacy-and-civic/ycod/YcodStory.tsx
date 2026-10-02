@@ -27,7 +27,7 @@ export default function YcodStory() {
           >
             <span className="font-mono text-xs tracking-widest uppercase text-copper mb-6 block">The Story</span>
             <h2 className="font-serif text-heading text-white mb-8">
-              A seventeen-year-old&apos;s answer to a systemic failure.
+              I started The YCOD at seventeen.
             </h2>
           </motion.div>
 
@@ -78,7 +78,7 @@ export default function YcodStory() {
               transition={{ duration: 0.6, delay: 0.6 }}
               className="mt-10 border-l-2 border-copper/60 pl-6 text-white text-xl md:text-2xl font-serif leading-snug"
             >
-              A07954 has not passed yet. The Living Donor Support Act has, and the coalition is still working.
+              The opt-out bill is still unfinished work. The Living Donor Support Act passed, and the coalition is still active.
             </motion.blockquote>
           </div>
         </div>

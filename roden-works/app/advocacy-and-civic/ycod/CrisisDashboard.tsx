@@ -67,7 +67,7 @@ export default function CrisisDashboard() {
           <motion.div {...reveal(0.3)} className="h-full">
             <StatTile
               label="NY donor designation rate"
-              note="The lowest in the entire country"
+              note="The lowest in the country"
               meter={
                 <div className="mt-5 h-1.5 w-full overflow-hidden rounded-full bg-copper/15" aria-hidden="true">
                   <motion.div

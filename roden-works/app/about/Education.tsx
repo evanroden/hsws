@@ -4,10 +4,10 @@ import { motion } from 'framer-motion'
 import { useInView } from '@/lib/hooks'
 
 const certifications = [
-  'TRIZ Associate — Systematic innovation methodology from Altshuller\'s 40 inventive principles',
-  'Odoo Certification — Enterprise resource planning implementation',
+  'TRIZ Associate: systematic innovation method based on Altshuller\'s 40 inventive principles',
+  'Odoo Certification: enterprise resource planning implementation',
   'Biomedical Responsible Conduct of Research Course',
-  'Conflict of Interest — Group 1: Biomedical Research Investigators and Key Personnel',
+  'Conflict of Interest, Group 1: Biomedical Research Investigators and Key Personnel',
 ]
 
 export default function Education() {

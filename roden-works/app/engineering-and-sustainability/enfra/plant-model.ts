@@ -57,13 +57,13 @@ export const GROUPS: GroupDef[] = [
     short: 'Monitors and sequences every system',
     loops: ['controls'],
     description:
-      'The building automation system (BAS) head-end aggregates data from field sensors — temperature, pressure, flow, power — and executes optimized control sequences across all mechanical systems. ENFRA Connect® adds real-time dashboards, automated fault detection and diagnostics, and predictive maintenance alerts.',
+      'The building automation system (BAS) head-end collects data from field sensors (temperature, pressure, flow, power) and runs the control sequences for all mechanical systems. ENFRA Connect® adds real-time dashboards, automated fault detection and diagnostics, and predictive maintenance alerts.',
     params: [
       { label: 'Platform', value: 'ENFRA Connect®' },
       { label: 'Integration', value: 'BACnet / Modbus' },
       { label: 'Monitoring', value: '24/7 remote' },
     ],
-    role: 'Energy data analysis for optimization is one of Evan’s core responsibilities — and it runs on the trends this system records.',
+    role: 'I analyze energy data to find savings, and most of that data comes from the trends this system records.',
   },
   {
     id: 'towers',
@@ -77,7 +77,7 @@ export const GROUPS: GroupDef[] = [
       { label: 'Condenser water', value: '85 °F supply / 95 °F return' },
       { label: 'Heat rejection', value: 'Evaporative' },
     ],
-    role: 'Overseeing subcontractors and managing maintenance budgets — keeping heat-rejection equipment serviced so the chillers can run.',
+    role: 'I oversee the subcontractors and maintenance budget that keep the towers serviced. If the towers can’t reject heat, the chillers can’t run.',
   },
   {
     id: 'chillers',
@@ -85,13 +85,13 @@ export const GROUPS: GroupDef[] = [
     short: 'Make chilled water for cooling',
     loops: ['chw', 'cw'],
     description:
-      'Water-cooled centrifugal chillers produce chilled water for air conditioning, operating-room cooling, MRI suites, pharmaceutical storage, and server rooms. Refrigerant circulates through an evaporator, which cools the chilled water, and a condenser, which rejects that heat to the condenser-water loop. Variable-speed drives optimize part-load efficiency.',
+      'Water-cooled centrifugal chillers produce chilled water for air conditioning, operating-room cooling, MRI suites, pharmaceutical storage, and server rooms. Refrigerant circulates through an evaporator, which cools the chilled water, and a condenser, which rejects that heat to the condenser-water loop. Variable-speed drives improve part-load efficiency.',
     params: [
       { label: 'Units', value: '2 × 1,200-ton centrifugal' },
       { label: 'Chilled water', value: '42 °F supply / 56 °F return' },
       { label: 'Refrigerant', value: 'R-134a' },
     ],
-    role: 'Energy data analysis for optimization — tracking how efficiently the plant turns electricity into chilled water.',
+    role: 'I track how efficiently the plant turns electricity into chilled water.',
   },
   {
     id: 'pumps',
@@ -106,7 +106,7 @@ export const GROUPS: GroupDef[] = [
       { label: 'Distribution', value: 'Underground pipe network' },
     ],
     note: 'Tags: CHWP chilled-water pumps · CWP condenser-water pumps · CP condensate pumps',
-    role: 'Energy data analysis for optimization — pump speed follows demand, so flow and power trends show where energy can be saved.',
+    role: 'Pump speed follows demand, so I use flow and power trends to find where energy can be saved.',
   },
   {
     id: 'boilers',
@@ -114,13 +114,13 @@ export const GROUPS: GroupDef[] = [
     short: 'Make steam for heating and sterilization',
     loops: ['steam', 'gas'],
     description:
-      'Dual-fuel fire-tube boilers generate high-pressure steam for heating, sterilization (autoclaves), kitchens, laundry, and humidification. Steam is the lifeblood of hospital operations, so redundant units provide N+1 reliability for life safety.',
+      'Dual-fuel fire-tube boilers generate high-pressure steam for heating, sterilization (autoclaves), kitchens, laundry, and humidification. A hospital can’t operate without steam, so redundant units provide N+1 reliability for life safety.',
     params: [
       { label: 'Units', value: '2 × 600 HP fire-tube' },
       { label: 'Steam', value: '150 psi / 350 °F' },
       { label: 'Fuel', value: 'Natural gas + #2 fuel oil' },
     ],
-    role: 'Ensuring continuous operation of the steam the hospital depends on for heating and sterilization.',
+    role: 'I keep steam available around the clock. The hospital needs it for heating and sterilization.',
   },
   {
     id: 'generators',
@@ -128,13 +128,13 @@ export const GROUPS: GroupDef[] = [
     short: 'Carry critical loads when the grid fails',
     loops: ['power'],
     description:
-      'Diesel generators and an automatic transfer switch (ATS) keep life-safety loads — ICUs, operating rooms, ventilators, and fire alarm systems — powered through a utility outage. When the utility feed fails, the generators start and the ATS transfers critical loads to them within 10 seconds; on-site diesel storage keeps them running through an extended outage.',
+      'Diesel generators and an automatic transfer switch (ATS) keep life-safety loads (ICUs, operating rooms, ventilators, and fire alarm systems) powered through a utility outage. When the utility feed fails, the generators start and the ATS transfers critical loads to them within 10 seconds; on-site diesel storage keeps them running through an extended outage.',
     params: [
       { label: 'Units', value: '2 × 2 MW diesel gensets' },
       { label: 'Transfer', value: 'ATS, under 10 seconds' },
       { label: 'Standards', value: 'NEC 700 / NFPA 110 Type 10' },
     ],
-    role: 'Ensuring continuous operation — this is the equipment that keeps critical care powered when the grid is not.',
+    role: 'I make sure this equipment is ready. It keeps critical care powered when the grid goes down.',
   },
   {
     id: 'hospital',
@@ -149,7 +149,7 @@ export const GROUPS: GroupDef[] = [
       { label: 'Cooling', value: 'Chilled water to air handlers' },
       { label: 'Critical power', value: 'ICUs, ORs, life safety' },
     ],
-    role: 'Ensuring the continuous operation of the infrastructure the hospital depends on for heating, cooling, sterilization, and power.',
+    role: 'My job is keeping the hospital supplied with heating, cooling, sterilization steam, and power without interruption.',
   },
 ]
 
@@ -159,7 +159,7 @@ export const GROUP_BY_ID = Object.fromEntries(GROUPS.map((g) => [g.id, g])) as R
 export const OUTAGE_STEPS = [
   { title: 'Utility feed lost', detail: 'The normal source drops out and unprotected loads go dark.' },
   { title: 'Generators start', detail: 'The standby diesel gensets start and come up to speed.' },
-  { title: 'ATS transfers', detail: 'The transfer switch moves critical loads to the emergency source — within 10 seconds (NFPA 110 Type 10).' },
+  { title: 'ATS transfers', detail: 'The transfer switch moves critical loads to the emergency source within 10 seconds (NFPA 110 Type 10).' },
   { title: 'Critical care stays powered', detail: 'ICUs, operating rooms, ventilators, and fire alarm systems run on generator power.' },
 ] as const
 

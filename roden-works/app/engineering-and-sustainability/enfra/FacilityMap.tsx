@@ -29,7 +29,7 @@ interface Facility {
 const facilities: Facility[] = [
   {
     id: 'ummc',
-    name: 'UMMC — Batavia',
+    name: 'UMMC, Batavia',
     label: 'UMMC',
     city: 'Batavia',
     county: 'Genesee County',
@@ -38,7 +38,7 @@ const facilities: Facility[] = [
   },
   {
     id: 'stmarys',
-    name: "St. Mary's — Rochester",
+    name: "St. Mary's, Rochester",
     label: "St. Mary's",
     city: 'Rochester',
     county: 'Monroe County',
@@ -91,7 +91,7 @@ export default function FacilityMap() {
           className="mb-10 md:mb-12"
         >
           <span className="font-mono text-xs tracking-widest uppercase text-copper">Facilities</span>
-          <h2 className="font-serif text-heading text-white mt-3">Western New York footprint.</h2>
+          <h2 className="font-serif text-heading text-white mt-3">Two plants in Western New York.</h2>
         </motion.div>
 
         <motion.div
@@ -100,7 +100,7 @@ export default function FacilityMap() {
           transition={{ duration: 0.7, delay: 0.15 }}
         >
           <ChartFrame
-            title="Two central energy plants on the Thruway corridor"
+            title="Both facilities sit along the I-90 Thruway"
             subtitle={`United Memorial Medical Center in Batavia and St. Mary's in Rochester sit ${DISTANCE_LABEL} apart in a straight line.`}
             legend={
               <Legend

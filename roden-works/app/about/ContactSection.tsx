@@ -79,11 +79,10 @@ export default function ContactSection() {
               Contact
             </span>
             <h2 className="font-serif text-heading text-white mb-6">
-              Let&apos;s connect.
+              Get in touch.
             </h2>
             <p className="text-titanium leading-relaxed mb-8">
-              Whether it&apos;s an engineering inquiry, creative collaboration, speaking engagement, or
-              just a conversation — I&apos;d be glad to hear from you.
+              Write to me about engineering work, film projects, speaking, or anything else.
             </p>
 
             <div className="space-y-4">
@@ -265,7 +264,7 @@ export default function ContactSection() {
                     <div role="alert" className="rounded-lg border border-copper/30 bg-copper/10 p-4 text-sm">
                       <p className="text-white">This form couldn&apos;t send your message.</p>
                       <p className="mt-1 text-titanium">
-                        Your text is safe — send it from your email app, or write to {SITE_CONFIG.email}.
+                        Your text is saved. Send it from your email app, or write to {SITE_CONFIG.email}.
                       </p>
                       <a
                         href={mailtoFallback(failed)}

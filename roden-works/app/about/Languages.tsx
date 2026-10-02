@@ -14,32 +14,32 @@ const languages: { name: string; level: Level; type: 'natural' | 'technical'; de
     name: 'Classical Latin',
     level: 'Full Professional',
     type: 'natural',
-    description: 'The Latin of Cicero, Caesar, and Virgil — the literary and philosophical language of the Roman Republic and Empire.',
+    description: 'The Latin of Cicero, Caesar, and Virgil, used for literature and philosophy in the Roman Republic and Empire.',
   },
   {
     name: 'Ecclesiastical Latin',
     level: 'Full Professional',
     type: 'natural',
-    description: 'The Latin of the Catholic Church, Vatican documents, and liturgical tradition — maintained as a living language of scholarship and worship.',
+    description: 'The Latin of the Catholic Church, still used in Vatican documents and the liturgy.',
   },
   {
     name: 'Interlingua',
     level: 'Professional Working',
     type: 'natural',
-    description: 'The most widely used naturalistic international auxiliary language, developed by IALA. Immediately readable by speakers of Romance languages without prior study.',
+    description: 'The most widely used naturalistic international auxiliary language, developed by IALA. Speakers of Romance languages can read it without prior study.',
   },
-  { name: 'Chinese (Mandarin)', level: 'Limited Working', type: 'natural', description: 'Developing proficiency in Mandarin Chinese.' },
+  { name: 'Chinese (Mandarin)', level: 'Limited Working', type: 'natural', description: 'Currently studying.' },
   {
     name: 'Python',
     level: 'Professional Working',
     type: 'technical',
-    description: 'Data analysis, automation, scientific computing. Applied across energy optimization and epidemiological research.',
+    description: 'Data analysis, automation, and scientific computing for energy optimization and epidemiological research.',
   },
   {
     name: 'R',
     level: 'Full Professional',
     type: 'technical',
-    description: 'Statistical analysis, data visualization, research methodology. Primary tool for biomedical and environmental research.',
+    description: 'Statistical analysis and data visualization. The main tool for the biomedical and environmental research projects.',
   },
 ]
 
@@ -72,9 +72,9 @@ export default function Languages() {
           className="mb-12"
         >
           <span className="font-mono text-xs tracking-widest uppercase text-copper">Languages</span>
-          <h2 className="font-serif text-heading text-white mt-3">A polyglot perspective.</h2>
+          <h2 className="font-serif text-heading text-white mt-3">Spoken and programming languages.</h2>
           <p className="mt-4 text-titanium max-w-2xl">
-            From the precision of Classical Latin to the logic of Python — each language opens a different way of thinking about problems.
+            Proficiency is shown on the standard five-level scale, from elementary to native.
           </p>
         </motion.div>
 

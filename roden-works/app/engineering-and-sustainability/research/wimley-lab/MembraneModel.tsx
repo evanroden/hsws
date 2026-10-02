@@ -237,7 +237,7 @@ export default function MembraneModel() {
         }
         note={
           <>
-            Schematic model — not to scale. State follows facts on this page: pHD peptides gate at pH&nbsp;&lt;&nbsp;6;
+            Schematic model, not to scale. The states shown follow the facts on this page: pHD peptides gate at pH&nbsp;&lt;&nbsp;6;
             macrolittins hold a stable pore regardless of pH.
           </>
         }
@@ -261,7 +261,7 @@ export default function MembraneModel() {
             />
           </span>
           <span className="text-sm text-white">
-            {poreOpen ? 'Pore assembled — cargo leaking' : 'Peptides surface-bound — membrane intact'}
+            {poreOpen ? 'Pore assembled, cargo leaking' : 'Peptides surface-bound, membrane intact'}
           </span>
         </div>
 
@@ -470,9 +470,9 @@ export default function MembraneModel() {
           />
           <p className="mt-3 text-xs text-muted">
             {family === 'macro' ? (
-              <>Macrolittins hold a stable pore at nanomolar concentrations — pH-independent, so the channel stays open across the whole range.</>
+              <>Macrolittins hold a stable pore at nanomolar concentrations. They are pH-independent, so the channel stays open across the whole range.</>
             ) : (
-              <>pH&nbsp;6.0 — pHD nanopore threshold&nbsp;·&nbsp;pH&nbsp;7.4 — physiological. Below&nbsp;6.0 the peptides insert and assemble a pore.</>
+              <>pH&nbsp;6.0: pHD nanopore threshold&nbsp;·&nbsp;pH&nbsp;7.4: physiological. Below&nbsp;6.0 the peptides insert and assemble a pore.</>
             )}
           </p>
         </div>

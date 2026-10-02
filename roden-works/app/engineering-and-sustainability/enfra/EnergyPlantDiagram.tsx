@@ -78,9 +78,9 @@ export default function EnergyPlantDiagram() {
           <span className="font-mono text-xs tracking-widest uppercase text-copper">Interactive Diagram</span>
           <h2 className="font-serif text-heading text-white mt-3">Anatomy of a Central Energy Plant.</h2>
           <p className="mt-4 text-titanium leading-relaxed">
-            The &ldquo;heart and lungs&rdquo; of a hospital campus — producing the steam, chilled water, and emergency
-            power a hospital needs for heating, cooling, sterilization, and critical care. Select a system to see what it
-            does, or switch to a utility outage to watch the plant keep critical loads powered.
+            The central energy plant makes the steam, chilled water, and emergency power a hospital needs for heating,
+            cooling, sterilization, and critical care. Select a system to see what it does, or switch to a utility
+            outage to see how the plant keeps critical loads powered.
           </p>
         </motion.div>
 
@@ -97,7 +97,7 @@ export default function EnergyPlantDiagram() {
                 Hospital central energy plant, simplified schematic
               </h3>
               <p className="mt-1 text-sm text-muted max-w-2xl">
-                Six systems, five utility loops, one campus. Pipes animate in the direction of flow.
+                Six plant systems and five utility loops serving one campus. Pipes animate in the direction of flow.
               </p>
             </div>
             <SegmentedControl<Mode>
@@ -136,7 +136,7 @@ export default function EnergyPlantDiagram() {
           <figcaption className="mt-6 pt-5 border-t border-white/[0.06] flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
             <LoopLegend />
             <p className="text-xs text-muted lg:text-right lg:max-w-sm shrink-0">
-              Representative schematic — not an as-built drawing. Equipment ratings are illustrative; the outage sequence
+              Representative schematic, not an as-built drawing. Equipment ratings are illustrative. The outage sequence
               is simulated and not to scale.
             </p>
           </figcaption>
@@ -596,7 +596,7 @@ function DetailPanel({ selected, mode, stage, touched, onSelect }: PanelProps) {
             {group.note && <p className="mt-2 font-mono text-[11px] text-muted leading-relaxed">{group.note}</p>}
 
             <div className="mt-5 border-l-2 border-copper pl-3">
-              <div className="font-mono text-[11px] uppercase tracking-widest text-copper-light">Evan&rsquo;s role</div>
+              <div className="font-mono text-[11px] uppercase tracking-widest text-copper-light">My role</div>
               <p className="mt-1 text-sm text-white/90 leading-relaxed">{group.role}</p>
             </div>
 

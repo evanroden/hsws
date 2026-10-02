@@ -17,22 +17,22 @@ const workstreams = [
   {
     title: 'Focus Group Research',
     description:
-      'Produced detailed transcripts and thematic analyses from SAMHSA employee focus groups. Captured candid feedback on workplace culture, leadership effectiveness, communication breakdowns, and barriers to mission delivery. These transcripts formed the evidentiary basis for the improvement recommendations.',
+      'Produced transcripts and thematic analyses from SAMHSA employee focus groups, covering workplace culture, leadership, communication problems, and obstacles to getting the agency\'s work done. The improvement recommendations were based on these transcripts.',
   },
   {
     title: 'Employee Engagement Analysis',
     description:
-      'Analyzed Federal Employee Viewpoint Survey (FEVS) data to identify SAMHSA-specific trends against government-wide benchmarks. Mapped engagement drivers and detractors across divisions, leadership levels, and demographic groups to prioritize interventions.',
+      'Compared SAMHSA\'s Federal Employee Viewpoint Survey (FEVS) results against government-wide benchmarks. Broke out what raised and lowered engagement by division, leadership level, and demographic group so the team could decide where to start.',
   },
   {
     title: 'Agency Leadership Program',
     description:
-      'Contributed to the Partnership\'s Agency Leadership Program — a structured initiative that embeds consultants within federal agencies to diagnose organizational health issues and implement evidence-based improvement strategies in collaboration with senior leaders.',
+      'Worked within the Partnership\'s Agency Leadership Program, which places consultants inside federal agencies to find organizational problems and fix them with senior leaders.',
   },
   {
     title: 'Best Places to Work Rankings',
     description:
-      'Work supported the broader Best Places to Work in the Federal Government initiative, which ranks over 400 federal organizations based on employee engagement data. SAMHSA\'s improvement was among the most significant score increases tracked during this period.',
+      'The work fed into the Best Places to Work in the Federal Government rankings, which rank over 400 federal organizations by employee engagement data.',
   },
 ]
 
@@ -40,27 +40,27 @@ const timeline = [
   {
     date: 'Sept 2021',
     title: 'Program Start',
-    description: 'Joined the Partnership\'s Federal Workforce team in Washington, D.C. as part of the Future Leaders program. Assigned to the SAMHSA engagement improvement initiative.',
+    description: 'Joined the Partnership\'s Federal Workforce team in Washington, D.C. through the Future Leaders program and was assigned to the SAMHSA engagement project.',
   },
   {
     date: 'Oct 2021',
     title: 'Focus Group Facilitation',
-    description: 'Began producing and transcribing employee focus groups across SAMHSA divisions. Developed thematic coding framework to systematically categorize employee feedback.',
+    description: 'Started producing and transcribing employee focus groups across SAMHSA divisions. Built a thematic coding framework to sort employee feedback.',
   },
   {
     date: 'Nov 2021',
     title: 'Data Analysis & Reporting',
-    description: 'Analyzed FEVS data and focus group findings. Prepared summary reports for SAMHSA leadership and the Partnership\'s consulting team to inform intervention design.',
+    description: 'Analyzed FEVS data and focus group findings. Wrote summary reports for SAMHSA leadership and the Partnership\'s consulting team.',
   },
   {
     date: 'Dec 2021',
     title: 'Recommendation Development',
-    description: 'Contributed to the development of improvement recommendations targeting leadership communication, professional development, and work-life balance policies.',
+    description: 'Helped write recommendations on leadership communication, professional development, and work-life balance policies.',
   },
   {
     date: 'Jan 2022',
     title: 'Program Conclusion',
-    description: 'Completed the program. SAMHSA engagement scores would rise from approximately 37 to 74 during the broader Partnership collaboration — one of the most significant improvements in federal government rankings.',
+    description: 'Finished the program. Over the full Partnership collaboration, SAMHSA\'s engagement score rose from about 37 to 74.',
   },
 ]
 
@@ -98,13 +98,13 @@ export default function PartnershipPage() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="font-mono text-xs tracking-widest uppercase text-copper mb-4 block">
-              Federal Workforce -- Sept 2021 to Jan 2022
+              Federal Workforce · Sept 2021 to Jan 2022
             </span>
             <h1 className="font-serif text-display text-white max-w-4xl">
               Partnership for Public Service
             </h1>
             <p className="mt-4 text-titanium text-lg max-w-2xl">
-              Member of the Federal Workforce team in Washington, D.C. Supporting SAMHSA&apos;s organizational improvement through focus group research, engagement analysis, and evidence-based intervention design.
+              I was on the Federal Workforce team in Washington, D.C., working on SAMHSA&apos;s employee engagement project. I ran focus group research and analyzed engagement data.
             </p>
           </motion.div>
 
@@ -148,7 +148,7 @@ export default function PartnershipPage() {
                   The Organization
                 </span>
                 <h2 className="font-serif text-heading text-white mb-8">
-                  Making government work better.
+                  A nonprofit focused on the federal workforce.
                 </h2>
               </motion.div>
 
@@ -158,7 +158,7 @@ export default function PartnershipPage() {
                   animate={heroView.isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: 0.1 }}
                 >
-                  The Partnership for Public Service, founded in 2001 by Samuel J. Heyman with a $25 million endowment, is the leading nonpartisan organization dedicated to making the federal government more effective. It produces the Best Places to Work in the Federal Government rankings, administers the Samuel J. Heyman Service to America Medals (the &ldquo;Sammies&rdquo;), and runs the Center for Presidential Transition.
+                  The Partnership for Public Service, founded in 2001 by Samuel J. Heyman with a $25 million endowment, is a nonpartisan nonprofit that works to make the federal government more effective. It produces the Best Places to Work in the Federal Government rankings, administers the Samuel J. Heyman Service to America Medals (the &ldquo;Sammies&rdquo;), and runs the Center for Presidential Transition.
                 </motion.p>
 
                 <motion.p
@@ -166,7 +166,7 @@ export default function PartnershipPage() {
                   animate={heroView.isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                  As a member of the Federal Workforce team through the Future Leaders program, Evan produced focus group transcripts and engagement analyses for the Substance Abuse and Mental Health Services Administration (SAMHSA) improvement initiative — part of the Agency Leadership Program that helps federal agencies diagnose and address organizational health challenges.
+                  I joined the Federal Workforce team through the Future Leaders program and produced focus group transcripts and engagement analyses for a project with the Substance Abuse and Mental Health Services Administration (SAMHSA). The project was part of the Agency Leadership Program, which helps federal agencies find and fix organizational problems.
                 </motion.p>
 
                 <motion.p
@@ -174,7 +174,7 @@ export default function PartnershipPage() {
                   animate={heroView.isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: 0.3 }}
                 >
-                  The Future Leaders program provides 10-12 week paid internships (approximately $6,500 plus a $5,500 housing stipend) placing emerging leaders in federal agencies and supporting organizations. It is designed to build the next generation of public servants by providing hands-on experience in federal policy and operations.
+                  The Future Leaders program offers 10-12 week paid internships (approximately $6,500 plus a $5,500 housing stipend) in federal agencies and partner organizations, giving students direct experience in federal policy and operations.
                 </motion.p>
               </div>
             </div>
@@ -212,7 +212,7 @@ export default function PartnershipPage() {
                   Why Engagement Matters
                 </h3>
                 <p className="text-titanium text-sm leading-relaxed">
-                  Federal employee engagement directly impacts mission delivery. Agencies with higher engagement scores show better outcomes in service delivery, innovation, cost-effectiveness, and employee retention. For an agency like SAMHSA, whose work touches millions of Americans in crisis, organizational health is not an abstraction — it determines whether help reaches people who need it.
+                  Agencies with higher engagement scores tend to deliver services better and keep their employees longer. SAMHSA runs crisis lines and treatment programs, so how well the agency functions affects whether people get help.
                 </p>
               </div>
             </motion.div>
@@ -236,7 +236,7 @@ export default function PartnershipPage() {
               Engagement scores doubled.
             </h2>
             <p className="mt-4 text-titanium max-w-2xl">
-              SAMHSA&apos;s employee engagement scores improved across every measured category during the Partnership&apos;s collaboration. The overall score rose from approximately 37 to 74 — a transformation that placed SAMHSA among the most improved agencies in the federal government.
+              SAMHSA&apos;s employee engagement scores improved in every measured category during the Partnership&apos;s collaboration. The overall score rose from approximately 37 to 74.
             </p>
           </motion.div>
 
@@ -263,7 +263,7 @@ export default function PartnershipPage() {
               Contributions
             </span>
             <h2 className="font-serif text-heading text-white mt-3">
-              The work behind the numbers.
+              What I worked on.
             </h2>
           </motion.div>
 
@@ -343,7 +343,7 @@ export default function PartnershipPage() {
               transition={{ duration: 0.6 }}
               className="text-white text-lg font-serif leading-relaxed"
             >
-              The federal workforce serves 330 million Americans. When agencies work better, people get better outcomes — whether that means faster disability claims, more effective disaster response, or more accessible mental health services. The Partnership for Public Service exists to make that improvement possible, and the work at SAMHSA demonstrated what happens when employee engagement is treated as a strategic priority rather than an afterthought.
+              Working on the SAMHSA project showed me how much an agency&apos;s internal health affects the services it delivers to the public.
             </motion.p>
           </div>
         </div>

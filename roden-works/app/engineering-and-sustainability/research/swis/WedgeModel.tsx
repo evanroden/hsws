@@ -101,7 +101,7 @@ export default function WedgeModel() {
       }
       note={
         <>
-          <span className="font-medium text-titanium">Illustrative model — not a forecast.</span> Toe position is a
+          <span className="font-medium text-titanium">Illustrative model, not a forecast.</span> Toe position is a
           straight-line fit from the Corps’ 300,000 cfs threshold to its projected worst-case 2023 toe (RM 103.7 at
           ~130,000 cfs); sill overtopping flows are calibrated to fall 2023. Bed profile is schematic. River miles and
           2023 facts:{' '}

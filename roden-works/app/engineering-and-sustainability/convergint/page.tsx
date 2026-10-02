@@ -16,21 +16,21 @@ const cdpJourney: CdpStep[] = [
     title: '4-Week Bootcamp',
     location: 'Chicago, IL',
     description:
-      'Intensive technical and sales training at Convergint headquarters in Schaumburg. Covered fire alarm, access control, video surveillance, intrusion, and nurse call systems. Earned NICET-adjacent competencies in fire alarm system design and inspection.',
+      'Technical and sales training at Convergint headquarters in Schaumburg. We covered fire alarm, access control, video surveillance, intrusion, and nurse call systems, with a focus on fire alarm design and inspection.',
   },
   {
     phase: 'Week 5-8',
     title: 'Field Training',
     location: 'San Francisco, CA',
     description:
-      'Shadowed senior account executives and field technicians on live projects. Participated in NFPA 72 inspections, system commissioning, and client discovery meetings. Built technical fluency by spending time in the field before the desk.',
+      'I shadowed senior account executives and field technicians on live projects, and sat in on NFPA 72 inspections, system commissioning, and client discovery meetings before taking on accounts.',
   },
   {
     phase: 'Month 3-11',
     title: 'Account Executive',
     location: 'San Francisco, CA',
     description:
-      'Managed a portfolio of commercial and enterprise accounts in the San Francisco Bay Area. Focused on fire alarm system upgrades, inspection/testing/maintenance contracts, and integrated security solutions. Developed proposals using RSMeans estimating and Convergint pricing tools.',
+      'I managed commercial and enterprise accounts in the San Francisco Bay Area, mostly fire alarm upgrades, inspection/testing/maintenance contracts, and integrated security systems. I built proposals with RSMeans estimating and Convergint pricing tools.',
   },
 ]
 
@@ -42,8 +42,8 @@ export default function ConvergintPage() {
   return (
     <>
       <ArticleJsonLd
-        title="Convergint — Fire & Life Safety Systems Integration"
-        description="Fire alarm system design, commissioning, and compliance — from bootcamp to field leadership."
+        title="Convergint: Fire & Life Safety Systems Integration"
+        description="My year as a fire and life safety account executive at Convergint, from the Career Development Program bootcamp to Bay Area accounts."
         path="/engineering-and-sustainability/convergint"
       />
       <BreadcrumbJsonLd
@@ -102,9 +102,8 @@ export default function ConvergintPage() {
               Convergint
             </h1>
             <p className="mt-4 text-titanium text-lg max-w-2xl">
-              The world&apos;s leading service-based systems integrator, protecting
-              people and property through fire alarm, life safety, and security
-              technologies.
+              A service-based systems integrator for fire alarm, life safety,
+              and security systems.
             </p>
           </motion.div>
 
@@ -135,31 +134,28 @@ export default function ConvergintPage() {
                 About Convergint
               </span>
               <h2 className="font-serif text-heading text-white mb-6">
-                #1 systems integrator, eight years running.
+                A global systems integrator.
               </h2>
               <div className="space-y-4 text-titanium leading-relaxed">
                 <p>
                   Convergint is a global, service-based systems integrator ranked
                   #1 by SDM Magazine for eight consecutive years. With $2.6 billion
                   in annual revenue, 10,000+ colleagues, and 220+ locations
-                  worldwide, Convergint delivers fire alarm, life safety, electronic
-                  security, and building automation solutions to commercial,
-                  enterprise, healthcare, and government clients.
+                  worldwide, Convergint installs and services fire alarm, life
+                  safety, electronic security, and building automation systems for
+                  commercial, enterprise, healthcare, and government clients.
                 </p>
                 <p>
-                  Their service-first culture is built on colleague-ownership of a
-                  set of values and beliefs, not a franchise model. This creates a
-                  consistent client experience whether you are in San Francisco,
-                  Singapore, or London. Their Career Development Program (CDP)
-                  trains new account executives through a rigorous process:
-                  technical bootcamp, field mentorship, and progressive account
-                  responsibility.
+                  Every office works from the same set of company values, which
+                  keeps service consistent from one city to the next. The Career Development Program (CDP) trains
+                  new account executives with a technical bootcamp, then field
+                  mentorship, then a growing set of accounts.
                 </p>
                 <p>
-                  Convergint holds the rare position of being both a
-                  technology-agnostic integrator and a certified service partner
-                  for every major fire alarm manufacturer — Notifier by Honeywell,
-                  Edwards (Kidde), Simplex (Johnson Controls), Siemens, and others.
+                  Convergint is technology-agnostic and a certified service
+                  partner for the major fire alarm manufacturers, including Notifier
+                  by Honeywell, Edwards (Kidde), Simplex (Johnson Controls), and
+                  Siemens.
                 </p>
               </div>
             </motion.div>
@@ -173,19 +169,19 @@ export default function ConvergintPage() {
                 Role
               </span>
               <h2 className="font-serif text-heading text-white mb-6">
-                Account Executive — San Francisco
+                Account Executive, San Francisco
               </h2>
               <div className="space-y-4 text-titanium leading-relaxed">
                 <p>
-                  Evan served as an Account Executive in Convergint&apos;s San
-                  Francisco office from February through December 2025, entering the
-                  company through their selective Career Development Program (CDP).
+                  I was an Account Executive in Convergint&apos;s San Francisco
+                  office from February through December 2025. I joined through the
+                  Career Development Program (CDP).
                 </p>
                 <p>
-                  His work focused on fire and life safety systems for commercial
-                  and enterprise clients across the Bay Area — from NFPA 72 system
-                  inspections and deficiency remediation to new fire alarm designs,
-                  mass notification systems, and integrated security solutions.
+                  My work covered fire and life safety systems for commercial and
+                  enterprise clients across the Bay Area: NFPA 72 inspections and
+                  deficiency remediation, new fire alarm designs, mass notification
+                  systems, and integrated security.
                 </p>
               </div>
 
@@ -243,9 +239,8 @@ export default function ConvergintPage() {
               Anatomy of a fire &amp; life safety system.
             </h2>
             <p className="mt-4 text-titanium max-w-2xl">
-              Every component in a fire protection system is part of an
-              interconnected network — from detection to notification to
-              suppression. Select any device to understand its role, or run the alarm sequence to watch a single event move through the system.
+              Detection, notification, and suppression devices all report to one
+              fire alarm control panel. Select a device to see what it does, or run the alarm sequence to follow a single event through the system.
             </p>
           </motion.div>
 
@@ -272,12 +267,11 @@ export default function ConvergintPage() {
               Career Development Program
             </span>
             <h2 className="font-serif text-heading text-white mt-3">
-              From bootcamp to Bay Area.
+              How the program worked.
             </h2>
             <p className="mt-4 text-titanium max-w-2xl">
-              Convergint&apos;s CDP is a structured path from technical training to
-              full account ownership — designed to build integrators who understand
-              both the technology and the client relationship.
+              The CDP moves new hires from technical training to owning their own
+              accounts, so they learn the systems before they sell them.
             </p>
           </motion.div>
 

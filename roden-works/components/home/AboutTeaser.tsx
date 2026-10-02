@@ -38,20 +38,19 @@ export default function AboutTeaser() {
               About
             </span>
             <h2 className="font-serif text-heading text-white mt-3 mb-6">
-              The through-line is systems.
+              Engineer, advocate, filmmaker.
             </h2>
             <div className="space-y-4 text-titanium leading-relaxed">
               <p>
-                From founding a national organ donation advocacy organization at seventeen
-                to managing central energy plants for one of America&apos;s largest
-                healthcare EaaS partnerships, Evan Roden approaches every challenge
-                as a system to be understood and optimized.
+                Evan Roden co-founded The Youth Coalition For Organ Donation at seventeen
+                and led it for seven years. He now manages central energy plants for
+                Rochester Regional Health under ENFRA&apos;s $143.8 million
+                Energy-as-a-Service partnership.
               </p>
               <p>
-                A Tulane-trained biomedical engineer, published researcher,
-                TEDx speaker, and award-winning filmmaker, Evan brings an unusually
-                interdisciplinary perspective to complex problems — whether they involve
-                hospital infrastructure, legislative reform, or visual storytelling.
+                He studied biomedical engineering at Tulane, worked in three research
+                labs there, and gave a TEDxTulane talk on youth political participation.
+                He has also shot and edited films as a cinematographer in New Orleans.
               </p>
             </div>
             <Link

@@ -27,7 +27,7 @@ export default function VideoFeature() {
           <div className="max-w-4xl">
             <CinemaEmbed
               source={{ type: 'youtube', id: 'Bq3Swc8q0CY' }}
-              title="TEDxTulane — Youth Political Participation"
+              title="TEDxTulane: Youth Political Participation"
               subtitle="Organ Donation Advocacy"
               aspect="16:9"
             />

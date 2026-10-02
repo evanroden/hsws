@@ -52,15 +52,14 @@ export default function ModelingContent({ images }: { images: GalleryImage[] }) 
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <span className="font-mono text-xs tracking-widest uppercase text-copper mb-6 block">
-                Vogue Italy &mdash; 2020
+                Vogue Italy &middot; 2020
               </span>
               <h1 className="font-serif text-display-xl text-white max-w-5xl">
                 BizarrAudi&apos;s SchoolTime
               </h1>
               <p className="mt-6 text-lg md:text-xl text-titanium max-w-2xl leading-relaxed">
-                Runway modeling for Vogue Italy&apos;s feature of BizarrAudi&apos;s SchoolTime collection &mdash; a
-                bold reinterpretation of academic dress codes through high-fashion editorial
-                styling.
+                I walked the runway for BizarrAudi&apos;s SchoolTime collection, which Vogue Italy
+                featured in 2020. The collection reworks the school uniform as high fashion.
               </p>
             </motion.div>
           </div>
@@ -81,18 +80,13 @@ export default function ModelingContent({ images }: { images: GalleryImage[] }) 
               </span>
               <h2 className="font-serif text-heading text-white">SchoolTime</h2>
               <p className="mt-6 text-titanium leading-relaxed">
-                BizarrAudi&apos;s SchoolTime collection reimagines the rigid structures of academic
-                uniforms through a contemporary fashion lens. The collection deconstructs the
-                blazer, the pleated skirt, the varsity letter, and the backpack &mdash; reassembling
-                them as statements of individuality rather than conformity. Oversized silhouettes
-                meet tailored precision, and institutional fabrics are rendered in unexpected
-                colorways.
+                BizarrAudi&apos;s SchoolTime takes apart pieces of the school uniform (the blazer,
+                the pleated skirt, the varsity letter, the backpack) and recuts them as fashion.
+                Oversized silhouettes sit next to tailored ones, and uniform fabrics show up in
+                unexpected colors.
               </p>
               <p className="mt-4 text-titanium leading-relaxed">
-                Featured in Vogue Italy&apos;s 2020 coverage, the collection was recognized for its
-                playful subversion of dress-code culture and its commentary on the performative
-                nature of institutional identity. The runway presentation brought these themes to
-                life through deliberate staging, choreography, and casting.
+                Vogue Italy covered the collection in 2020. I walked in the runway presentation.
               </p>
             </motion.div>
 
@@ -182,10 +176,8 @@ export default function ModelingContent({ images }: { images: GalleryImage[] }) 
           >
             <div className="pl-0 border-l-0">
               <p className="font-serif text-xl md:text-2xl text-white/90 italic leading-relaxed">
-                Fashion at this level is not about clothing. It is about the body as architecture,
-                the runway as stage, and the walk as performance. BizarrAudi&apos;s SchoolTime
-                understood that the uniform is never neutral &mdash; it is always a statement about
-                power, belonging, and the freedom to redefine both.
+                A school uniform is meant to make everyone look the same. SchoolTime uses it to ask
+                who sets the rules for belonging.
               </p>
             </div>
             <div className="mt-8 flex items-center justify-center gap-3">

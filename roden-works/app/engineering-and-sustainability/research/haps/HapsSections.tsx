@@ -32,7 +32,7 @@ export function PollutantProfiles() {
           className="mb-10 md:mb-12 max-w-3xl"
         >
           <span className="font-mono text-xs tracking-widest uppercase text-copper">Pollutant Profiles</span>
-          <h2 className="font-serif text-heading text-white mt-3">What you breathe at home matters.</h2>
+          <h2 className="font-serif text-heading text-white mt-3">Pollution sources in the home.</h2>
           <p className="mt-4 text-titanium leading-relaxed">
             Gas appliances, cooking, candles, tobacco and traffic outside the door each add to the air
             inside a home. Filter by pollutant to see where it comes from and which instrument measured it.
@@ -205,10 +205,9 @@ export function Evidence() {
               Systolic blood pressure increase
             </p>
             <p className="mt-3 max-w-lg text-sm leading-relaxed text-titanium">
-              Participants in the highest quartile of black carbon exposure showed a 2 mmHg increase in
-              systolic blood pressure — a clinically significant elevation when sustained across a
-              population, particularly in communities already facing disproportionate cardiovascular
-              disease burden.
+              Participants in the highest quartile of black carbon exposure had systolic blood pressure
+              2 mmHg higher. Across a whole population, a shift that size matters, especially in
+              communities that already have high rates of cardiovascular disease.
             </p>
           </div>
 
@@ -242,7 +241,7 @@ export function Evidence() {
             <p className="mt-6 text-xs leading-relaxed text-muted">
               A 2 mmHg population-level increase in systolic BP is associated with a 7% increase in
               ischemic heart disease mortality and a 10% increase in stroke mortality (Lewington et al.,
-              Lancet 2002 — meta-analysis of one million adults in 61 prospective studies). These are
+              Lancet 2002; meta-analysis of one million adults in 61 prospective studies). These are
               population associations, not deaths estimated from this study.
             </p>
           </div>

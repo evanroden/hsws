@@ -35,7 +35,7 @@ export default function MediaWall() {
               Press Coverage
             </span>
             <h3 className="font-serif text-xl text-white mb-6">
-              National media attention.
+              National and local outlets.
             </h3>
             <div className="grid grid-cols-2 gap-4">
               {media.map((outlet, i) => (
@@ -63,7 +63,7 @@ export default function MediaWall() {
               Coalition Partners
             </span>
             <h3 className="font-serif text-xl text-white mb-6">
-              Building a movement.
+              Organizations we worked with.
             </h3>
             <div className="space-y-4">
               {partners.map((partner, i) => (

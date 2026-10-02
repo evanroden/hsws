@@ -7,32 +7,32 @@ const awards = [
   {
     title: 'American Real Heroes Award',
     org: 'American Red Cross',
-    description: 'Nominated for education leadership and founding The YCOD organ donation advocacy organization.',
+    description: 'Nominated for education leadership and for co-founding The YCOD, an organ donation advocacy organization.',
   },
   {
     title: 'C40 Reinventing Cities Award',
     org: 'Mayor of New Orleans',
-    description: 'Comprehensive urban revitalization plan for New Orleans East covering disaster planning, solar energy, transit, and green housing.',
+    description: 'Urban revitalization plan for New Orleans East covering disaster planning, solar energy, transit, and green housing.',
   },
   {
     title: 'Boy of the Year',
     org: 'Boys & Girls Club of America',
-    description: 'National recognition for outstanding youth achievement and community impact.',
+    description: 'National youth award from the Boys & Girls Club.',
   },
   {
     title: 'Best Debater & Speaker',
     org: 'Academic Competition',
-    description: 'Recognition for excellence in argumentation and public discourse.',
+    description: 'Debate and public speaking award.',
   },
   {
     title: 'Best Student of 2022',
     org: 'Academic Achievement',
-    description: 'Top student recognition during undergraduate studies.',
+    description: 'Awarded during undergraduate studies.',
   },
   {
     title: 'National Latin Honor Society Honoree',
     org: 'National Latin Honor Society',
-    description: 'Official honoree for excellence in Classical and Ecclesiastical Latin.',
+    description: 'Honored for work in Classical and Ecclesiastical Latin.',
   },
 ]
 

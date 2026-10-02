@@ -39,8 +39,8 @@ export default function Footer() {
               RODEN
             </Link>
             <p className="mt-4 text-titanium text-sm max-w-md leading-relaxed">
-              Optimizing complex systems to improve human quality of life at the
-              intersection of engineering, sustainability, and public advocacy.
+              Sustainability engineer at ENFRA managing hospital energy plants,
+              with a background in biomedical research, organ donation advocacy, and film.
             </p>
             <div className="mt-6 flex gap-4">
               {[

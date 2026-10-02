@@ -13,7 +13,7 @@ import { PersonJsonLd } from '@/components/seo/JsonLd'
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'Evan Roden — Sustainability Engineer, biomedical researcher, nonprofit founder, filmmaker, and TEDx speaker.',
+    'Evan Roden is a sustainability engineer at ENFRA, a Tulane biomedical engineering graduate, co-founder of the Youth Coalition For Organ Donation, a filmmaker, and a TEDx speaker.',
 }
 
 export default function AboutPage() {

@@ -527,7 +527,7 @@ export default function WedgeProfile({ state }: { state: WedgeState }) {
               strokeWidth={3}
               paintOrder="stroke"
             >
-              {compact ? 'Salt held in the Gulf →' : 'No salt in the river — wedge held out in the Gulf →'}
+              {compact ? 'Salt held in the Gulf →' : 'No salt in the river; wedge held out in the Gulf →'}
             </text>
           )}
 
