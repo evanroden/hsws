@@ -28,6 +28,8 @@ import {
   type Source,
 } from './data'
 import { PollutantMark } from './icons'
+import { Cite } from '@/components/ui/Sources'
+import { HAPS_SOURCES } from './sources'
 
 export const FILTER_OPTIONS: { value: Filter; label: string }[] = [
   { value: 'all', label: 'All' },
@@ -617,6 +619,9 @@ function DetailBody({ item, filter }: { item: ItemKind; filter: Filter }) {
         </p>
         <p className="mt-1 text-[15px] font-medium text-white">{s.name}</p>
         <Chips ids={s.emits} filter={filter} />
+        {/* No <Cite> here: this hover card is aria-hidden and pointer-events-none, so its
+            links could not be clicked and would be focusable inside hidden content. The
+            same detail is cited in the key list below the drawing (KeyRow). */}
         <p className="mt-2 text-[13px] leading-relaxed text-titanium">{s.detail}</p>
       </>
     )
@@ -834,6 +839,7 @@ function KeyList({ filter, ui }: { filter: Filter; ui: UI }) {
             ui={ui}
             marks={src.emits}
             detail={src.detail}
+            cites={src.cites}
           />
         ))}
       </KeyGroup>
@@ -874,6 +880,7 @@ function KeyRow({
   meta,
   marks,
   detail,
+  cites,
   filter,
   ui,
 }: {
@@ -884,6 +891,7 @@ function KeyRow({
   meta: string
   marks: PollutantId[]
   detail: string
+  cites?: string[]
   filter: Filter
   ui: UI
 }) {
@@ -931,7 +939,12 @@ function KeyRow({
           <path d="M4 6l4 4 4-4" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </button>
-      {open && <p className="pb-3 pl-[34px] pr-6 text-[13px] leading-relaxed text-titanium">{detail}</p>}
+      {open && (
+        <p className="pb-3 pl-[34px] pr-6 text-[13px] leading-relaxed text-titanium">
+          {detail}
+          {cites && cites.length > 0 && <Cite sources={HAPS_SOURCES} id={cites} />}
+        </p>
+      )}
     </li>
   )
 }

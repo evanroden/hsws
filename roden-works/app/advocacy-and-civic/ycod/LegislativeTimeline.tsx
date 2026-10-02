@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion'
 import { useInView } from '@/lib/hooks'
+import { Cite } from '@/components/ui/Sources'
+import { YCOD_SOURCES as S } from './sources'
 
 type Kind = 'milestone' | 'legislative' | 'default'
 
@@ -11,14 +13,16 @@ type Kind = 'milestone' | 'legislative' | 'default'
 // https://www.wxyz.com/news/national/college-freshmen-in-new-york-develop-plan-to-encourage-more-organ-donors ,
 // Spectrum News https://spectrumlocalnews.com/nys/buffalo/news/2021/01/13/college-students-push-for-more-organ-donations-in-ny-
 // CBC, Yahoo News and Business Insider coverage could not be found and was removed (owner to confirm).
-const events: { year: string; title: string; description: string; kind: Kind }[] = [
+// CBC Radio's Information Morning (Nova Scotia, host Portia Clark) interview, 2020: owner-confirmed, Oct 2026;
+// no archived link found, so it is listed without a <Cite>. Yahoo/Business Insider stay out (press-release syndication).
+const events: { year: string; title: string; description: string; kind: Kind; sources?: string[] }[] = [
   { year: '2016', title: 'Co-founded The YCOD', description: 'With Henry McLaughlin, Grace Tapani, and Sage Sellers in East Aurora, NY.', kind: 'default' },
   { year: '2018', title: 'Coalition Building', description: 'Established partnerships with WaitList Zero, ONE8FIFTY, and the Chris Klug Foundation.', kind: 'default' },
-  { year: '2019', title: 'Legislative Introduction', description: 'Assemblyman David DiPietro introduced A07954, our opt-out organ donation bill, in the NY Assembly in May 2019.', kind: 'legislative' },
-  { year: '2020–21', title: 'Media Campaign', description: 'Coverage by WKBW (syndicated to Scripps stations nationally), Spectrum News, and WENY.', kind: 'default' },
-  { year: '2021', title: 'Bill Revision', description: 'I drafted the 2021 revision of our presumed consent bill. Senator Patrick Gallivan introduced the Senate version, S4334, in February 2021.', kind: 'legislative' },
-  { year: '2021', title: 'Real Heroes Nomination', description: 'Nominated for the American Red Cross Real Heroes Education Award.', kind: 'default' },
-  { year: '2022', title: 'Living Donor Support Act Passed', description: 'Advocated for the NYS Living Donor Support Act, which reimburses living organ donors for lost wages, travel, lodging, and child care. Governor Hochul signed it into law in December 2022.', kind: 'milestone' },
+  { year: '2019', title: 'Legislative Introduction', description: 'Assemblyman David DiPietro introduced A07954, our opt-out organ donation bill, in the NY Assembly in May 2019.', kind: 'legislative', sources: ['a7954'] },
+  { year: '2020–21', title: 'Media Campaign', description: "Coverage by WKBW (syndicated to Scripps stations nationally), Spectrum News, WENY, and CBC Radio's Information Morning (Nova Scotia).", kind: 'default', sources: ['wkbw', 'spectrum-jan2021', 'weny'] },
+  { year: '2021', title: 'Bill Revision', description: 'I drafted the 2021 revision of our presumed consent bill. Senator Patrick Gallivan introduced the Senate version, S4334, in February 2021.', kind: 'legislative', sources: ['s4334'] },
+  { year: '2021', title: 'Real Heroes Nomination', description: 'Nominated for the American Red Cross Real Heroes Education Award.', kind: 'default', sources: ['spectrum-redcross'] },
+  { year: '2022', title: 'Living Donor Support Act Passed', description: 'Advocated for the NYS Living Donor Support Act, which reimburses living organ donors for lost wages, travel, lodging, and child care. Governor Hochul signed it into law in December 2022.', kind: 'milestone', sources: ['s1594'] },
   { year: '2022–24', title: 'Continued Advocacy', description: 'Kept up lobbying, social media, and coalition work while at Tulane.', kind: 'default' },
   { year: '2024', title: 'Transition', description: 'After more than seven years with The YCOD, I stepped back. The coalition continues.', kind: 'default' },
 ]
@@ -92,7 +96,10 @@ export default function LegislativeTimeline() {
                       </span>
                     )}
                   </div>
-                  <p className="mt-1.5 text-sm text-titanium leading-relaxed max-w-2xl">{event.description}</p>
+                  <p className="mt-1.5 text-sm text-titanium leading-relaxed max-w-2xl">
+                    {event.description}
+                    {event.sources && <Cite sources={S} id={event.sources} />}
+                  </p>
                 </div>
               </motion.li>
             )

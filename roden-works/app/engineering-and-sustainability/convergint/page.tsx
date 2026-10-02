@@ -9,6 +9,8 @@ import ProjectNav from '@/components/navigation/ProjectNav'
 import ReadingTime from '@/components/ui/ReadingTime'
 import FireSystemDiagram from './FireSystemDiagram'
 import CdpJourney, { type CdpStep } from './CdpJourney'
+import { Cite, SourceList } from '@/components/ui/Sources'
+import { CONVERGINT_SOURCES as S } from './sources'
 
 const cdpJourney: CdpStep[] = [
   {
@@ -18,6 +20,7 @@ const cdpJourney: CdpStep[] = [
     location: 'Schaumburg, IL',
     description:
       'Technical and sales training at Convergint headquarters in Schaumburg. We covered fire alarm, access control, video surveillance, intrusion, and nurse call systems, with a focus on fire alarm design and inspection.',
+    cite: <Cite sources={S} id={['daily-herald-hq', 'ssn-schaumburg']} />,
   },
   {
     phase: 'Week 5-8',
@@ -117,10 +120,10 @@ export default function ConvergintPage() {
             {/* All four per Convergint's July 2025 release (during my tenure): "$2.6 billion", "over 10,000
                 colleagues", "more than 220 locations", #1 in SDM's Top Systems Integrators for the eighth year
                 in a row. https://www.convergint.com/press-releases/convergint-named-1-systems-integrator-by-sdm-magazine-for-eighth-year-in-a-row/ */}
-            <StatCounter value={2.6} prefix="$" suffix="B" label="Annual Revenue (2025)" />
-            <StatCounter value={10000} suffix="+" label="Employees" />
-            <StatCounter value={220} suffix="+" label="Locations" />
-            <StatCounter value={8} suffix=" yrs" label="#1 in SDM Rankings (thru 2025)" />
+            <StatCounter value={2.6} prefix="$" suffix="B" label="Annual Revenue (2025)" cite={<Cite sources={S} id="sdm-2025" />} />
+            <StatCounter value={10000} suffix="+" label="Employees" cite={<Cite sources={S} id="sdm-2025" />} />
+            <StatCounter value={220} suffix="+" label="Locations" cite={<Cite sources={S} id="sdm-2025" />} />
+            <StatCounter value={8} suffix=" yrs" label="#1 in SDM Rankings (thru 2025)" cite={<Cite sources={S} id="sdm-2025" />} />
           </motion.div>
         </div>
       </section>
@@ -145,7 +148,7 @@ export default function ConvergintPage() {
                   Convergint is a global, service-based systems integrator that
                   SDM Magazine ranked the #1 systems integrator for the eighth
                   year in a row in 2025. As of 2025 it reported $2.6 billion in
-                  revenue, 10,000+ colleagues, and 220+ locations worldwide. It
+                  revenue, 10,000+ colleagues, and 220+ locations worldwide.<Cite sources={S} id="sdm-2025" /> It
                   installs and services fire alarm, life safety, electronic
                   security, and building automation systems for commercial,
                   enterprise, healthcare, and government clients.
@@ -158,12 +161,14 @@ export default function ConvergintPage() {
                 </p>
                 {/* Edwards: "one of the largest Edwards partners in the world", https://www.convergint.com/edwards/
                     (seen in search index; the page returned 404 when re-checked Oct 2026)
-                    Honeywell and Silent Knight: https://old.convergint.com/?p=197304 Notifier, Simplex and Siemens
+                    Replacement source: "one of the largest Edwards dealers in the world",
+                    https://www.securityworldmarket.com/na/News/Business-News/convergint-expands-partnership-with-edwards-across-south-carolina
+                    Honeywell and Silent Knight: https://old.convergint.com/?p=197304 (domain no longer resolves, Oct 2026;
+                    no replacement found, so the Honeywell/Silent Knight clause was removed). Notifier, Simplex and Siemens
                     certified-partner claims could not be verified and were removed. */}
                 <p>
-                  Convergint works across fire alarm manufacturers. It is one of
-                  the largest Edwards partners in the world and also works with
-                  Honeywell fire brands such as Silent Knight.
+                  Convergint is one of the largest dealers in the world for
+                  Edwards fire alarm systems.<Cite sources={S} id="edwards" />
                 </p>
               </div>
             </motion.div>
@@ -201,12 +206,12 @@ export default function ConvergintPage() {
                   <li className="flex items-start gap-2">
                     <span className="text-copper mt-1">&#8226;</span>
                     Fire alarm system design, inspection, testing &amp; maintenance
-                    (ITM) per NFPA 72
+                    (ITM) per NFPA 72<Cite sources={S} id="nfpa-72" />
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-copper mt-1">&#8226;</span>
                     Clean agent suppression systems (FM-200, Novec 1230) per NFPA
-                    2001
+                    2001<Cite sources={S} id="nfpa-2001" />
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-copper mt-1">&#8226;</span>
@@ -286,6 +291,7 @@ export default function ConvergintPage() {
           <CdpJourney steps={cdpJourney} animate={journeyInView} />
         </div>
       </section>
+      <SourceList sources={S} />
       <ProjectNav currentSlug="convergint" />
     </>
   )

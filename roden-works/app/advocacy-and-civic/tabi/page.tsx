@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion'
 import { useInView } from '@/lib/hooks'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
+import { Cite, SourceList } from '@/components/ui/Sources'
+import { TABI_SOURCES as S } from './sources'
 
 // Fact-check 2026-10: the coverage-by-area and speed charts were removed. Their figures had no source
 // (one row was labeled "Cayuga County Avg." although the Town of Aurora is in Erie County), and no
@@ -14,6 +16,7 @@ import Breadcrumbs from '@/components/ui/Breadcrumbs'
 // - ErieNet: Erie County's ~400-mile open-access fiber backbone, $36M in American Rescue Plan funds,
 //   for unserved and underserved areas: https://www.wkbw.com/news/local-news/buffalo/erienet-plans-taking-shape-400-miles-of-fiber-cable-to-be-installed-next-month
 //   and https://www3.erie.gov/economicdevelopment/press/erienet-broadband-services
+//   (the erie.gov page no longer states these figures, so only WKBW is footnoted)
 const pillars = [
   {
     title: 'Infrastructure Assessment',
@@ -104,7 +107,7 @@ export default function TabiPage() {
               Town of Aurora Broadband Initiative
             </h1>
             <p className="mt-4 text-titanium text-lg max-w-2xl">
-              A proposal to close the rural broadband gap in the Town of Aurora, in Erie County, New York.
+              A proposal to close the rural broadband gap in the Town of Aurora, in Erie County, New York.<Cite sources={S} id="aurora-wiki" />
             </p>
           </motion.div>
         </div>
@@ -133,7 +136,7 @@ export default function TabiPage() {
                 animate={heroView.isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
-                The Town of Aurora is in Erie County, in Western New York, and includes the village of East Aurora. Service in the village is better than in the rural parts of town, where fewer homes have a wired broadband option.
+                The Town of Aurora is in Erie County, in Western New York, and includes the village of East Aurora.<Cite sources={S} id="aurora-wiki" /> Service in the village is better than in the rural parts of town, where fewer homes have a wired broadband option.
               </motion.p>
 
               <motion.p
@@ -179,7 +182,7 @@ export default function TabiPage() {
               animate={gapView.isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              From 2015 until March 2024, the FCC defined broadband as 25 Mbps download and 3 Mbps upload. Under the 2021 federal infrastructure law, a home without access to 25/3 service counts as unserved, and one without access to 100/20 service counts as underserved. In March 2024 the FCC raised its own benchmark to 100/20 Mbps.
+              From 2015 until March 2024, the FCC defined broadband as 25 Mbps download and 3 Mbps upload.<Cite sources={S} id="fcc-benchmark" /> Under the 2021 federal infrastructure law, a home without access to 25/3 service counts as unserved, and one without access to 100/20 service counts as underserved.<Cite sources={S} id="benton" /> In March 2024 the FCC raised its own benchmark to 100/20 Mbps.<Cite sources={S} id="fcc-benchmark" />
             </motion.p>
           </div>
         </div>
@@ -207,7 +210,7 @@ export default function TabiPage() {
               animate={speedView.isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              Erie County is building ErieNet, an open-access fiber backbone of roughly 400 miles funded with $36 million in American Rescue Plan money, to reach unserved and underserved parts of the county. A town-level plan like TABI would sit on top of that kind of county infrastructure.
+              Erie County is building ErieNet, an open-access fiber backbone of roughly 400 miles funded with $36 million in American Rescue Plan money, to reach unserved and underserved parts of the county.<Cite sources={S} id="wkbw-erienet" /> A town-level plan like TABI would sit on top of that kind of county infrastructure.
             </motion.p>
           </div>
         </div>
@@ -270,6 +273,8 @@ export default function TabiPage() {
           </div>
         </div>
       </section>
+
+      <SourceList sources={S} />
     </>
   )
 }

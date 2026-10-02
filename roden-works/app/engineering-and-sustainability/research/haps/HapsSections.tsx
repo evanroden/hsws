@@ -15,6 +15,8 @@ import {
   type PollutantId,
 } from './data'
 import { INSTRUMENT_ICONS, PollutantMark } from './icons'
+import { Cite } from '@/components/ui/Sources'
+import { HAPS_SOURCES as S } from './sources'
 
 /* ─── Pollutant profiles: interactive home cutaway + pollutant cards ────── */
 
@@ -69,7 +71,7 @@ export function PollutantProfiles() {
           WHO guideline values: WHO global air quality guidelines (2021), Table 0.1. 24-hour values are the
           99th percentile, i.e. 3–4 exceedance days per year; the guidelines apply to indoor as well as
           outdoor air. For black carbon, WHO found the evidence insufficient to set a guideline level and
-          issues good-practice statements instead.
+          issues good-practice statements instead.<Cite sources={S} id="who-aqg" />
         </p>
       </div>
     </section>
@@ -113,7 +115,10 @@ function PollutantCard({
         </button>
       </div>
 
-      <p className="mt-3 text-sm leading-relaxed text-titanium">{p.description}</p>
+      <p className="mt-3 text-sm leading-relaxed text-titanium">
+        {p.description}
+        <Cite sources={S} id={p.cites} />
+      </p>
 
       <dl className="mt-5 space-y-3 border-t border-white/[0.06] pt-4 text-sm">
         <div className="flex gap-3">
@@ -131,7 +136,10 @@ function PollutantCard({
       </dl>
 
       <div className="mt-auto pt-5">
-        <p className="font-mono text-[11px] uppercase tracking-wider text-muted">WHO guideline (2021)</p>
+        <p className="font-mono text-[11px] uppercase tracking-wider text-muted">
+          WHO guideline (2021)
+          <Cite sources={S} id="who-aqg" />
+        </p>
         {who ? (
           <div className="mt-2 grid grid-cols-2 gap-3">
             <GuidelineValue value={who.annual} label="annual mean" />
@@ -212,7 +220,7 @@ export function Evidence() {
             </p>
             <p className="mt-3 max-w-lg text-sm leading-relaxed text-titanium">
               Each 1 µg/m³ increase in residential black carbon was associated with a 7.55 mmHg rise in
-              systolic blood pressure. Across a whole population, a shift like this matters, especially in
+              systolic blood pressure.<Cite sources={S} id="rabito" /> Across a whole population, a shift like this matters, especially in
               communities that already have high rates of cardiovascular disease.
             </p>
           </div>
@@ -247,7 +255,7 @@ export function Evidence() {
             <p className="mt-6 text-xs leading-relaxed text-muted">
               A 2 mmHg population-level increase in systolic BP is associated with a 7% increase in
               ischemic heart disease mortality and a 10% increase in stroke mortality (Lewington et al.,
-              Lancet 2002; meta-analysis of one million adults in 61 prospective studies). These are
+              Lancet 2002; meta-analysis of one million adults in 61 prospective studies).<Cite sources={S} id="lewington" /> These are
               population associations, not deaths estimated from this study.
             </p>
           </div>

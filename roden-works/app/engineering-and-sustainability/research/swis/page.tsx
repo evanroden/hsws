@@ -7,6 +7,8 @@ import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 import ProjectNav from '@/components/navigation/ProjectNav'
 import ReadingTime from '@/components/ui/ReadingTime'
 import WedgeModel from './WedgeModel'
+import { Cite, SourceList } from '@/components/ui/Sources'
+import { SWIS_SOURCES as S } from './sources'
 
 export default function SWISPage() {
   const { ref: contentRef, isInView: contentInView } = useInView(0.1)
@@ -101,9 +103,12 @@ export default function SWISPage() {
               </h2>
               <div className="space-y-4 text-titanium leading-relaxed">
                 <p>
+                  {/* Softened from "130,000 to 150,000 cfs": 130,000 was a Corps forecast
+                      (WWNO, Sept 19, 2023), not a reported flow. Reported flows were
+                      ~148,000-150,000 cfs (NBC News; PBS; WWNO live blog). */}
                   In the fall of 2023, the Mississippi River&apos;s flow fell to
-                  130,000 to 150,000 cubic feet per second, against a safe
-                  threshold of roughly 300,000 cfs. With less freshwater pushing
+                  about 150,000 cubic feet per second, against a safe
+                  threshold of roughly 300,000 cfs.<Cite sources={S} id={['pbs', 'wj0929']} /> With less freshwater pushing
                   downstream, a saltwater wedge from the Gulf of Mexico moved
                   upstream along the riverbed toward the drinking water intakes
                   for the Greater New Orleans metropolitan area.
@@ -111,7 +116,7 @@ export default function SWISPage() {
                 <p>
                   The U.S. Army Corps of Engineers built an emergency underwater
                   sill (a barrier on the riverbed) to slow the saltwater, and
-                  water utilities issued advisories. The event raised hard
+                  water utilities issued advisories.<Cite sources={S} id={['wj0929', 'pbs']} /> The event raised hard
                   questions about the long-term reliability of New
                   Orleans&apos;s water supply if drought on the Mississippi
                   becomes more common.
@@ -121,7 +126,7 @@ export default function SWISPage() {
                   For weeks, salinity crept toward the intakes. Officials
                   warned that the wedge threatened drinking water for close to
                   a million residents across four parishes, including the
-                  Carrollton plant that serves New Orleans&apos;s east bank.
+                  Carrollton plant that serves New Orleans&apos;s east bank.<Cite sources={S} id="pbs" />
                 </p>
               </div>
             </motion.div>
@@ -243,6 +248,7 @@ export default function SWISPage() {
               {
                 // PBS NewsHour, Sept 2023: "close to a million residents in four parishes"
                 stat: '~1M',
+                cite: 'pbs',
                 label: 'Residents at risk',
                 description:
                   'In 2023, officials said the saltwater wedge threatened drinking water for close to a million people in four parishes that draw from the Mississippi.',
@@ -253,6 +259,7 @@ export default function SWISPage() {
                 // Source: USACE release via GOHSEP, Aug. 29, 2024
                 // https://gohsep.la.gov/about/news/usace-to-construct-underwater-sill-to-arrest-saltwater-progression-into-mississippi-river/
                 stat: '5',
+                cite: 'gohsep',
                 label: 'sills since 1988',
                 description:
                   'The Army Corps has built emergency underwater sills near Myrtle Grove in 1988, 1999, 2012, 2022 and 2023, the last two years running.',
@@ -262,6 +269,7 @@ export default function SWISPage() {
                 // study has ever..."). Framed as the author's own search and
                 // the gap this proposal is designed to fill.
                 stat: 'New',
+                cite: undefined,
                 label: 'longitudinal study',
                 description:
                   'I found no long-term health study tracking the impacts of saltwater intrusion on a municipal water supply population. This proposal is designed to fill that gap.',
@@ -282,12 +290,14 @@ export default function SWISPage() {
                 </span>
                 <p className="text-titanium text-sm mt-3 leading-relaxed">
                   {item.description}
+                  {item.cite && <Cite sources={S} id={item.cite} />}
                 </p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
+      <SourceList sources={S} />
       <ProjectNav currentSlug="swis" />
     </>
   )

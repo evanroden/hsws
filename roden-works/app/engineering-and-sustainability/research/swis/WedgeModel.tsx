@@ -7,6 +7,8 @@ import RangeSlider from '@/components/ui/RangeSlider'
 import SegmentedControl from '@/components/ui/SegmentedControl'
 import { chart } from '@/components/charts/tokens'
 import WedgeProfile from './WedgeProfile'
+import { Cite } from '@/components/ui/Sources'
+import { SWIS_SOURCES } from './sources'
 import StatusGlyph, { sillGlyph } from './StatusGlyph'
 import {
   FLOW_MAX,
@@ -113,6 +115,7 @@ export default function WedgeModel() {
               {i < NOTE_SOURCES.length - 1 ? '; ' : '.'}
             </span>
           ))}
+          <Cite sources={SWIS_SOURCES} id={NOTE_SOURCES} />
         </>
       }
       table={table}

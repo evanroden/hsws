@@ -14,6 +14,8 @@ export interface Pollutant {
   /** Drawn as a filled dot (particles) or a ring (gas) */
   kind: 'particles' | 'gas'
   description: string
+  /** Ids in HAPS_SOURCES (./sources.ts) cited after the description */
+  cites: string[]
 }
 
 export const POLLUTANT_ORDER: PollutantId[] = ['pm25', 'bc', 'no2']
@@ -26,6 +28,7 @@ export const POLLUTANTS: Record<PollutantId, Pollutant> = {
     kind: 'particles',
     description:
       'Fine particulate matter smaller than 2.5 micrometers in diameter. The particles reach deep into the lung alveoli and can enter the bloodstream, causing inflammation throughout the body. Indoor sources include cooking, candles, incense, and tobacco smoke.',
+    cites: ['epa-pm'],
   },
   bc: {
     id: 'bc',
@@ -38,6 +41,7 @@ export const POLLUTANTS: Record<PollutantId, Pollutant> = {
     // https://pmc.ncbi.nlm.nih.gov/articles/PMC7985991/
     description:
       'A component of soot from incomplete combustion of fossil fuels, biomass, and cooking fuels. In the study, each 1 µg/m³ increase in residential black carbon was associated with a 7.55 mmHg increase in systolic blood pressure.',
+    cites: ['rabito'],
   },
   no2: {
     id: 'no2',
@@ -46,6 +50,7 @@ export const POLLUTANTS: Record<PollutantId, Pollutant> = {
     kind: 'gas',
     description:
       'Indoors, nitrogen dioxide comes mostly from gas stoves and space heaters. NO₂ irritates the airways, worsens asthma, and contributes to chronic respiratory disease. Poorly ventilated homes are hit hardest.',
+    cites: ['epa-no2'],
   },
 }
 
@@ -82,6 +87,8 @@ export interface Source {
   location: string
   emits: PollutantId[]
   detail: string
+  /** Ids in HAPS_SOURCES (./sources.ts) cited after the detail */
+  cites: string[]
   anchor: Pt
   badge: Pt
   /** Emission origin and drift vector for the particle plume */
@@ -98,6 +105,7 @@ export const SOURCES: Source[] = [
     emits: ['bc', 'no2'],
     detail:
       'Tailpipe exhaust drifts in through doors, windows and gaps in the walls, carrying black carbon and NO₂ indoors.',
+    cites: ['epa-pm', 'rabito'],
     anchor: { x: 186, y: 426 },
     badge: { x: 196, y: 368 },
     plume: { x: 198, y: 433, dx: 34, dy: -16 },
@@ -110,6 +118,7 @@ export const SOURCES: Source[] = [
     emits: ['no2', 'pm25'],
     detail:
       'Burning gas releases NO₂ and fine particles straight into the room, a bigger problem in poorly ventilated homes.',
+    cites: ['epa-no2', 'epa-pm'],
     anchor: { x: 368, y: 388 },
     badge: { x: 368, y: 290 },
     plume: { x: 368, y: 364, dx: 0, dy: -52 },
@@ -122,6 +131,7 @@ export const SOURCES: Source[] = [
     emits: ['pm25', 'bc'],
     detail:
       'Smoking is a significant indoor source of fine particles, and as incomplete combustion it adds black carbon too.',
+    cites: ['epa-pm', 'rabito'],
     anchor: { x: 445, y: 364 },
     badge: { x: 440, y: 300 },
     plume: { x: 453, y: 358, dx: 8, dy: -56 },
@@ -133,6 +143,7 @@ export const SOURCES: Source[] = [
     location: 'Middle room',
     emits: ['pm25'],
     detail: 'Burning candles and incense adds fine particles to the room air.',
+    cites: ['epa-pm'],
     anchor: { x: 620, y: 334 },
     badge: { x: 620, y: 262 },
     plume: { x: 622, y: 320, dx: 0, dy: -54 },
@@ -145,6 +156,7 @@ export const SOURCES: Source[] = [
     emits: ['no2', 'pm25'],
     detail:
       'The gas flame emits NO₂ and fine particles; frying, searing and other cooking add more PM2.5.',
+    cites: ['epa-no2', 'epa-pm'],
     anchor: { x: 918, y: 339 },
     badge: { x: 918, y: 276 },
     plume: { x: 916, y: 328, dx: 0, dy: -58 },

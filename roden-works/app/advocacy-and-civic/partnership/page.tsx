@@ -4,6 +4,8 @@ import { motion } from 'framer-motion'
 import { useInView } from '@/lib/hooks'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import EngagementDumbbell from './EngagementDumbbell'
+import { Cite, SourceList } from '@/components/ui/Sources'
+import { PARTNERSHIP_SOURCES as S } from './sources'
 
 // SAMHSA scores from Best Places to Work in the Federal Government, 2020 (before) vs 2022 (after),
 // rounded to whole numbers. Raw: engagement 37.1 -> 74.2; senior leaders 29.2 -> 73.8;
@@ -17,7 +19,7 @@ const engagementData = [
   { category: 'Pay & Benefits', before: 68, after: 73 },
 ]
 
-const workstreams = [
+const workstreams: { title: string; description: string; sources?: string[] }[] = [
   {
     title: 'Focus Group Research',
     description:
@@ -38,15 +40,17 @@ const workstreams = [
     description:
       // Attribution fix: the rankings come from OPM's FEVS data, not from this project. https://bestplacestowork.org/rankings/detail/?c=HE32
       'The project used the same FEVS data behind the Partnership\'s Best Places to Work in the Federal Government rankings, which rank over 400 federal organizations by employee engagement.',
+    sources: ['bptw-about', 'bptw-2021'],
   },
 ]
 
-const timeline = [
+const timeline: { date: string; title: string; description: string; sources?: string[] }[] = [
   {
     date: 'Sept 2021',
     title: 'Program Start',
     // SAMHSA partnered with the Partnership in August 2021: https://ourpublicservice.org/about/history-and-impact/samhsa-strong-teaming-up-to-transform-the-workplace
     description: 'Joined the Partnership\'s Federal Workforce team in Washington, D.C. and was assigned to the SAMHSA engagement project, which had started in August 2021.',
+    sources: ['samhsa-strong'],
   },
   {
     date: 'Oct 2021',
@@ -67,6 +71,7 @@ const timeline = [
     date: 'Jan 2022',
     title: 'Program Conclusion',
     description: 'Finished the program. Over the full Partnership collaboration, SAMHSA\'s Best Places to Work score rose from about 37 in 2020 to 74 in 2022.',
+    sources: ['bptw-samhsa'],
   },
 ]
 
@@ -121,15 +126,15 @@ export default function PartnershipPage() {
             className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-0 md:divide-x divide-white/10"
           >
             <div className="text-center px-6 py-4">
-              <span className="block font-sans font-semibold tracking-tight text-3xl md:text-4xl text-white">~37</span>
+              <span className="block font-sans font-semibold tracking-tight text-3xl md:text-4xl text-white">~37<Cite sources={S} id="bptw-samhsa" /></span>
               <span className="block mt-2 font-mono text-xs tracking-wide text-titanium uppercase">Score Before</span>
             </div>
             <div className="text-center px-6 py-4">
-              <span className="block font-sans font-semibold tracking-tight text-3xl md:text-4xl text-verdigris">74</span>
+              <span className="block font-sans font-semibold tracking-tight text-3xl md:text-4xl text-verdigris">74<Cite sources={S} id="bptw-samhsa" /></span>
               <span className="block mt-2 font-mono text-xs tracking-wide text-titanium uppercase">Score After</span>
             </div>
             <div className="text-center px-6 py-4">
-              <span className="block font-sans font-semibold tracking-tight text-3xl md:text-4xl text-copper">2x</span>
+              <span className="block font-sans font-semibold tracking-tight text-3xl md:text-4xl text-copper">2x<Cite sources={S} id="samhsa-strong" /></span>
               <span className="block mt-2 font-mono text-xs tracking-wide text-titanium uppercase">Score Increase</span>
             </div>
             <div className="text-center px-6 py-4">
@@ -165,7 +170,7 @@ export default function PartnershipPage() {
                   transition={{ duration: 0.6, delay: 0.1 }}
                 >
                   {/* Founding, $25M gift: https://en.wikipedia.org/wiki/Partnership_for_Public_Service */}
-                  The Partnership for Public Service, founded in 2001 by Samuel J. Heyman with a $25 million endowment, is a nonpartisan nonprofit that works to make the federal government more effective. It produces the Best Places to Work in the Federal Government rankings, administers the Samuel J. Heyman Service to America Medals (the &ldquo;Sammies&rdquo;), and runs the Center for Presidential Transition.
+                  The Partnership for Public Service, founded in 2001 by Samuel J. Heyman with a $25 million endowment, is a nonpartisan nonprofit that works to make the federal government more effective. It produces the Best Places to Work in the Federal Government rankings, administers the Samuel J. Heyman Service to America Medals (the &ldquo;Sammies&rdquo;), and runs the Center for Presidential Transition.<Cite sources={S} id="pps-wiki" />
                 </motion.p>
 
                 <motion.p
@@ -195,17 +200,17 @@ export default function PartnershipPage() {
                 </h3>
                 {/* 988 rename took effect July 16, 2022: https://www.samhsa.gov/find-help/988 ; FindTreatment.gov is SAMHSA's treatment locator */}
                 <p className="text-titanium text-sm leading-relaxed mb-4">
-                  SAMHSA is an agency within the U.S. Department of Health and Human Services charged with reducing the impact of substance abuse and mental illness on American communities. The agency administers the 988 Suicide &amp; Crisis Lifeline (the National Suicide Prevention Lifeline until July 2022), the Disaster Distress Helpline, and the FindTreatment.gov treatment locator, among other national programs.
+                  SAMHSA is an agency within the U.S. Department of Health and Human Services charged with reducing the impact of substance abuse and mental illness on American communities.<Cite sources={S} id={['samhsa-about', 'usafacts']} /> The agency administers the 988 Suicide &amp; Crisis Lifeline (the National Suicide Prevention Lifeline until July 2022),<Cite sources={S} id="aljazeera-988" /> the Disaster Distress Helpline, and the FindTreatment.gov treatment locator, among other national programs.<Cite sources={S} id="samhsa-about" />
                 </p>
                 <div className="grid grid-cols-2 gap-4 pt-4 border-t border-white/5">
                   <div>
                     {/* FY2022 enacted: https://acmhai.org/news/key-spending-package-signed-into-law-includes-billions-for-mental-health-and-substance-use-services/ */}
-                    <span className="font-sans font-semibold tracking-tight text-2xl text-white block">$6.5B</span>
+                    <span className="font-sans font-semibold tracking-tight text-2xl text-white block">$6.5B<Cite sources={S} id="mindsite" /></span>
                     <span className="font-mono text-xs text-muted mt-1 block">FY 2022 Budget</span>
                   </div>
                   <div>
                     {/* 527 federal employees (May 2026), about 603 in 2012: https://usafacts.org/explainers/what-does-the-us-government-do/subagency/substance-abuse-and-mental-health-services-administration/ */}
-                    <span className="font-sans font-semibold tracking-tight text-2xl text-white block">500+</span>
+                    <span className="font-sans font-semibold tracking-tight text-2xl text-white block">500+<Cite sources={S} id="usafacts" /></span>
                     <span className="font-mono text-xs text-muted mt-1 block">Employees</span>
                   </div>
                 </div>
@@ -216,7 +221,8 @@ export default function PartnershipPage() {
                   Why Engagement Matters
                 </h3>
                 <p className="text-titanium text-sm leading-relaxed">
-                  Agencies with higher engagement scores tend to deliver services better and keep their employees longer. SAMHSA runs crisis lines and treatment programs, so how well the agency functions affects whether people get help.
+                  {/* Softened (fact-check 2026-10): the retention claim had no source. https://bestplacestowork.org/about/ */}
+                  Agencies with higher engagement scores tend to perform better and deliver better outcomes.<Cite sources={S} id="bptw-about" /> SAMHSA runs crisis lines and treatment programs, so how well the agency functions affects whether people get help.
                 </p>
               </div>
             </motion.div>
@@ -240,7 +246,7 @@ export default function PartnershipPage() {
               Engagement scores doubled.
             </h2>
             <p className="mt-4 text-titanium max-w-2xl">
-              SAMHSA&apos;s Best Places to Work scores rose in every category shown between 2020 and 2022, the period of the Partnership&apos;s collaboration. The overall score rose from about 37 to 74, above the 2022 government-wide average.
+              SAMHSA&apos;s Best Places to Work scores rose in every category shown between 2020 and 2022, the period of the Partnership&apos;s collaboration.<Cite sources={S} id="bptw-samhsa" /> The overall score rose from about 37 to 74, above the 2022 government-wide average.<Cite sources={S} id="samhsa-strong" />
             </p>
           </motion.div>
 
@@ -288,7 +294,10 @@ export default function PartnershipPage() {
                   </div>
                   <div>
                     <h3 className="font-serif text-lg text-white mb-3">{stream.title}</h3>
-                    <p className="text-titanium text-sm leading-relaxed">{stream.description}</p>
+                    <p className="text-titanium text-sm leading-relaxed">
+                      {stream.description}
+                      {stream.sources && <Cite sources={S} id={stream.sources} />}
+                    </p>
                   </div>
                 </div>
               </motion.div>
@@ -328,7 +337,10 @@ export default function PartnershipPage() {
                   <div className="absolute left-2.5 md:left-6.5 w-3 h-3 rounded-full bg-slate-950 border-2 border-copper/40 z-10" />
                   <span className="font-mono text-xs text-copper">{event.date}</span>
                   <h3 className="font-serif text-lg text-white mt-1">{event.title}</h3>
-                  <p className="text-titanium text-sm mt-1 leading-relaxed">{event.description}</p>
+                  <p className="text-titanium text-sm mt-1 leading-relaxed">
+                    {event.description}
+                    {event.sources && <Cite sources={S} id={event.sources} />}
+                  </p>
                 </motion.div>
               ))}
             </div>
@@ -352,6 +364,8 @@ export default function PartnershipPage() {
           </div>
         </div>
       </section>
+
+      <SourceList sources={S} />
     </>
   )
 }

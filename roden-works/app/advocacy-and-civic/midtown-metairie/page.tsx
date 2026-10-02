@@ -4,6 +4,8 @@ import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { useInView } from '@/lib/hooks'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
+import { Cite, SourceList } from '@/components/ui/Sources'
+import { MIDTOWN_METAIRIE_SOURCES as S } from './sources'
 
 // Fact-check 2026-10 sources:
 // - Fat City Leisure Park: ~$17M total, ~$11.7M federal CDBG + ~$5.4M state; A&E under a cooperative
@@ -18,13 +20,15 @@ import Breadcrumbs from '@/components/ui/Breadcrumbs'
 // - Fat City sits off Veterans Memorial Blvd next to Lakeside Shopping Center: https://www.visitjeffersonparish.com/communities/metairie/
 //   (the earlier boundary list ending at "Metairie Country Club" was wrong and was removed)
 // - Clearview phase-one construction: https://bizneworleans.com/construction-of-first-phase-of-clearview-redevelopment-begins/
-const activeProjects = [
+// - Veterans Memorial Blvd is six lanes: https://en.wikipedia.org/wiki/Veterans_Memorial_Boulevard
+const activeProjects: { title: string; funding: string; description: string; status: string; sources: string[] }[] = [
   {
     title: 'Fat City Leisure Park',
     funding: '$17M',
     description:
       'A park planned for the Fat City district, funded mostly with federal Community Development Block Grant money (about $11.7 million) plus about $5.4 million from the state. The district\'s backers see it as a catalyst for turning the aging nightlife strip into a walkable, mixed-use neighborhood.',
     status: 'In design',
+    sources: ['hoodline'],
   },
   {
     title: 'Clearview City Center',
@@ -32,6 +36,7 @@ const activeProjects = [
     description:
       'Conversion of the Clearview Shopping Center into a mixed-use town center with apartments, a hotel, retail, office space, and an event green.',
     status: 'Active',
+    sources: ['enr'],
   },
 ]
 
@@ -114,7 +119,7 @@ export default function MidtownMetairiePage() {
               Midtown Metairie
             </h1>
             <p className="mt-6 text-titanium text-lg leading-relaxed max-w-2xl mx-auto">
-              My urban planning proposal for the commercial core of Metairie, Louisiana&apos;s most populous unincorporated community.
+              My urban planning proposal for the commercial core of Metairie, Louisiana&apos;s most populous unincorporated community.<Cite sources={S} id="metairie-wiki" />
             </p>
           </motion.div>
 
@@ -152,7 +157,7 @@ export default function MidtownMetairiePage() {
                 Full Proposal in Progress
               </h2>
               <p className="text-titanium text-sm leading-relaxed max-w-xl mx-auto">
-                I&apos;m still writing the full proposal. It builds on two projects in progress, the Fat City Leisure Park ($17M, mostly CDBG) and the Clearview City Center conversion ($100M), and lays out a walkable, mixed-use center for a community of over 140,000 residents.
+                I&apos;m still writing the full proposal. It builds on two projects in progress, the Fat City Leisure Park ($17M, mostly CDBG)<Cite sources={S} id="hoodline" /> and the Clearview City Center conversion ($100M),<Cite sources={S} id="enr" /> and lays out a walkable, mixed-use center for a community of over 140,000 residents.<Cite sources={S} id="metairie-wiki" />
               </p>
             </div>
           </motion.div>
@@ -182,7 +187,7 @@ export default function MidtownMetairiePage() {
                 animate={contextView.isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
-                Metairie is the most populous unincorporated community in Louisiana and one of the largest in the United States. It has over 140,000 residents but no mayor, no city council, and no planning authority of its own. Jefferson Parish governs it, which makes coordinated planning hard.
+                Metairie is the most populous unincorporated community in Louisiana and one of the largest in the United States. It has over 140,000 residents but no mayor, no city council, and no planning authority of its own. Jefferson Parish governs it,<Cite sources={S} id="metairie-wiki" /> which makes coordinated planning hard.
               </motion.p>
 
               <motion.p
@@ -190,7 +195,7 @@ export default function MidtownMetairiePage() {
                 animate={contextView.isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                Most of Metairie was built around the car: commercial strips, surface parking, and single-use zoning typical of mid-century suburbs. Veterans Memorial Boulevard, the main corridor, is six lanes lined with strip malls, fast food restaurants, and office parks. There is almost no protected bike infrastructure, limited transit, and little public space.
+                Most of Metairie was built around the car: commercial strips, surface parking, and single-use zoning typical of mid-century suburbs. Veterans Memorial Boulevard, the main corridor, is six lanes<Cite sources={S} id="veterans-wiki" /> lined with strip malls, fast food restaurants, and office parks. There is almost no protected bike infrastructure, limited transit, and little public space.
               </motion.p>
 
               <motion.p
@@ -211,10 +216,10 @@ export default function MidtownMetairiePage() {
             className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4"
           >
             {[
-              { value: '140K+', label: 'Residents' },
-              { value: '#1', label: 'Largest Unincorporated in LA' },
-              { value: '$117M', label: 'Planned Investment' },
-              { value: '0', label: 'Incorporated Government' },
+              { value: '140K+', label: 'Residents', sources: ['metairie-wiki'] },
+              { value: '#1', label: 'Largest Unincorporated in LA', sources: ['metairie-wiki'] },
+              { value: '$117M', label: 'Planned Investment', sources: ['hoodline', 'enr'] },
+              { value: '0', label: 'Incorporated Government', sources: ['metairie-wiki'] },
             ].map((stat, i) => (
               <motion.div
                 key={stat.label}
@@ -223,7 +228,10 @@ export default function MidtownMetairiePage() {
                 transition={{ duration: 0.4, delay: 0.5 + i * 0.1 }}
                 className="glass rounded-xl p-5 text-center"
               >
-                <span className="block font-sans font-semibold tracking-tight text-2xl md:text-3xl text-white">{stat.value}</span>
+                <span className="block font-sans font-semibold tracking-tight text-2xl md:text-3xl text-white">
+                  {stat.value}
+                  <Cite sources={S} id={stat.sources} />
+                </span>
                 <span className="block mt-2 font-mono text-xs text-titanium uppercase">{stat.label}</span>
               </motion.div>
             ))}
@@ -267,7 +275,10 @@ export default function MidtownMetairiePage() {
                   </div>
                   <span className="font-serif text-2xl text-copper">{project.funding}</span>
                 </div>
-                <p className="text-titanium text-sm leading-relaxed">{project.description}</p>
+                <p className="text-titanium text-sm leading-relaxed">
+                  {project.description}
+                  <Cite sources={S} id={project.sources} />
+                </p>
                 <div className="mt-4 flex items-center gap-2 text-sm text-muted">
                   <span className="font-mono text-xs">{expandedProject === i ? 'collapse' : 'expand'}</span>
                 </div>
@@ -280,9 +291,15 @@ export default function MidtownMetairiePage() {
                     className="mt-4 pt-4 border-t border-white/5"
                   >
                     <p className="text-muted text-xs leading-relaxed">
-                      {i === 0
-                        ? 'Fat City, just off Veterans Memorial Boulevard near Lakeside Shopping Center, was once a busy entertainment district. The planned Leisure Park includes a stroll garden, an oak grove, a children\'s play area, bioswales, an event lawn, and a pocket park on the former Crazy Johnnie\'s site. Officials aim to open it by the end of 2027.'
-                        : 'The Clearview Shopping Center, at Veterans Memorial Blvd and Clearview Pkwy, is being converted into a mixed-use town center. The $100M plan includes more than 260 apartments, a hotel, about 100,000 square feet of office space, restaurants, and a 14,000-square-foot green for events.'}
+                      {i === 0 ? (
+                        <>
+                          Fat City, just off Veterans Memorial Boulevard near Lakeside Shopping Center,<Cite sources={S} id="visitjp" /> was once a busy entertainment district.<Cite sources={S} id="metairie-wiki" /> The planned Leisure Park includes a stroll garden, an oak grove, a children&apos;s play area, bioswales, an event lawn, and a pocket park on the former Crazy Johnnie&apos;s site. Officials aim to open it by the end of 2027.<Cite sources={S} id="hoodline" />
+                        </>
+                      ) : (
+                        <>
+                          The Clearview Shopping Center, at Veterans Memorial Blvd and Clearview Pkwy,<Cite sources={S} id="biz-clearview" /> is being converted into a mixed-use town center. The $100M plan includes more than 260 apartments, a hotel, about 100,000 square feet of office space, restaurants, and a 14,000-square-foot green for events.<Cite sources={S} id="enr" />
+                        </>
+                      )}
                     </p>
                   </motion.div>
                 )}
@@ -376,6 +393,8 @@ export default function MidtownMetairiePage() {
           </motion.div>
         </div>
       </section>
+
+      <SourceList sources={S} />
     </>
   )
 }

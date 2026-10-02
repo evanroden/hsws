@@ -2,17 +2,22 @@
 
 import { motion } from 'framer-motion'
 import { useInView } from '@/lib/hooks'
+import { Cite } from '@/components/ui/Sources'
+import { YCOD_SOURCES as S } from './sources'
 
 // Verified coverage only (fact-check 2026-10). WKBW story syndicated across Scripps stations:
 // https://www.wxyz.com/news/national/college-freshmen-in-new-york-develop-plan-to-encourage-more-organ-donors
 // Spectrum News: https://spectrumlocalnews.com/nys/buffalo/news/2021/01/13/college-students-push-for-more-organ-donations-in-ny-
 // WENY: https://weny.com/story/43131791/college-activists-pushing-for-change-to-organ-donor-registration-process-in-nys
 // CBC, Yahoo News and Business Insider could not be found and were removed; "Local Media Network" was a placeholder.
-const media = [
-  { name: 'WKBW', type: 'Broadcast' },
-  { name: 'Spectrum News', type: 'Broadcast' },
-  { name: 'WENY', type: 'Broadcast' },
-  { name: 'Scripps stations', type: 'Syndicated' },
+// CBC Radio's Information Morning (Nova Scotia, host Portia Clark), 2020: owner-confirmed, Oct 2026;
+// no archived link found, so no <Cite>. Radio One / CBC syndication items, Yahoo and Business Insider stay out.
+const media: { name: string; type: string; sources?: string[] }[] = [
+  { name: 'WKBW', type: 'Broadcast', sources: ['wkbw'] },
+  { name: 'Spectrum News', type: 'Broadcast', sources: ['spectrum-jan2021'] },
+  { name: 'WENY', type: 'Broadcast', sources: ['weny'] },
+  { name: 'Scripps stations', type: 'Syndicated', sources: ['wkbw'] },
+  { name: "CBC Radio's Information Morning (Nova Scotia)", type: 'Radio' },
 ]
 
 const partners = [
@@ -49,7 +54,10 @@ export default function MediaWall() {
                   transition={{ duration: 0.4, delay: 0.2 + i * 0.08 }}
                   className="glass rounded-lg p-4 text-center hover:bg-white/10 transition-colors"
                 >
-                  <span className="text-white text-sm font-medium">{outlet.name}</span>
+                  <span className="text-white text-sm font-medium">
+                    {outlet.name}
+                    {outlet.sources && <Cite sources={S} id={outlet.sources} />}
+                  </span>
                   <span className="block text-muted text-xs mt-1 font-mono">{outlet.type}</span>
                 </motion.div>
               ))}

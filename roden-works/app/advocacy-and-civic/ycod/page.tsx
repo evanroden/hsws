@@ -9,6 +9,8 @@ import YcodStory from './YcodStory'
 import VideoFeature from './VideoFeature'
 import LegislativeTimeline from './LegislativeTimeline'
 import MediaWall from './MediaWall'
+import { SourceList } from '@/components/ui/Sources'
+import { YCOD_SOURCES } from './sources'
 
 export const metadata: Metadata = {
   title: 'The YCOD: Opt-Out Organ Donation Advocacy',
@@ -47,6 +49,7 @@ export default function YcodPage() {
       <VideoFeature />
       <LegislativeTimeline />
       <MediaWall />
+      <SourceList sources={YCOD_SOURCES} />
       <ProjectNav currentSlug="ycod" />
     </>
   )

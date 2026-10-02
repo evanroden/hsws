@@ -1,12 +1,15 @@
 'use client'
 
 import { motion, useReducedMotion } from 'framer-motion'
+import type { ReactNode } from 'react'
 
 export interface CdpStep {
   phase: string
   title: string
   location: string
   description: string
+  /** Optional <Cite> rendered after the description. */
+  cite?: ReactNode
 }
 
 /**
@@ -65,7 +68,7 @@ export default function CdpJourney({ steps, animate }: { steps: CdpStep[]; anima
             </span>
             <h3 className="font-serif text-2xl text-white">{step.title}</h3>
             <span className="mt-1 block font-mono text-xs text-copper-light">{step.location}</span>
-            <p className="mt-4 text-titanium text-sm leading-relaxed max-w-md">{step.description}</p>
+            <p className="mt-4 text-titanium text-sm leading-relaxed max-w-md">{step.description}{step.cite}</p>
           </div>
         </motion.li>
       ))}

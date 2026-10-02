@@ -5,6 +5,8 @@ import { useEffect, useId, useState, type KeyboardEvent, type ReactNode } from '
 import ChartFrame from '@/components/charts/ChartFrame'
 import { chart } from '@/components/charts/tokens'
 import { useElementSize } from '@/components/charts/useElementSize'
+import { Cite } from '@/components/ui/Sources'
+import { CONVERGINT_SOURCES as S } from './sources'
 
 /* ─── Sources for the generic system behaviour shown here ──────────────────
  * • Circuit types (IDC / NAC / SLC), alarm > supervisory > trouble priority,
@@ -56,6 +58,8 @@ interface Device {
   group: Group
   icon: IconName
   description: string
+  /** Source ids (see ./sources.ts) for the code references and behaviour in the description. */
+  sources?: string[]
 }
 
 const DEVICES: Device[] = [
@@ -67,6 +71,7 @@ const DEVICES: Device[] = [
     icon: 'smoke',
     description:
       'Photoelectric and ionization detectors placed throughout a building to sense smoke particles. Addressable devices report their exact location to the fire alarm control panel. NFPA 72 sets spacing, placement heights, and maintenance intervals.',
+    sources: ['nfpa-72'],
   },
   {
     id: 'pull',
@@ -76,6 +81,7 @@ const DEVICES: Device[] = [
     icon: 'pull',
     description:
       'Manual fire alarm boxes located at building exits per NFPA 72 requirements. When pulled, a station sends an alarm signal to the FACP, which starts building-wide notification. Double-action stations reduce false alarms in high-traffic environments.',
+    sources: ['nfpa-72'],
   },
   {
     id: 'riser',
@@ -85,6 +91,7 @@ const DEVICES: Device[] = [
     icon: 'riser',
     description:
       'Vertical pipes that connect the water supply to the sprinkler system. Each riser serves a zone and includes a tamper switch and flow switch that reports to the FACP. Wet, dry, pre-action, and deluge systems are chosen to suit the space, such as freezing risk, sensitivity to water damage, or a high hazard, and are designed per NFPA 13.',
+    sources: ['firesystems-switches', 'nfpa-13'],
   },
   {
     id: 'facp',
@@ -103,6 +110,7 @@ const DEVICES: Device[] = [
     icon: 'horn',
     description:
       'Notification appliances wired on the notification appliance circuits. Horns sound the evacuation signal and strobes flash for occupants who may not hear it; the FACP drives both whenever it enters alarm. NFPA 72 sets their audibility and visibility requirements.',
+    sources: ['nfpa-72'],
   },
   {
     id: 'annunciator',
@@ -112,6 +120,7 @@ const DEVICES: Device[] = [
     icon: 'annunciator',
     description:
       'A remote display for responding firefighters. Graphic annunciators show a floor-by-floor map with the zone in alarm, so crews can find the origin and direct evacuation. The AHJ typically requires one at the main entrance.',
+    sources: ['ufgs-28-31-76'],
   },
   {
     id: 'communicator',
@@ -121,6 +130,7 @@ const DEVICES: Device[] = [
     icon: 'communicator',
     description:
       'A transmitter at the panel, commonly a digital alarm communicator (DACT), cellular, or IP unit, that sends alarm, supervisory, and trouble signals off-site to a supervising station.',
+    sources: ['ufgs-28-31-76'],
   },
   {
     id: 'central',
@@ -130,6 +140,7 @@ const DEVICES: Device[] = [
     icon: 'central',
     description:
       'A continuously staffed supervising station. Under NFPA 72 it immediately retransmits fire alarm signals to the fire department’s communications center, then notifies the building’s contacts.',
+    sources: ['nfsa-supervising'],
   },
   {
     id: 'releasing',
@@ -139,6 +150,7 @@ const DEVICES: Device[] = [
     icon: 'releasing',
     description:
       'A releasing control unit dedicated to the clean agent system. It watches its own detectors plus manual release and abort stations, runs the pre-discharge alarm and time delay, then energizes the releasing circuit. It reports alarm, supervisory, and release status to the FACP.',
+    sources: ['ufgs-21-22-00'],
   },
   {
     id: 'cylinders',
@@ -148,6 +160,7 @@ const DEVICES: Device[] = [
     icon: 'cylinders',
     description:
       'Gaseous suppression systems (FM-200, Novec 1230, or Inergen) for spaces where water would cause more damage than the fire, such as data centers, museum archives, and telecom rooms. The agent suppresses fire by removing heat or displacing oxygen without leaving residue. Governed by NFPA 2001. A low-pressure switch on each cylinder sends a supervisory signal if the agent leaks down.',
+    sources: ['nfpa-2001', 'ufgs-21-22-00'],
   },
 ]
 
@@ -422,7 +435,13 @@ export default function FireSystemDiagram() {
           ))}
         </ul>
       }
-      note="Simplified, generic schematic. Real designs vary by occupancy, code edition, and the authority having jurisdiction. Sequence per NFPA 72 and UFGS 21 22 00 / 28 31 76."
+      note={
+        <>
+          Simplified, generic schematic. Real designs vary by occupancy, code edition, and the authority having
+          jurisdiction. Sequence per NFPA 72 and UFGS 21 22 00 / 28 31 76.
+          <Cite sources={S} id={['nfpa-72', 'ufgs-28-31-76', 'nfsa-supervising', 'ufgs-21-22-00']} />
+        </>
+      }
       table={{
         caption: 'Fire alarm system devices, roles, and connections',
         columns: ['Device', 'Group', 'Connects to'],
@@ -893,7 +912,9 @@ function DetailPanel({ selected, onSelect }: { selected: string | null; onSelect
               Clear
             </button>
           </div>
-          <p className="mt-3 text-sm leading-relaxed text-titanium">{dev.description}</p>
+          <p className="mt-3 text-sm leading-relaxed text-titanium">{dev.description}
+            {dev.sources && <Cite sources={S} id={dev.sources} />}
+          </p>
           <h5 className="mt-5 font-mono text-[11px] tracking-widest uppercase text-muted">Connections</h5>
           <ul className="mt-2 space-y-1.5">
             {EDGES.filter((e) => e.from === dev.id || e.to === dev.id).map((e) => {

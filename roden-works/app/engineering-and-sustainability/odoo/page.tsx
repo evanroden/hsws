@@ -9,6 +9,8 @@ import ProjectNav from '@/components/navigation/ProjectNav'
 import ReadingTime from '@/components/ui/ReadingTime'
 import GoalBulletChart from './GoalBulletChart'
 import OrderToCashFlow from './OrderToCashFlow'
+import { Cite, SourceList } from '@/components/ui/Sources'
+import { ODOO_SOURCES as S } from './sources'
 
 export default function OdooPage() {
   const { ref: aboutRef, isInView: aboutInView } = useInView(0.1)
@@ -89,9 +91,9 @@ export default function OdooPage() {
                 Nov 2024 EUR 5B round led by CapitalG and Sequoia, BlackRock participating:
                 https://www.summitpartners.com/news/odoo-announces-a-500-million-transaction-increasing-the-belgian-unicorns-valuation-to-5-billion */}
             <p className="mt-4 text-titanium text-lg max-w-2xl">
-              Open-source ERP software with 28 million users worldwide. A 2024
-              round led by CapitalG and Sequoia valued it at &euro;5 billion,
-              and in 2026 it announced a &euro;10 billion valuation.
+              Open-source ERP software with 28 million users worldwide.<Cite sources={S} id="odoo-about" /> A 2024
+              round led by CapitalG and Sequoia valued it at &euro;5 billion,<Cite sources={S} id="summit-2024" />
+              and in 2026 it announced a &euro;10 billion valuation.<Cite sources={S} id="brussels-times-2026" />
             </p>
           </motion.div>
 
@@ -102,8 +104,8 @@ export default function OdooPage() {
             className="mt-10 grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-0 md:divide-x divide-white/10"
           >
             <StatCounter value={160} suffix="%" label="Non-Recurring Revenue Goal" />
-            <StatCounter value={28} suffix="M" label="Global Users" />
-            <StatCounter value={10} prefix="€" suffix="B" label="Valuation (2026)" />
+            <StatCounter value={28} suffix="M" label="Global Users" cite={<Cite sources={S} id="odoo-about" />} />
+            <StatCounter value={10} prefix="€" suffix="B" label="Valuation (2026)" cite={<Cite sources={S} id="brussels-times-2026" />} />
           </motion.div>
         </div>
       </section>
@@ -125,7 +127,7 @@ export default function OdooPage() {
               </h2>
               <div className="space-y-4 text-titanium leading-relaxed">
                 <p>
-                  Odoo is an open-source ERP platform with 28 million users.
+                  Odoo is an open-source ERP platform with 28 million users.<Cite sources={S} id="odoo-about" />
                   Compared with SAP or Oracle, it is
                   modular: a business can start with one application, such as
                   CRM, Accounting, or Inventory, and add others later.
@@ -140,15 +142,15 @@ export default function OdooPage() {
                   CapitalG (Alphabet&apos;s investment arm) and Sequoia Capital
                   led a &euro;500 million secondary investment, with BlackRock
                   among the other participants, that valued the company at
-                  &euro;5 billion. Odoo builds about 50 main applications, and
+                  &euro;5 billion.<Cite sources={S} id="summit-2024" /> Odoo builds about 50 main applications, and
                   its community has added 50,000+ more apps for manufacturing,
-                  accounting, point-of-sale, website building, and more.
+                  accounting, point-of-sale, website building, and more.<Cite sources={S} id="odoo-about" />
                 </p>
                 <p>
                   Odoo has two editions: Community (open-source) and Enterprise
                   (subscription). Many clients start on the free tools and
                   upgrade once they need features like analytic accounting,
-                  barcode scanning, or IoT integration.
+                  barcode scanning, or IoT integration.<Cite sources={S} id="odoo-editions" />
                 </p>
               </div>
             </motion.div>
@@ -281,6 +283,7 @@ export default function OdooPage() {
           </motion.div>
         </div>
       </section>
+      <SourceList sources={S} />
       <ProjectNav currentSlug="odoo" />
     </>
   )

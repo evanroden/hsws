@@ -4,6 +4,8 @@ import { motion } from 'framer-motion'
 import { useInView } from '@/lib/hooks'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import StateTileMap from './StateTileMap'
+import { Cite, SourceList } from '@/components/ui/Sources'
+import { OUR_CLIMATE_SOURCES as S } from './sources'
 
 // Fact-check 2026-10: these are state climate wins around the fellowship year, with their real dates.
 // Only Oregon's executive order fell inside the fellowship (Nov 2019 to Oct 2020), so the page no longer
@@ -15,13 +17,14 @@ import StateTileMap from './StateTileMap'
 // - MA Next-Generation Roadmap climate law signed March 26, 2021 (from the 2019-20 session):
 //   https://daypitney.com/insights/publications/2021/03/30-massachusetts-enacts-major-climate-change-leg
 //   The earlier "~$500M for green retrofits" claim could not be sourced and was removed.
-const victories = [
+const victories: { state: string; abbr: string; title: string; description: string; sources: string[] }[] = [
   {
     state: 'New York',
     abbr: 'NY',
     title: 'Climate Leadership & Community Protection Act (CLCPA), July 2019',
     description:
       'Signed in July 2019, a few months before my fellowship began, so it is context rather than a fellowship win. It requires 70% renewable electricity by 2030 and net-zero emissions by 2050, and it shaped climate organizing in New York during my fellowship year.',
+    sources: ['ny-clcpa'],
   },
   {
     state: 'Massachusetts',
@@ -29,6 +32,7 @@ const victories = [
     title: 'Next-Generation Climate Roadmap law, March 2021',
     description:
       'The roadmap bill came out of the 2019–2020 legislative session and was signed in March 2021, a few months after my fellowship ended. It sets a net-zero emissions target for 2050.',
+    sources: ['ma-roadmap'],
   },
   {
     state: 'Oregon',
@@ -36,10 +40,11 @@ const victories = [
     title: "Governor's Executive Order 20-04, March 2020",
     description:
       'After a Republican walkout blocked the cap-and-trade bill in the 2020 session, Governor Kate Brown signed an executive order in March 2020 directing state agencies to cut emissions 45% below 1990 levels by 2035 and 80% by 2050. This was the one win that fell inside the fellowship year. Portland-based fellows organized community pressure and worked with state advocacy groups.',
+    sources: ['or-eo'],
   },
 ]
 
-const timelineEvents = [
+const timelineEvents: { date: string; title: string; description: string; sources?: string[] }[] = [
   {
     date: 'Nov 2019',
     title: 'Fellowship Begins',
@@ -60,6 +65,7 @@ const timelineEvents = [
     date: 'Mar 2020',
     title: 'Oregon Executive Order',
     description: 'After the cap-and-trade bill stalled in a Republican walkout, Governor Kate Brown signed Executive Order 20-04 setting statewide emissions reduction targets.',
+    sources: ['or-eo'],
   },
   {
     date: 'May 2020',
@@ -112,7 +118,7 @@ export default function OurClimatePage() {
               Our Climate
             </h1>
             <p className="mt-4 text-titanium text-lg max-w-2xl">
-              A 12-month fellowship with Our Climate, a nonprofit that trains young people to advocate for equitable climate policy at the state and federal level. I was based in Portland, Oregon.
+              A 12-month fellowship with Our Climate, a nonprofit that trains young people to advocate for equitable climate policy at the state and federal level.<Cite sources={S} id="causeiq" /> I was based in Portland, Oregon.
             </p>
           </motion.div>
 
@@ -131,11 +137,11 @@ export default function OurClimatePage() {
               <span className="block mt-2 font-mono text-xs tracking-wide text-titanium uppercase">States Covered</span>
             </div>
             <div className="text-center px-6 py-4">
-              <span className="block font-sans font-semibold tracking-tight text-3xl md:text-4xl text-white">45%</span>
+              <span className="block font-sans font-semibold tracking-tight text-3xl md:text-4xl text-white">45%<Cite sources={S} id="or-eo" /></span>
               <span className="block mt-2 font-mono text-xs tracking-wide text-titanium uppercase">2035 Cut Target (OR)</span>
             </div>
             <div className="text-center px-6 py-4">
-              <span className="block font-sans font-semibold tracking-tight text-3xl md:text-4xl text-white">2050</span>
+              <span className="block font-sans font-semibold tracking-tight text-3xl md:text-4xl text-white">2050<Cite sources={S} id="ny-clcpa" /></span>
               <span className="block mt-2 font-mono text-xs tracking-wide text-titanium uppercase">Net-Zero Target (NY)</span>
             </div>
           </motion.div>
@@ -166,7 +172,7 @@ export default function OurClimatePage() {
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
                 {/* Our Climate (EIN 46-4237362) and Our Climate Education Fund (EIN 26-3059927) are separate c4/c3 entities, HQ in Washington, DC: https://causeiq.com/organizations/our-climate,464237362 */}
-                Our Climate is a nonprofit that trains young people to advocate for equitable climate policy. The fellowship teaches cohorts of young organizers legislative strategy, constituent communication, and campaign management, then places them in states with active climate legislation.
+                Our Climate is a nonprofit that trains young people to advocate for equitable climate policy.<Cite sources={S} id="causeiq" /> The fellowship teaches cohorts of young organizers legislative strategy, constituent communication, and campaign management, then places them in states with active climate legislation.
               </motion.p>
 
               <motion.p
@@ -182,7 +188,7 @@ export default function OurClimatePage() {
                 animate={heroView.isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                Oregon&apos;s governor signed a climate executive order during my fellowship year, after cap-and-trade stalled in the legislature. New York&apos;s CLCPA passed a few months before the fellowship began, and Massachusetts&apos;s climate roadmap law passed a few months after it ended.
+                Oregon&apos;s governor signed a climate executive order during my fellowship year, after cap-and-trade stalled in the legislature.<Cite sources={S} id="or-eo" /> New York&apos;s CLCPA passed a few months before the fellowship began,<Cite sources={S} id="ny-clcpa" /> and Massachusetts&apos;s climate roadmap law passed a few months after it ended.<Cite sources={S} id="ma-roadmap" />
               </motion.p>
             </div>
           </div>
@@ -256,7 +262,10 @@ export default function OurClimatePage() {
                       {victory.state}
                     </span>
                     <h3 className="font-serif text-xl text-white mt-2 mb-3">{victory.title}</h3>
-                    <p className="text-titanium text-sm leading-relaxed">{victory.description}</p>
+                    <p className="text-titanium text-sm leading-relaxed">
+                      {victory.description}
+                      <Cite sources={S} id={victory.sources} />
+                    </p>
                   </div>
                 </div>
               </motion.div>
@@ -296,7 +305,10 @@ export default function OurClimatePage() {
                   <div className="absolute left-2.5 md:left-6.5 w-3 h-3 rounded-full bg-slate-950 border-2 border-forest/50 z-10" />
                   <span className="font-mono text-xs text-verdigris">{event.date}</span>
                   <h3 className="font-serif text-lg text-white mt-1">{event.title}</h3>
-                  <p className="text-titanium text-sm mt-1 leading-relaxed">{event.description}</p>
+                  <p className="text-titanium text-sm mt-1 leading-relaxed">
+                    {event.description}
+                    {event.sources && <Cite sources={S} id={event.sources} />}
+                  </p>
                 </motion.div>
               ))}
             </div>
@@ -320,6 +332,8 @@ export default function OurClimatePage() {
           </div>
         </div>
       </section>
+
+      <SourceList sources={S} />
     </>
   )
 }

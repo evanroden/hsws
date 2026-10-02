@@ -2,13 +2,24 @@
 
 import { motion } from 'framer-motion'
 import { useInView } from '@/lib/hooks'
+import { Cite } from '@/components/ui/Sources'
+import { ENGINEERING_SOURCES as S } from './sources'
 
-const timelineData = [
+const timelineData: {
+  year: string
+  title: string
+  role: string
+  description: string
+  /** Source ids (see ./sources.ts) for public figures in the description. */
+  sources?: string[]
+  color: string
+}[] = [
   {
     year: '2026–',
     title: 'ENFRA',
     role: 'Sustainability Engineer II / Asset Manager',
     description: 'Asset manager for the Central Energy Plants at two Rochester Regional Health hospitals under a $143.8M EaaS partnership.',
+    sources: ['rrh-announcement'],
     color: 'bg-forest-light',
   },
   {
@@ -20,6 +31,7 @@ const timelineData = [
     // until the Oct 2025 move to Bell Works, Hoffman Estates ("previously located in neighboring
     // Schaumburg"): https://dailyherald.com/?p=1301823
     description: 'Fire and life safety systems integration in San Francisco. Started in the Career Development Program at headquarters in Schaumburg, IL.',
+    sources: ['daily-herald-hq', 'ssn-schaumburg'],
     color: 'bg-titanium',
   },
   {
@@ -105,7 +117,7 @@ export default function Timeline() {
                   <span className="font-mono text-xs text-copper">{item.year}</span>
                   <h3 className="font-serif text-xl text-white mt-1">{item.title}</h3>
                   <p className="text-sm text-titanium mt-1">{item.role}</p>
-                  <p className="text-sm text-titanium/70 mt-2 leading-relaxed">{item.description}</p>
+                  <p className="text-sm text-titanium/70 mt-2 leading-relaxed">{item.description}{item.sources && <Cite sources={S} id={item.sources} />}</p>
                 </div>
               </motion.div>
             ))}

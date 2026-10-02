@@ -7,12 +7,15 @@ import ChartTooltip from '@/components/charts/ChartTooltip'
 import { chart } from '@/components/charts/tokens'
 import { useElementSize } from '@/components/charts/useElementSize'
 import { TILE_COLS, TILE_GRID, TILE_ROWS } from './tileGrid'
+import { Cite } from '@/components/ui/Sources'
+import { OUR_CLIMATE_SOURCES as S } from './sources'
 
 export interface Victory {
   state: string
   abbr: string
   title: string
   description: string
+  sources?: string[]
 }
 
 /** De-emphasized tile: one step off the surface; labels in titanium clear 4.9:1 on it */
@@ -45,7 +48,11 @@ export default function StateTileMap({ victories, animate }: { victories: Victor
           </li>
         </ul>
       }
-      note="Tile layout after NPR’s square tile grid map."
+      note={
+        <>
+          Tile layout after NPR’s square tile grid map.<Cite sources={S} id="npr-tiles" />
+        </>
+      }
       table={{
         caption: 'State climate wins around the 2019–2020 Our Climate fellowship, with dates',
         columns: ['State', 'What passed'],
@@ -98,7 +105,10 @@ export default function StateTileMap({ victories, animate }: { victories: Victor
                         transition={{ duration: reduceMotion ? 0 : 0.3, ease: [0.16, 1, 0.3, 1] }}
                         className="overflow-hidden"
                       >
-                        <p className="pb-5 pl-2 sm:pl-[60px] pr-2 text-sm leading-relaxed text-titanium">{v.description}</p>
+                        <p className="pb-5 pl-2 sm:pl-[60px] pr-2 text-sm leading-relaxed text-titanium">
+                          {v.description}
+                          {v.sources && <Cite sources={S} id={v.sources} />}
+                        </p>
                       </motion.div>
                     )}
                   </AnimatePresence>

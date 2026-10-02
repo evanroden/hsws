@@ -7,24 +7,29 @@ import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 import ProjectNav from '@/components/navigation/ProjectNav'
 import ReadingTime from '@/components/ui/ReadingTime'
 import MembraneModel from './MembraneModel'
+import { Cite, SourceList } from '@/components/ui/Sources'
+import { WIMLEY_SOURCES as S } from './sources'
 
 const applications = [
   {
     title: 'Antibiotic-Resistant Drug Design',
     description:
       'These peptides kill bacteria by punching pores in their membranes, so they sidestep the resistance mechanisms that target metabolic drugs. They stay active in whole blood, a test most antimicrobial peptides fail.',
+    cites: ['starr2020'],
     color: '#B87333',
   },
   {
     title: 'pH-Responsive Drug Delivery',
     description:
       'The pHD (pH-dependent) peptides form nanopores only at pH < 6. Tumor microenvironments are acidic, so a carrier built on them could stay inactive in healthy tissue and release its drug at the tumor.',
+    cites: ['phd2017', 'tumor-acid'],
     color: '#2D5A45',
   },
   {
     title: 'Biosensor Engineering',
     description:
       'Self-assembling nanopores can be engineered to detect specific molecules. Because the pore geometry is controlled, they could support single-molecule detection of infectious disease and cancer biomarkers.',
+    cites: ['nanopore-detect'],
     color: '#8A9BA8',
   },
 ]
@@ -39,12 +44,14 @@ const keyPeptides = [
     // https://medicine.tulane.edu/wimley-lab/pore-forming-peptides
     mechanism:
       'Form large pores in lipid membranes at very low peptide-to-lipid ratios to release macromolecule-sized cargo, with no measurable toxicity to human cells.',
+    cites: ['macrolittins2018', 'acsnano2024'],
   },
   {
     name: 'pHD Peptides',
     origin: 'Synthetic molecular evolution',
     mechanism:
       'pH-dependent nanopores that stay inactive at physiological pH (7.4) and open at acidic pH (< 6), which makes them candidates for tumor-targeted delivery.',
+    cites: ['phd2017'],
   },
   {
     // MelP5 is the Wimley lab's first-generation gain-of-function melittin
@@ -56,6 +63,7 @@ const keyPeptides = [
     origin: 'Gain-of-function melittin variant',
     mechanism:
       'A potent equilibrium pore-former evolved from melittin. It releases macromolecule-sized cargo from lipid vesicles and served as the parent for the macrolittins.',
+    cites: ['melp5-2014', 'acsnano2024'],
   },
 ]
 
@@ -190,7 +198,7 @@ export default function WimleyLabPage() {
                 <div className="space-y-4 text-titanium leading-relaxed">
                   <p>
                     In Dr. William Wimley&apos;s lab (George A. Adrouny
-                    Professor of Biochemistry at Tulane School of Medicine), I
+                    Professor of Biochemistry at Tulane School of Medicine),<Cite sources={S} id="wimley-faculty" /> I
                     used PDB membrane protein models and combinatorial chemistry
                     to design peptide assemblies that interact with membrane
                     proteins and lipid bilayers.
@@ -198,17 +206,19 @@ export default function WimleyLabPage() {
                   <p>
                     I used high-throughput screening to identify peptides that
                     form pores across the membrane. These included the pHD
-                    peptide family (nanopores activated at pH &lt; 6) and
-                    macrolittins, which were evolved from melittin, the main
-                    cytolytic component of bee venom.
+                    peptide family (nanopores activated at pH &lt; 6)<Cite sources={S} id="phd2017" /> and
+                    macrolittins, which were evolved from melittin,<Cite sources={S} id="macrolittins2018" /> the main
+                    cytolytic component of bee venom.<Cite sources={S} id="bee-venom" />
                   </p>
                   <p>
                     The lab&apos;s method, synthetic molecular evolution, runs
                     repeated rounds of library design, synthesis, and screening
-                    to select peptides with specific membrane activity. It has
-                    produced antibacterial peptides that work in whole blood,
-                    pH-responsive delivery vehicles, and self-assembling
-                    biosensor components.
+                    to select peptides with specific membrane activity.<Cite sources={S} id="tulane-sme" />{' '}
+                    {/* Softened: "self-assembling biosensor components" removed; no published
+                        Wimley-lab source found for a biosensor product. */}
+                    It has produced antibacterial peptides that work in whole
+                    blood<Cite sources={S} id="starr2020" /> and pH-triggered
+                    pore-formers aimed at drug delivery.<Cite sources={S} id="phd2017" />
                   </p>
                 </div>
 
@@ -224,12 +234,12 @@ export default function WimleyLabPage() {
                     <li className="flex items-start gap-2">
                       <span className="text-copper mt-1">&#8226;</span>
                       Combinatorial peptide libraries screened by iterative
-                      synthetic molecular evolution
+                      synthetic molecular evolution<Cite sources={S} id="tulane-sme" />
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-copper mt-1">&#8226;</span>
                       Collaboration with the Hristova Lab at Johns Hopkins
-                      University
+                      University<Cite sources={S} id="tulane-pore" />
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-copper mt-1">&#8226;</span>
@@ -297,6 +307,7 @@ export default function WimleyLabPage() {
                 </span>
                 <p className="text-titanium text-sm leading-relaxed mt-3">
                   {peptide.mechanism}
+                  <Cite sources={S} id={peptide.cites} />
                 </p>
               </motion.div>
             ))}
@@ -340,12 +351,14 @@ export default function WimleyLabPage() {
                 </h3>
                 <p className="text-titanium text-sm leading-relaxed">
                   {app.description}
+                  <Cite sources={S} id={app.cites} />
                 </p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
+      <SourceList sources={S} />
       <ProjectNav currentSlug="wimley-lab" />
     </>
   )

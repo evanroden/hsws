@@ -8,6 +8,8 @@ import Legend from '@/components/charts/Legend'
 import { chart } from '@/components/charts/tokens'
 import { linearScale } from '@/components/charts/scale'
 import { useElementSize } from '@/components/charts/useElementSize'
+import { Cite } from '@/components/ui/Sources'
+import { PARTNERSHIP_SOURCES as S } from './sources'
 
 export interface EngagementRow {
   category: string
@@ -33,7 +35,12 @@ export default function EngagementDumbbell({ data, animate }: { data: Engagement
         />
       }
       // https://bestplacestowork.org/rankings/detail/?c=HE32
-      note="Source: Partnership for Public Service, Best Places to Work in the Federal Government (SAMHSA, 2020 and 2022)."
+      note={
+        <>
+          Source: Partnership for Public Service, Best Places to Work in the Federal Government (SAMHSA, 2020 and 2022).
+          <Cite sources={S} id="bptw-samhsa" />
+        </>
+      }
       table={{
         caption: 'SAMHSA Best Places to Work scores, 2020 and 2022, by category',
         columns: ['Category', 'Before', 'After', 'Change'],

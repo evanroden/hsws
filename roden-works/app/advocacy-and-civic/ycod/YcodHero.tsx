@@ -1,6 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { Cite } from '@/components/ui/Sources'
+import { YCOD_SOURCES as S } from './sources'
 
 export default function YcodHero() {
   return (
@@ -18,7 +20,7 @@ export default function YcodHero() {
             The Youth Coalition For Organ Donation
           </h1>
           <p className="mt-4 text-titanium text-lg max-w-2xl">
-            Co-founded in 2016, The YCOD is a youth-led nonprofit coalition that advocates for presumed consent organ donation laws. Seventeen people die every day waiting for a transplant.
+            Co-founded in 2016, The YCOD is a youth-led nonprofit coalition that advocates for presumed consent organ donation laws. Seventeen people die every day waiting for a transplant.<Cite sources={S} id="hrsa-stats" />
             {/* 17/day: HRSA, https://www.organdonor.gov/learn/organ-donation-statistics */}
           </p>
         </motion.div>

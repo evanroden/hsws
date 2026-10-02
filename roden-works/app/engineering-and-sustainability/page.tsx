@@ -3,6 +3,8 @@ import PageHero from '@/components/ui/PageHero'
 import Timeline from './Timeline'
 import CaseStudyGrid from './CaseStudyGrid'
 import SkillsRadar from './SkillsRadar'
+import { SourceList } from '@/components/ui/Sources'
+import { ENGINEERING_SOURCES } from './sources'
 
 export const metadata: Metadata = {
   title: 'Engineering & Sustainability — EaaS, Biomedical Research & Systems',
@@ -22,6 +24,7 @@ export default function EngineeringPage() {
       <Timeline />
       <CaseStudyGrid />
       <SkillsRadar />
+      <SourceList sources={ENGINEERING_SOURCES} />
     </>
   )
 }

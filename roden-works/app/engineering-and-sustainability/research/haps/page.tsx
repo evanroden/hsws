@@ -7,6 +7,8 @@ import { BreadcrumbJsonLd } from '@/components/seo/JsonLd'
 import ProjectNav from '@/components/navigation/ProjectNav'
 import ReadingTime from '@/components/ui/ReadingTime'
 import { Evidence, Instruments, PollutantProfiles } from './HapsSections'
+import { SourceList } from '@/components/ui/Sources'
+import { HAPS_SOURCES } from './sources'
 
 // Deterministic pseudo-random drift so server and client render the same hero
 const rand = (i: number, k: number) => {
@@ -199,6 +201,7 @@ export default function HAPSPage() {
       <PollutantProfiles />
       <Evidence />
       <Instruments />
+      <SourceList sources={HAPS_SOURCES} />
       <ProjectNav currentSlug="haps" />
     </>
   )

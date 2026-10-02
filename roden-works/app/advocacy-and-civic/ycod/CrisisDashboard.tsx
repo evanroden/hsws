@@ -3,6 +3,8 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import type { ReactNode } from 'react'
 import { useInView, useCountUp } from '@/lib/hooks'
+import { Cite } from '@/components/ui/Sources'
+import { YCOD_SOURCES as S } from './sources'
 // Sources for every figure on this section:
 // - Waiting list (100,000+), 17 deaths/day, a new person added every 8 minutes: HRSA,
 //   https://www.organdonor.gov/learn/organ-donation-statistics
@@ -44,7 +46,7 @@ export default function CrisisDashboard() {
         {/* KPI row */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-4 md:mb-6">
           <motion.div {...reveal(0.1)} className="h-full">
-            <StatTile label="People on the waiting list" note="Americans waiting for a transplant at any given time">
+            <StatTile label="People on the waiting list" note="Americans waiting for a transplant at any given time" cite={<Cite sources={S} id="hrsa-stats" />}>
               <span className="sr-only">100,000+</span>
               <span ref={waitlistCount.ref} aria-hidden="true">
                 {waitlist.toLocaleString('en-US')}+
@@ -53,7 +55,7 @@ export default function CrisisDashboard() {
           </motion.div>
 
           <motion.div {...reveal(0.2)} className="h-full">
-            <StatTile label="People die waiting every day" note="Another person is added to the national waiting list every 8 minutes">
+            <StatTile label="People die waiting every day" note="Another person is added to the national waiting list every 8 minutes" cite={<Cite sources={S} id="hrsa-stats" />}>
               17
             </StatTile>
           </motion.div>
@@ -62,6 +64,7 @@ export default function CrisisDashboard() {
             <StatTile
               label="NY donor registration rate when we started"
               note="Then the lowest in the country. New York passed 50% in 2024, still below the 64% national average."
+              cite={<Cite sources={S} id={['wkbw', 'spectrum-redcross', 'cityandstate']} />}
               meter={
                 <div className="mt-5 h-1.5 w-full overflow-hidden rounded-full bg-copper/15" aria-hidden="true">
                   <motion.div
@@ -84,18 +87,18 @@ export default function CrisisDashboard() {
             <div className="h-full rounded-2xl border border-white/[0.08] bg-surface p-6 md:p-7">
               <h3 className="font-serif text-xl text-white">Who waits</h3>
               <p className="mt-3 text-sm leading-relaxed text-titanium">
-                People of color are about 40% of the U.S. population but 60% of the transplant waiting list. Black Americans make up about 27% of the waiting list but only about 12% of organ donors.
+                People of color are about 40% of the U.S. population but 60% of the transplant waiting list.<Cite sources={S} id="hrsa-diversity" /> Black Americans make up about 27% of the waiting list but only about 12% of organ donors.<Cite sources={S} id="omh" />
               </p>
-              <p className="mt-4 text-xs leading-relaxed text-muted">Sources: HRSA (OPTN data, Sept. 2023); HHS Office of Minority Health.</p>
+              <p className="mt-4 text-xs leading-relaxed text-muted">Sources: HRSA (OPTN data, Sept. 2023)<Cite sources={S} id="hrsa-diversity" />; HHS Office of Minority Health.<Cite sources={S} id="omh" /></p>
             </div>
           </motion.div>
           <motion.div {...reveal(0.5)} className="h-full">
             <div className="h-full rounded-2xl border border-white/[0.08] bg-surface p-6 md:p-7">
               <h3 className="font-serif text-xl text-white">New York&apos;s registry</h3>
               <p className="mt-3 text-sm leading-relaxed text-titanium">
-                When we started, only about 37% of New Yorkers were registered donors, the lowest opt-in rate of any state. The rate has risen since: New York passed 50% in 2024, but it still trails the national average of 64%.
+                When we started, only about 37% of New Yorkers were registered donors, the lowest opt-in rate of any state.<Cite sources={S} id={['wkbw', 'spectrum-redcross']} /> The rate has risen since: New York passed 50% in 2024, but it still trails the national average of 64%.<Cite sources={S} id="cityandstate" />
               </p>
-              <p className="mt-4 text-xs leading-relaxed text-muted">Sources: WKBW and Spectrum News coverage of The YCOD; City &amp; State (2025).</p>
+              <p className="mt-4 text-xs leading-relaxed text-muted">Sources: WKBW and Spectrum News coverage of The YCOD<Cite sources={S} id={['wkbw', 'spectrum-redcross']} />; City &amp; State (2025).<Cite sources={S} id="cityandstate" /></p>
             </div>
           </motion.div>
         </div>
@@ -107,11 +110,13 @@ export default function CrisisDashboard() {
 function StatTile({
   label,
   note,
+  cite,
   meter,
   children,
 }: {
   label: string
   note?: string
+  cite?: ReactNode
   meter?: ReactNode
   children: ReactNode
 }) {
@@ -122,7 +127,7 @@ function StatTile({
         {children}
       </p>
       {meter}
-      {note && <p className="mt-4 text-xs leading-relaxed text-muted">{note}</p>}
+      {note && <p className="mt-4 text-xs leading-relaxed text-muted">{note}{cite}</p>}
     </div>
   )
 }

@@ -8,6 +8,8 @@ import Legend from '@/components/charts/Legend'
 import RangeSlider from '@/components/ui/RangeSlider'
 import SegmentedControl from '@/components/ui/SegmentedControl'
 import { useElementSize } from '@/components/charts/useElementSize'
+import { Cite } from '@/components/ui/Sources'
+import { WIMLEY_SOURCES } from './sources'
 
 /* ─────────────────────────────────────────────────────────────────────────────
  * Interactive lipid-bilayer cross-section.
@@ -15,7 +17,10 @@ import { useElementSize } from '@/components/charts/useElementSize'
  * Every behaviour shown is drawn only from facts already on this page:
  *   • The pHD peptide family forms nanopores that activate at pH < 6 and stay
  *     inactive at physiological pH (7.4).
- *   • Macrolittins form stable pores at nanomolar concentrations regardless of pH.
+ *   • Macrolittins form pores at neutral pH with no pH trigger, at peptide-to-lipid
+ *     ratios as low as 1:1000 (Li et al., JACS 2018). Earlier copy said "at nanomolar
+ *     concentrations regardless of pH"; no source supported that wording, so it was
+ *     softened. The model holds the macrolittin pore open at every pH.
  * The geometry (helix count, spacing, lumen width) is a schematic — labelled as
  * "not to scale" — not measured structural data.
  * ────────────────────────────────────────────────────────────────────────── */
@@ -238,7 +243,7 @@ export default function MembraneModel() {
         note={
           <>
             Schematic model, not to scale. The states shown follow the facts on this page: pHD peptides gate at pH&nbsp;&lt;&nbsp;6;
-            macrolittins hold a stable pore regardless of pH.
+            macrolittins form pores at neutral pH with no pH trigger.<Cite sources={WIMLEY_SOURCES} id={['phd2017', 'macrolittins2018']} />
           </>
         }
       >
@@ -470,7 +475,7 @@ export default function MembraneModel() {
           />
           <p className="mt-3 text-xs text-muted">
             {family === 'macro' ? (
-              <>Macrolittins hold a stable pore at nanomolar concentrations. They are pH-independent, so the channel stays open across the whole range.</>
+              <>Macrolittins form pores at neutral pH at peptide-to-lipid ratios as low as 1:1000, with no pH trigger, so the model keeps the channel open across the whole range.</>
             ) : (
               <>pH&nbsp;6.0: pHD nanopore threshold&nbsp;·&nbsp;pH&nbsp;7.4: physiological. Below&nbsp;6.0 the peptides insert and assemble a pore.</>
             )}
