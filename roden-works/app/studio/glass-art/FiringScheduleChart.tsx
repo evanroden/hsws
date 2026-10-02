@@ -16,24 +16,31 @@ export interface FiringStage {
 }
 
 /*
- * Representative full-fuse curve built from the stage table on this page, using
- * the midpoint of each stated duration: ramp 70→1000°F (~3 h at ~300°F/h),
- * rapid heat to 1480°F (1.5 h), 20-min soak to 1500°F, crash to the 960°F
- * anneal point and hold (1.5 h total), then a 10-hour controlled cool-down
- * at ≤50°F/h through the strain range before cooling naturally.
+ * Full-fuse curve for a 6mm (2 x 3mm) lay-up of Bullseye glass, from Bullseye's published
+ * example schedule ("Writing Firing Schedules for Fusing & Slumping", Bullseye Studio Tips):
+ *   400°F/h to 1225°F, hold 0:45 | 600°F/h to 1490°F, hold 0:10 | AFAP to 900°F, hold 1:00 |
+ *   100°F/h to 700°F | AFAP to room temperature.
+ * https://www.bullseyeglass.com/wp-content/uploads/writing-firing-schedules-for-fusing-and-slumping.pdf
+ * Bullseye's idealized firing graph for the same lay-up spans about 12 hours:
+ * https://www.bullseyeglass.com/wp-content/uploads/TECHBOOK_ST_idealized_firing_graph.pdf
+ * Tack-fuse reference (~1375°F, pieces bonded with height retained), Glacial Art Glass tip sheet:
+ * https://cdn.shopify.com/s/files/1/1725/1871/files/Glass-Tack-Fusing-Tip-Sheet.pdf
+ * The previous curve (960°F anneal, 1480–1500°F fuse, 16+ h) matched System 96 (COE 96) practice,
+ * not the Bullseye (COE 90) glass this page says is used.
+ * "As fast as possible" segments and the final natural cool are illustrative: they depend on the kiln.
  */
 const SEGMENTS: { stage: number; points: [number, number][] }[] = [
-  { stage: 1, points: [[0, 70], [3, 1000]] },
-  { stage: 2, points: [[3, 1000], [4.5, 1480]] },
-  { stage: 3, points: [[4.5, 1480], [4.83, 1500]] },
-  { stage: 4, points: [[4.83, 1500], [5.33, 960], [6.33, 960]] },
+  { stage: 1, points: [[0, 70], [2.89, 1225], [3.64, 1225]] }, // 400°F/h, then 45-min soak
+  { stage: 2, points: [[3.64, 1225], [4.08, 1490]] }, // 600°F/h
+  { stage: 3, points: [[4.08, 1490], [4.25, 1490]] }, // 10-min process soak
+  { stage: 4, points: [[4.25, 1490], [4.75, 900], [5.75, 900]] }, // AFAP to anneal, 1-h hold
   {
     stage: 5,
     points: (() => {
-      const pts: [number, number][] = [[6.33, 960], [11.53, 700]] // 50°F/h through the strain range
-      // then natural (exponential) cooling toward room temperature by hour ~16.3
+      const pts: [number, number][] = [[5.75, 900], [7.75, 700]] // 100°F/h anneal cool
+      // then natural (exponential) cooling toward room temperature by hour ~12.25
       for (let i = 1; i <= 8; i++) {
-        const t = 11.53 + (i / 8) * 4.8
+        const t = 7.75 + (i / 8) * 4.5
         pts.push([t, 70 + 630 * Math.exp(-3.2 * (i / 8))])
       }
       return pts
@@ -41,11 +48,11 @@ const SEGMENTS: { stage: number; points: [number, number][] }[] = [
   },
 ]
 
-const HOURS = 16.5
+const HOURS = 12.5
 const REFERENCES = [
-  { temp: 1480, label: 'Full fuse 1480–1500°F' },
-  { temp: 1380, label: 'Tack fuse 1380°F' },
-  { temp: 960, label: 'Anneal 960°F' },
+  { temp: 1490, label: 'Full fuse 1490°F' },
+  { temp: 1375, label: 'Tack fuse ~1375°F' },
+  { temp: 900, label: 'Anneal 900°F' },
 ]
 
 const HEIGHT = 340
@@ -70,7 +77,7 @@ export default function FiringScheduleChart({ stages }: { stages: FiringStage[] 
     <ChartFrame
       title="A representative full-fuse firing curve"
       subtitle="Kiln temperature over one cycle, °F. Select a stage to see what happens inside the kiln."
-      note="Built from the stage table on this page using the midpoint of each duration. Real schedules vary with glass thickness, layup, and kiln."
+      note="Based on Bullseye Glass's published full-fuse schedule for a 6mm, two-layer piece. Real schedules vary with glass thickness, layup, and kiln."
       table={{
         caption: 'Firing schedule stages',
         columns: ['Stage', 'Temperature', 'Duration'],
@@ -157,7 +164,7 @@ function Curve({ active, onSelect, labels }: { active: number; onSelect: (i: num
           role="img"
           tabIndex={0}
           onKeyDown={onKey}
-          aria-label="Line chart: kiln temperature rises from 70°F to a 1500°F fuse peak around hour 5, drops to a 960°F anneal hold, then cools to room temperature by about hour 16."
+          aria-label="Line chart: kiln temperature rises from 70°F to a 1225°F soak, then to a 1490°F fuse peak around hour 4, drops to a 900°F anneal hold, then cools to room temperature by about hour 12."
           className="block overflow-visible outline-none"
         >
           <g transform={`translate(${margin.left},${margin.top})`}>
@@ -169,7 +176,7 @@ function Curve({ active, onSelect, labels }: { active: number; onSelect: (i: num
                 </text>
               </g>
             ))}
-            {[0, 2, 4, 6, 8, 10, 12, 14, 16].filter((h) => !compact || h % 4 === 0).map((h) => (
+            {[0, 2, 4, 6, 8, 10, 12].filter((h) => !compact || h % 4 === 0).map((h) => (
               <text key={h} x={x(h)} y={innerH + 22} textAnchor="middle" fontSize={11} fill={chart.text.muted}>
                 {h === 0 ? '0 h' : `${h}`}
               </text>
