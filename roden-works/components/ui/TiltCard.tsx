@@ -1,96 +1,22 @@
-'use client'
-
-import { useRef, useState, useCallback } from 'react'
-import { motion, useMotionValue, useSpring, useTransform, useMotionTemplate } from 'framer-motion'
-
 interface TiltCardProps {
   children: React.ReactNode
   className?: string
-  /** Max tilt angle in degrees */
+  /** Kept for API compatibility; the card no longer tilts. */
   maxTilt?: number
-  /** Spotlight/glare intensity 0-1 */
   glare?: number
 }
 
 /**
- * Interactive 3D tilt card with perspective transform and spotlight glare.
- * Responds to mouse position for a premium, tactile feel.
+ * Card wrapper with a subtle lift on hover.
+ * The earlier 3D tilt rotated the card under the pointer, which could move the link out
+ * from under the cursor and drop its hover/click state in some browsers, so it was removed.
  */
-export default function TiltCard({
-  children,
-  className = '',
-  maxTilt = 8,
-  glare = 0.15,
-}: TiltCardProps) {
-  const ref = useRef<HTMLDivElement>(null)
-  const [hovering, setHovering] = useState(false)
-
-  const mouseX = useMotionValue(0.5)
-  const mouseY = useMotionValue(0.5)
-
-  const springConfig = { stiffness: 150, damping: 15 }
-  const rotateX = useSpring(useTransform(mouseY, [0, 1], [maxTilt, -maxTilt]), springConfig)
-  const rotateY = useSpring(useTransform(mouseX, [0, 1], [-maxTilt, maxTilt]), springConfig)
-
-  const glareXPercent = useTransform(mouseX, [0, 1], [0, 100])
-  const glareYPercent = useTransform(mouseY, [0, 1], [0, 100])
-  const glareBackground = useMotionTemplate`radial-gradient(circle at ${glareXPercent}% ${glareYPercent}%, rgba(255,255,255,${glare}), transparent 60%)`
-
-  const handleMouseMove = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
-      const rect = ref.current?.getBoundingClientRect()
-      if (!rect) return
-      mouseX.set((e.clientX - rect.left) / rect.width)
-      mouseY.set((e.clientY - rect.top) / rect.height)
-    },
-    [mouseX, mouseY]
-  )
-
-  const handleMouseEnter = useCallback(() => setHovering(true), [])
-  const handleMouseLeave = useCallback(() => {
-    setHovering(false)
-    mouseX.set(0.5)
-    mouseY.set(0.5)
-  }, [mouseX, mouseY])
-
+export default function TiltCard({ children, className = '' }: TiltCardProps) {
   return (
-    <motion.div
-      ref={ref}
-      className={`relative ${className}`}
-      style={{
-        perspective: 1000,
-        transformStyle: 'preserve-3d',
-      }}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+    <div
+      className={`relative h-full transition-transform duration-200 ease-out hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${className}`}
     >
-      <motion.div
-        style={{
-          rotateX,
-          rotateY,
-          transformStyle: 'preserve-3d',
-        }}
-        animate={{
-          scale: hovering ? 1.02 : 1,
-        }}
-        transition={{ scale: { duration: 0.2 } }}
-        className="relative w-full h-full"
-      >
-        {children}
-
-        {/* Spotlight glare */}
-        {glare > 0 && (
-          <motion.div
-            className="absolute inset-0 rounded-2xl pointer-events-none z-10"
-            style={{
-              background: glareBackground,
-            }}
-            animate={{ opacity: hovering ? 1 : 0 }}
-            transition={{ duration: 0.3 }}
-          />
-        )}
-      </motion.div>
-    </motion.div>
+      {children}
+    </div>
   )
 }

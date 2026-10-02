@@ -7,7 +7,6 @@ import Navbar from '@/components/navigation/Navbar'
 import Footer from '@/components/navigation/Footer'
 import ScrollProgress from '@/components/navigation/ScrollProgress'
 import SmoothScroll from '@/components/providers/SmoothScroll'
-import CustomCursor from '@/components/ui/CustomCursor'
 import NoiseOverlay from '@/components/ui/NoiseOverlay'
 import PageTransition from '@/components/providers/PageTransition'
 import BackToTop from '@/components/navigation/BackToTop'
@@ -82,7 +81,6 @@ export default function RootLayout({
         </a>
         <SmoothScroll>
           <NoiseOverlay />
-          <CustomCursor />
           <ScrollProgress />
           <Navbar />
           <main id="main-content" className="min-h-screen">

@@ -12,7 +12,7 @@ const researchProjects = [
     slug: 'va-prosthetics',
     title: 'VA Assistive Devices',
     description:
-      // Scope and VA co-op (WOC) status confirmed by Evan, Oct 2026.
+      // Scope and VA co-op confirmed by Evan, Oct 2026.
       'Tools that let veterans with double-arm loss put in and take out their own dentures and other oral appliances, modeled in Fusion 360 and 3D-printed during my VA co-op.',
     label: 'Biomedical Engineering',
   },
@@ -194,7 +194,7 @@ export default function ResearchPage() {
             {[
               {
                 lab: 'U.S. Department of Veterans Affairs',
-                pi: 'Co-op (WOC appointment)',
+                pi: 'Co-op while at Tulane',
                 years: '2022 - 2025',
                 focus:
                   'Assistive tools for veterans with double-arm loss to place and remove dentures and oral appliances.',

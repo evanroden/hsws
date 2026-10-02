@@ -52,8 +52,8 @@ const timelineData: {
     year: '2022–2025',
     title: 'U.S. Dept. of Veterans Affairs',
     role: 'Biomedical Engineer / Project Manager',
-    // Co-op as a WOC employee while at Tulane; confirmed by Evan, Oct 2026.
-    description: 'Co-op (WOC employee) while at Tulane. Designed 3D-printed tools that let veterans with double-arm loss place and remove their own dentures and oral appliances.',
+    // Co-op while at Tulane; confirmed by Evan, Oct 2026.
+    description: 'Co-op while at Tulane. Designed 3D-printed tools that let veterans with double-arm loss place and remove their own dentures and oral appliances.',
     color: 'bg-copper',
   },
   {

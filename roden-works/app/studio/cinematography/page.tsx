@@ -273,25 +273,22 @@ export default function CinematographyPage() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="max-w-3xl"
           >
-            {/* This embed was labeled as the Louisiana Children's Museum ad, but YouTube 7ya0DAUe5FU is
-                "Evening Cozy Background Piano Jazz to Relax or Study" (Evan Roden channel), per
-                https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=7ya0DAUe5FU&format=json
-                Relabeled to match the actual video until the museum spot's link is supplied.
+            {/* Louisiana Children's Museum Promo, Evan Roden's YouTube channel (link supplied by Evan, Oct 2026):
+                https://www.youtube.com/oembed?url=https://youtu.be/fmXtqYWCAtw&format=json
                 Museum's play-based mission: https://lcm.org/about/ */}
             <CinemaEmbed
-              source={{ type: 'youtube', id: '7ya0DAUe5FU' }}
-              title="Evening Cozy Background Piano Jazz"
-              subtitle="Background Video"
+              source={{ type: 'youtube', id: 'fmXtqYWCAtw' }}
+              title="Louisiana Children&apos;s Museum Promo"
+              subtitle="Promotional Ad"
               aspect="16:9"
             />
             <div className="mt-4 pl-1">
               <span className="font-mono text-xs text-copper tracking-widest uppercase">
-                From My Channel
+                Louisiana Children&apos;s Museum
               </span>
               <p className="text-titanium text-sm mt-2 leading-relaxed">
-                The Louisiana Children&apos;s Museum ad, made for a New Orleans museum built around
-                play-based learning,<Cite sources={S} id="lcm-about" /> isn&apos;t posted publicly, so this slot shows a background
-                jazz video from my YouTube channel.
+                A promotional ad for the Louisiana Children&apos;s Museum, a New Orleans museum built
+                around play-based learning.<Cite sources={S} id="lcm-about" />
               </p>
             </div>
           </motion.div>

@@ -118,9 +118,7 @@ export default function VAProstheticsPage() {
                 <div className="space-y-4 text-titanium leading-relaxed">
                   <p>
                     While I was a student at Tulane, I worked at the U.S.
-                    Department of Veterans Affairs on a co-op as a WOC
-                    (without compensation) employee, with VA credentials and a
-                    VA email.
+                    Department of Veterans Affairs on a co-op.
                   </p>
                   <p>
                     My project served veterans who have lost both arms. Putting
