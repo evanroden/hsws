@@ -27,7 +27,7 @@ export default function YcodStory() {
           >
             <span className="font-mono text-xs tracking-widest uppercase text-copper mb-6 block">The Story</span>
             <h2 className="font-serif text-heading text-white mb-8">
-              I started The YCOD at seventeen.
+              I co-founded The YCOD at seventeen.
             </h2>
           </motion.div>
 
