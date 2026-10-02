@@ -28,7 +28,7 @@ export default function CdpJourney({ steps, animate }: { steps: CdpStep[]; anima
       >
         <motion.div
           className="h-full origin-left bg-gradient-to-r from-copper to-copper/40"
-          initial={{ scaleX: reduceMotion ? 1 : 0 }}
+          initial={{ scaleX: 0 }}
           animate={go ? { scaleX: 1 } : {}}
           transition={{ duration: reduceMotion ? 0 : 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
         />
@@ -37,7 +37,7 @@ export default function CdpJourney({ steps, animate }: { steps: CdpStep[]; anima
       <div aria-hidden="true" className="md:hidden absolute left-4 top-4 bottom-4 w-px bg-white/10">
         <motion.div
           className="w-full h-full origin-top bg-gradient-to-b from-copper to-copper/40"
-          initial={{ scaleY: reduceMotion ? 1 : 0 }}
+          initial={{ scaleY: 0 }}
           animate={go ? { scaleY: 1 } : {}}
           transition={{ duration: reduceMotion ? 0 : 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
         />
@@ -47,7 +47,7 @@ export default function CdpJourney({ steps, animate }: { steps: CdpStep[]; anima
       {steps.map((step, i) => (
         <motion.li
           key={step.title}
-          initial={{ opacity: 0, y: reduceMotion ? 0 : 20 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={go ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: reduceMotion ? 0 : 0.6, delay: reduceMotion ? 0 : 0.2 + i * 0.15 }}
           className="relative flex gap-5 md:flex-col md:gap-0"
@@ -56,7 +56,7 @@ export default function CdpJourney({ steps, animate }: { steps: CdpStep[]; anima
             <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-copper/60 bg-slate-950 font-sans text-sm font-semibold text-copper-light">
               {i + 1}
             </span>
-            <span className="hidden md:inline font-mono text-xs tracking-wide uppercase text-muted">{step.phase}</span>
+            <span className="hidden md:inline bg-slate-950 pr-3 -ml-1 pl-1 font-mono text-xs tracking-wide uppercase text-muted">{step.phase}</span>
           </div>
 
           <div className="min-w-0 md:pr-4">

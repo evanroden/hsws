@@ -209,10 +209,10 @@ const WIDE: Layout = {
     facp: { x: 440, y: 166, w: 200, h: 140 },
     horn: { x: 904, y: 56, w: W, h: 60 },
     annunciator: { x: 904, y: 184, w: W, h: 60 },
-    communicator: { x: 632, y: 380, w: W, h: 60 },
-    central: { x: 904, y: 380, w: W, h: 60 },
-    releasing: { x: 372, y: 480, w: W, h: 60 },
-    cylinders: { x: 640, y: 480, w: W, h: 60 },
+    communicator: { x: 612, y: 368, w: W, h: 60 },
+    central: { x: 904, y: 368, w: W, h: 60 },
+    releasing: { x: 356, y: 480, w: W, h: 60 },
+    cylinders: { x: 656, y: 480, w: W, h: 60 },
   },
   edges: {
     'slc-smoke': [[196, 86], [256, 86], [256, 220], [440, 220]],
@@ -221,18 +221,18 @@ const WIDE: Layout = {
     'supv-riser': [[196, 396], [312, 396], [312, 276], [440, 276]],
     nac: [[640, 184], [772, 184], [772, 86], [904, 86]],
     'slc-annunciator': [[640, 214], [904, 214]],
-    'facp-comm': [[600, 306], [600, 410], [632, 410]],
-    monitor: [[804, 410], [904, 410]],
+    'facp-comm': [[590, 306], [590, 398], [612, 398]],
+    monitor: [[784, 398], [904, 398]],
     'slc-releasing': [[470, 480], [470, 306]],
-    release: [[544, 500], [640, 500]],
-    'supv-cyl': [[640, 524], [544, 524]],
+    release: [[528, 500], [656, 500]],
+    'supv-cyl': [[656, 524], [528, 524]],
   },
   tags: {
     'slc-smoke': [348, 220],
     'supv-riser': [376, 276],
     nac: [838, 86],
     'slc-annunciator': [838, 214],
-    monitor: [854, 410],
+    monitor: [844, 398],
     'slc-releasing': [470, 400],
     release: [592, 500],
     'supv-cyl': [592, 524],
@@ -240,9 +240,9 @@ const WIDE: Layout = {
   groups: [
     { text: 'INITIATING DEVICES', x: 24, y: 38 },
     { text: 'NOTIFICATION', x: 904, y: 38 },
-    { text: 'OFF-SITE', x: 904, y: 368 },
+    { text: 'OFF-SITE', x: 904, y: 354 },
   ],
-  region: { x: 356, y: 452, w: 472, h: 100 },
+  region: { x: 340, y: 444, w: 504, h: 108 },
 }
 
 const N = 152
@@ -615,7 +615,7 @@ function Diagram({
             const at = L.tags[e.id]
             if (!at) return null
             const c = CIRCUITS[e.type]
-            const tw = c.tag.length * 0.62 * L.font.tag + 12
+            const tw = c.tag.length * 0.6 * L.font.tag + 12
             const th = L.font.tag + 6
             const on = activeEdges.has(e.id)
             return (
@@ -661,7 +661,7 @@ function Diagram({
                 data-cursor="Select"
                 onClick={() => onSelect(dev.id)}
                 onKeyDown={onKey(dev.id)}
-                onFocus={() => setFocused(dev.id)}
+                onFocus={(e) => e.currentTarget.matches(':focus-visible') && setFocused(dev.id)}
                 onBlur={() => setFocused(null)}
                 onPointerEnter={() => setHovered(dev.id)}
                 onPointerLeave={() => setHovered(null)}
