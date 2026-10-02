@@ -66,7 +66,7 @@ const DEVICES: Device[] = [
     group: 'Initiating device',
     icon: 'smoke',
     description:
-      'Photoelectric and ionization detectors placed throughout a building to sense smoke particles. Addressable devices report their exact location to the fire alarm control panel for rapid response. NFPA 72 dictates spacing, placement heights, and maintenance intervals.',
+      'Photoelectric and ionization detectors placed throughout a building to sense smoke particles. Addressable devices report their exact location to the fire alarm control panel. NFPA 72 sets spacing, placement heights, and maintenance intervals.',
   },
   {
     id: 'pull',
@@ -75,7 +75,7 @@ const DEVICES: Device[] = [
     group: 'Initiating device',
     icon: 'pull',
     description:
-      'Manual fire alarm boxes located at building exits per NFPA 72 requirements. When activated, they send an alarm signal to the FACP triggering building-wide notification. Double-action stations reduce false alarms in high-traffic environments.',
+      'Manual fire alarm boxes located at building exits per NFPA 72 requirements. When pulled, a station sends an alarm signal to the FACP, which starts building-wide notification. Double-action stations reduce false alarms in high-traffic environments.',
   },
   {
     id: 'riser',
@@ -93,7 +93,7 @@ const DEVICES: Device[] = [
     group: 'Control',
     icon: 'facp',
     description:
-      'The brain of the fire protection system. The FACP receives signals from every initiating device, processes alarm/trouble/supervisory conditions, activates notification appliances, and communicates with the central monitoring station. Programming defines system behavior — sequences, priorities, and interlocks.',
+      'The control center of the fire alarm system. The FACP receives signals from every initiating device, processes alarm/trouble/supervisory conditions, activates notification appliances, and communicates with the central monitoring station. Its programming sets the sequences, priorities, and interlocks.',
   },
   {
     id: 'horn',
@@ -111,7 +111,7 @@ const DEVICES: Device[] = [
     group: 'Notification',
     icon: 'annunciator',
     description:
-      'The command center for fire response. Graphic annunciator panels display a floor-by-floor map showing the exact zone in alarm. Firefighters use these to pinpoint the origin and direct evacuation. Required at main entrances per AHJ specifications.',
+      'A remote display for responding firefighters. Graphic annunciators show a floor-by-floor map with the zone in alarm, so crews can find the origin and direct evacuation. The AHJ typically requires one at the main entrance.',
   },
   {
     id: 'communicator',
@@ -120,7 +120,7 @@ const DEVICES: Device[] = [
     group: 'Off-site monitoring',
     icon: 'communicator',
     description:
-      'A transmitter at the panel — commonly a digital alarm communicator (DACT), cellular, or IP unit — that sends alarm, supervisory, and trouble signals off-site to a supervising station.',
+      'A transmitter at the panel, commonly a digital alarm communicator (DACT), cellular, or IP unit, that sends alarm, supervisory, and trouble signals off-site to a supervising station.',
   },
   {
     id: 'central',
@@ -138,7 +138,7 @@ const DEVICES: Device[] = [
     group: 'Suppression',
     icon: 'releasing',
     description:
-      'A releasing control unit dedicated to the clean agent system. It watches its own detectors plus manual release and abort stations, runs the pre-discharge alarm and time delay, then energizes the releasing circuit — and reports alarm, supervisory, and release status to the FACP.',
+      'A releasing control unit dedicated to the clean agent system. It watches its own detectors plus manual release and abort stations, runs the pre-discharge alarm and time delay, then energizes the releasing circuit. It reports alarm, supervisory, and release status to the FACP.',
   },
   {
     id: 'cylinders',
@@ -147,7 +147,7 @@ const DEVICES: Device[] = [
     group: 'Suppression',
     icon: 'cylinders',
     description:
-      'Gaseous suppression systems (FM-200, Novec 1230, or Inergen) designed for spaces where water would cause more damage than fire — data centers, museum archives, telecom rooms. The agent suppresses fire by removing heat or displacing oxygen without leaving residue. Governed by NFPA 2001. A low-pressure switch on each cylinder sends a supervisory signal if the agent leaks down.',
+      'Gaseous suppression systems (FM-200, Novec 1230, or Inergen) for spaces where water would cause more damage than the fire, such as data centers, museum archives, and telecom rooms. The agent suppresses fire by removing heat or displacing oxygen without leaving residue. Governed by NFPA 2001. A low-pressure switch on each cylinder sends a supervisory signal if the agent leaks down.',
   },
 ]
 
@@ -422,7 +422,7 @@ export default function FireSystemDiagram() {
           ))}
         </ul>
       }
-      note="Simplified, generic schematic — real designs vary by occupancy, code edition, and the authority having jurisdiction. Sequence per NFPA 72 and UFGS 21 22 00 / 28 31 76."
+      note="Simplified, generic schematic. Real designs vary by occupancy, code edition, and the authority having jurisdiction. Sequence per NFPA 72 and UFGS 21 22 00 / 28 31 76."
       table={{
         caption: 'Fire alarm system devices, roles, and connections',
         columns: ['Device', 'Group', 'Connects to'],
@@ -915,7 +915,7 @@ function DetailPanel({ selected, onSelect }: { selected: string | null; onSelect
         <div>
           <span className="font-mono text-[11px] tracking-widest uppercase text-muted">Device detail</span>
           <p className="mt-2 text-sm leading-relaxed text-titanium">
-            Select a device in the diagram — or pick one here — to see what it does and how it connects.
+            Select a device in the diagram or pick one here to see what it does and how it connects.
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
             {DEVICES.map((d) => (

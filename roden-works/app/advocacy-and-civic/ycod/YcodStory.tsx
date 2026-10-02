@@ -5,7 +5,7 @@ import { useInView } from '@/lib/hooks'
 
 // Every fact here is restated from the story text beside it
 const glance = [
-  { label: 'Founded', value: 'August 2017 · East Aurora, NY' },
+  { label: 'Co-founded', value: 'August 2017 · East Aurora, NY' },
   { label: 'Co-founders', value: 'Henry McLaughlin, Grace Tapani, Sage Sellers' },
   { label: 'Primary bill', value: 'NY Assembly Bill A07954: opt-out donation at the DMV (I drafted the 2021 revision)' },
   { label: 'Passed', value: 'NYS Living Donor Support Act' },

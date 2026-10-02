@@ -6,7 +6,7 @@ import { useInView } from '@/lib/hooks'
 type Kind = 'milestone' | 'legislative' | 'default'
 
 const events: { year: string; title: string; description: string; kind: Kind }[] = [
-  { year: '2017', title: 'Founded The YCOD', description: 'Co-founded with Henry McLaughlin, Grace Tapani, and Sage Sellers in East Aurora, NY.', kind: 'default' },
+  { year: '2017', title: 'Co-founded The YCOD', description: 'With Henry McLaughlin, Grace Tapani, and Sage Sellers in East Aurora, NY.', kind: 'default' },
   { year: '2018', title: 'Coalition Building', description: 'Established partnerships with WaitList Zero, ONE8FIFTY, and the Chris Klug Foundation.', kind: 'default' },
   { year: '2019', title: 'Legislative Introduction', description: 'Opt-out organ donation bill introduced in the NY Assembly.', kind: 'legislative' },
   { year: '2020', title: 'National Media Campaign', description: 'Coverage by CBC, Yahoo News, Business Insider, WKBW, and Spectrum News.', kind: 'default' },
