@@ -9,6 +9,8 @@ import Languages from './Languages'
 import Skills from './Skills'
 import ContactSection from './ContactSection'
 import { PersonJsonLd } from '@/components/seo/JsonLd'
+import { SourceList } from '@/components/ui/Sources'
+import { ABOUT_SOURCES } from './sources'
 
 export const metadata: Metadata = {
   title: 'About',
@@ -30,6 +32,7 @@ export default function AboutPage() {
       <Languages />
       <Skills />
       <ContactSection />
+      <SourceList sources={ABOUT_SOURCES} />
     </>
   )
 }

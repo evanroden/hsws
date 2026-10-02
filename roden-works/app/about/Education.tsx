@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion'
 import { useInView } from '@/lib/hooks'
+import { Cite } from '@/components/ui/Sources'
+import { ABOUT_SOURCES as S } from './sources'
 
 const certifications = [
   'TRIZ Associate: systematic innovation method based on Altshuller\'s 40 inventive principles',
@@ -35,7 +37,7 @@ export default function Education() {
                   <h3 className="font-serif text-xl text-white">Tulane University</h3>
                   <p className="text-titanium mt-1">
                     {/* Tulane's BME degree is the B.S.E.: https://catalog.tulane.edu/science-engineering/biomedical-engineering/biomedical-engineering-major/ */}
-                    Bachelor of Science in Engineering, Biomedical Engineering
+                    Bachelor of Science in Engineering, Biomedical Engineering<Cite sources={S} id="tulane-bme" />
                   </p>
                   <p className="text-muted text-sm mt-1">2020 – 2024</p>
                 </div>

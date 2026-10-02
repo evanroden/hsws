@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion'
 import { useInView } from '@/lib/hooks'
+import { Cite } from '@/components/ui/Sources'
+import { ABOUT_SOURCES as S } from './sources'
 
 export default function Bio() {
   const { ref, isInView } = useInView(0.2)
@@ -27,8 +29,9 @@ export default function Bio() {
             >
               {/* Fact-check: co-founded with East Aurora High School classmates; proposal presented to Assemblyman DiPietro Sept 2018, who then sponsored an opt-out bill.
                   Source: https://www.tmj4.com/news/national/college-freshmen-in-new-york-develop-plan-to-encourage-more-organ-donors
-                  NY lowest donor registration rate (30% vs 55% national, Dec 2018): https://nyulangone.org/news/transplant-institute-study-aims-boost-organ-donation */}
-              In 2016, at fifteen, Evan Roden co-founded the Youth Coalition For Organ Donation in East Aurora, New York. The coalition is a registered nonprofit advocacy group, and its opt-out proposal became a bill in the New York State Assembly aimed at New York&apos;s donor registration rate, then the lowest in the nation.
+                  NY lowest donor registration rate (30% vs 55% national, Dec 2018): https://nyulangone.org/news/transplant-institute-study-aims-boost-organ-donation
+                  Was "a registered nonprofit advocacy group": no public registration record found (Oct 2026). Re-add with a source if confirmed. */}
+              In 2016, at fifteen, Evan Roden co-founded the Youth Coalition For Organ Donation in East Aurora, New York. The coalition is a youth-led advocacy group, and its opt-out proposal became a bill in the New York State Assembly aimed at New York&apos;s donor registration rate, then the lowest in the nation.<Cite sources={S} id={['tmj4-ycod', 'nyu-donor-rate']} />
             </motion.p>
 
             <motion.p
@@ -39,7 +42,7 @@ export default function Bio() {
               {/* Fact-check: Tulane awards the B.S.E. in Biomedical Engineering: https://catalog.tulane.edu/science-engineering/biomedical-engineering/biomedical-engineering-major/
                   The black carbon / blood pressure paper (Rabito et al., Indoor Air 2020; data collected 2016) predates Evan's time at Tulane and does not list him:
                   https://pmc.ncbi.nlm.nih.gov/articles/PMC7985991/ */}
-              At Tulane University, Evan earned a Bachelor of Science in Engineering in Biomedical Engineering and worked in three research labs. On a co-op at the VA, he designed 3D-printed tools that let veterans with double-arm loss place and remove their own dentures. He also studied membrane-active peptides for drug delivery in the Wimley Lab at Tulane School of Medicine and investigated the cardiovascular effects of indoor air pollution in New Orleans. That work built on an earlier Tulane study linking residential black carbon exposure to higher systolic blood pressure.
+              At Tulane University, Evan earned a Bachelor of Science in Engineering in Biomedical Engineering<Cite sources={S} id="tulane-bme" /> and worked in three research labs. On a co-op at the VA, he designed 3D-printed tools that let veterans with double-arm loss place and remove their own dentures. He also studied membrane-active peptides for drug delivery in the Wimley Lab at Tulane School of Medicine and investigated the cardiovascular effects of indoor air pollution in New Orleans. That work built on an earlier Tulane study linking residential black carbon exposure to higher systolic blood pressure.<Cite sources={S} id="rabito-black-carbon" />
             </motion.p>
 
             <motion.p
@@ -47,7 +50,7 @@ export default function Bio() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              At the same time, Evan worked as a cinematographer with Claiborne Avenue Productions under Albert J. Moten, Jr., where he operated BlackMagic 6K and Sony a7s II cameras on productions across New Orleans. He produced digital marketing content for Tulane&apos;s Freeman School of Business, gave a TEDx talk on youth political participation, and walked the runway for Vogue Italy in BizarrAudi&apos;s SchoolTime collection.
+              At the same time, Evan worked as a cinematographer with Claiborne Avenue Productions under Albert J. Moten, Jr., where he operated BlackMagic 6K and Sony a7s II cameras on productions across New Orleans. He produced digital marketing content for Tulane&apos;s Freeman School of Business, gave a TEDx talk on youth political participation,<Cite sources={S} id="ted-talk" /> and walked the runway for Vogue Italy in BizarrAudi&apos;s SchoolTime collection.
             </motion.p>
 
             <motion.p
@@ -57,7 +60,7 @@ export default function Bio() {
             >
               {/* Fact-check: $143.8M, 30-year EaaS partnership: https://enfrasolutions.com/enfra-and-rochester-regional-health-launch-30-year-energy-as-a-service-partnership-to-modernize-system-wide-infrastructure-and-advance-sustainability
                   Convergint title matches the Convergint page (Account Executive, San Francisco). */}
-              Since graduating, Evan has worked in three industries. At Odoo, he was an account executive implementing ERP systems for manufacturing, food and beverage, and retail clients, and in one month he hit 160% of his non-recurring revenue goal. At Convergint in San Francisco, he worked on fire and life safety systems as an account executive. He now works at ENFRA, where he manages the central energy plants at two Rochester Regional Health hospitals under a $143.8 million, 30-year Energy-as-a-Service partnership. Those plants produce the steam, chilled water, and electricity the hospitals run on.
+              Since graduating, Evan has worked in three industries. At Odoo, he was an account executive implementing ERP systems for manufacturing, food and beverage, and retail clients, and in one month he hit 160% of his non-recurring revenue goal. At Convergint in San Francisco, he worked on fire and life safety systems as an account executive. He now works at ENFRA, where he manages the central energy plants at two Rochester Regional Health hospitals under a $143.8 million, 30-year Energy-as-a-Service partnership.<Cite sources={S} id="enfra-rrh" /> Those plants produce the steam, chilled water, and electricity the hospitals run on.
             </motion.p>
           </div>
         </div>

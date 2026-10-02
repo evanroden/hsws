@@ -2,13 +2,15 @@
 
 import { motion } from 'framer-motion'
 import { useInView } from '@/lib/hooks'
+import { Cite } from '@/components/ui/Sources'
+import { ABOUT_SOURCES as S } from './sources'
 
 // Proficiency uses the standard five-level scale (as on LinkedIn / ILR), shown as
 // discrete steps rather than an invented percentage.
 const LEVELS = ['Elementary', 'Limited Working', 'Professional Working', 'Full Professional', 'Native'] as const
 type Level = (typeof LEVELS)[number]
 
-const languages: { name: string; level: Level; type: 'natural' | 'technical'; description: string }[] = [
+const languages: { name: string; level: Level; type: 'natural' | 'technical'; description: string; sources?: string[] }[] = [
   { name: 'English', level: 'Native', type: 'natural', description: 'Native language.' },
   {
     name: 'Classical Latin',
@@ -28,6 +30,7 @@ const languages: { name: string; level: Level; type: 'natural' | 'technical'; de
     type: 'natural',
     // https://en.wikipedia.org/wiki/Interlingua ("most widely used" superlative removed: unsourced)
     description: 'A naturalistic international auxiliary language developed between 1937 and 1951 by IALA. People who know a Romance language can usually read it without prior study.',
+    sources: ['interlingua'],
   },
   { name: 'Chinese (Mandarin)', level: 'Limited Working', type: 'natural', description: 'Currently studying.' },
   {
@@ -101,7 +104,10 @@ export default function Languages() {
                       </h4>
                       <LevelMeter level={lang.level} accent={col.accent} />
                     </div>
-                    <p className="text-sm text-muted leading-relaxed max-w-xl">{lang.description}</p>
+                    <p className="text-sm text-muted leading-relaxed max-w-xl">
+                      {lang.description}
+                      {lang.sources && <Cite sources={S} id={lang.sources} />}
+                    </p>
                   </li>
                 ))}
               </ul>

@@ -2,14 +2,17 @@
 
 import { motion } from 'framer-motion'
 import { useInView } from '@/lib/hooks'
+import { Cite } from '@/components/ui/Sources'
+import { ABOUT_SOURCES as S } from './sources'
 
 // "Best Debater & Speaker" and "Best Student of 2022" were removed: no named issuer or event
 // (org fields were placeholders). Re-add with the real issuer if they're confirmed.
-const awards = [
+const awards: { title: string; org: string; description: string; sources?: string[] }[] = [
   {
     // https://mynews13.com/fl/orlando/news/2021/09/24/wny-teens-nominated-for-american-red-cross-award-for-organ-donation-coalition
     title: 'Real Heroes Education Award Nominee, 2021',
     org: 'American Red Cross',
+    sources: ['red-cross-nomination'],
     description: 'Nominated with three fellow co-founders for starting The YCOD, an organ donation advocacy organization.',
   },
   {
@@ -19,6 +22,7 @@ const awards = [
     // https://www.c40reinventingcities.org/en/events/new-orleans-winning-team-present-their-project-to-mayor-latoya-cantrell-1828.html
     title: 'Students Reinventing Cities, Honorable Mention',
     org: 'C40 Cities · 2023',
+    sources: ['loyola-c40'],
     description: 'Team plan for New Orleans East covering disaster planning, energy, transit, and housing. Mayor LaToya Cantrell honored the team and asked the team to present it.',
   },
   {
@@ -65,7 +69,10 @@ export default function Awards() {
                   <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                 </svg>
               </div>
-              <h3 className="font-serif text-lg text-white mb-1">{award.title}</h3>
+              <h3 className="font-serif text-lg text-white mb-1">
+                {award.title}
+                {award.sources && <Cite sources={S} id={award.sources} />}
+              </h3>
               <p className="text-copper text-xs font-mono mb-2">{award.org}</p>
               <p className="text-titanium text-sm leading-relaxed">{award.description}</p>
             </motion.div>
