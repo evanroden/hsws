@@ -79,11 +79,12 @@ export default function ModelingContent({ images }: { images: GalleryImage[] }) 
                 The Collection
               </span>
               <h2 className="font-serif text-heading text-white">SchoolTime</h2>
+              {/* Garment-level details (blazer, pleated skirt, varsity letter, backpack, oversized vs.
+                  tailored silhouettes, recolored fabrics) removed: no public record of the collection
+                  was found to support them. OWNER-CONFIRM before restoring. */}
               <p className="mt-6 text-titanium leading-relaxed">
-                BizarrAudi&apos;s SchoolTime takes apart pieces of the school uniform (the blazer,
-                the pleated skirt, the varsity letter, the backpack) and recuts them as fashion.
-                Oversized silhouettes sit next to tailored ones, and uniform fabrics show up in
-                unexpected colors.
+                BizarrAudi&apos;s SchoolTime takes pieces of the school uniform and recuts them as
+                fashion.
               </p>
               <p className="mt-4 text-titanium leading-relaxed">
                 Vogue Italy covered the collection in 2020. I walked in the runway presentation.
@@ -176,8 +177,8 @@ export default function ModelingContent({ images }: { images: GalleryImage[] }) 
           >
             <div className="pl-0 border-l-0">
               <p className="font-serif text-xl md:text-2xl text-white/90 italic leading-relaxed">
-                A school uniform is meant to make everyone look the same. SchoolTime uses it to ask
-                who sets the rules for belonging.
+                A school uniform is meant to make everyone look the same. To me, SchoolTime asks who
+                sets the rules for belonging.
               </p>
             </div>
             <div className="mt-8 flex items-center justify-center gap-3">

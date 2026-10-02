@@ -12,7 +12,9 @@ const researchProjects = [
     slug: 'va-prosthetics',
     title: 'VA Prosthetics',
     description:
-      'Custom 3D-printed prosthetic devices for American veterans, designed in Autodesk Fusion 360 and printed with FlowIt. A partnership between Tulane University and the U.S. Department of Veterans Affairs.',
+      // Taylor Foundation sponsorship could not be verified; the documented partner is the New Orleans
+      // VA Medical Center. The models shown on the project page are dental/maxillofacial, not limb prosthetics.
+      '3D-printed dental and maxillofacial prosthetic models for veterans, designed in Autodesk Fusion 360 and printed with FlowIt. Tulane work with the New Orleans VA Medical Center.',
     label: 'Biomedical Engineering',
   },
   {
@@ -20,7 +22,10 @@ const researchProjects = [
     slug: 'haps',
     title: 'Household Air Pollution Study',
     description:
-      'Research on indoor PM2.5, black carbon, and NO2 exposure and cardiovascular outcomes in New Orleans homes. Published finding linking highest-quartile black carbon exposure to a clinically significant increase in systolic blood pressure.',
+      // The published result is Rabito et al., Indoor Air (2021), https://pmc.ncbi.nlm.nih.gov/articles/PMC7985991/
+      // (+7.55 mmHg systolic per 1 µg/m³ indoor black carbon). It used earlier data and does not list Evan
+      // as an author, so the project is described as building on it, not as producing it.
+      'Research on indoor PM2.5, black carbon, and NO2 exposure and cardiovascular outcomes in New Orleans homes, building on an earlier Tulane study that linked indoor black carbon to higher systolic blood pressure.',
     label: 'Environmental Health',
   },
   {
@@ -28,7 +33,8 @@ const researchProjects = [
     slug: 'swis',
     title: 'Saltwater Intrusion Study',
     description:
-      'A longitudinal study proposal on saltwater intrusion into the Greater New Orleans water supply, prompted by the 2023 Mississippi River crisis that threatened drinking water for 1.2 million residents.',
+      // "close to a million residents in four parishes": https://www.pbs.org/newshour/nation/why-salt-water-is-threatening-drinking-water-in-new-orleans-and-what-officials-are-doing-about-it
+      'A longitudinal study proposal on saltwater intrusion into the Greater New Orleans water supply, prompted by the 2023 Mississippi River crisis that threatened drinking water for close to a million residents.',
     label: 'Water Resources',
   },
   {
@@ -124,7 +130,7 @@ export default function ResearchPage() {
             transition={{ duration: 0.7, delay: 0.5 }}
             className="mt-6 text-lg md:text-xl text-titanium max-w-2xl leading-relaxed"
           >
-            I spent four years doing biomedical engineering and environmental
+            From 2022 to 2025 I did biomedical engineering and environmental
             health research at Tulane University. The projects covered
             prosthetic devices for veterans, indoor air and drinking water, and
             membrane proteins.
@@ -189,10 +195,10 @@ export default function ResearchPage() {
             {[
               {
                 lab: 'VA Prosthetics Lab',
-                pi: 'Taylor Foundation Partnership',
+                pi: 'New Orleans VA Medical Center',
                 years: '2022 - 2025',
                 focus:
-                  'Assistive device design and 3D printing for veterans with limb differences and mobility challenges.',
+                  'Design and 3D printing of dental and maxillofacial prosthetic models for veterans.',
               },
               {
                 lab: 'Weatherhead School of Public Health',

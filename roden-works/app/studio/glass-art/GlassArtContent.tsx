@@ -18,40 +18,44 @@ const technicalDetails = [
     description:
       'I choose glass sheets for color, opacity, and a compatible coefficient of expansion, then cut, grind, and arrange the pieces on a kiln shelf coated with kiln wash. The layout has to account for what heat will do: colors shift, textures change, and neighboring pieces flow into each other.',
   },
+  // Stages 2-6 follow Bullseye's example full-fuse schedule for a 6mm lay-up:
+  // https://www.bullseyeglass.com/wp-content/uploads/writing-firing-schedules-for-fusing-and-slumping.pdf
+  // Previous values (960°F anneal, 1480-1500°F fuse, 16-24 h cycle) matched COE 96 glass, not Bullseye.
   {
     stage: 'Initial Ramp',
-    temperature: '70°F to 1000°F',
-    duration: '2-3 hours',
+    temperature: '70°F to 1225°F',
+    duration: 'About 3 hours, plus a 45-minute soak',
     description:
-      'A ramp of about 300°F per hour brings the glass slowly through the strain point. Heat it faster and thermal shock can crack the glass before it reaches fusing temperature.',
+      'A ramp of about 400°F per hour, then a 45-minute hold at 1225°F so the heat evens out through the layers before the glass softens. Heat it too fast early on and thermal shock can crack the glass.',
   },
   {
     stage: 'Rapid Heat',
-    temperature: '1000°F to 1480°F',
-    duration: '1-2 hours',
+    temperature: '1225°F to 1490°F',
+    duration: 'About 30 minutes',
     description:
-      'Past the strain point, the ramp rate can increase. The glass softens as it nears fusing temperature. Edges start to round at 1300°F, and by 1480°F the separate pieces have merged into one surface.',
+      'After the soak, the ramp rate can increase to about 600°F per hour. The glass softens and the stacked layers slump into one another.',
   },
   {
     stage: 'Full Fuse & Soak',
-    temperature: '1480°F to 1500°F',
-    duration: '10-30 minutes',
+    // Tack-fuse behavior at 1375°F: https://cdn.shopify.com/s/files/1/1725/1871/files/Glass-Tack-Fusing-Tip-Sheet.pdf
+    temperature: '1490°F',
+    duration: '10 minutes',
     description:
-      'The peak temperature determines the final texture. A tack fuse at 1380°F preserves surface texture and dimensionality. A full fuse at 1480-1500°F creates a smooth, flat surface where individual pieces become indistinguishable. A soak at peak temperature lets the heat even out across the piece.',
+      'The peak temperature determines the final texture. A tack fuse around 1375°F bonds the pieces while keeping their height and edges. A full fuse at about 1490°F creates a smooth, flat surface where individual pieces become indistinguishable. A short soak at peak temperature lets the heat even out across the piece.',
   },
   {
     stage: 'Anneal & Cool',
-    temperature: '1500°F to 960°F',
-    duration: '1-2 hours',
+    temperature: '1490°F to 900°F',
+    duration: 'About 1.5 hours',
     description:
-      'The kiln drops quickly to the annealing point, the temperature where internal stress is relieved. The glass is held at 960°F long enough for the whole piece to reach the same temperature. A piece that is annealed poorly will crack later.',
+      'The kiln drops as fast as it can to the annealing temperature, 900°F for Bullseye glass, where internal stress is relieved. The glass is held there for an hour so the whole piece reaches the same temperature. A piece that is annealed poorly can crack later.',
   },
   {
     stage: 'Controlled Cool-Down',
-    temperature: '960°F to Room Temperature',
-    duration: '8-12 hours',
+    temperature: '900°F to Room Temperature',
+    duration: '2 hours, then natural cooling',
     description:
-      'A slow, programmed cool prevents internal stress that could crack the piece weeks or months later. The kiln cools at no more than 50°F per hour through the strain range, then cools naturally to room temperature.',
+      'A slow, programmed cool keeps new stress from setting in. The kiln cools at 100°F per hour from 900°F to 700°F, then cools on its own to room temperature.',
   },
 ]
 
@@ -199,8 +203,10 @@ export default function GlassArtContent({ images }: { images: GalleryImage[] }) 
             {[
               {
                 title: 'Bullseye Glass',
+                // Bullseye does not rate its glass "COE 90"; it factory-tests its fusible glasses for
+                // compatibility with each other. https://www.bullseyeglass.com/faq
                 detail:
-                  'COE 90 compatible glass sheets in transparent, opalescent, and iridescent finishes. Bullseye tests its glass for compatibility, so different colors and textures can be fused without cracking from uneven expansion.',
+                  'Bullseye Compatible glass sheets (often sold as COE 90) in transparent, opalescent, and iridescent finishes. Bullseye tests its fusible glasses for compatibility with each other, so different colors and textures can be fused without cracking from uneven expansion.',
               },
               {
                 title: 'Kiln Forming',
@@ -245,7 +251,9 @@ export default function GlassArtContent({ images }: { images: GalleryImage[] }) 
             <h2 className="font-serif text-heading text-white">The Firing Schedule</h2>
             <p className="mt-4 text-lg text-titanium max-w-2xl leading-relaxed">
               A firing schedule is the programmed sequence of temperature ramps, holds, and cooling
-              stages that fuses the glass. One full cycle takes 16 to 24 hours.
+              stages that fuses the glass. Bullseye&apos;s reference full-fuse cycle for a 6mm piece
+              runs about 12 hours.
+              {/* https://www.bullseyeglass.com/wp-content/uploads/TECHBOOK_ST_idealized_firing_graph.pdf */}
             </p>
           </motion.div>
 

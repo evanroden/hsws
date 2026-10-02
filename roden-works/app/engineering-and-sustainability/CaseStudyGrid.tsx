@@ -23,7 +23,7 @@ const caseStudies = [
     href: '/engineering-and-sustainability/enfra',
     slug: 'enfra',
     title: 'ENFRA × Rochester Regional Health',
-    description: '$143.8 million, 30-year Energy-as-a-Service partnership. I manage the Central Energy Plants at UMMC and St. Mary\'s Medical Center.',
+    description: '$143.8 million, 30-year Energy-as-a-Service partnership. I manage the Central Energy Plants at UMMC and St. Mary\'s Medical Campus.',
     label: 'EaaS',
   },
   {
@@ -37,14 +37,14 @@ const caseStudies = [
     href: '/engineering-and-sustainability/odoo',
     slug: 'odoo',
     title: 'Odoo',
-    description: 'ERP implementations for manufacturing, F&B, and retail clients. Hit 160% of non-recurring revenue goal.',
+    description: 'ERP implementations for manufacturing, F&B, and retail clients. Hit 160% of my non-recurring revenue goal in my best month.',
     label: 'ERP',
   },
   {
     href: '/engineering-and-sustainability/research/va-prosthetics',
     slug: 'va-prosthetics',
     title: 'VA Prosthetics',
-    description: 'Custom 3D-printed prosthetic devices for American veterans, modeled in Fusion 360.',
+    description: '3D-printed dental and maxillofacial prosthetic models for veterans, modeled in Fusion 360.',
     label: 'Biomedical',
   },
   {

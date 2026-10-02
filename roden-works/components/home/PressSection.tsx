@@ -4,32 +4,42 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useInView } from '@/lib/hooks'
 
-// Outlets named in The YCOD's 2020 national media campaign (see /advocacy-and-civic/ycod)
-const outlets = ['CBC', 'Yahoo News', 'Business Insider', 'WKBW', 'Spectrum News']
+// Only outlets with coverage we could find. CBC, Yahoo News and Business Insider (named on the
+// YCOD page) could not be located and are left off pending a link from Evan.
+// WKBW (Olivia Proia, syndicated to Scripps stations): https://www.tmj4.com/news/national/college-freshmen-in-new-york-develop-plan-to-encourage-more-organ-donors
+// Spectrum News: https://spectrumlocalnews.com/nys/buffalo/news/2021/01/13/college-students-push-for-more-organ-donations-in-ny-
+//   and https://mynews13.com/fl/orlando/news/2021/09/24/wny-teens-nominated-for-american-red-cross-award-for-organ-donation-coalition
+const outlets = ['WKBW', 'Spectrum News']
 
 const recognition = [
   {
-    title: 'C40 Reinventing Cities Award',
-    issuer: 'Mayor of New Orleans',
-    detail: 'For a revitalization plan for New Orleans East covering disaster planning, solar, transit, and green housing.',
+    // Honorable mention, not the award; issued by C40, and Mayor Cantrell honored the team afterward.
+    // https://css.loyno.edu/news/sep-14-2023_loyola-team-wins-honorable-mention-global-students-reinventing-cities-competition
+    // https://www.c40reinventingcities.org/en/events/mayor-of-new-orleans-meets-honourable-mention-team-people-first-new-orleans-students-reinventing-cities-1820.html
+    title: 'Students Reinventing Cities, Honorable Mention',
+    issuer: 'C40 Cities · 2023',
+    detail: 'With the People First team, for a New Orleans East plan covering disaster planning, green infrastructure, transit, and housing. Mayor Cantrell honored the team.',
     href: '/advocacy-and-civic/nola-east',
   },
   {
+    // https://www.ted.com/talks/evan_roden_the_myth_of_the_apolitical_youth
     title: 'TEDxTulane speaker',
-    issuer: 'Youth political participation',
-    detail: 'A talk on how young people are structurally shut out of politics.',
+    issuer: 'The Myth of the Apolitical Youth · 2022',
+    detail: 'A talk arguing that young people are more politically engaged than they get credit for, told through the story of The YCOD.',
     href: '/about/ted',
   },
   {
     title: 'Real Heroes nominee',
     issuer: 'American Red Cross · 2021',
-    detail: 'Nominated for the Real Heroes Education Award for co-founding and leading The YCOD.',
+    // https://mynews13.com/fl/orlando/news/2021/09/24/wny-teens-nominated-for-american-red-cross-award-for-organ-donation-coalition
+    detail: 'Nominated with three fellow co-founders for the Real Heroes Education Award for The YCOD.',
     href: '/advocacy-and-civic/ycod',
   },
   {
     title: 'Vogue Italy',
     issuer: 'BizarrAudi · SchoolTime · 2020',
-    detail: "Runway modeling for Vogue Italy's feature of BizarrAudi's SchoolTime collection.",
+    // OWNER-CONFIRM: no public record of the Vogue Italia coverage found.
+    detail: "Runway modeling for BizarrAudi's SchoolTime collection, which Vogue Italy covered.",
     href: '/studio/modeling',
   },
 ]

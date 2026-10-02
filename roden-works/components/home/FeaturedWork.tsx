@@ -6,13 +6,18 @@ import { useRef } from 'react'
 import TiltCard from '@/components/ui/TiltCard'
 import { ProjectIllustration } from '@/components/ui/ProjectIllustrations'
 
+// ENFRA figures: https://enfrasolutions.com/enfra-and-rochester-regional-health-launch-30-year-energy-as-a-service-partnership-to-modernize-system-wide-infrastructure-and-advance-sustainability
+// ("guaranteed savings of 34.4% over the 30-year term ... more than $354.6 million in total avoided costs";
+// "reduce its purchased electricity by 52.5%", an expected figure)
+// NY registration rate was the lowest in the nation as of 2018 (it has since risen):
+// https://nyulangone.org/news/transplant-institute-study-aims-boost-organ-donation
 const featured = [
   {
     title: 'ENFRA × Rochester Regional Health',
     category: 'Energy-as-a-Service',
     slug: 'enfra',
     description:
-      '$143.8 million, 30-year EaaS partnership with $354.6M in guaranteed savings and a 52.5% cut in purchased electricity.',
+      '$143.8 million, 30-year EaaS partnership with 34.4% guaranteed savings (more than $354.6M in avoided costs) and an expected 52.5% cut in purchased electricity.',
     href: '/engineering-and-sustainability/enfra',
     tag: 'Engineering',
     color: 'bg-forest/20 text-verdigris border-forest-light/20',
@@ -23,7 +28,7 @@ const featured = [
     category: 'Legislative Advocacy',
     slug: 'ycod',
     description:
-      'Co-founded at 17. Seven years of advocacy to change how New York designates organ donors, in a state with the lowest registration rate in the country.',
+      'Co-founded in high school. Seven years of advocacy to change how New York designates organ donors, in what was then the state with the lowest registration rate in the country.',
     href: '/advocacy-and-civic/ycod',
     tag: 'Advocacy',
     color: 'bg-copper/20 text-copper border-copper/20',

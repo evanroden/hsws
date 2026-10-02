@@ -5,11 +5,15 @@ import Link from 'next/link'
 import { useInView } from '@/lib/hooks'
 import TiltCard from '@/components/ui/TiltCard'
 
+// C40: Evan's team "People First" won an honorable mention in C40's Students Reinventing Cities
+// (2023), not the Reinventing Cities award: https://css.loyno.edu/news/sep-14-2023_loyola-team-wins-honorable-mention-global-students-reinventing-cities-competition
+// Waiting list (103,000+): https://www.organdonor.gov/learn/organ-donation-statistics
+// Convergint and Odoo roles were Account Executive (see Timeline.tsx).
 const pillars = [
   {
     title: 'Energy & Infrastructure',
     description:
-      'Currently managing central energy plants for Rochester Regional Health at ENFRA. Earlier work covered fire and life safety integration at Convergint and ERP implementations at Odoo.',
+      'Currently managing the central energy plants at two Rochester Regional Health hospitals for ENFRA. Earlier account executive roles covered fire and life safety integration at Convergint and ERP software at Odoo.',
     href: '/engineering-and-sustainability',
     stat: '$143.8M',
     statLabel: 'EaaS Partnership',
@@ -28,7 +32,7 @@ const pillars = [
   {
     title: 'Civic Advocacy',
     description:
-      'Seven years of work on opt-out organ donation law in New York, plus a climate policy fellowship and a New Orleans East plan that won a C40 Reinventing Cities Award.',
+      'Seven years of work on opt-out organ donation law in New York, plus a climate policy fellowship and a New Orleans East plan that earned an honorable mention in C40\'s Students Reinventing Cities competition.',
     href: '/advocacy-and-civic',
     stat: '100K+',
     statLabel: 'On the waiting list',
@@ -45,7 +49,7 @@ const pillars = [
   {
     title: 'Visual Arts',
     description:
-      'Camera work for Claiborne Avenue Productions, marketing video for Tulane\'s Freeman School, kiln-formed glass, and runway modeling for Vogue Italy.',
+      'Camera work for Claiborne Avenue Productions, marketing video for Tulane\'s Freeman School, kiln-formed glass, and runway modeling in a BizarrAudi collection covered by Vogue Italy.',
     href: '/studio',
     stat: '4',
     statLabel: 'Creative Disciplines',

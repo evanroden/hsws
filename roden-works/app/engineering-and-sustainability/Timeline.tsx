@@ -40,7 +40,8 @@ const timelineData = [
     year: '2022–2025',
     title: 'U.S. Dept. of Veterans Affairs',
     role: 'Biomedical Engineer / Project Manager',
-    description: '3D-printed prosthetic devices for veterans. Taylor Foundation partnership.',
+    // Taylor Foundation link unverified; documented partner is the New Orleans VA Medical Center.
+    description: '3D-printed dental and maxillofacial prosthetic models for veterans, with the New Orleans VA Medical Center.',
     color: 'bg-copper',
   },
   {
