@@ -122,7 +122,7 @@ function Bars({ data, metric, highlight, animate }: { data: SpeedTier[]; metric:
                     key={d.label}
                     role="listitem"
                     tabIndex={0}
-                    aria-label={`${d.label}: ${d.down} Mbps down, ${d.up} Mbps up — ${d.adequate ? 'adequate' : 'inadequate'}.`}
+                    aria-label={`${d.label}: ${d.down} Mbps down, ${d.up} Mbps up, ${d.adequate ? 'adequate' : 'inadequate'}.`}
                     onPointerEnter={() => setActive(i)}
                     onPointerLeave={() => setActive(null)}
                     onFocus={() => {

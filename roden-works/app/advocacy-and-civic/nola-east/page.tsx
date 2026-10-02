@@ -712,7 +712,7 @@ export default function NolaEastPage() {
               transition={{ duration: 0.6 }}
               className="text-white text-lg font-serif leading-relaxed"
             >
-              The plan treats climate resilience, affordable housing, and local jobs as one project for New Orleans East instead of separate programs competing for the same funding.
+              The plan handles climate resilience, affordable housing, and local jobs together, as one project for New Orleans East.
             </motion.p>
           </div>
         </div>
