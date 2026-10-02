@@ -6,6 +6,8 @@ import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import PageHero from '@/components/ui/PageHero'
 import CinemaEmbed from '@/components/ui/CinemaEmbed'
 import { useInView, useCountUp } from '@/lib/hooks'
+import { Cite, SourceList } from '@/components/ui/Sources'
+import { TED_SOURCES as S } from './sources'
 
 const quotes = [
   {
@@ -30,13 +32,14 @@ const quotes = [
 // https://www.ipu.org/news/press-releases/2026-04/youth-representation-in-parliament-flatlines-first-time-in-12-years
 // YCOD 3,000+ members and pending NY bill (Sept 2021):
 // https://mynews13.com/fl/orlando/news/2021/09/24/wny-teens-nominated-for-american-red-cross-award-for-organ-donation-coalition
-const keyTakeaways = [
+const keyTakeaways: { stat: number; suffix: string; label: string; description: string; sources?: string[] }[] = [
   {
     stat: 50,
     suffix: '%',
     label: 'Of global population under 30',
     description:
       'Half the world is under 30, yet people 30 or under hold fewer than 3% of seats in parliaments worldwide, according to the Inter-Parliamentary Union. I see that as structural exclusion.',
+    sources: ['ipu-youth-2026'],
   },
   {
     stat: 7,
@@ -51,6 +54,7 @@ const keyTakeaways = [
     label: 'Coalition members by 2021',
     description:
       'Our coalition grew to more than 3,000 members across the US and abroad, and our opt-out proposal became a bill in the New York State Assembly. Young people planned and carried out all of it, outside the usual political channels.',
+    sources: ['red-cross-nomination'],
   },
   {
     stat: 18,
@@ -58,6 +62,7 @@ const keyTakeaways = [
     label: 'Arbitrary age threshold for political voice',
     description:
       'The voting age of 18 is treated as the natural start of political participation, but it is a convention. Tax, education, environmental, and healthcare policy affect people long before they can vote on any of it.',
+    sources: ['amendment-26'],
   },
 ]
 
@@ -163,7 +168,10 @@ function StatCallout({
         className="h-px bg-gradient-to-r from-copper/50 to-transparent mb-6 origin-left"
       />
 
-      <p className="text-titanium text-sm leading-relaxed">{takeaway.description}</p>
+      <p className="text-titanium text-sm leading-relaxed">
+        {takeaway.description}
+        {takeaway.sources && <Cite sources={S} id={takeaway.sources} />}
+      </p>
     </motion.div>
   )
 }
@@ -228,7 +236,7 @@ export default function TedPage() {
                 In March 2022 I gave a TEDxTulane talk, The Myth of the Apolitical Youth, on how
                 political systems shut young people out. I drew on my experience co-founding and
                 leading the Youth Coalition For Organ Donation, whose opt-out proposal became a bill
-                in New York, to challenge the idea that political influence depends on age.
+                in New York, to challenge the idea that political influence depends on age.<Cite sources={S} id={['ted-talk', 'red-cross-nomination']} />
               </p>
               <p className="mt-6 text-titanium leading-relaxed">
                 My argument was that young people are already stakeholders. Decisions about their
@@ -356,6 +364,8 @@ export default function TedPage() {
           </motion.div>
         </div>
       </section>
+
+      <SourceList sources={S} />
     </>
   )
 }
