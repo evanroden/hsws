@@ -49,7 +49,7 @@ const pillars = [
   {
     title: 'Visual Arts',
     description:
-      'Camera work for Claiborne Avenue Productions, marketing video for Tulane\'s Freeman School, kiln-formed glass, and runway modeling in a BizarrAudi collection covered by Vogue Italy.',
+      'Camera work for Claiborne Avenue Productions, marketing video for Tulane\'s Freeman School, kiln-formed glass, and runway and editorial modeling for a Bizar Audi collection featured in Vogue Italy.',
     href: '/studio',
     stat: '4',
     statLabel: 'Creative Disciplines',

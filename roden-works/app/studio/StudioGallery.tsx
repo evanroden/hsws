@@ -43,12 +43,10 @@ const items = [
     aspect: 'aspect-square',
   },
   {
-    // Retitled so it doesn't read as modeling for Vogue itself; coverage unverified (OWNER-CONFIRM)
-    title: 'BizarrAudi SchoolTime',
+    title: 'Bizar Audi · Schooltime',
     category: 'modeling' as const,
     slug: 'vogue-italy',
-    // Matches studio/modeling wording; Vogue Italia coverage not found publicly (OWNER-CONFIRM)
-    description: 'Runway modeling for BizarrAudi\'s SchoolTime collection, which Vogue Italy covered in 2020.',
+    description: 'Runway and editorial modeling for Bizar Audi\'s Schooltime collection, featured in Vogue Italy in 2020.',
     href: '/studio/modeling',
     aspect: 'aspect-[3/4]',
   },

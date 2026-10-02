@@ -1194,7 +1194,7 @@ function VogueItaly() {
       <rect x="30" y="204" width="120" height="30" rx="1"
         stroke={C.titanium} strokeOpacity="0.08" strokeWidth="0.2" fill={C.titanium} fillOpacity="0.017" />
       <text x="90" y="218" fill={C.titanium} fillOpacity="0.204" fontSize="6" fontFamily="monospace" textAnchor="middle" letterSpacing="3">VOGUE ITALIA</text>
-      <text x="90" y="228" fill={C.copper} fillOpacity="0.17" fontSize="3.5" fontFamily="monospace" textAnchor="middle" letterSpacing="1">SchoolTime × BizarrAudi 2020</text>
+      <text x="90" y="228" fill={C.copper} fillOpacity="0.17" fontSize="3.5" fontFamily="monospace" textAnchor="middle" letterSpacing="1">Schooltime × Bizar Audi 2020</text>
     </svg>
   )
 }

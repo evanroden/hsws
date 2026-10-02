@@ -52,14 +52,15 @@ export default function ModelingContent({ images }: { images: GalleryImage[] }) 
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <span className="font-mono text-xs tracking-widest uppercase text-copper mb-6 block">
-                Vogue Italy &middot; 2020
+                Buffalo, NY &middot; Vogue Italy &middot; 2020
               </span>
               <h1 className="font-serif text-display-xl text-white max-w-5xl">
-                BizarrAudi&apos;s SchoolTime
+                Bizar Audi&apos;s Schooltime
               </h1>
               <p className="mt-6 text-lg md:text-xl text-titanium max-w-2xl leading-relaxed">
-                I walked the runway for BizarrAudi&apos;s SchoolTime collection, which Vogue Italy
-                featured in 2020. The collection reworks the school uniform as high fashion.
+                I walked in the Buffalo runway presentation of Bizar Audi&apos;s Schooltime collection
+                in 2020, and modeled in the editorial that Vogue Italy ran in its first issue of the
+                COVID-19 pandemic.
               </p>
             </motion.div>
           </div>
@@ -78,16 +79,17 @@ export default function ModelingContent({ images }: { images: GalleryImage[] }) 
               <span className="font-mono text-xs tracking-widest uppercase text-copper mb-4 block">
                 The Collection
               </span>
-              <h2 className="font-serif text-heading text-white">SchoolTime</h2>
-              {/* Garment-level details (blazer, pleated skirt, varsity letter, backpack, oversized vs.
-                  tailored silhouettes, recolored fabrics) removed: no public record of the collection
-                  was found to support them. OWNER-CONFIRM before restoring. */}
+              <h2 className="font-serif text-heading text-white">Schooltime</h2>
+              {/* Designer, venue, Vogue Italy feature and Evan's roles confirmed by Evan (Oct 2026). */}
               <p className="mt-6 text-titanium leading-relaxed">
-                BizarrAudi&apos;s SchoolTime takes pieces of the school uniform and recuts them as
-                fashion.
+                Bizar Audi is the name Austin Stoll works under. He is a multidisciplinary artist,
+                designer, model, and rapper from Orchard Park, New York, now based in New York City.
+                Schooltime takes pieces of the school uniform and recuts them as fashion.
               </p>
               <p className="mt-4 text-titanium leading-relaxed">
-                Vogue Italy covered the collection in 2020. I walked in the runway presentation.
+                He presented the collection in Buffalo in 2020, and Vogue Italy featured it in its
+                first issue of the COVID-19 pandemic. I walked in the runway presentation and was one
+                of the models in the editorial.
               </p>
             </motion.div>
 
@@ -104,11 +106,11 @@ export default function ModelingContent({ images }: { images: GalleryImage[] }) 
               <div className="mt-6 space-y-4">
                 {[
                   { label: 'Publication', value: 'Vogue Italy' },
-                  { label: 'Designer', value: 'BizarrAudi' },
-                  { label: 'Collection', value: 'SchoolTime' },
-                  { label: 'Season', value: '2020' },
-                  { label: 'Role', value: 'Runway Model' },
-                  { label: 'Format', value: 'Runway Show & Editorial' },
+                  { label: 'Designer', value: 'Bizar Audi (Austin Stoll)' },
+                  { label: 'Collection', value: 'Schooltime' },
+                  { label: 'Presented', value: 'Buffalo, NY · 2020' },
+                  { label: 'Role', value: 'Runway & Editorial Model' },
+                  { label: 'Format', value: 'Runway Presentation & Editorial' },
                 ].map((detail) => (
                   <div
                     key={detail.label}
@@ -157,9 +159,9 @@ export default function ModelingContent({ images }: { images: GalleryImage[] }) 
           ) : (
             <GalleryPending
               title="Runway and editorial images"
-              body="Photography from the SchoolTime runway presentation and the accompanying editorial shoot is being prepared for the web. Images are available on request."
+              body="Photography from the Schooltime runway presentation and the accompanying editorial shoot is being prepared for the web. Images are available on request."
               series={['Runway presentation', 'Editorial']}
-              requestSubject="SchoolTime runway images request"
+              requestSubject="Schooltime runway images request"
               secondary={{ label: 'Back to the Studio', href: '/studio' }}
             />
           )}
@@ -177,14 +179,14 @@ export default function ModelingContent({ images }: { images: GalleryImage[] }) 
           >
             <div className="pl-0 border-l-0">
               <p className="font-serif text-xl md:text-2xl text-white/90 italic leading-relaxed">
-                A school uniform is meant to make everyone look the same. To me, SchoolTime asks who
+                A school uniform is meant to make everyone look the same. To me, Schooltime asks who
                 sets the rules for belonging.
               </p>
             </div>
             <div className="mt-8 flex items-center justify-center gap-3">
               <div className="w-8 h-px bg-copper/50" />
               <span className="font-mono text-xs text-muted tracking-widest uppercase">
-                SchoolTime &middot; BizarrAudi &middot; 2020
+                Schooltime &middot; Bizar Audi &middot; 2020
               </span>
               <div className="w-8 h-px bg-copper/50" />
             </div>

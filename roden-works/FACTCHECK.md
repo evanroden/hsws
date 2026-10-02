@@ -46,7 +46,7 @@ Every factual claim on the site was checked against public sources. Fixes are li
 22. Is there a link to the Children's Museum ad? (The linked video was a jazz background video, so it was relabeled.)
 23. Plato's Cave: were you the director of photography? Who narrated it? Did you use anamorphic lenses?
 24. Aurora Theatre and Buffalo Central Terminal: what did you shoot, and when? Should they get a section or come off the grid?
-25. Vogue Italia 2020: was the coverage in the magazine, on vogue.it, or on PhotoVogue? Who is BizarrAudi? Should the garment details go back in?
+25. ~~Vogue Italia 2020~~ **Resolved (Oct 2026):** Evan confirmed that Bizar Audi (Austin Stoll, from Orchard Park, NY; based in NYC) presented Schooltime in Buffalo in 2020, that Vogue Italy featured it in its first COVID-19 issue, and that Evan walked the runway and modeled in the editorial. The site is updated.
 26. Glass: is your schedule close to Bullseye's 6mm full fuse? Is the series called "Fractured Futures"? Is "FlowIt" the right name for your 3D-printing tool?
 27. Do you shoot medium format, and with which camera?
 

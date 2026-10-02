@@ -36,11 +36,9 @@ const recognition = [
     href: '/advocacy-and-civic/ycod',
   },
   {
-    // Retitled from "Vogue Italy" so it doesn't read as modeling for Vogue itself.
-    title: 'SchoolTime runway',
-    issuer: 'BizarrAudi · 2020',
-    // OWNER-CONFIRM: no public record of the Vogue Italia coverage found.
-    detail: "Runway modeling for BizarrAudi's SchoolTime collection, which Vogue Italy covered.",
+    title: 'Vogue Italy editorial',
+    issuer: 'Bizar Audi · Schooltime · 2020',
+    detail: "Walked in the Buffalo runway presentation of Bizar Audi's Schooltime collection and modeled in the editorial Vogue Italy ran in 2020.",
     href: '/studio/modeling',
   },
 ]
