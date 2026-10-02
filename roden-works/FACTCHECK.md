@@ -14,16 +14,16 @@ Every factual claim on the site was checked against public sources. Fixes are li
 ## Questions for Evan (answers let removed items come back)
 
 **Awards and recognition**
-1. C40: Loyola lists you on the six-student People First team; the site said Tulane. Which is right, and what was your role? Do the NOLA East plan numbers (5 MW, 1,200+ jobs, 12,000 tCO2e/yr, 8.5-mile BRT) come from the team's submission?
+1. **Resolved (Oct 2026):** Evan took part as a Tulane student, and most of the People First team were Loyola students. He doesn't recognize the NOLA East plan figures (5 MW, 1,200+ jobs, 12,000 tCO2e, 8.5-mile BRT, 30% affordable, etc.), so all of them are removed. The layer details are now qualitative.
 2. Were "Best Debater & Speaker" and "Best Student of 2022" real awards? If so, who gave them? (removed)
 3. Boy of the Year: which Boys & Girls Club, and what year?
 4. Latin honor society: what is its exact name, and what year were you inducted?
 
 **YCOD**
-5. How old were you at founding? The site said 17; news coverage suggests about 15. It now says "in high school." Was the group founded in August 2017? Spectrum dates the first DiPietro meeting to September 2018.
-6. Is the YCOD a registered 501(c)(4)? I found no record. (removed)
+5. **Resolved (Oct 2026):** Founded in 2016, when Evan was about fifteen. The site now says 2016 / "at fifteen". Note: ycod.org/about still says 2017.
+6. **Resolved (Oct 2026):** IRS notice CP 575 E (Feb 3, 2022) assigned an EIN to the Youth Coalition for Organ Donation as a non-profit organization. The site now says "registered nonprofit". An EIN alone does not grant 501(c) tax-exempt status, so the site makes no 501(c)(4) claim. If Form 1024-A was filed and approved, send the determination letter and the label can go back.
 7. Is your 2021 draft the text that became Senate bill S4334? Was there a 2021–22 Assembly bill number?
-8. Links to CBC, Yahoo News, Business Insider coverage? (removed; WKBW, Spectrum News, WENY verified)
+8. **Partly resolved (Oct 2026):** ycod.org/coverage shows that the Yahoo News, Yahoo Finance, Business Insider/Markets Insider, MarketWatch, MSN and Morningstar items were syndications of the YCOD's own PR Newswire release ("Youth Coalition For Organ Donation Strives to Save Lives"), not independent coverage. They stay off the press list. CBC is listed there as "Radio One / CBC", with no link. Which show was it, and when did it air?
 9. Can you confirm the WaitList Zero, ONE8FIFTY and Chris Klug Foundation partnerships? Did you lead the group for seven or more years? Is it still active? What did your Living Donor Support Act advocacy involve?
 
 **Policy work**
@@ -36,7 +36,7 @@ Every factual claim on the site was checked against public sources. Fixes are li
 14. Is your exact ENFRA title "Sustainability Engineer II / Asset Manager"? Does your plant scope cover only UMMC and St. Mary's?
 15. Odoo: which month hit 160% of goal, and was the goal a monthly non-recurring revenue target? Did you run implementations and migrations yourself, or hand them off to consultants?
 16. Convergint: was the bootcamp at the Schaumburg HQ? Did you use RSMeans?
-17. ~~VA~~ **Resolved (Oct 2026):** Evan confirmed a VA co-op as a WOC employee while at Tulane. The project built tools for veterans with double-arm loss to place and remove dentures and other oral appliances on their own. The Taylor Foundation reference stays removed. The page is retitled "VA Assistive Devices", and the denture-anatomy callouts are removed from the 3D viewer, because the models are the tools, not dentures.
+17. ~~VA~~ **Resolved (Oct 2026):** Evan confirmed a VA co-op as a WOC employee while at Tulane. The project built tools for veterans with double-arm loss to place and remove dentures and other oral appliances on their own. The Taylor Foundation reference stays removed. The page is retitled "VA Assistive Devices", and the denture-anatomy callouts are removed from the 3D viewer, because the models are the tools, not dentures. Evan also confirmed he doesn't recall any Taylor Foundation connection.
 18. Weatherhead (2023–25): what was your title, and what was the "research device compliance study"?
 19. SWIS: is the claim that no long-term health study exists based on your own literature search? Does the HAPS role description (monitor deployment, datasets) match what you did?
 20. Is the B.S.E. in Biomedical Engineering, 2020–2024, exactly what the diploma says?

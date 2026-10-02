@@ -13,8 +13,9 @@ import MediaWall from './MediaWall'
 export const metadata: Metadata = {
   title: 'The YCOD: Opt-Out Organ Donation Advocacy',
   description:
-    // No record of 501(c)(4) status was found, so the description no longer claims it (fact-check 2026-10)
-    'The Youth Coalition For Organ Donation is a youth-led coalition working to pass presumed consent organ donation legislation in New York.',
+    // Nonprofit per IRS CP 575 E EIN notice (Feb 3, 2022) provided by Evan. An EIN does not confer
+    // 501(c) tax-exempt status, so no 501(c)(3)/(4) claim is made.
+    'The Youth Coalition For Organ Donation is a youth-led nonprofit working to pass presumed consent organ donation legislation in New York.',
 }
 
 export default function YcodPage() {

@@ -21,8 +21,9 @@ interface Layer {
 // https://css.loyno.edu/news/sep-14-2023_loyola-team-wins-honorable-mention-global-students-reinventing-cities-competition
 // https://www.imperial.ac.uk/news/248416/global-success-imperial-engineering-students-c40/
 // https://www.c40reinventingcities.org/en/events/new-orleans-winning-team-present-their-project-to-mayor-latoya-cantrell-1828.html
-// Plan figures below (5 MW, 1,200+ jobs, 12,000 tCO2e, 50 tons/day, 8.5 miles, etc.) are the team's own
-// proposal estimates, not public statistics; pending owner confirmation.
+// Evan does not recognize the specific plan figures earlier drafts listed here (5 MW solar, 1,200+ jobs,
+// 12,000 tCO2e, 50 tons/day, an 8.5-mile BRT, 30% affordable, etc.), so all of them were removed (Oct 2026).
+// The layer details below are qualitative only.
 const layers: Layer[] = [
   {
     id: 'disaster',
@@ -31,7 +32,7 @@ const layers: Layer[] = [
     description:
       'Flood mitigation and hurricane resilience for New Orleans East, one of the areas hit hardest by Hurricane Katrina: higher building elevations, better drainage, and community emergency preparedness programs.',
     features: [
-      { label: 'Elevated Construction', detail: 'All new builds 3+ ft above base flood elevation' },
+      { label: 'Elevated Construction', detail: 'New construction raised above base flood elevation' },
       { label: 'Green Stormwater', detail: 'Bioswales, rain gardens, and permeable surfaces' },
       { label: 'Emergency Shelters', detail: 'Distributed resilience hubs with backup power' },
       { label: 'Evacuation Routes', detail: 'Improved signage and multi-modal evacuation corridors' },
@@ -44,8 +45,8 @@ const layers: Layer[] = [
     description:
       'Solar on residential rooftops, commercial buildings, and community solar farms, to lower residents\' energy bills and keep power on during storms.',
     features: [
-      { label: 'Community Solar', detail: '5 MW community solar farm on vacant parcels' },
-      { label: 'Rooftop Program', detail: 'Subsidized residential installations for 500+ homes' },
+      { label: 'Community Solar', detail: 'Community solar on vacant parcels' },
+      { label: 'Rooftop Program', detail: 'Support for residential rooftop installations' },
       { label: 'Battery Storage', detail: 'Neighborhood-scale battery systems for outage resilience' },
       { label: 'Net Metering', detail: 'Revenue generation for participating households' },
     ],
@@ -57,10 +58,10 @@ const layers: Layer[] = [
     description:
       'Biogas from organic waste that would otherwise go to landfill. It produces renewable energy, cuts methane emissions, and creates local jobs in waste processing.',
     features: [
-      { label: 'Anaerobic Digester', detail: 'Processing 50 tons/day of organic waste' },
+      { label: 'Anaerobic Digester', detail: 'Processing organic waste diverted from landfill' },
       { label: 'CNG Fleet', detail: 'Compressed natural gas fueling for municipal vehicles' },
       { label: 'Compost Program', detail: 'Digestate converted to agricultural compost' },
-      { label: 'Emissions Reduction', detail: 'Estimated 12,000 tons CO2e avoided annually' },
+      { label: 'Emissions Reduction', detail: 'Lower methane emissions from landfilled organics' },
     ],
   },
   {
@@ -70,10 +71,10 @@ const layers: Layer[] = [
     description:
       'A Bus Rapid Transit corridor connecting New Orleans East to downtown and major employment centers, with dedicated lanes, signal priority, and level boarding.',
     features: [
-      { label: 'Dedicated Lanes', detail: '8.5-mile BRT corridor on Chef Menteur Highway' },
-      { label: 'Station Design', detail: '12 stations with shelters, real-time info, and lighting' },
-      { label: 'Signal Priority', detail: 'Transit signal priority at all intersections' },
-      { label: 'Frequency', detail: '10-minute headways during peak, 15-minute off-peak' },
+      { label: 'Dedicated Lanes', detail: 'Dedicated bus lanes linking the East to job centers' },
+      { label: 'Station Design', detail: 'Stations with shelters, real-time information, and lighting' },
+      { label: 'Signal Priority', detail: 'Transit signal priority at intersections' },
+      { label: 'Frequency', detail: 'Frequent all-day service' },
     ],
   },
   {
@@ -83,10 +84,10 @@ const layers: Layer[] = [
     description:
       'Protected bike lanes, multi-use paths, and bike share stations connecting neighborhoods to transit stations and commercial centers.',
     features: [
-      { label: 'Protected Lanes', detail: '15 miles of protected bike lanes on arterials' },
-      { label: 'Multi-Use Path', detail: 'Bayou Sauvage greenway trail system' },
-      { label: 'Bike Share', detail: '20 Blue Bikes stations throughout the district' },
-      { label: 'Secure Parking', detail: 'Covered bike parking at all BRT stations' },
+      { label: 'Protected Lanes', detail: 'Protected bike lanes on major roads' },
+      { label: 'Multi-Use Path', detail: 'Greenway trails connecting neighborhoods' },
+      { label: 'Bike Share', detail: 'Bike share stations across the district' },
+      { label: 'Secure Parking', detail: 'Covered bike parking at transit stations' },
     ],
   },
   {
@@ -96,10 +97,10 @@ const layers: Layer[] = [
     description:
       'Neighborhood investments in public spaces, community centers, small business incubators, and cultural programming.',
     features: [
-      { label: 'Community Centers', detail: '3 new multi-purpose neighborhood centers' },
+      { label: 'Community Centers', detail: 'Multi-purpose neighborhood centers' },
       { label: 'Public Spaces', detail: 'Pocket parks, plazas, and community gardens' },
       { label: 'Small Business', detail: 'Micro-enterprise incubator and co-working space' },
-      { label: 'Cultural Programs', detail: 'Arts programming and Vietnamese community heritage center' },
+      { label: 'Cultural Programs', detail: 'Arts and cultural programming' },
     ],
   },
   {
@@ -107,11 +108,11 @@ const layers: Layer[] = [
     name: 'Green Housing',
     color: '#2D5A45',
     description:
-      'Affordable, energy-efficient housing with passive design, solar-ready construction, and flood-resistant materials. 30% of units in every new development would be set aside as affordable.',
+      'Affordable, energy-efficient housing with passive design, solar-ready construction, and flood-resistant materials.',
     features: [
       { label: 'Passive Design', detail: 'Cross-ventilation, shading, and thermal mass' },
-      { label: 'Affordable Units', detail: '30% of new units at or below 80% AMI' },
-      { label: 'Energy Star', detail: 'All units built to Energy Star certification standards' },
+      { label: 'Affordable Units', detail: 'A share of new units reserved as affordable' },
+      { label: 'Energy Star', detail: 'Energy-efficient construction standards' },
       { label: 'Resilient Materials', detail: 'Flood-resistant construction and impact-rated windows' },
     ],
   },
@@ -123,9 +124,9 @@ const layers: Layer[] = [
       'Job training for construction, solar installation, transit operations, and urban agriculture, with hiring priority for New Orleans East residents and returning citizens.',
     features: [
       { label: 'Training Center', detail: 'Solar installation and green construction certification' },
-      { label: 'Local Hire', detail: '50% local hiring requirement on all funded projects' },
+      { label: 'Local Hire', detail: 'Local hiring on funded projects' },
       { label: 'Apprenticeships', detail: 'Paid apprenticeship pipeline with trade unions' },
-      { label: 'Job Projections', detail: 'Estimated 1,200+ permanent jobs created' },
+      { label: 'Local Business', detail: 'Contracting opportunities for neighborhood firms' },
     ],
   },
 ]
@@ -198,12 +199,12 @@ export default function NolaEastPage() {
               <span className="block mt-2 font-mono text-xs tracking-wide text-titanium uppercase">Honorable Mention</span>
             </div>
             <div className="text-center px-6 py-4">
-              <span className="block font-serif text-3xl md:text-4xl text-white">1,200+</span>
-              <span className="block mt-2 font-mono text-xs tracking-wide text-titanium uppercase">Jobs Projected</span>
+              <span className="block font-serif text-3xl md:text-4xl text-white">2023</span>
+              <span className="block mt-2 font-mono text-xs tracking-wide text-titanium uppercase">Competition Year</span>
             </div>
             <div className="text-center px-6 py-4">
-              <span className="block font-serif text-3xl md:text-4xl text-white">5 MW</span>
-              <span className="block mt-2 font-mono text-xs tracking-wide text-titanium uppercase">Community Solar</span>
+              <span className="block font-serif text-3xl md:text-4xl text-white">Tulane</span>
+              <span className="block mt-2 font-mono text-xs tracking-wide text-titanium uppercase">With a Loyola-Led Team</span>
             </div>
           </motion.div>
         </div>
@@ -248,7 +249,7 @@ export default function NolaEastPage() {
                 animate={heroView.isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                Our team, People First, received an Honorable Mention (the site&apos;s winning entry was Imperial College London&apos;s ReNew Orleans). Mayor LaToya Cantrell honored the team in September 2023 and asked us to present the plan. Along with new infrastructure, the plan includes local hiring, job training, and affordable housing for current residents.
+                Our team, People First, was mostly Loyola University New Orleans students; I took part as a Tulane student. We received an Honorable Mention (the site&apos;s winning entry was Imperial College London&apos;s ReNew Orleans). Mayor LaToya Cantrell honored the team in September 2023 and asked us to present the plan. Along with new infrastructure, the plan includes local hiring, job training, and affordable housing for current residents.
               </motion.p>
             </div>
           </div>

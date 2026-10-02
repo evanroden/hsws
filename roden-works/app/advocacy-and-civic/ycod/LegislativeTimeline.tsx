@@ -12,7 +12,7 @@ type Kind = 'milestone' | 'legislative' | 'default'
 // Spectrum News https://spectrumlocalnews.com/nys/buffalo/news/2021/01/13/college-students-push-for-more-organ-donations-in-ny-
 // CBC, Yahoo News and Business Insider coverage could not be found and was removed (owner to confirm).
 const events: { year: string; title: string; description: string; kind: Kind }[] = [
-  { year: '2017', title: 'Co-founded The YCOD', description: 'With Henry McLaughlin, Grace Tapani, and Sage Sellers in East Aurora, NY.', kind: 'default' },
+  { year: '2016', title: 'Co-founded The YCOD', description: 'With Henry McLaughlin, Grace Tapani, and Sage Sellers in East Aurora, NY.', kind: 'default' },
   { year: '2018', title: 'Coalition Building', description: 'Established partnerships with WaitList Zero, ONE8FIFTY, and the Chris Klug Foundation.', kind: 'default' },
   { year: '2019', title: 'Legislative Introduction', description: 'Assemblyman David DiPietro introduced A07954, our opt-out organ donation bill, in the NY Assembly in May 2019.', kind: 'legislative' },
   { year: '2020–21', title: 'Media Campaign', description: 'Coverage by WKBW (syndicated to Scripps stations nationally), Spectrum News, and WENY.', kind: 'default' },
@@ -20,7 +20,7 @@ const events: { year: string; title: string; description: string; kind: Kind }[]
   { year: '2021', title: 'Real Heroes Nomination', description: 'Nominated for the American Red Cross Real Heroes Education Award.', kind: 'default' },
   { year: '2022', title: 'Living Donor Support Act Passed', description: 'Advocated for the NYS Living Donor Support Act, which reimburses living organ donors for lost wages, travel, lodging, and child care. Governor Hochul signed it into law in December 2022.', kind: 'milestone' },
   { year: '2022–24', title: 'Continued Advocacy', description: 'Kept up lobbying, social media, and coalition work while at Tulane.', kind: 'default' },
-  { year: '2024', title: 'Transition', description: 'After about seven years with The YCOD, I stepped back. The coalition continues.', kind: 'default' },
+  { year: '2024', title: 'Transition', description: 'After more than seven years with The YCOD, I stepped back. The coalition continues.', kind: 'default' },
 ]
 
 export default function LegislativeTimeline() {
@@ -37,7 +37,7 @@ export default function LegislativeTimeline() {
         >
           <div className="lg:sticky lg:top-28">
             <span className="font-mono text-xs tracking-widest uppercase text-copper">Legislative Timeline</span>
-            <h2 className="font-serif text-heading text-white mt-3">Seven years of work.</h2>
+            <h2 className="font-serif text-heading text-white mt-3">2016 to 2024.</h2>
             <ul className="mt-8 space-y-3 text-sm text-titanium">
               <li className="flex items-center gap-3">
                 <span aria-hidden="true" className="h-3 w-3 rounded-full bg-verdigris ring-4 ring-verdigris/15" />

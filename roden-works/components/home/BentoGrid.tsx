@@ -32,7 +32,7 @@ const pillars = [
   {
     title: 'Civic Advocacy',
     description:
-      'Seven years of work on opt-out organ donation law in New York, plus a climate policy fellowship and a New Orleans East plan that earned an honorable mention in C40\'s Students Reinventing Cities competition.',
+      'More than seven years of work on opt-out organ donation law in New York, plus a climate policy fellowship and a New Orleans East plan that earned an honorable mention in C40\'s Students Reinventing Cities competition.',
     href: '/advocacy-and-civic',
     stat: '100K+',
     statLabel: 'On the waiting list',

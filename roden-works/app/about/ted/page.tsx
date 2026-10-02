@@ -43,7 +43,7 @@ const keyTakeaways = [
     suffix: '+ Years',
     label: 'Leading the YCOD',
     description:
-      'I co-founded the Youth Coalition For Organ Donation in high school and led it for more than seven years. Its legislative work in New York was done by young people, which cuts against the idea that political influence depends on being able to vote.',
+      'I co-founded the Youth Coalition For Organ Donation at fifteen and led it for more than seven years. Its legislative work in New York was done by young people, which cuts against the idea that political influence depends on being able to vote.',
   },
   {
     stat: 3000,

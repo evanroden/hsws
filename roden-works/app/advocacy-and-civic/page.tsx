@@ -16,8 +16,8 @@ const projects = [
     title: 'The Youth Coalition For Organ Donation',
     // "At 17" softened; founders were East Aurora High School students:
     // https://mynews13.com/fl/orlando/news/2021/09/24/wny-teens-nominated-for-american-red-cross-award-for-organ-donation-coalition
-    description: 'Co-founded in high school. Seven years of advocacy for presumed consent organ donation legislation in New York.',
-    label: 'Founded 2017',
+    description: 'Co-founded at fifteen. More than seven years of advocacy for presumed consent organ donation legislation in New York.',
+    label: 'Founded 2016',
   },
   {
     href: '/advocacy-and-civic/our-climate',

@@ -28,7 +28,7 @@ const featured = [
     category: 'Legislative Advocacy',
     slug: 'ycod',
     description:
-      'Co-founded in high school. Seven years of advocacy to change how New York designates organ donors, in what was then the state with the lowest registration rate in the country.',
+      'Co-founded at fifteen. More than seven years of advocacy to change how New York designates organ donors, in what was then the state with the lowest registration rate in the country.',
     href: '/advocacy-and-civic/ycod',
     tag: 'Advocacy',
     color: 'bg-copper/20 text-copper border-copper/20',

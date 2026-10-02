@@ -42,12 +42,10 @@ export default function AboutTeaser() {
             </h2>
             <div className="space-y-4 text-titanium leading-relaxed">
               <p>
-                {/* "At seventeen" softened: news coverage describes the founders as East Aurora High
-                    School students, and as college freshmen in 2020-21.
-                    https://mynews13.com/fl/orlando/news/2021/09/24/wny-teens-nominated-for-american-red-cross-award-for-organ-donation-coalition
+                {/* Founded 2016 at about fifteen, confirmed by Evan (Oct 2026).
                     Two hospitals (UMMC, St. Mary's) per enfra/EnfraOverview.tsx; the partnership covers nine. */}
-                Evan Roden co-founded The Youth Coalition For Organ Donation in high school
-                and led it for seven years. He now manages the central energy plants at two
+                Evan Roden co-founded The Youth Coalition For Organ Donation at fifteen
+                and led it for more than seven years. He now manages the central energy plants at two
                 Rochester Regional Health hospitals under ENFRA&apos;s $143.8 million
                 Energy-as-a-Service partnership.
               </p>

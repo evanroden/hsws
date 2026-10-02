@@ -28,7 +28,7 @@ export default function Bio() {
               {/* Fact-check: co-founded with East Aurora High School classmates; proposal presented to Assemblyman DiPietro Sept 2018, who then sponsored an opt-out bill.
                   Source: https://www.tmj4.com/news/national/college-freshmen-in-new-york-develop-plan-to-encourage-more-organ-donors
                   NY lowest donor registration rate (30% vs 55% national, Dec 2018): https://nyulangone.org/news/transplant-institute-study-aims-boost-organ-donation */}
-              In high school, Evan Roden co-founded the Youth Coalition For Organ Donation in East Aurora, New York. The coalition is a nonpartisan advocacy group, and its opt-out proposal became a bill in the New York State Assembly aimed at New York&apos;s donor registration rate, then the lowest in the nation.
+              In 2016, at fifteen, Evan Roden co-founded the Youth Coalition For Organ Donation in East Aurora, New York. The coalition is a registered nonprofit advocacy group, and its opt-out proposal became a bill in the New York State Assembly aimed at New York&apos;s donor registration rate, then the lowest in the nation.
             </motion.p>
 
             <motion.p
