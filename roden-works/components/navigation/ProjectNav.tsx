@@ -64,7 +64,7 @@ const allProjects = [
   },
   {
     slug: 'wimley-lab',
-    title: 'Wimley Lab — Membrane Proteins',
+    title: 'Wimley Lab — Membrane-Active Peptides',
     category: 'Molecular Biology',
     // Wimley lab peptides act on lipid bilayers (see research/wimley-lab/page.tsx)
     description: 'Peptide assemblies interacting with lipid membranes for drug design.',

@@ -76,7 +76,7 @@ export default function AdvocacyPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project, i) => (
               <AnimatedCard key={project.href} index={i} {...project}>
-                <div className="mb-4 -mx-2 opacity-80">
+                <div className="mb-4 -mx-2">
                   <ProjectIllustration slug={project.slug} variant="card" />
                 </div>
               </AnimatedCard>

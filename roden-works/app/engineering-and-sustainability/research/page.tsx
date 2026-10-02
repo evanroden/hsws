@@ -39,7 +39,7 @@ const researchProjects = [
   {
     href: '/engineering-and-sustainability/research/wimley-lab',
     slug: 'wimley-lab',
-    title: 'Wimley Lab: Membrane Proteins',
+    title: 'Wimley Lab: Membrane-Active Peptides',
     description:
       'Peptide assemblies interacting with lipid bilayer membranes at Tulane School of Medicine. Applications in antibiotic-resistant drug design, pH-responsive drug delivery, and biosensor engineering.',
     label: 'Molecular Biology',
@@ -164,7 +164,7 @@ export default function ResearchPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {researchProjects.map((project, i) => (
               <AnimatedCard key={project.href} index={i} {...project}>
-                <div className="mb-4 -mx-2 opacity-80">
+                <div className="mb-4 -mx-2">
                   <ProjectIllustration slug={project.slug} variant="card" />
                 </div>
               </AnimatedCard>
