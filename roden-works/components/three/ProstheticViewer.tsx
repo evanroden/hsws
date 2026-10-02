@@ -35,34 +35,15 @@ interface ProstheticViewerProps {
 /* ─── Default models ─────────────────────────────── */
 
 const DEFAULT_MODELS: ModelOption[] = [
-  { path: '/models/va-dent-1.glb', label: 'Device 1' },
-  { path: '/models/va-dent-2.glb', label: 'Device 2' },
+  { path: '/models/va-dent-1.glb', label: 'Prototype 1' },
+  { path: '/models/va-dent-2.glb', label: 'Prototype 2' },
 ]
 
 /* ─── Default annotations ────────────────────────── */
 
-const DEFAULT_ANNOTATIONS: Annotation[] = [
-  {
-    label: 'Palatal Framework',
-    detail:
-      'Custom-contoured framework designed from CT scan data. Provides structural rigidity while minimizing tissue contact area.',
-  },
-  {
-    label: 'Retention Clasps',
-    detail:
-      'Flexible clasp arms engage undercuts on remaining teeth. Designed for passive insertion with active retention.',
-  },
-  {
-    label: 'Denture Base',
-    detail:
-      'Biocompatible resin base seats against edentulous ridge. 3D-printed for precise fit to the veteran\'s anatomy.',
-  },
-  {
-    label: 'Occlusal Surface',
-    detail:
-      'Prosthetic teeth positioned to restore functional occlusion. Material selected for wear resistance and natural appearance.',
-  },
-]
+// The VA models are assistive tools for placing and removing dentures, not dentures, so the old
+// denture-anatomy callouts were removed. Pass annotations explicitly when they are confirmed.
+const DEFAULT_ANNOTATIONS: Annotation[] = []
 
 /* ─── WebGL availability ─────────────────────────── */
 

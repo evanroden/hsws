@@ -43,8 +43,8 @@ const caseStudies = [
   {
     href: '/engineering-and-sustainability/research/va-prosthetics',
     slug: 'va-prosthetics',
-    title: 'VA Prosthetics',
-    description: '3D-printed dental and maxillofacial prosthetic models for veterans, modeled in Fusion 360.',
+    title: 'VA Assistive Devices',
+    description: '3D-printed tools that let veterans with double-arm loss place and remove their own dentures.',
     label: 'Biomedical',
   },
   {

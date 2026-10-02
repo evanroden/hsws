@@ -39,7 +39,7 @@ export default function Bio() {
               {/* Fact-check: Tulane awards the B.S.E. in Biomedical Engineering: https://catalog.tulane.edu/science-engineering/biomedical-engineering/biomedical-engineering-major/
                   The black carbon / blood pressure paper (Rabito et al., Indoor Air 2020; data collected 2016) predates Evan's time at Tulane and does not list him:
                   https://pmc.ncbi.nlm.nih.gov/articles/PMC7985991/ */}
-              At Tulane University, Evan earned a Bachelor of Science in Engineering in Biomedical Engineering and worked in three research labs. He designed 3D-printed prosthetic devices for veterans at the VA, studied membrane protein structures for drug delivery in the Wimley Lab at Tulane School of Medicine, and investigated the cardiovascular effects of indoor air pollution in New Orleans. That work built on an earlier Tulane study linking residential black carbon exposure to higher systolic blood pressure.
+              At Tulane University, Evan earned a Bachelor of Science in Engineering in Biomedical Engineering and worked in three research labs. On a co-op at the VA, he designed 3D-printed tools that let veterans with double-arm loss place and remove their own dentures. He also studied membrane-active peptides for drug delivery in the Wimley Lab at Tulane School of Medicine and investigated the cardiovascular effects of indoor air pollution in New Orleans. That work built on an earlier Tulane study linking residential black carbon exposure to higher systolic blood pressure.
             </motion.p>
 
             <motion.p

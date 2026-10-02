@@ -276,7 +276,7 @@ function VaProstheticsScene() {
       <text x="234" y="148" fill={C.titanium} fillOpacity="0.204" fontSize="3" fontFamily="monospace">Layer: 0.2mm</text>
       <text x="234" y="156" fill={C.copper} fillOpacity="0.255" fontSize="3" fontFamily="monospace">FlowIt</text>
       {/* Labels */}
-      <text x="8" y="10" fill={C.titanium} fillOpacity="0.204" fontSize="4" fontFamily="monospace">VA PROSTHETICS — CAD/CAM</text>
+      <text x="8" y="10" fill={C.titanium} fillOpacity="0.204" fontSize="4" fontFamily="monospace">VA ASSISTIVE DEVICES — CAD</text>
       <text x="45" y="145" fill={C.titanium} fillOpacity="0.255" fontSize="3.5" fontFamily="monospace">LAYER 847</text>
     </svg>
   )
@@ -954,7 +954,7 @@ function VaProstheticsIcon() {
       <text x="215" y="24" fill={C.titanium} fillOpacity="0.238" fontSize="3.5" fontFamily="monospace">PLA+ 1.75mm</text>
       <text x="215" y="32" fill={C.titanium} fillOpacity="0.17" fontSize="3" fontFamily="monospace">Infill: 25%</text>
       <text x="215" y="40" fill={C.copper} fillOpacity="0.204" fontSize="3" fontFamily="monospace">FlowIt</text>
-      <text x="20" y="72" fill={C.titanium} fillOpacity="0.17" fontSize="3.5" fontFamily="monospace">VA PROSTHETICS — CAD/CAM</text>
+      <text x="20" y="72" fill={C.titanium} fillOpacity="0.17" fontSize="3.5" fontFamily="monospace">VA ASSISTIVE DEVICES — CAD</text>
     </svg>
   )
 }

@@ -35,11 +35,11 @@ const featured = [
     gradientFrom: 'from-copper/10',
   },
   {
-    title: 'VA Prosthetics — 3D-Printed Devices',
+    title: 'VA Assistive Devices',
     category: 'Biomedical Engineering',
     slug: 'va-prosthetics',
     description:
-      'Designed custom prosthetic devices in Fusion 360 and 3D-printed them for veterans in southern Louisiana.',
+      'Designed and 3D-printed tools that let veterans with double-arm loss put in and take out their own dentures and other oral appliances.',
     href: '/engineering-and-sustainability/research/va-prosthetics',
     tag: 'Research',
     color: 'bg-clinical/20 text-titanium border-titanium/20',

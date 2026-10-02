@@ -50,13 +50,13 @@ const groups: { name: string; skills: Skill[] }[] = [
     skills: [
       {
         name: 'Autodesk Fusion 360',
-        context: 'Parametric CAD for custom prosthetic devices.',
-        project: { label: 'VA Prosthetics', href: '/engineering-and-sustainability/research/va-prosthetics' },
+        context: 'Parametric CAD for assistive tools for veterans.',
+        project: { label: 'VA Assistive Devices', href: '/engineering-and-sustainability/research/va-prosthetics' },
       },
       {
         name: 'FlowIt',
         context: 'Adaptive slicing for FDM and SLA 3D printing.',
-        project: { label: 'VA Prosthetics', href: '/engineering-and-sustainability/research/va-prosthetics' },
+        project: { label: 'VA Assistive Devices', href: '/engineering-and-sustainability/research/va-prosthetics' },
       },
       { name: 'TRIZ', context: 'Systematic innovation methodology.' },
     ],

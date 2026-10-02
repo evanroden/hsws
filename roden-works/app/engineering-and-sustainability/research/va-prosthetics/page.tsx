@@ -37,7 +37,7 @@ export default function VAProstheticsPage() {
         items={[
           { name: 'Engineering', href: '/engineering-and-sustainability' },
           { name: 'Research', href: '/engineering-and-sustainability/research' },
-          { name: 'VA Prosthetics' },
+          { name: 'VA Assistive Devices' },
         ]}
       />
       <Breadcrumbs
@@ -47,7 +47,7 @@ export default function VAProstheticsPage() {
             label: 'Research',
             href: '/engineering-and-sustainability/research',
           },
-          { label: 'VA Prosthetics' },
+          { label: 'VA Assistive Devices' },
         ]}
       />
       <div className="content-width -mt-2 mb-4">
@@ -87,11 +87,12 @@ export default function VAProstheticsPage() {
               Biomedical Engineering
             </span>
             <h1 className="font-serif text-display text-white max-w-3xl">
-              VA Prosthetics
+              VA Assistive Devices
             </h1>
             <p className="mt-4 text-titanium text-lg max-w-2xl">
-              I designed and 3D-printed custom prosthetic devices for American
-              veterans in Southern Louisiana.
+              Tools that let veterans with double-arm loss put in and take out
+              their own dentures and other oral appliances.
+              {/* Project scope and Evan's VA status confirmed by Evan (Oct 2026). */}
             </p>
           </motion.div>
         </div>
@@ -116,26 +117,22 @@ export default function VAProstheticsPage() {
                 </h2>
                 <div className="space-y-4 text-titanium leading-relaxed">
                   <p>
-                    This was a partnership between Tulane University and the
-                    U.S. Department of Veterans Affairs under the Taylor
-                    Foundation. I modeled custom medical devices in Autodesk
-                    Fusion 360 and FlowIt for 3D printing and built prosthetic
-                    devices for veterans in the Southern Louisiana region.
+                    While I was a student at Tulane, I worked at the U.S.
+                    Department of Veterans Affairs on a co-op as a WOC
+                    (without compensation) employee, with VA credentials and a
+                    VA email.
                   </p>
                   <p>
-                    Every device was built for one veteran. We started with a
-                    clinical assessment and a 3D scan, modeled the device in
-                    Fusion 360, printed it, and adjusted the fit until it worked
-                    for daily use.
+                    My project served veterans who have lost both arms. Putting
+                    in or taking out a denture normally takes two hands, so
+                    these veterans depended on someone else for it every day. I
+                    designed tools that let them place and remove dentures and
+                    other oral appliances on their own.
                   </p>
-                  {/* Softened: generalized from "veterans dealing with limb
-                      loss and limited mobility" to match the devices actually
-                      shown here, which are dental/maxillofacial prosthetics.
-                      OWNER-CONFIRM the device types made in this program. */}
                   <p>
-                    The job was part engineering and part patient care. I had to
-                    know additive manufacturing well, and I had to work directly
-                    with veterans and their clinical teams.
+                    I modeled the tools in Autodesk Fusion 360, 3D-printed
+                    prototypes, and revised them with the veterans who would use
+                    them. The two models here are prototypes from that work.
                   </p>
                 </div>
 
@@ -146,11 +143,9 @@ export default function VAProstheticsPage() {
                   transition={{ duration: 0.8, delay: 0.4 }}
                   className="mt-8 glass rounded-xl p-6 border-l-2 border-copper/40"
                 >
-                  {/* Softened: removed upper-limb examples that conflict with the
-                      dental/maxillofacial devices shown in the viewer. */}
                   <p className="text-white italic font-serif text-lg leading-relaxed">
-                    Each device was meant to give back an everyday ability, so the
-                    veteran could do more without help.
+                    The goal was autonomy: a daily task these veterans could do
+                    again without waiting for help.
                   </p>
                 </motion.div>
               </motion.div>
@@ -166,8 +161,8 @@ export default function VAProstheticsPage() {
               >
                 <ProstheticViewer
                   models={[
-                    { path: '/models/va-dent-1.glb', label: 'Device 1' },
-                    { path: '/models/va-dent-2.glb', label: 'Device 2' },
+                    { path: '/models/va-dent-1.glb', label: 'Prototype 1' },
+                    { path: '/models/va-dent-2.glb', label: 'Prototype 2' },
                   ]}
                   className="aspect-square"
                 />
@@ -193,10 +188,10 @@ export default function VAProstheticsPage() {
               Process
             </span>
             <h2 className="font-serif text-heading text-white mt-3">
-              How each device was made.
+              How each tool was made.
             </h2>
             <p className="mt-4 text-titanium max-w-2xl">
-              Every device went through the same four steps, adjusted for each
+              Each tool went through the same loop, adjusted for each
               veteran&apos;s needs.
             </p>
           </motion.div>
@@ -208,27 +203,27 @@ export default function VAProstheticsPage() {
               {[
                 {
                   step: '01',
-                  title: 'Clinical Assessment',
+                  title: 'Understand the Task',
                   description:
-                    'Meet with the veteran and the clinical team to learn what the device needs to do, and take anatomical measurements.',
+                    'Meet with the veteran and the clinical team to see how the denture or appliance goes in and comes out, and what the tool has to do.',
                 },
                 {
                   step: '02',
                   title: '3D Modeling',
                   description:
-                    'Model the device parametrically in Autodesk Fusion 360 from the anatomical measurements, revising as needed.',
+                    'Model the tool parametrically in Autodesk Fusion 360 so dimensions can change quickly between versions.',
                 },
                 {
                   step: '03',
-                  title: 'Fabrication',
+                  title: '3D Printing',
                   description:
-                    'Slice in FlowIt and print (FDM/SLA), choosing a material for the strength or flexibility the part needs.',
+                    'Print a prototype, choosing a material for the strength or flexibility the part needs.',
                 },
                 {
                   step: '04',
-                  title: 'Fitting & Refinement',
+                  title: 'Test & Revise',
                   description:
-                    'Fit the device on the veteran, test it, and adjust until it works for daily use.',
+                    'Have the veteran try the tool, watch where it fails, and revise until it works for daily use.',
                 },
               ].map((phase, i) => (
                 <motion.div
@@ -289,15 +284,15 @@ export default function VAProstheticsPage() {
               },
               {
                 tool: 'FlowIt',
-                detail: 'Adaptive 3D print slicing',
+                detail: '3D print preparation',
               },
               {
-                tool: '3D Printing (FDM/SLA)',
-                detail: 'PLA, PETG, flexible TPU',
+                tool: '3D Printing',
+                detail: 'Rapid prototyping',
               },
               {
-                tool: 'Clinical Assessment',
-                detail: 'Anatomical measurement & fitting',
+                tool: 'User Testing',
+                detail: 'Trials with veterans',
               },
             ].map((item, i) => (
               <motion.div

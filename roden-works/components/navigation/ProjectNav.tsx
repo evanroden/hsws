@@ -35,9 +35,9 @@ const allProjects = [
   },
   {
     slug: 'va-prosthetics',
-    title: 'VA Prosthetics',
+    title: 'VA Assistive Devices',
     category: 'Biomedical',
-    description: 'Custom 3D-printed prosthetic devices for American veterans.',
+    description: '3D-printed tools that let veterans with double-arm loss place and remove their own dentures.',
     href: '/engineering-and-sustainability/research/va-prosthetics',
   },
   {
