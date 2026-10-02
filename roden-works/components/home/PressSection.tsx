@@ -36,8 +36,9 @@ const recognition = [
     href: '/advocacy-and-civic/ycod',
   },
   {
-    title: 'Vogue Italy',
-    issuer: 'BizarrAudi · SchoolTime · 2020',
+    // Retitled from "Vogue Italy" so it doesn't read as modeling for Vogue itself.
+    title: 'SchoolTime runway',
+    issuer: 'BizarrAudi · 2020',
     // OWNER-CONFIRM: no public record of the Vogue Italia coverage found.
     detail: "Runway modeling for BizarrAudi's SchoolTime collection, which Vogue Italy covered.",
     href: '/studio/modeling',

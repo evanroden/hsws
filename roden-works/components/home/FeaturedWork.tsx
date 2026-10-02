@@ -50,7 +50,7 @@ const featured = [
     category: 'Cinematography',
     slug: 'cinematography',
     description:
-      'Camera operator and editor under Albert J. Moten, Jr., working with BlackMagic 6K and Sony a7s II on productions in New Orleans.',
+      'Camera operator and editor under Albert J. Moten, Jr., working with the Blackmagic Pocket Cinema Camera 6K and Sony a7s II on productions in New Orleans.',
     href: '/studio/cinematography',
     tag: 'Creative',
     color: 'bg-titanium/20 text-titanium border-titanium/20',

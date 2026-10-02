@@ -21,7 +21,8 @@ const items = [
     title: 'Claiborne Avenue Productions',
     category: 'cinematography' as const,
     slug: 'claiborne-avenue',
-    description: 'Camera operator and editor under Albert J. Moten, Jr., shooting on BlackMagic 6K and Sony a7s II.',
+    // Camera is the Pocket Cinema Camera 6K (see studio/cinematography/page.tsx)
+    description: 'Camera operator and editor under Albert J. Moten, Jr., shooting on the Blackmagic Pocket Cinema Camera 6K and Sony a7s II.',
     href: '/studio/cinematography',
     aspect: 'aspect-video',
   },
@@ -42,7 +43,8 @@ const items = [
     aspect: 'aspect-square',
   },
   {
-    title: 'Vogue Italy — BizarrAudi',
+    // Retitled so it doesn't read as modeling for Vogue itself; coverage unverified (OWNER-CONFIRM)
+    title: 'BizarrAudi SchoolTime',
     category: 'modeling' as const,
     slug: 'vogue-italy',
     // Matches studio/modeling wording; Vogue Italia coverage not found publicly (OWNER-CONFIRM)
@@ -51,10 +53,12 @@ const items = [
     aspect: 'aspect-[3/4]',
   },
   {
-    title: 'Documentary Work',
+    // Was "Documentary Work" / "Narrative and documentary films": the cinematography page has
+    // no documentary. The Bridge is a poetic short and Plato's Cave a narrated short.
+    title: 'Short Films',
     category: 'cinematography' as const,
     slug: 'documentary-work',
-    description: 'Narrative and documentary films, including Plato\'s Cave and The Bridge.',
+    description: 'Short films, including The Bridge and Plato\'s Cave.',
     href: '/studio/cinematography',
     aspect: 'aspect-video',
   },
