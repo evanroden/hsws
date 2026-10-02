@@ -195,7 +195,8 @@ function Schematic({ active, selected, mode, stage, reduce, showMarkers, onSelec
     const el = scrollRef.current
     if (!el || !selected || !overflowing || width === 0) return
     const rs = L.brackets[selected]
-    const x0 = Math.min(...rs.map((r) => r.x))
+    // In an outage, frame the transfer: ATS through the critical-power card
+    const x0 = selected === 'generators' && outage ? L.ats.x - 56 : Math.min(...rs.map((r) => r.x))
     const x1 = selected === 'generators' && outage ? L.cards[3].rect.x + L.cards[3].rect.w : Math.max(...rs.map((r) => r.x + r.w))
     const center = (((x0 + x1) / 2) / L.W) * width
     el.scrollTo({ left: Math.max(0, center - el.clientWidth / 2), behavior: reduce ? 'auto' : 'smooth' })
@@ -338,7 +339,7 @@ function Schematic({ active, selected, mode, stage, reduce, showMarkers, onSelec
               <T x={470} y={526} px={px} mono fill={utilityLost ? chart.text.muted : chart.text.secondary}>
                 Normal
               </T>
-              <T x={452} y={578} px={px} mono fill={genRunning ? chart.text.secondary : chart.text.muted}>
+              <T x={466} y={578} px={px} mono fill={genRunning ? chart.text.secondary : chart.text.muted}>
                 Emergency
               </T>
             </g>

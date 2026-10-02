@@ -18,7 +18,7 @@ export default function ChartTooltip({ x, y, containerWidth, title, children }: 
   return (
     <div
       role="presentation"
-      className="pointer-events-none absolute z-20 min-w-[168px] rounded-lg border border-white/10 bg-[#0D1417]/95 px-3 py-2.5 shadow-2xl shadow-black/40 backdrop-blur-sm"
+      className="pointer-events-none absolute z-20 w-max max-w-[280px] min-w-[168px] rounded-lg border border-white/10 bg-[#0D1417]/95 px-3 py-2.5 shadow-2xl shadow-black/40 backdrop-blur-sm"
       style={{
         left: x,
         top: y,
@@ -33,7 +33,7 @@ export default function ChartTooltip({ x, y, containerWidth, title, children }: 
 
 export function TooltipRow({ color, value, label }: { color?: string; value: ReactNode; label: ReactNode }) {
   return (
-    <div className="flex items-center gap-2 text-xs">
+    <div className="flex items-center gap-2 text-xs whitespace-nowrap">
       {color && <span aria-hidden="true" className="inline-block w-3 h-0.5 rounded-full shrink-0" style={{ background: color }} />}
       <span className="font-semibold text-white tabular-nums">{value}</span>
       <span className="text-muted">{label}</span>
