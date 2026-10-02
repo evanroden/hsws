@@ -65,7 +65,7 @@ const caseStudies = [
     href: '/engineering-and-sustainability/research/wimley-lab',
     slug: 'wimley-lab',
     title: 'Wimley Lab: Membrane Proteins',
-    description: 'Peptide assemblies interacting with membrane proteins. Applications in antibiotic-resistant drug design.',
+    description: 'Peptide assemblies interacting with lipid membranes. Applications in antibiotic-resistant drug design.',
     label: 'Molecular Biology',
   },
 ]
