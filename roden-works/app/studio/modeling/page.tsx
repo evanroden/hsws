@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { listGalleryImages } from '@/lib/gallery'
 import ModelingContent from './ModelingContent'
+import { SourceList } from '@/components/ui/Sources'
+import { MODELING_SOURCES } from './sources'
 
 export const metadata: Metadata = {
   title: 'Modeling — Vogue Italy',
@@ -9,5 +11,10 @@ export const metadata: Metadata = {
 
 export default function ModelingPage() {
   // Photos placed in public/images/modeling appear automatically (see ASSET_GUIDE.md)
-  return <ModelingContent images={listGalleryImages('modeling')} />
+  return (
+    <>
+      <ModelingContent images={listGalleryImages('modeling')} />
+      <SourceList sources={MODELING_SOURCES} />
+    </>
+  )
 }

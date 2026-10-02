@@ -5,6 +5,8 @@ import { motion } from 'framer-motion'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import GalleryPending from '@/components/ui/GalleryPending'
 import { useInView } from '@/lib/hooks'
+import { Cite } from '@/components/ui/Sources'
+import { MODELING_SOURCES as S } from './sources'
 import type { GalleryImage } from '@/lib/gallery'
 
 export default function ModelingContent({ images }: { images: GalleryImage[] }) {
@@ -80,9 +82,11 @@ export default function ModelingContent({ images }: { images: GalleryImage[] }) 
                 The Collection
               </span>
               <h2 className="font-serif text-heading text-white">Schooltime</h2>
-              {/* Designer, venue, Vogue Italy feature and Evan's roles confirmed by Evan (Oct 2026). */}
+              {/* Designer, venue, Vogue Italy feature and Evan's roles confirmed by Evan (Oct 2026).
+                  Bizar / "Audi" / Orchard Park / designer and model: https://digital-release.wivb.com/news/local-news/erie-county/orchard-park/wny-teen-shares-runway-with-big-name-models-for-major-fashion-companies
+                  Rapper and NYC base: owner-confirmed, no public source found. */}
               <p className="mt-6 text-titanium leading-relaxed">
-                Bizar Audi is the name Austin Stoll works under. He is a multidisciplinary artist,
+                Bizar Audi is the name Austin Stoll works under.<Cite sources={S} id="wivb-stoll" /> He is a multidisciplinary artist,
                 designer, model, and rapper from Orchard Park, New York, now based in New York City.
                 Schooltime takes pieces of the school uniform and recuts them as fashion.
               </p>

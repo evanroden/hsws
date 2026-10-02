@@ -5,10 +5,12 @@ import Breadcrumbs from '@/components/ui/Breadcrumbs'
 import PageHero from '@/components/ui/PageHero'
 import CinemaEmbed, { CinemaEmbedCompact } from '@/components/ui/CinemaEmbed'
 import { useInView } from '@/lib/hooks'
+import { Cite, SourceList } from '@/components/ui/Sources'
+import { CINEMATOGRAPHY_SOURCES as S } from './sources'
 
 /* ─── Equipment Data ─────────────────────────────── */
 
-const equipment = [
+const equipment: { category: string; items: { name: string; detail: string; sources?: string[] }[] }[] = [
   {
     category: 'Camera Systems',
     items: [
@@ -19,11 +21,14 @@ const equipment = [
         // https://ymcinema.com/2023/09/14/blackmagic-announces-the-full-frame-cinema-camera-6k
         name: 'Blackmagic Pocket Cinema Camera 6K',
         detail: '6K Super 35 sensor, 13 stops of dynamic range, Blackmagic RAW',
+        sources: ['cined-bmpcc6k'],
       },
       {
         // https://www.bhphotovideo.com/c/product/1255307-REG/sony_alpha_a7s_ii_mirrorless.html
+        // (B&H returns 403 to automated checks; cited source: https://www.newsshooter.com/?p=29057)
         name: 'Sony a7s II',
         detail: 'Full-frame mirrorless, strong low-light performance, S-Log2/S-Log3',
+        sources: ['newsshooter-a7sii'],
       },
     ],
   },
@@ -34,7 +39,7 @@ const equipment = [
       { name: 'Adobe After Effects', detail: 'Motion graphics, compositing, and visual effects' },
       { name: 'DaVinci Resolve', detail: 'Color grading, color science management, and finishing' },
       // https://www.provideocoalition.com/cinema-grade-a-new-way-to-color-grade-footage-inside-of-your-nle/
-      { name: 'Cinema Grade', detail: 'Color grading plug-in that works directly on the image in the viewer' },
+      { name: 'Cinema Grade', detail: 'Color grading plug-in that works directly on the image in the viewer', sources: ['pvc-cinema-grade'] },
     ],
   },
 ]
@@ -89,10 +94,10 @@ export default function CinematographyPage() {
                   "Over 20 years" removed: no public source found. */}
               <p className="mt-6 text-titanium leading-relaxed">
                 Albert J. Moten, Jr. is a New Orleans producer and director who runs Claiborne Avenue
-                Productions. He has also worked on Hollywood productions shot in Louisiana, including{' '}
+                Productions.<Cite sources={S} id="claiborne-about" /> He has also worked on Hollywood productions shot in Louisiana, including{' '}
                 <span className="text-white font-medium">12 Years a Slave</span> (2013), where he was
-                a location assistant, and{' '}
-                <span className="text-white font-medium">Now You See Me</span> (2013).
+                a location assistant,<Cite sources={S} id="afi-12-years" /> and{' '}
+                <span className="text-white font-medium">Now You See Me</span> (2013).<Cite sources={S} id="imdb-moten" />
               </p>
               <p className="mt-4 text-titanium leading-relaxed">
                 I worked at Claiborne Avenue as a camera operator and editor, which put me on
@@ -285,7 +290,7 @@ export default function CinematographyPage() {
               </span>
               <p className="text-titanium text-sm mt-2 leading-relaxed">
                 The Louisiana Children&apos;s Museum ad, made for a New Orleans museum built around
-                play-based learning, isn&apos;t posted publicly, so this slot shows a background
+                play-based learning,<Cite sources={S} id="lcm-about" /> isn&apos;t posted publicly, so this slot shows a background
                 jazz video from my YouTube channel.
               </p>
             </div>
@@ -369,7 +374,7 @@ export default function CinematographyPage() {
             {/* WWNO is the NPR member station for New Orleans: https://en.wikipedia.org/wiki/WWNO
                 YouTube title of the embed: "WWNO Sample Show". */}
             <p className="mt-4 text-titanium max-w-2xl leading-relaxed">
-              A sample program I produced for WWNO, New Orleans&apos; NPR affiliate: an hour of
+              A sample program I produced for WWNO, New Orleans&apos; NPR affiliate:<Cite sources={S} id="wwno-wiki" /> an hour of
               classical music with narration between pieces.
             </p>
           </motion.div>
@@ -500,7 +505,10 @@ export default function CinematographyPage() {
                       className="border-l-2 border-white/10 pl-4 hover:border-copper/50 transition-colors duration-300"
                     >
                       <h4 className="text-white font-medium">{item.name}</h4>
-                      <p className="text-titanium text-sm mt-1">{item.detail}</p>
+                      <p className="text-titanium text-sm mt-1">
+                        {item.detail}
+                        {item.sources && <Cite sources={S} id={item.sources} />}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -509,6 +517,8 @@ export default function CinematographyPage() {
           </div>
         </div>
       </section>
+
+      <SourceList sources={S} />
     </>
   )
 }
