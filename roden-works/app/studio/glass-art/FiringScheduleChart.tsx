@@ -7,12 +7,16 @@ import ChartTooltip, { TooltipRow } from '@/components/charts/ChartTooltip'
 import { chart } from '@/components/charts/tokens'
 import { linearScale } from '@/components/charts/scale'
 import { useElementSize } from '@/components/charts/useElementSize'
+import { Cite } from '@/components/ui/Sources'
+import { GLASS_ART_SOURCES as S } from './sources'
 
 export interface FiringStage {
   stage: string
   temperature: string
   duration: string
   description: string
+  /** Source ids from ./sources that support this stage's figures. */
+  sources?: string[]
 }
 
 /*
@@ -77,7 +81,12 @@ export default function FiringScheduleChart({ stages }: { stages: FiringStage[] 
     <ChartFrame
       title="A representative full-fuse firing curve"
       subtitle="Kiln temperature over one cycle, °F. Select a stage to see what happens inside the kiln."
-      note="Based on Bullseye Glass's published full-fuse schedule for a 6mm, two-layer piece. Real schedules vary with glass thickness, layup, and kiln."
+      note={
+        <>
+          Based on Bullseye Glass&apos;s published full-fuse schedule for a 6mm, two-layer piece. Real schedules vary with glass thickness, layup, and kiln.
+          <Cite sources={S} id="bullseye-schedule" />
+        </>
+      }
       table={{
         caption: 'Firing schedule stages',
         columns: ['Stage', 'Temperature', 'Duration'],
@@ -119,7 +128,10 @@ export default function FiringScheduleChart({ stages }: { stages: FiringStage[] 
             <span className="font-mono text-xs text-copper-light">{stages[active].temperature}</span>
             <span className="font-mono text-xs text-muted">{stages[active].duration}</span>
           </div>
-          <p className="mt-3 text-sm text-titanium leading-relaxed">{stages[active].description}</p>
+          <p className="mt-3 text-sm text-titanium leading-relaxed">
+            {stages[active].description}
+            {stages[active].sources && <Cite sources={S} id={stages[active].sources!} />}
+          </p>
           {active === 0 && <p className="mt-3 text-xs text-muted">Happens at the bench, before the kiln is switched on.</p>}
         </motion.div>
       </div>

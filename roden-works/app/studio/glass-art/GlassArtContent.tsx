@@ -8,9 +8,11 @@ import PageHero from '@/components/ui/PageHero'
 import GalleryPending from '@/components/ui/GalleryPending'
 import { useInView } from '@/lib/hooks'
 import type { GalleryImage } from '@/lib/gallery'
-import FiringScheduleChart from './FiringScheduleChart'
+import FiringScheduleChart, { type FiringStage } from './FiringScheduleChart'
+import { Cite } from '@/components/ui/Sources'
+import { GLASS_ART_SOURCES as S } from './sources'
 
-const technicalDetails = [
+const technicalDetails: FiringStage[] = [
   {
     stage: 'Design & Layout',
     temperature: 'Room Temperature',
@@ -27,6 +29,7 @@ const technicalDetails = [
     duration: 'About 3 hours, plus a 45-minute soak',
     description:
       'A ramp of about 400°F per hour, then a 45-minute hold at 1225°F so the heat evens out through the layers before the glass softens. Heat it too fast early on and thermal shock can crack the glass.',
+    sources: ['bullseye-schedule'],
   },
   {
     stage: 'Rapid Heat',
@@ -34,6 +37,7 @@ const technicalDetails = [
     duration: 'About 30 minutes',
     description:
       'After the soak, the ramp rate can increase to about 600°F per hour. The glass softens and the stacked layers slump into one another.',
+    sources: ['bullseye-schedule'],
   },
   {
     stage: 'Full Fuse & Soak',
@@ -42,6 +46,7 @@ const technicalDetails = [
     duration: '10 minutes',
     description:
       'The peak temperature determines the final texture. A tack fuse around 1375°F bonds the pieces while keeping their height and edges. A full fuse at about 1490°F creates a smooth, flat surface where individual pieces become indistinguishable. A short soak at peak temperature lets the heat even out across the piece.',
+    sources: ['bullseye-schedule', 'glacial-tack'],
   },
   {
     stage: 'Anneal & Cool',
@@ -49,6 +54,7 @@ const technicalDetails = [
     duration: 'About 1.5 hours',
     description:
       'The kiln drops as fast as it can to the annealing temperature, 900°F for Bullseye glass, where internal stress is relieved. The glass is held there for an hour so the whole piece reaches the same temperature. A piece that is annealed poorly can crack later.',
+    sources: ['bullseye-schedule'],
   },
   {
     stage: 'Controlled Cool-Down',
@@ -56,6 +62,7 @@ const technicalDetails = [
     duration: '2 hours, then natural cooling',
     description:
       'A slow, programmed cool keeps new stress from setting in. The kiln cools at 100°F per hour from 900°F to 700°F, then cools on its own to room temperature.',
+    sources: ['bullseye-schedule'],
   },
 ]
 
@@ -200,13 +207,14 @@ export default function GlassArtContent({ images }: { images: GalleryImage[] }) 
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
+            {([
               {
                 title: 'Bullseye Glass',
                 // Bullseye does not rate its glass "COE 90"; it factory-tests its fusible glasses for
                 // compatibility with each other. https://www.bullseyeglass.com/faq
                 detail:
                   'Bullseye Compatible glass sheets (often sold as COE 90) in transparent, opalescent, and iridescent finishes. Bullseye tests its fusible glasses for compatibility with each other, so different colors and textures can be fused without cracking from uneven expansion.',
+                sources: ['bullseye-faq'],
               },
               {
                 title: 'Kiln Forming',
@@ -218,7 +226,7 @@ export default function GlassArtContent({ images }: { images: GalleryImage[] }) 
                 detail:
                   'After firing, I grind, polish, and sometimes sandblast each piece to finish the edges, adjust the surface texture, and expose internal layers. Most of this is done on a diamond lap grinder and a wet belt sander.',
               },
-            ].map((material, i) => (
+            ] as { title: string; detail: string; sources?: string[] }[]).map((material, i) => (
               <motion.div
                 key={material.title}
                 initial={{ opacity: 0, y: 30 }}
@@ -229,7 +237,10 @@ export default function GlassArtContent({ images }: { images: GalleryImage[] }) 
                 <h3 className="font-mono text-sm tracking-widest uppercase text-copper mb-4">
                   {material.title}
                 </h3>
-                <p className="text-titanium text-sm leading-relaxed">{material.detail}</p>
+                <p className="text-titanium text-sm leading-relaxed">
+                  {material.detail}
+                  {material.sources && <Cite sources={S} id={material.sources} />}
+                </p>
               </motion.div>
             ))}
           </div>
@@ -252,7 +263,7 @@ export default function GlassArtContent({ images }: { images: GalleryImage[] }) 
             <p className="mt-4 text-lg text-titanium max-w-2xl leading-relaxed">
               A firing schedule is the programmed sequence of temperature ramps, holds, and cooling
               stages that fuses the glass. Bullseye&apos;s reference full-fuse cycle for a 6mm piece
-              runs about 12 hours.
+              runs about 12 hours.<Cite sources={S} id="bullseye-graph" />
               {/* https://www.bullseyeglass.com/wp-content/uploads/TECHBOOK_ST_idealized_firing_graph.pdf */}
             </p>
           </motion.div>
