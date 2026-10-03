@@ -150,50 +150,28 @@ function YcodDrawing({ w }: { w: number }) {
   )
 }
 
-/** VA — a 3D-printed denture tool: a cradle on a stand, with a denture lifting in and out of it. */
-const TEETH: [number, number, number][] = [
-  // [center x, width, height]
-  [104, 9, 10], [113.5, 9, 12], [123, 9.5, 14], [133, 10, 15], [144, 11, 17],
-  [156, 11, 17], [167, 10, 15], [177, 9.5, 14], [186.5, 9, 12], [196, 9, 10],
-]
-
+/** VA assistive tools, traced from the two Fusion 360 prototypes shown in the
+ *  3D viewer on the VA page (public/models/va-dent-1.glb, va-dent-2.glb):
+ *  left, the mounting plate with curved hooks (prototype 2); right, the long
+ *  flat arm with two mounting holes and an angled, clipped head (prototype 1). */
 function VaDrawing({ w }: { w: number }) {
-  const gumY = (x: number) => {
-    const t = (x - 96) / 108
-    return 66 - 48 * t * (1 - t)
-  }
   return (
     <g>
-      {/* Denture: teeth under a gum arch */}
-      {TEETH.map(([cx, tw, th]) => (
-        <rect
-          key={cx}
-          x={cx - tw / 2 + 0.6}
-          y={gumY(cx) - 3}
-          width={tw - 1.2}
-          height={th * 1.2}
-          rx="3"
-          fill="#E6EBEE"
-          fillOpacity="0.92"
-          stroke={C.bg}
-          strokeWidth="1"
-        />
-      ))}
-      <path d="M96 50 Q150 18 204 50 L204 66 Q150 42 96 66 Z" {...shape(C.copper, w, T.copper)} />
-      {/* Place / remove arrows */}
-      {[64, 236].map((x) => (
-        <g key={x} {...ln(C.copperLight, w * 0.8)}>
-          <line x1={x} y1="44" x2={x} y2="100" />
-          <polyline points={`${x - 6},52 ${x},44 ${x + 6},52`} />
-          <polyline points={`${x - 6},92 ${x},100 ${x + 6},92`} />
-        </g>
-      ))}
-      {/* Printed cradle tool */}
-      <line x1="150" y1="110" x2="150" y2="126" {...ln(C.verdigris, w * 1.3)} />
-      <path d="M90 84 L97 102 Q150 118 203 102 L210 84" {...shape(C.verdigris, w, T.verdigris)} />
-      <rect x="112" y="126" width="76" height="16" rx="3" {...shape(C.verdigris, w, T.verdigris)} />
-      <line x1="120" y1="132" x2="180" y2="132" {...ln(C.verdigris, w * 0.5, 0.55)} />
-      <line x1="120" y1="137" x2="180" y2="137" {...ln(C.verdigris, w * 0.5, 0.55)} />
+      {/* Prototype 2: rounded mounting plate, two screw holes, three curved hooks */}
+      <path d="M86 96 C 104 92 116 80 118 62 C 119 52 128 48 132 56" {...ln(C.verdigris, w * 2.2)} />
+      <path d="M86 112 C 112 108 132 96 138 78 C 141 68 150 66 153 74" {...ln(C.verdigris, w * 2.2)} />
+      <path d="M86 128 C 118 128 150 118 164 100 C 170 92 178 92 180 100" {...ln(C.verdigris, w * 2.2)} />
+      <rect x="44" y="40" width="44" height="108" rx="20" {...shape(C.verdigris, w, T.verdigris)} />
+      <circle cx="66" cy="62" r="5" {...ln(C.verdigris, w * 0.8)} />
+      <circle cx="66" cy="126" r="5" {...ln(C.verdigris, w * 0.8)} />
+
+      {/* Prototype 1: long flat arm with two holes, angled head with clips */}
+      <path d="M196 146 L262 62 L272 70 L208 152 Z" {...shape(C.steel, w, T.steel)} />
+      <circle cx="214" cy="134" r="3.4" {...ln(C.steel, w * 0.7)} />
+      <circle cx="230" cy="114" r="3.4" {...ln(C.steel, w * 0.7)} />
+      <path d="M262 62 L300 52 L304 64 L272 70 Z" {...shape(C.steel, w, T.steel)} />
+      <rect x="256" y="46" width="12" height="14" rx="2" {...shape(C.titanium, w * 0.8, T.steel)} />
+      <rect x="282" y="46" width="10" height="9" rx="2" {...shape(C.titanium, w * 0.8, T.steel)} />
     </g>
   )
 }

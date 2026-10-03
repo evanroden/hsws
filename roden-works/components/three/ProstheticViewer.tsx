@@ -106,14 +106,18 @@ function GLBModel({ path, wireframe }: { path: string; wireframe: boolean }) {
       }
     })
 
-    // Normalize so the largest dimension is 2 units, then re-center
-    const box = new THREE.Box3().setFromObject(clone)
+    // Normalize so the largest dimension is 1.7 units (fits the 36° camera at any angle), then re-center.
+    // Update child world matrices first: Box3.setFromObject only refreshes the root, so
+    // models with scaled child nodes (va-dent-2) were measured too small and overflowed the frame.
+    clone.updateMatrixWorld(true)
+    const box = new THREE.Box3().setFromObject(clone, true)
     const size = new THREE.Vector3()
     box.getSize(size)
     const maxDim = Math.max(size.x, size.y, size.z)
-    if (maxDim > 0) clone.scale.multiplyScalar(2.2 / maxDim)
+    if (maxDim > 0) clone.scale.multiplyScalar(1.7 / maxDim)
+    clone.updateMatrixWorld(true)
     const center = new THREE.Vector3()
-    new THREE.Box3().setFromObject(clone).getCenter(center)
+    new THREE.Box3().setFromObject(clone, true).getCenter(center)
     clone.position.sub(center)
 
     return clone
